@@ -1,0 +1,18 @@
+:root {
+  --color-accent: #BB945F;
+  --color-almost_black: #0C0C0E;
+  --color-black: #000000;
+  --color-white: #FFFFFF;
+  --color-grey: #8E8E8E;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  list-style: none;
+}
