@@ -283,6 +283,7 @@ html {
 }
 
 .slider__dot {
+  position: relative;
   cursor: pointer;
   height: 16px;
   width: 16px;
@@ -292,6 +293,15 @@ html {
   transition-timing-function: ease-in-out;
   -webkit-transition: 300ms;
   -webkit-transition-timing-function: ease-in-out;
+}
+
+.slider__dot::before {
+  content: '';
+  position: absolute;
+  top: -5px;
+  bottom: -5px;
+  left: -5px;
+  right: -5px;
 }
 
 .slider__dot._active,
