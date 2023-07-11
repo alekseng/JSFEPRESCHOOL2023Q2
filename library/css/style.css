@@ -133,6 +133,7 @@ html {
 .main {
   position: relative;
   display: flex;
+  flex-direction: column;
   width: 1440px;
   margin: auto;
 }
@@ -195,7 +196,109 @@ html {
   position: relative;
   left: -5px;
 }
+
 .third-str {
   position: relative;
   left: 1px;
+}
+
+.about {
+  position: relative;
+  display: flex;
+  height: 837px;
+  width: 1440px;
+  margin: auto;
+}
+
+.about__container {
+  box-sizing: border-box;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 1440px;
+  height: 837px;
+  padding: 20px 20px 40px 20px;
+  margin: auto;
+}
+
+.about__heading__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 106px;
+  height: 61px;
+}
+
+.about__heading {
+  color: var(--color-almost_black);
+  font-family: Forum;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 40px;
+  letter-spacing: 2px;
+  text-transform: capitalize;
+}
+
+.about__span {
+  align-self: center;
+  background-color: var(--color-almost_black);
+  font-family: Forum;
+  height: 1px;
+  width: 50px;
+}
+
+.about__subheading__container {
+  position: relative;
+  top: 7px;
+}
+
+.about__subheading {
+  color: var(--color-black);
+  text-align: center;
+  font-family: Inter;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 40px;
+}
+
+.slider__container {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  width: 1400px;
+  height: 560px;
+  top: -7px;
+}
+
+.slider__dots {
+  display: flex;
+  justify-content: space-between;
+  width: 68px;
+  height: 16px;
+  text-align: center;
+}
+
+.slider__dot {
+  cursor: pointer;
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  background-color: var(--color-almost_black);
+  transition: 300ms;
+  transition-timing-function: ease-in-out;
+  -webkit-transition: 300ms;
+  -webkit-transition-timing-function: ease-in-out;
+}
+
+.slider__dot._active,
+.slider__dot:hover {
+  background-color: var(--color-accent);
+  transition: 300ms;
+  transition-timing-function: ease-in-out;
+  -webkit-transition: 300ms;
+  -webkit-transition-timing-function: ease-in-out;
 }
