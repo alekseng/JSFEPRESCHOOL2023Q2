@@ -627,3 +627,165 @@ html {
   bottom: 0;
   right: 0;
 }
+
+.coffeshop {
+  position: relative;
+  display: flex;
+  width: 1440px;
+  height: 841px;
+  margin: auto;
+}
+
+.coffeshop__container {
+  box-sizing: border-box;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 1440px;
+  height: 841px;
+  padding: 20px 20px 40px 20px;
+  margin: auto;
+}
+
+.coffeshop__heading__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 222px;
+  height: 61px;
+  left: 2px;
+  position: relative;
+}
+
+.coffeshop__heading {
+  color: var(--color-almost_black);
+  font-family: Forum;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 40px;
+  letter-spacing: 2px;
+  text-transform: capitalize;
+}
+
+.coffeshop__span {
+  align-self: center;
+  background-color: var(--color-almost_black);
+  font-family: Forum;
+  height: 1px;
+  width: 50px;
+}
+
+.coffeshop__subheading__container {
+  position: relative;
+}
+
+.coffeshop__subheading {
+  color: var(--color-black);
+  text-align: center;
+  font-family: Inter;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 40px;
+  letter-spacing: 2px;
+}
+
+.coffeeshop__menu__container {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  width: 1400px;
+  height: 520px;
+}
+
+.drinks__heading {
+  color: var(--color-accent);
+  font-family: Forum;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 40px;
+  letter-spacing: 2px;
+  text-transform: capitalize;
+  margin-bottom: 40px;
+}
+
+.drinks__menu {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.drinks__menu__item {
+  position: relative;
+  display: grid;
+  width: 438px;
+  height: 40px;
+  grid-template-columns: 199px 100px 21px;
+  grid-gap: 59px;
+}
+
+.menu__item-text {
+  display: block;
+  color: var(--color-black);
+  font-family: Inter;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 40px;
+  letter-spacing: 2px;
+  text-transform: capitalize;
+}
+
+.menu__item-span {
+  align-self: center;
+  background-color: var(--color-accent);
+  font-family: Forum;
+  height: 1px;
+  width: 100px;
+}
+
+.menu__item-price {
+  color: var(--color-black);
+  font-family: Forum;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 40px;
+  letter-spacing: 2px;
+  text-transform: capitalize;
+}
+
+.foods__heading {
+  color: var(--color-accent);
+  font-family: Forum;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 40px;
+  letter-spacing: 2px;
+  text-transform: capitalize;
+  margin-bottom: 40px;
+}
+
+.foods__menu {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.foods__menu__item {
+  position: relative;
+  display: grid;
+  height: 40px;
+  grid-template-columns: 233px 100px 31px;
+  grid-gap: 59px;
+}
+
+._foods {
+  display: flex;
+  justify-content: flex-end
+}
