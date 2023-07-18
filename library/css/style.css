@@ -971,3 +971,295 @@ html {
   width: 696px;
   height: 414px;
 }
+
+.libraryCard {
+  position: relative;
+  display: flex;
+  width: 1440px;
+  height: 614px;
+  margin: auto;
+}
+
+.libraryCard__container {
+  box-sizing: border-box;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 1440px;
+  height: 614px;
+  padding: 20px 20px 40px 20px;
+  margin: auto;
+}
+
+.libraryCard__heading__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 61px;
+  left: 1px;
+  position: relative;
+}
+
+.libraryCard__heading {
+  color: var(--color-almost_black);
+  font-family: Forum;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 40px;
+  letter-spacing: 2px;
+  text-transform: capitalize;
+}
+
+.libraryCard__span {
+  background-color: var(--color-almost_black);
+  font-family: Forum;
+  height: 1px;
+  width: 50px;
+}
+
+.findCard {
+  box-sizing: border-box;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 600px;
+  height: 453px;
+  align-items: center;
+  gap: 30px;
+}
+
+.getCard {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 456px;
+  height: 253px;
+}
+
+.cards__container {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+}
+
+.findCard h3 {
+  color: #000;
+  font-family: Inter;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.6px;
+}
+
+.findCard__container {
+  display: flex;
+  flex-direction: column;
+  width: 600px;
+  height: 386px;
+  align-items: center;
+  gap: 20px;
+  padding-top: 17px;
+  box-sizing: border-box;
+  border: 3px solid var(--color-accent);
+  background: var(--color-white);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.input__container {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-between; */
+  background: var(--color-accent);
+  width: 560px;
+  height: 272px;
+  padding: 20px 20px 25px 20px;
+}
+
+.input__container span {
+  color: var(--color-black);
+  font-family: Forum;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 50px;
+  letter-spacing: 0.6px;
+  margin-bottom: 20px;
+}
+
+.input__container input {
+  width: 520px;
+  height: 66px;
+  border-radius: 10px;
+  background: #FFF;
+}
+
+.findCard__input {
+  position: relative;
+  color: #8E8E8E;
+  font-family: Forum;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 50px;
+  letter-spacing: 0.6px;
+  border: none;
+}
+
+.findCard__input:focus {
+  outline: none;
+}
+
+input[type='text'] {
+  box-sizing: border-box;
+  padding-left: 20px;
+  margin-bottom: 25px;
+}
+
+input[type='text']:last-child {
+  margin-bottom: 0px;
+}
+
+.submit__btn {
+  box-sizing: border-box;
+  padding: 9px 39px;
+  border-radius: 2px;
+  border: 1px solid #0C0C0E;
+  color: #0C0C0E;
+  background: #FFF;
+  text-align: center;
+  font-family: Inter;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: 300ms;
+  transition-timing-function: ease-in-out;
+  -webkit-transition: 300ms;
+  -webkit-transition-timing-function: ease-in-out;
+}
+
+.submit__btn:hover {
+  border: 1px solid var(--color-accent);
+  background: var(--color-accent);
+  transition: 300ms;
+  transition-timing-function: ease-in-out;
+  -webkit-transition: 300ms;
+  -webkit-transition-timing-function: ease-in-out;
+}
+
+.getCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 456px;
+  height: 253px;
+}
+
+.getCard h3 {
+  color: var(--color-black);
+  text-align: center;
+  font-family: Forum;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.6px;
+  align-self: flex-end;
+}
+
+.getCard p {
+  color: var(--color-black);
+  text-align: right;
+  font-family: Inter;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 40px;
+  letter-spacing: 0.4px;
+}
+
+.getCard__btns {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.getCard__btn__sign-up {
+  margin-right: 20px;
+}
+
+.getCard__btn__sign-up,
+.getCard__btn__log-in {
+  box-sizing: border-box;
+  display: flex;
+  width: 75px;
+  height: 30px;
+  padding: 10px 0px;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  border-radius: 2px;
+  border: 1px solid #0C0C0E;
+  background: #ffffff;
+  color: #0C0C0E;
+  text-align: center;
+  font-family: Inter;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: 300ms;
+  transition-timing-function: ease-in-out;
+  -webkit-transition: 300ms;
+  -webkit-transition-timing-function: ease-in-out;
+}
+
+.getCard__btn__sign-up:hover,
+.getCard__btn__log-in:hover {
+  border: 1px solid var(--color-accent);
+  background: var(--color-accent);
+  transition: 300ms;
+  transition-timing-function: ease-in-out;
+  -webkit-transition: 300ms;
+  -webkit-transition-timing-function: ease-in-out;
+}
+
+.prompt {
+  box-sizing: border-box;
+  position: absolute;
+  display: none;
+  width: 520px;
+  height: 20px;
+  padding-left: 20px;
+  top: calc(50% + 36px / 2);
+  left: 1-px;
+  color: var(--color-white);
+  background-color: var(--color-black);
+  border: 1px solid var(--color-grey);
+  z-index: 1;
+  font-family: Forum;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  transition: 300ms;
+  transition-timing-function: ease-in-out;
+  -webkit-transition: 300ms;
+  -webkit-transition-timing-function: ease-in-out;
+}
+
+.prompt._active {
+  position: absolute;
+  display: flex;
+  transition: 300ms;
+  transition-timing-function: ease-in-out;
+  -webkit-transition: 300ms;
+  -webkit-transition-timing-function: ease-in-out;
+}
