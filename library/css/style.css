@@ -594,8 +594,8 @@ html {
 }
 
 .books__button:hover {
-  color: var(--color-accent);
   border: 1px solid var(--color-accent);
+  background: var(--color-accent);
   transition: 300ms;
   transition-timing-function: ease-in-out;
   -webkit-transition: 300ms;
