@@ -16,3 +16,27 @@ function validateInput() {
 };
 
 validateInput();
+
+function paintSvg() {
+  const link = document.querySelectorAll('.footer__link')
+  const svgIcons = document.querySelectorAll('.svgIcons')
+
+  link.forEach(el => {
+    el.addEventListener('mouseover', function () {
+      for (let icon of svgIcons) {
+        if (icon.dataset.fill === el.dataset.color) {
+          icon.classList.add('fill-svg')
+        } else {
+          icon.classList.remove('fill-svg')
+        }
+      };
+    })
+    el.addEventListener('mouseout', function () {
+      for (let icon of svgIcons) {
+        icon.classList.remove('fill-svg')
+      }
+    })
+  })
+}
+
+paintSvg();
