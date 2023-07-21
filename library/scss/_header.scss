@@ -1,0 +1,60 @@
+.header {
+  @extend %container;
+  background: $color-almost_black;
+  height: 90px;
+
+  &__content {
+    height: 50px;
+    justify-content: space-between;
+    @extend %content-container;
+  }
+}
+
+.header__logo__heading {
+  color: $color-white;
+  letter-spacing: 0.6px;
+  @include fontStyle(Forum, 30px, normal, 400, 50px);
+}
+
+.header__menu {
+  position: relative;
+  margin-left: auto;
+
+  &__li {
+    margin-right: 26px;
+    display: inline-table;
+
+    &:last-child {
+      margin-right: 0px;
+    }
+
+    & a {
+      color: $color-white;
+      text-decoration: none;
+      cursor: pointer;
+      @include fontStyle(Inter, 20px, normal, 400, 50px);
+      @extend %transition;
+    }
+
+    & a:hover {
+      color: $color-accent;
+      @extend %transition;
+    }
+  }
+}
+
+.profile {
+  padding-top: 11px;
+  padding-bottom: 11px;
+  margin-left: 42px;
+  cursor: pointer;
+
+  &__icon {
+    @extend %transition;
+  }
+
+  ._active-profile {
+    fill: $color-accent;
+    @extend %transition;
+  }
+}

@@ -41,6 +41,21 @@ function paintSvg() {
 
 paintSvg();
 
+function paintProfileIcon () {
+  const profile = document.querySelector('.profile')
+  const profileIcon = document.querySelector('.profile__icon')
+
+  profile.addEventListener('mouseover', function () {
+    profileIcon.classList.add('_active-profile')
+  })
+
+  profile.addEventListener('mouseout', function () {
+    profileIcon.classList.remove('_active-profile')
+  })
+}
+
+paintProfileIcon ();
+
 console.log(`Все требования к работе выполнены = 100 баллов
 1.Вёрстка валидная + 10
 2.Вёрстка семантическая + 16

@@ -1,0 +1,111 @@
+/* inter-regular - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  src: url("../assets/fonts/inter-v12-latin-regular.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* inter-700 - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 700;
+  src: url("../assets/fonts/inter-v12-latin-700.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* forum-regular - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: "Forum";
+  font-style: normal;
+  font-weight: 400;
+  src: url("../assets/fonts/forum-v16-latin-regular.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+html {
+  scroll-behavior: smooth;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  list-style: none;
+}
+
+.profile ._active-profile, .profile__icon, .header__menu__li a:hover, .header__menu__li a {
+  transition: 300ms;
+  transition-timing-function: ease-in-out;
+  -webkit-transition: 300ms;
+  -webkit-transition-timing-function: ease-in-out;
+}
+
+.header {
+  position: relative;
+  display: flex;
+  width: 1440px;
+  margin: auto;
+}
+
+.header__content {
+  position: relative;
+  display: flex;
+  width: 1440px;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin: auto;
+}
+
+.header {
+  background: #0C0C0E;
+  height: 90px;
+}
+.header__content {
+  height: 50px;
+  justify-content: space-between;
+}
+
+.header__logo__heading {
+  color: #FFFFFF;
+  letter-spacing: 0.6px;
+  font-family: Forum;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 50px;
+}
+
+.header__menu {
+  position: relative;
+  margin-left: auto;
+}
+.header__menu__li {
+  margin-right: 26px;
+  display: inline-table;
+}
+.header__menu__li:last-child {
+  margin-right: 0px;
+}
+.header__menu__li a {
+  color: #FFFFFF;
+  text-decoration: none;
+  cursor: pointer;
+  font-family: Inter;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 50px;
+}
+.header__menu__li a:hover {
+  color: #BB945F;
+}
+
+.profile {
+  padding-top: 11px;
+  padding-bottom: 11px;
+  margin-left: 42px;
+  cursor: pointer;
+}
+.profile ._active-profile {
+  fill: #BB945F;
+}/*# sourceMappingURL=index.css.map */
