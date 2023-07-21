@@ -1,0 +1,127 @@
+.contacts {
+  @extend %container;
+  height: 575px;
+
+  &__container {
+    @extend %content-container;
+    box-sizing: border-box;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 575px;
+    padding: 20px 20px 40px 20px;
+  }
+}
+
+.contacts__heading__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 61px;
+  left: 1px;
+  position: relative;
+}
+
+.contacts__heading {
+  color: $color-almost_black;
+  @include fontStyle(Forum, 40px, normal, 400, 40px);
+  letter-spacing: 2px;
+  text-transform: capitalize;
+}
+
+.contacts__span {
+  align-self: center;
+  background-color: $color-almost_black;
+  height: 1px;
+  width: 50px;
+}
+
+.contacts__info__container {
+  display: flex;
+  justify-content: space-between;
+  width: 1400px;
+  height: 414px;
+}
+
+.contacts__info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 505px;
+  height: 380px;
+}
+
+.info__title {
+  color: $color-black;
+  @include fontStyle(Inter, 20px, normal, 700, 40px);
+  letter-spacing: 2px;
+  text-transform: capitalize;
+}
+
+.info__phone {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 20px;
+  height: 160px;
+  flex-shrink: 0;
+}
+
+.info__phone a {
+  color: $color-black;
+  @include fontStyle(Inter, 20px, normal, 400, 40px);
+  letter-spacing: 2px;
+  text-transform: capitalize;
+  @extend %transition;
+
+  &:hover {
+    color: $color-accent;
+    @extend %transition;
+  }
+}
+
+.phone {
+  color: $color-black;
+  @include fontStyle(Inter, 20px, normal, 400, 40px);
+  letter-spacing: 2px;
+  text-transform: capitalize;
+}
+
+.info__staff {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100px;
+}
+
+.staff {
+  color: $color-black;
+  @include fontStyle(Inter, 20px, normal, 700, 40px);
+  letter-spacing: 2px;
+  text-transform: capitalize;
+}
+
+.director {
+  color: $color-black;
+  @include fontStyle(Inter, 20px, normal, 400, 40px);
+  letter-spacing: 2px;
+  text-transform: capitalize;
+}
+
+.strong-text {
+  color: $color-black;
+  @include fontStyle(Inter, 20px, normal, 700, 40px);
+  letter-spacing: 2px;
+  text-transform: capitalize;
+  @extend %transition;
+
+  &:hover {
+    color: $color-accent;
+    @extend %transition;
+  }
+}
+
+.contacts__map {
+  width: 696px;
+  height: 414px;
+}
