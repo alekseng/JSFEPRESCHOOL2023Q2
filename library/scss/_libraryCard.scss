@@ -1,0 +1,231 @@
+.libraryCard {
+  @extend %container;
+  height: 614px;
+
+  &__container {
+    @extend %content-container;
+    box-sizing: border-box;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 614px;
+    padding: 20px 20px 40px 20px;
+  }
+}
+
+.libraryCard__heading__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 61px;
+  left: 1px;
+  position: relative;
+}
+
+.libraryCard__heading {
+  color: $color-almost_black;
+  @include fontStyle(Forum, 40px, normal, 400, 40px);
+  letter-spacing: 2px;
+  text-transform: capitalize;
+}
+
+.libraryCard__span {
+  background-color: $color-almost_black;
+  font-family: Forum;
+  height: 1px;
+  width: 50px;
+}
+
+.findCard {
+  box-sizing: border-box;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 600px;
+  height: 453px;
+  align-items: center;
+  gap: 30px;
+}
+
+.getCard {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 456px;
+  height: 253px;
+}
+
+.cards__container {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+}
+
+.findCard h3 {
+  color: $color-black;
+  @include fontStyle(Inter, 30px, normal, 400, normal);
+  letter-spacing: 0.6px;
+}
+
+.findCard__container {
+  display: flex;
+  flex-direction: column;
+  width: 600px;
+  height: 386px;
+  align-items: center;
+  gap: 20px;
+  padding-top: 17px;
+  box-sizing: border-box;
+  border: 3px solid $color-accent;
+  background: $color-white;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.input__container {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  background: $color-accent;
+  width: 560px;
+  height: 272px;
+  padding: 20px 20px 25px 20px;
+
+  & span {
+    color: $color-black;
+    @include fontStyle(Forum, 30px, normal, 400, 50px);
+    letter-spacing: 0.6px;
+    margin-bottom: 20px;
+  }
+
+  & input {
+    width: 520px;
+    height: 66px;
+    border-radius: 10px;
+    background: $color-white;
+  }
+}
+
+.findCard__input {
+  position: relative;
+  color: $color-grey;
+  @include fontStyle(Forum, 30px, normal, 400, 50px);
+  letter-spacing: 0.6px;
+  border: none;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+input[type='text'] {
+  box-sizing: border-box;
+  padding-left: 20px;
+  margin-bottom: 25px;
+
+  &:last-child {
+    margin-bottom: 0px;
+  }
+}
+
+.submit__btn {
+  box-sizing: border-box;
+  padding: 9px 39px;
+  border-radius: 2px;
+  border: 1px solid $color-almost_black;
+  color: $color-almost_black;
+  background: $color-white;
+  text-align: center;
+  @include fontStyle(Inter, 20px, normal, 700, normal);
+  letter-spacing: 1px;
+  cursor: pointer;
+  @extend %transition;
+
+  &:hover {
+    border: 1px solid $color-accent;
+    background: $color-accent;
+    @extend %transition;
+  }
+}
+
+.getCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 456px;
+  height: 253px;
+
+  & h3 {
+    color: $color-black;
+    text-align: center;
+    @include fontStyle(Forum, 30px, normal, 400, normal);
+    letter-spacing: 0.6px;
+    align-self: flex-end;
+  }
+
+  & p {
+    color: $color-black;
+    text-align: right;
+    @include fontStyle(Inter, 20px, normal, 400, 40px);
+    letter-spacing: 0.4px;
+  }
+
+  &__btns {
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+
+.getCard__btn__sign-up {
+  margin-right: 20px;
+}
+
+.getCard__btn__sign-up,
+.getCard__btn__log-in {
+  box-sizing: border-box;
+  display: flex;
+  width: 75px;
+  height: 30px;
+  padding: 10px 0px;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  border-radius: 2px;
+  border: 1px solid$color-almost_black;
+  background: $color-white;
+  color: $color-almost_black;
+  text-align: center;
+  @include fontStyle(Inter, 10px, normal, 700, normal);
+  letter-spacing: 1px;
+  cursor: pointer;
+  @extend %transition;
+}
+
+.getCard__btn__sign-up:hover,
+.getCard__btn__log-in:hover {
+  border: 1px solid $color-accent;
+  background: $color-accent;
+  @extend %transition;
+}
+
+.prompt {
+  box-sizing: border-box;
+  position: absolute;
+  display: none;
+  width: 520px;
+  height: 20px;
+  padding-left: 20px;
+  top: calc(50% + 36px / 2);
+  left: 1-px;
+  color: $color-white;
+  background-color: $color-black;
+  border: 1px solid $color-grey;
+  z-index: 1;
+  @include fontStyle(Forum, 16px, normal, 400, 18px);
+  @extend %transition;
+
+  &._active {
+    position: absolute;
+    display: flex;
+    @extend %transition;
+  }
+}
