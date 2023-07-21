@@ -112,4 +112,62 @@ html {
 
 .main {
   flex-direction: column;
+}
+
+.welcome {
+  position: relative;
+  width: 1440px;
+  height: 600px;
+}
+.welcome__container {
+  width: 1440px;
+  height: 600px;
+  background-image: url(../assets/img/background.jpg);
+  background-size: cover;
+  background-position-y: center;
+}
+.welcome__overlay {
+  width: 1440px;
+  height: 300px;
+  flex-shrink: 0;
+  background: linear-gradient(180deg, #0C0C0E 0%, #0C0C0E 0.01%, rgba(18, 18, 21, 0.1) 100%);
+}
+.welcome__heading__container {
+  box-sizing: border-box;
+  display: flex;
+  position: relative;
+  top: -79px;
+  width: 600px;
+  height: 220px;
+  padding: 35px 40px;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  background: #0C0C0E;
+}
+.welcome__heading {
+  display: flex;
+  position: relative;
+  width: 520px;
+  top: -1px;
+  flex-direction: column;
+  justify-content: center;
+  flex-shrink: 0;
+  color: #FFFFFF;
+  text-align: center;
+  font-family: Forum;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 50px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+.welcome__heading .first-str {
+  position: relative;
+  left: -5px;
+}
+.welcome__heading .third-str {
+  position: relative;
+  left: 1px;
 }/*# sourceMappingURL=index.css.map */
