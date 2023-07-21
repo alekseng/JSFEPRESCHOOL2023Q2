@@ -33,7 +33,10 @@ html {
   list-style: none;
 }
 
-.prompt._active, .prompt, .getCard__btn__sign-up:hover,
+.footer__bottom__rss:hover a,
+.footer__bottom__name:hover a, .footer__bottom__name a, .footer__bottom__rss a, .fill-svg, #twitter,
+#instagram,
+#facebook, .footer__top-left__address:hover a, .footer__top-left__address a, .prompt._active, .prompt, .getCard__btn__sign-up:hover,
 .getCard__btn__log-in:hover, .getCard__btn__sign-up,
 .getCard__btn__log-in, .submit__btn:hover, .submit__btn, .strong-text:hover, .strong-text, .info__phone a:hover, .info__phone a, .books__button:hover, .books__button, .slider__dot._active, .slider__dot:hover, .slider__dot, .profile ._active-profile, .profile__icon, .header__menu__li a:hover, .header__menu__li a {
   transition: 300ms;
@@ -42,14 +45,14 @@ html {
   -webkit-transition-timing-function: ease-in-out;
 }
 
-.libraryCard, .contacts, .coffeshop, .favorites, .about, .main, .header {
+.footer, .libraryCard, .contacts, .coffeshop, .favorites, .about, .main, .header {
   position: relative;
   display: flex;
   width: 1440px;
   margin: auto;
 }
 
-.libraryCard__container, .contacts__container, .coffeshop__container, .favorites__container, .about__container, .header__content {
+.footer__container, .libraryCard__container, .contacts__container, .coffeshop__container, .favorites__container, .about__container, .header__content {
   position: relative;
   display: flex;
   width: 1440px;
@@ -1103,4 +1106,174 @@ input[type=text]:last-child {
 .prompt._active {
   position: absolute;
   display: flex;
+}
+
+.footer {
+  height: 250px;
+  background: #000000;
+}
+.footer__container {
+  box-sizing: border-box;
+  flex-direction: column;
+  align-items: center;
+  height: 250px;
+  padding: 20px 20px 40px 20px;
+}
+
+.footer__top {
+  display: flex;
+  width: 1400px;
+  height: 90px;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 30px;
+}
+
+.footer__top-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  width: 229px;
+  height: 90px;
+  gap: 18px;
+}
+
+.footer__top-left__address a {
+  width: 229px;
+  height: 40px;
+  color: #FFFFFF;
+  font-family: Inter;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+.footer__top-left__address:hover a {
+  color: #BB945F;
+}
+
+.footer__top-left__link-list {
+  position: relative;
+  display: flex;
+  width: 102px;
+  height: 40px;
+}
+
+.footer__top-left__link-list ul {
+  position: relative;
+  display: flex;
+  width: 102px;
+  height: 24px;
+  gap: 15px;
+}
+
+.footer__top-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  width: 149px;
+  height: 90px;
+  gap: 10px;
+}
+
+.footer__top-right__weekday {
+  width: 149px;
+  height: 40px;
+  color: #FFFFFF;
+  text-align: right;
+  font-family: Inter;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+.footer__top-right__weekend {
+  width: 149px;
+  height: 40px;
+  color: #FFFFFF;
+  text-align: right;
+  font-family: Inter;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+.footer__line {
+  width: 100%;
+  height: 1px;
+  background: #FFFFFF;
+  margin-bottom: 44px;
+}
+
+#twitter,
+#instagram,
+#facebook {
+  width: 100%;
+  height: 100%;
+}
+
+.footer__link {
+  position: relative;
+  overflow: visible;
+  width: 24px;
+  height: 24px;
+}
+
+.fill-svg {
+  fill: #BB945F;
+  transform: translate(-5%, -5%) scale(1.1);
+}
+
+.footer__bottom {
+  display: flex;
+  width: 1400px;
+  height: 22px;
+  justify-content: space-between;
+}
+
+.footer__bottom__year {
+  color: #FFFFFF;
+  text-align: center;
+  font-family: Inter;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 2px;
+}
+
+.footer__bottom__rss {
+  margin-left: 57px;
+}
+
+.footer__bottom__rss a {
+  color: #FFFFFF;
+  text-align: center;
+  font-family: Inter;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 2px;
+}
+
+.footer__bottom__name a {
+  color: #FFFFFF;
+  text-align: center;
+  font-family: Inter;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 2px;
+}
+
+.footer__bottom__rss:hover a,
+.footer__bottom__name:hover a {
+  color: #BB945F;
 }/*# sourceMappingURL=index.css.map */
