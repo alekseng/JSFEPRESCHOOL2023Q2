@@ -1,0 +1,89 @@
+.about {
+  @extend %container;
+  height: 837px;
+
+  &__container {
+    @extend %content-container;
+    box-sizing: border-box;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 837px;
+    padding: 20px 20px 40px 20px;
+  }
+}
+
+.about__heading__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 106px;
+  height: 61px;
+}
+
+.about__heading {
+  color: $color-almost_black;
+  @include fontStyle(Forum, 40px, normal, 400, 40px);
+  letter-spacing: 2px;
+  text-transform: capitalize;
+}
+
+.about__span {
+  align-self: center;
+  background-color: $color-almost_black;
+  height: 1px;
+  width: 50px;
+}
+
+.about__subheading__container {
+  position: relative;
+  top: 7px;
+}
+
+.about__subheading {
+  color: $color-black;
+  text-align: center;
+  @include fontStyle(Inter, 20px, normal, 400, 40px);
+}
+
+.slider__container {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  width: 1400px;
+  height: 560px;
+  top: -7px;
+}
+
+.slider__dots {
+  display: flex;
+  justify-content: space-between;
+  width: 68px;
+  height: 16px;
+  text-align: center;
+}
+
+.slider__dot {
+  position: relative;
+  cursor: pointer;
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  background-color: $color-almost_black;
+  @extend %transition;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    bottom: -5px;
+    left: -5px;
+    right: -5px;
+  }
+
+  &._active,
+  &:hover {
+    background-color: $color-accent;
+    @extend %transition;
+  }
+}
