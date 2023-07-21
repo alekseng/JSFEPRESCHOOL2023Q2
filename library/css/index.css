@@ -40,7 +40,7 @@ html {
   -webkit-transition-timing-function: ease-in-out;
 }
 
-.header {
+.main, .header {
   position: relative;
   display: flex;
   width: 1440px;
@@ -108,4 +108,8 @@ html {
 }
 .profile ._active-profile {
   fill: #BB945F;
+}
+
+.main {
+  flex-direction: column;
 }/*# sourceMappingURL=index.css.map */
