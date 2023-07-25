@@ -1,4 +1,5 @@
 .main {
   @extend %container;
   flex-direction: column;
+  width: 100%;
 }
