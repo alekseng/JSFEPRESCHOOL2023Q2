@@ -2,6 +2,7 @@
   @extend %container;
   height: 250px;
   background: $color-black;
+  width: 100%;
 
   &__container {
     @extend %content-container;
