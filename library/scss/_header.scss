@@ -2,10 +2,13 @@
   @extend %container;
   background: $color-almost_black;
   height: 90px;
+  width: 100%;
 
   &__content {
     height: 50px;
     justify-content: space-between;
+    margin: auto;
+    box-sizing: border-box;
     @extend %content-container;
   }
 }
