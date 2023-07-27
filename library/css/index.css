@@ -64,7 +64,7 @@ html {
 .header {
   background: #0C0C0E;
   height: 90px;
-  width: 100%;
+  width: 1440px;
 }
 .header__content {
   height: 50px;
@@ -120,7 +120,7 @@ html {
 
 .main {
   flex-direction: column;
-  width: 100%;
+  width: 1440px;
 }
 
 .welcome {
@@ -1114,7 +1114,7 @@ input[type=text]:last-child {
 .footer {
   height: 250px;
   background: #000000;
-  width: 100%;
+  width: 1440px;
 }
 .footer__container {
   box-sizing: border-box;
