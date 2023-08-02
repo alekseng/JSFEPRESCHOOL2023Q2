@@ -2,7 +2,8 @@
   @extend %container;
   height: 250px;
   background: $color-black;
-  width: 1440px;
+  width: 100%;
+  max-width: 1440px;
 
   &__container {
     @extend %content-container;
@@ -16,7 +17,8 @@
 
 .footer__top {
   display: flex;
-  width: 1400px;
+  width: 100%;
+  max-width: 1400px;
   height: 90px;
   justify-content: space-between;
   align-items: flex-start;
@@ -117,7 +119,8 @@
 
 .footer__bottom {
   display: flex;
-  width: 1400px;
+  width: 100%;
+  max-width: 1400px;
   height: 22px;
   justify-content: space-between;
 }
@@ -131,6 +134,12 @@
 
 .footer__bottom__rss {
   margin-left: 57px;
+}
+
+.footer__bottom__rss {
+  @include respondMax(768px) {
+  margin-left: 0;
+}
 }
 
 .footer__bottom__rss a {
