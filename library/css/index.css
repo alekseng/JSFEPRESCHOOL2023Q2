@@ -862,6 +862,15 @@ html {
   padding: 20px 20px 40px 20px;
 }
 
+@media (max-width: 1024px) {
+  .coffeshop {
+    height: 1481px;
+  }
+  .coffeshop__container {
+    height: 1481px;
+  }
+}
+
 .coffeshop__heading__container {
   display: flex;
   flex-direction: column;
@@ -894,6 +903,20 @@ html {
   position: relative;
 }
 
+@media (max-width: 768px) {
+  .coffeshop__subheading__container {
+    width: -moz-max-content;
+    width: max-content;
+  }
+}
+
+@media (max-width: 767px) {
+  .coffeshop__subheading__container {
+    width: -moz-fit-content;
+    width: fit-content;
+  }
+}
+
 .coffeshop__subheading {
   color: #000000;
   text-align: center;
@@ -905,12 +928,27 @@ html {
   letter-spacing: 2px;
 }
 
+@media (max-width: 768px) {
+  .coffeshop__subheading {
+    width: 100%;
+    max-width: 732px;
+  }
+}
+
 .coffeeshop__menu__container {
   position: relative;
   display: flex;
   justify-content: space-between;
-  width: 1400px;
+  width: 100%;
+  max-width: 1400px;
   height: 520px;
+}
+
+@media (max-width: 1024px) {
+  .coffeeshop__menu__container {
+    flex-direction: column;
+    height: 1080px;
+  }
 }
 
 .drinks__heading {
@@ -986,6 +1024,12 @@ html {
   display: flex;
   flex-direction: column;
   gap: 40px;
+}
+
+@media (max-width: 1024px) {
+  .foods__menu {
+    align-items: flex-end;
+  }
 }
 
 .foods__menu__item {
