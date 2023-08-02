@@ -15,6 +15,9 @@
       <div class="header__logo">
         <h1 class="header__logo__heading">Brooklyn Public Library</h1>
       </div>
+      <div class="burger">
+        <span class="burger__span"></span>
+      </div>
       <nav class="header__menu">
         <ul class="header__menu__ul">
           <li class="header__menu__li"><a href="#about">About</a></li>
@@ -60,19 +63,41 @@
           <h3 class="about__subheading">The Brooklyn Library is a free workspace, a large number of books and a cozy
             coffee shop inside</h3>
         </div>
+        <div class="left-arrow">
+          <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g id="Carret_Left">
+              <path id="Vector" d="M15 7.5L9 12.5L15 17.5" stroke="black" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </g>
+          </svg>
+        </div>
         <div class="slider__container">
-          <img src="./assets/img/img1.png" alt="img1">
-          <img src="./assets/img/img2.png" alt="img2">
-          <img src="./assets/img/img3.png" alt="img3">
+          <div class="slides__container">
+            <div class="slides__item"><img class="slides__img" src="./assets/img/img1.png" alt="img1"></div>
+            <div class="slides__item"><img class="slides__img" src="./assets/img/img2.png" alt="img2"></div>
+            <div class="slides__item"><img class="slides__img" src="./assets/img/img3.png" alt="img3"></div>
+            <div class="slides__item"><img class="slides__img" src="./assets/img/img4.png" alt="img4"></div>
+            <div class="slides__item"><img class="slides__img" src="./assets/img/img5.png" alt="img5"></div>
+          </div>
+        </div>
+        <div class="right-arrow">
+          <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g id="Carret_Right">
+              <path id="Vector" d="M9 17.5L15 12.5L9 7.5" stroke="black" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </g>
+          </svg>
         </div>
         <div class="slider__dots">
-          <span class="slider__dot _active"></span>
-          <span class="slider__dot"></span>
-          <span class="slider__dot"></span>
+          <span data-index="1" class="slider__dot"></span>
+          <span data-index="2" class="slider__dot"></span>
+          <span data-index="3" class="slider__dot"></span>
+          <span data-index="4" class="slider__dot"></span>
+          <span data-index="5" class="slider__dot"></span>
         </div>
       </div>
     </section>
-    <section class="favorites" id="favorites">
+    <!-- <section class="favorites" id="favorites">
       <div class="favorites__container">
         <div class="favorites__heading__container">
           <h2 class="favorites__heading">Favorites</h2>
@@ -442,8 +467,8 @@
           </div>
         </div>
       </div>
-    </section>
-    <section class="coffeshop" id="coffeeshop">
+    </section> -->
+    <!-- <section class="coffeshop" id="coffeeshop">
       <div class="coffeshop__container">
         <div class="coffeshop__heading__container">
           <h3 class="coffeshop__heading">Coffee shop</h3>
@@ -527,8 +552,8 @@
           </div>
         </div>
       </div>
-    </section>
-    <section class="contacts" id="contacts">
+    </section> -->
+    <!-- <section class="contacts" id="contacts">
       <div class="contacts__container">
         <div class="contacts__heading__container">
           <h2 class="contacts__heading">Our Contacts</h2>
@@ -553,8 +578,8 @@
           </div>
         </div>
       </div>
-    </section>
-    <section class="libraryCard" id="librarycard">
+    </section> -->
+    <!-- <section class="libraryCard" id="librarycard">
       <div class="libraryCard__container">
         <div class="libraryCard__heading__container">
           <h2 class="libraryCard__heading">Digital Library Cards</h2>
@@ -585,9 +610,9 @@
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
   </main>
-  <footer class="footer" id="footer">
+  <!-- <footer class="footer" id="footer">
     <div class="footer__container">
       <div class="footer__top">
         <div class="footer__top-left">
@@ -630,7 +655,7 @@
         <span class="footer__bottom__name"><a href="https://github.com/alekseng/" target="_blank">Aleksandr</a></span>
       </div>
     </div>
-  </footer>
+  </footer> -->
   <script src="./index.js"></script>
 </body>
 
