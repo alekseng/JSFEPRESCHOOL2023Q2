@@ -1057,6 +1057,15 @@ html {
   padding: 20px 20px 40px 20px;
 }
 
+@media (max-width: 1248px) {
+  .contacts {
+    height: 1055px;
+  }
+  .contacts__container {
+    height: 1055px;
+  }
+}
+
 .contacts__heading__container {
   display: flex;
   flex-direction: column;
@@ -1087,8 +1096,16 @@ html {
 .contacts__info__container {
   display: flex;
   justify-content: space-between;
-  width: 1400px;
+  width: 100%;
+  max-width: 1400px;
   height: 414px;
+}
+
+@media (max-width: 1248px) {
+  .contacts__info__container {
+    flex-direction: column;
+    height: 894px;
+  }
 }
 
 .contacts__info {
@@ -1097,6 +1114,12 @@ html {
   justify-content: space-between;
   width: 505px;
   height: 380px;
+}
+
+@media (max-width: 768px) {
+  .contacts__info {
+    margin-left: 1px;
+  }
 }
 
 .info__title {
@@ -1190,6 +1213,33 @@ html {
 .contacts__map {
   width: 696px;
   height: 414px;
+}
+
+@media (max-width: 1248px) {
+  .contacts__map {
+    margin-left: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .contacts__map {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media (max-width: 767px) {
+  .contacts__map {
+    width: calc(600px + 144 * (100vw - 640px) / 768);
+    height: calc(356px + 87 * (100vw - 640px) / 768);
+  }
+}
+
+@media (max-width: 767px) {
+  .contacts__map img {
+    width: calc(600px + 144 * (100vw - 640px) / 768);
+    height: calc(356px + 87 * (100vw - 640px) / 768);
+  }
 }
 
 .libraryCard {
