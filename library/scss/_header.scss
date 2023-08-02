@@ -2,7 +2,7 @@
   @extend %container;
   background: $color-almost_black;
   height: 90px;
-  width: 1440px;
+  max-width: 1440px;
 
   &__content {
     height: 50px;
@@ -19,16 +19,61 @@
   @include fontStyle(Forum, 30px, normal, 400, 50px);
 }
 
+.header__menu a,
+.header__menu:hover a {
+  @extend %transition;
+}
+
 .header__menu {
-  position: relative;
-  margin-left: auto;
+  @include respondMin(1025px) {
+    position: relative;
+    margin-left: auto;
 
-  &__li {
-    margin-right: 26px;
-    display: inline-table;
+    &__li {
+      margin-right: 26px;
+      display: inline-table;
 
-    &:last-child {
-      margin-right: 0px;
+      &:last-child {
+        margin-right: 0px;
+      }
+
+      & a {
+        color: $color-white;
+        text-decoration: none;
+        cursor: pointer;
+        @include fontStyle(Inter, 20px, normal, 400, 50px);
+      }
+
+      & a:hover {
+        color: $color-accent;
+      }
+    }
+  }
+}
+
+.header__menu {
+  @include respondMax(1024px) {
+    box-sizing: border-box;
+    position: absolute;
+    margin-left: 0;
+    width: 0px;
+    height: 0px;
+    background: $color-black;
+    right: 14px;
+    top: -10px;
+    overflow: hidden;
+    z-index: 4;
+
+    &__ul {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 30px;
+      width: 118px;
+    }
+
+    &__li {
+      margin-right: 0;
     }
 
     & a {
@@ -36,14 +81,87 @@
       text-decoration: none;
       cursor: pointer;
       @include fontStyle(Inter, 20px, normal, 400, 50px);
-      @extend %transition;
     }
 
     & a:hover {
       color: $color-accent;
-      @extend %transition;
     }
   }
+}
+
+.burger {
+  @include respondMax(1024px) {
+    display: block;
+    position: absolute;
+    top: 13px;
+    right: 20px;
+    z-index: 100;
+    width: 45px;
+    height: 22px;
+    cursor: pointer;
+
+    &::before {
+      position: absolute;
+      top: 0;
+      content: '';
+      width: 100%;
+      height: 2px;
+      background: $color-white;
+      transition: top 300ms cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    &::after {
+      position: absolute;
+      bottom: 0;
+      content: '';
+      width: 100%;
+      height: 2px;
+      transform: rotate(0);
+      background: $color-white;
+      transition: bottom 300ms cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    &._active::before {
+      top: 45%;
+      left: -8px;
+      transform: rotate(45deg);
+      transition: top 300ms cubic-bezier(0.23, 1, 0.32, 1), transform 300ms 300ms cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    &._active::after {
+      bottom: 45%;
+      left: -7px;
+      transform: rotate(-45deg);
+      transition: bottom 300ms cubic-bezier(0.23, 1, 0.32, 1), transform 300ms 300ms cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    &__span {
+      position: absolute;
+      top: calc(100% / 2 - 1px);
+      width: 100%;
+      height: 2px;
+      background: $color-white;
+      transition: top 300ms cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    &__span._active {
+      top: 12px;
+      width: 0%;
+      transform: rotate(45deg);
+      transition: top 300ms cubic-bezier(0.23, 1, 0.32, 1), transform 300ms 300ms cubic-bezier(0.23, 1, 0.32, 1);
+    }
+  }
+}
+
+.header__menu {
+  @extend %transition;
+}
+
+.header__menu._active-menu {
+  width: 332px;
+  height: 570px;
+  padding: 100px 107px;
+  @extend %transition;
 }
 
 .profile {
@@ -51,6 +169,7 @@
   padding-bottom: 11px;
   margin-left: 42px;
   cursor: pointer;
+  z-index: 5;
 
   &__icon {
     @extend %transition;
@@ -59,5 +178,12 @@
   ._active-profile {
     fill: $color-accent;
     @extend %transition;
+  }
+}
+
+.profile {
+  @include respondMax(1024px) {
+    margin-left: 0;
+    margin-right: 85px;
   }
 }
