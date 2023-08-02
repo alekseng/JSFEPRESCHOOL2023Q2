@@ -512,6 +512,15 @@ html {
   padding: 20px 20px 40px 20px;
 }
 
+@media (max-width: 1260px) {
+  .favorites {
+    height: 2629px;
+  }
+  .favorites__container {
+    height: 2629px;
+  }
+}
+
 .favorites__heading__container {
   display: flex;
   flex-direction: column;
@@ -544,7 +553,7 @@ html {
   flex-direction: column;
   justify-content: space-between;
   align-self: flex-start;
-  width: 700px;
+  max-width: 700px;
   height: 88px;
 }
 
@@ -552,8 +561,20 @@ html {
   display: grid;
   grid-template-columns: 104px 99px 116px 111px;
   grid-gap: 90px;
-  width: 700px;
+  max-width: 700px;
   height: 24px;
+}
+
+@media (max-width: 740px) {
+  .choose__season {
+    grid-gap: 68px;
+  }
+}
+
+@media (max-width: 680px) {
+  .choose__season {
+    grid-gap: 48px;
+  }
 }
 
 .season__heading {
@@ -634,19 +655,55 @@ html {
 .books__season__container {
   position: relative;
   display: flex;
-  width: 1400px;
+  width: 100%;
+  max-width: 1400px;
   height: 1150px;
   flex-wrap: wrap;
 }
 
+@media (max-width: 1260px) {
+  .books__season__container {
+    height: 2340px;
+  }
+}
+
 .books__container {
+  box-sizing: border-box;
   position: absolute;
   display: none;
-  width: 1400px;
+  width: 100%;
+  max-width: 1400px;
   height: 1150px;
   flex-wrap: wrap;
   justify-content: space-between;
   align-content: space-between;
+}
+
+@media (max-width: 1260px) {
+  .books__container {
+    height: 2340px;
+    flex-direction: column;
+    align-content: normal;
+    padding: 0px 89px 0px 69px;
+  }
+}
+
+@media (max-width: 740px) {
+  .books__container {
+    padding: 0px 49px 0px 29px;
+  }
+}
+
+@media (max-width: 680px) {
+  .books__container {
+    padding: 0px 29px 0px 9px;
+  }
+}
+
+@media (max-width: 1260px) {
+  .books__item:nth-child(2n) {
+    margin-left: auto;
+  }
 }
 
 ._books-show {
