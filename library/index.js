@@ -41,7 +41,7 @@ function paintSvg() {
 
 paintSvg();
 
-function paintProfileIcon () {
+function paintProfileIcon() {
   const profile = document.querySelector('.profile')
   const profileIcon = document.querySelector('.profile__icon')
 
@@ -54,7 +54,28 @@ function paintProfileIcon () {
   })
 }
 
-paintProfileIcon ();
+paintProfileIcon();
+
+function menu() {
+  const burger = document.querySelector('.burger');
+  const menu = document.querySelector('.header__menu');
+  const span = document.querySelector('.burger__span');
+  burger.addEventListener('click', () => {
+    burger.classList.toggle('_active')
+    menu.classList.toggle('_active-menu')
+    span.classList.toggle('_active')
+  })
+  const li = document.querySelectorAll('.header__menu__li');
+  li.forEach(el => {
+    el.addEventListener('click', function () {
+      burger.classList.remove('_active');
+      menu.classList.remove('_active-menu');
+      span.classList.remove('_active');
+    })
+  });
+}
+
+menu()
 
 console.log(`Все требования к работе выполнены = 100 баллов
 1.Вёрстка валидная + 10
