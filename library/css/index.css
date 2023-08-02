@@ -1253,6 +1253,15 @@ html {
   padding: 20px 20px 40px 20px;
 }
 
+@media (max-width: 1120px) {
+  .libraryCard {
+    height: 857px;
+  }
+  .libraryCard__container {
+    height: 857px;
+  }
+}
+
 .libraryCard__heading__container {
   display: flex;
   flex-direction: column;
@@ -1304,6 +1313,14 @@ html {
   position: relative;
   display: flex;
   justify-content: space-between;
+}
+
+@media (max-width: 1120px) {
+  .cards__container {
+    flex-direction: column;
+    gap: 21px;
+    align-items: center;
+  }
 }
 
 .findCard h3 {
@@ -1432,6 +1449,22 @@ input[type=text]:last-child {
 .getCard__btns {
   display: flex;
   justify-content: flex-end;
+}
+
+@media (max-width: 1120px) {
+  .getCard {
+    width: 600px;
+    height: 223px;
+  }
+  .getCard h3 {
+    align-self: center;
+  }
+  .getCard p {
+    text-align: center;
+  }
+  .getCard__btns {
+    justify-content: center;
+  }
 }
 
 .getCard__btn__sign-up {

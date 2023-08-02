@@ -12,6 +12,16 @@
   }
 }
 
+.libraryCard {
+  @include respondMax(1120px) {
+    height: 857px;
+
+    &__container {
+      height: 857px;
+    }
+  }
+}
+
 .libraryCard__heading__container {
   display: flex;
   flex-direction: column;
@@ -59,6 +69,14 @@
   position: relative;
   display: flex;
   justify-content: space-between;
+}
+
+.cards__container {
+  @include respondMax(1120px) {
+    flex-direction: column;
+    gap: 21px;
+    align-items: center;
+  }
 }
 
 .findCard h3 {
@@ -172,6 +190,25 @@ input[type='text'] {
   &__btns {
     display: flex;
     justify-content: flex-end;
+  }
+}
+
+.getCard {
+  @include respondMax(1120px) {
+    width: 600px;
+    height: 223px;
+
+    & h3 {
+      align-self: center;
+    }
+
+    & p {
+      text-align: center;
+    }
+
+    &__btns {
+      justify-content: center;
+    }
   }
 }
 
