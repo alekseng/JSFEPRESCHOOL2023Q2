@@ -65,28 +65,43 @@ function menu() {
     menu.classList.toggle('_active-menu')
     span.classList.toggle('_active')
   })
-  const li = document.querySelectorAll('.header__menu__li');
-  li.forEach(el => {
-    el.addEventListener('click', function () {
+  const linkContainer = document.querySelector('.header__menu__ul');
+  linkContainer.addEventListener('click', (e) => {
+    const isLi = e.target.closest('.header__menu__li')
+    if(isLi) {
       burger.classList.remove('_active');
       menu.classList.remove('_active-menu');
       span.classList.remove('_active');
-    })
+    }
+  })
+  document.addEventListener("click", (e) => {
+    if (e.target === menu || e.target === burger || e.target === span) {
+    } else {
+      burger.classList.remove('_active');
+      menu.classList.remove('_active-menu');
+      span.classList.remove('_active');
+    }
   });
+  addEventListener('resize', function () {
+    if (window.innerWidth > 1024) {
+      burger.classList.remove('_active');
+      menu.classList.remove('_active-menu');
+      span.classList.remove('_active');
+    }
+  })
 }
 
 menu()
 
-console.log(`Все требования к работе выполнены = 100 баллов
-1.Вёрстка валидная + 10
-2.Вёрстка семантическая + 16
-3.Вёрстка соответствует макету + 54
-  блок <header> + 8
-  секция Welcome + 4
-  секция About + 6
-  секция Favorites + 8
-  секция CoffeShop + 6
-  секция LibraryCard + 8
-  блок <footer> + 8
-4.Общие требования к верстке +20 (все требования этого раздела выполнены)
+console.log(`Все требования к работе выполнены = 50 баллов
+
+1.Вёрстка соответствует макету. Ширина экрана 768px +26
+2.Ни на одном из разрешений до 640px включительно не появляется горизонтальная полоса прокрутки.
+  Весь контент страницы при этом сохраняется: не обрезается и не удаляется +12
+3.На ширине экрана 768рх реализовано адаптивное меню +12 
+  (бургер-меню появляется на ширине 1024px, как рекомендовано в задании):
+  - при нажатии на бургер-иконку плавно появляется адаптивное меню +4
+  - при нажатии на крестик, или на область вне меню, адаптивное меню плавно скрывается, уезжая за экран +4
+  - ссылки в адаптивном меню работают, обеспечивая плавную прокрутку по якорям при нажатии, а само адаптивное меню при этом плавно скрывается +2
+  - размеры открытого бургер-меню соответствуют макету +2
 `)
