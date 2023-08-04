@@ -166,6 +166,22 @@
   @extend %transition;
 }
 
+.header__menu._active-menu {
+  @include respondMax(360px) {
+    width: 305px;
+    height: 570px;
+    padding: 100px 93px;
+  }
+}
+
+.header__menu._active-menu {
+  @include respondMax(330px) {
+    width: 293px;
+    height: 570px;
+    padding: 100px 86px;
+  }
+}
+
 .profile {
   padding-top: 11px;
   padding-bottom: 11px;
