@@ -1,6 +1,6 @@
 .coffeshop {
   @extend %container;
-  height: 841px;
+  height: max-content;
 
   &__container {
     @extend %content-container;
@@ -8,18 +8,9 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    height: 841px;
+    height: max-content;
     padding: 20px 20px 40px 20px;
-  }
-}
-
-.coffeshop {
-  @include respondMax(1024px) {
-    height: 1481px;
-
-    &__container {
-      height: 1481px;
-    }
+    row-gap: 40px;
   }
 }
 
@@ -27,7 +18,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 222px;
+  width: max-content;
   height: 61px;
   left: 2px;
   position: relative;
@@ -38,6 +29,12 @@
   @include fontStyle(Forum, 40px, normal, 400, 40px);
   letter-spacing: 2px;
   text-transform: capitalize;
+}
+
+.coffeshop__heading {
+  @include respondMax(499px) {
+    font-size: 30px;
+  }
 }
 
 .coffeshop__span {
@@ -77,6 +74,12 @@
   }
 }
 
+.coffeshop__subheading {
+  @include respondMax(499px) {
+    font-size: 18px;
+  }
+}
+
 .coffeeshop__menu__container {
   position: relative;
   display: flex;
@@ -89,8 +92,23 @@
 .coffeeshop__menu__container {
   @include respondMax(1024px) {
     flex-direction: column;
-    height: 1080px;
+    height: max-content;
+    row-gap: 40px;
   }
+}
+
+.coffeeshop__menu__container {
+  @include respondMax(330px) {
+    gap: 20px;
+  }
+}
+
+.drinks {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  width: max-content;
+  height: max-content;
 }
 
 .drinks__heading {
@@ -98,7 +116,12 @@
   @include fontStyle(Forum, 40px, normal, 400, 40px);
   letter-spacing: 2px;
   text-transform: capitalize;
-  margin-bottom: 40px;
+}
+
+.drinks__heading {
+  @include respondMax(499px) {
+    font-size: 30px;
+  }
 }
 
 .drinks__menu {
@@ -107,13 +130,42 @@
   gap: 40px;
 }
 
+.drinks__menu {
+  @include respondMax(499px) {
+    gap: 20px;
+  }
+}
+
+.drinks__menu {
+  @include respondMax(360px) {
+    gap: 15px;
+  }
+}
+
 .drinks__menu__item {
   position: relative;
   display: grid;
-  width: 438px;
   height: 40px;
   grid-template-columns: 199px 100px 21px;
   grid-gap: 59px;
+}
+
+.drinks__menu__item {
+  @include respondMax(579px) {
+    grid-template-columns: 199px 50px 20px;
+    grid-gap: calc(5px + (59 + 5) * ((100vw - 320px) / (579 - 320)));
+  }
+}
+
+.drinks__menu__item {
+  @include respondMax(330px) {
+    position: relative;
+    display: grid;
+    width: 280px;
+    height: 40px;
+    grid-template-columns: 199px 50px 20px;
+    grid-gap: 5px;
+  }
 }
 
 .menu__item-text {
@@ -124,11 +176,30 @@
   text-transform: capitalize;
 }
 
+.menu__item-text {
+  @include respondMax(499px) {
+    font-size: 18px;
+  }
+}
+
 .menu__item-span {
   align-self: center;
   background-color: $color-accent;
   height: 1px;
   width: 100px;
+}
+
+.menu__item-span {
+  @include respondMax(579px) {
+    width: 25px;
+    width: calc(25px + (100 - 25) * ((100vw - 320px) / (579 - 320)));
+  }
+}
+
+.menu__item-span {
+  @include respondMax(330px) {
+    width: 25px;
+  }
 }
 
 .menu__item-price {
@@ -138,12 +209,43 @@
   text-transform: capitalize;
 }
 
+.menu__item-price {
+  @include respondMax(499px) {
+    font-size: 18px;
+  }
+}
+
+.foods {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  width: max-content;
+  height: max-content;
+}
+
+.foods {
+  @include respondMax(1024px) {
+    align-self: flex-end;
+  }
+}
+
+.foods {
+  @include respondMax(419px) {
+    align-self: flex-start;
+  }
+}
+
 .foods__heading {
   color: $color-accent;
   @include fontStyle(Forum, 40px, normal, 400, 40px);
   letter-spacing: 2px;
   text-transform: capitalize;
-  margin-bottom: 40px;
+}
+
+.foods__heading {
+  @include respondMax(499px) {
+    font-size: 30px;
+  }
 }
 
 .foods__menu {
@@ -158,6 +260,18 @@
   }
 }
 
+.foods__menu {
+  @include respondMax(499px) {
+    gap: 20px;
+  }
+}
+
+.foods__menu {
+  @include respondMax(360px) {
+    gap: 15px;
+  }
+}
+
 .foods__menu__item {
   position: relative;
   display: grid;
@@ -166,7 +280,30 @@
   grid-gap: 59px;
 }
 
+.foods__menu__item {
+  @include respondMax(579px) {
+    grid-template-columns: 213px 50px 31px;
+    grid-gap: calc(5px + (59 + 5) * ((100vw - 320px) / (579 - 320)));
+  }
+}
+
+.foods__menu__item {
+  @include respondMax(330px) {
+    position: relative;
+    display: grid;
+    height: 40px;
+    grid-template-columns: 213px 25px 31px;
+    grid-gap: 5px;
+  }
+}
+
 ._foods {
   display: flex;
   justify-content: flex-end
+}
+
+._foods {
+  @include respondMax(419px) {
+    justify-content: flex-start;
+  }
 }
