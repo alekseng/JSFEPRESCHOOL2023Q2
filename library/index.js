@@ -68,7 +68,7 @@ function menu() {
   const linkContainer = document.querySelector('.header__menu__ul');
   linkContainer.addEventListener('click', (e) => {
     const isLi = e.target.closest('.header__menu__li')
-    if(isLi) {
+    if (isLi) {
       burger.classList.remove('_active');
       menu.classList.remove('_active-menu');
       span.classList.remove('_active');
@@ -93,6 +93,33 @@ function menu() {
 
 menu()
 
+function changeLogoText() {
+  const logoText = document.querySelector('.header__logo__heading');
+  console.log(logoText.innerHTML);
+  let text = logoText;
+  addEventListener('resize', () => {
+    if (window.outerWidth <= 470) {
+      text.textContent = 'BPL'
+      text.style.letterSpacing = '5.6px'
+    } else {
+      text.textContent = 'Brooklyn Public Library'
+      text.style.letterSpacing = '0.6px'
+    }
+  })
+
+  addEventListener('load', () => {
+    if (window.outerWidth <= 470) {
+      text.textContent = 'BPL'
+      text.style.letterSpacing = '5.6px'
+    } else {
+      text.textContent = 'Brooklyn Public Library'
+      text.style.letterSpacing = '0.6px'
+    }
+  })
+}
+
+changeLogoText()
+
 console.log(`Все требования к работе выполнены = 50 баллов
 
 1.Вёрстка соответствует макету. Ширина экрана 768px +26
@@ -104,4 +131,5 @@ console.log(`Все требования к работе выполнены = 50
   - при нажатии на крестик, или на область вне меню, адаптивное меню плавно скрывается, уезжая за экран +4
   - ссылки в адаптивном меню работают, обеспечивая плавную прокрутку по якорям при нажатии, а само адаптивное меню при этом плавно скрывается +2
   - размеры открытого бургер-меню соответствуют макету +2
+4. Сделан адаптив до 320px
 `)
