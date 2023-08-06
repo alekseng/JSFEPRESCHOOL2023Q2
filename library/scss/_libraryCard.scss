@@ -1,24 +1,15 @@
 .libraryCard {
   @extend %container;
-  height: 614px;
+  height: max-content;
 
   &__container {
     @extend %content-container;
     box-sizing: border-box;
     flex-direction: column;
     justify-content: space-between;
-    height: 614px;
+    height: max-content;
     padding: 20px 20px 40px 20px;
-  }
-}
-
-.libraryCard {
-  @include respondMax(1120px) {
-    height: 857px;
-
-    &__container {
-      height: 857px;
-    }
+    row-gap: 40px;
   }
 }
 
@@ -39,6 +30,18 @@
   text-transform: capitalize;
 }
 
+.libraryCard__heading {
+  @include respondMax(499px) {
+    font-size: 30px;
+  }
+}
+
+.libraryCard__heading {
+  @include respondMax(360px) {
+    letter-spacing: 1.5px;
+  }
+}
+
 .libraryCard__span {
   background-color: $color-almost_black;
   font-family: Forum;
@@ -51,18 +54,11 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  width: 600px;
-  height: 453px;
+  width: 100%;
+  max-width: 600px;
+  height: max-content;
   align-items: center;
   gap: 30px;
-}
-
-.getCard {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  width: 456px;
-  height: 253px;
 }
 
 .cards__container {
@@ -85,18 +81,34 @@
   letter-spacing: 0.6px;
 }
 
+.findCard h3 {
+  @include respondMax(499px) {
+    font-size: 24px;
+  }
+}
+
 .findCard__container {
   display: flex;
   flex-direction: column;
-  width: 600px;
+  width: 100%;
+  max-width: 600px;
   height: 386px;
   align-items: center;
   gap: 20px;
   padding-top: 17px;
+  padding-left: 17px;
+  padding-right: 17px;
   box-sizing: border-box;
   border: 3px solid $color-accent;
   background: $color-white;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.findCard__container {
+  @include respondMax(360px) {
+    height: max-content;
+    padding-bottom: 17px;
+  }
 }
 
 .input__container {
@@ -104,7 +116,8 @@
   display: flex;
   flex-direction: column;
   background: $color-accent;
-  width: 560px;
+  width: 100%;
+  max-width: 560px;
   height: 272px;
   padding: 20px 20px 25px 20px;
 
@@ -116,10 +129,36 @@
   }
 
   & input {
-    width: 520px;
+    width: 100%;
+    max-width: 520px;
     height: 66px;
     border-radius: 10px;
     background: $color-white;
+  }
+}
+
+.input__container {
+  @include respondMax(499px) {
+
+    & span {
+      font-size: 24px;
+    }
+  }
+}
+
+.input__container {
+  @include respondMax(360px) {
+    height: max-content;
+
+    & span {
+      font-size: 20px;
+      letter-spacing: 0.4px;
+      line-height: 40px;
+    }
+
+    & input {
+      height: max-content;
+    }
   }
 }
 
@@ -132,6 +171,12 @@
 
   &:focus {
     outline: none;
+  }
+}
+
+.findCard__input {
+  @include respondMax(499px) {
+    font-size: 24px;
   }
 }
 
@@ -165,12 +210,21 @@ input[type='text'] {
   }
 }
 
+.submit__btn {
+  @include respondMax(499px) {
+    font-size: 16px;
+  }
+}
+
 .getCard {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 456px;
-  height: 253px;
+  width: 100%;
+  max-width: 456px;
+  height: max-content;
+  row-gap: 35px;
 
   & h3 {
     color: $color-black;
@@ -195,8 +249,9 @@ input[type='text'] {
 
 .getCard {
   @include respondMax(1120px) {
-    width: 600px;
-    height: 223px;
+    width: 100%;
+    max-width: 600px;
+    row-gap: 40px;
 
     & h3 {
       align-self: center;
@@ -208,6 +263,26 @@ input[type='text'] {
 
     &__btns {
       justify-content: center;
+    }
+  }
+}
+
+.getCard {
+  @include respondMax(678px) {
+    row-gap: 25px;
+  }
+}
+
+.getCard {
+  @include respondMax(499px) {
+    row-gap: 15px;
+
+    & h3 {
+      font-size: 24px;
+    }
+
+    & p {
+      font-size: 16px;
     }
   }
 }

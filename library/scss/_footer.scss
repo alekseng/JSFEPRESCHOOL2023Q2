@@ -1,6 +1,6 @@
 .footer {
   @extend %container;
-  height: 250px;
+  height: max-content;
   background: $color-black;
   width: 100%;
   max-width: 1440px;
@@ -10,7 +10,7 @@
     box-sizing: border-box;
     flex-direction: column;
     align-items: center;
-    height: 250px;
+    height: max-content;
     padding: 20px 20px 40px 20px;
   }
 }
@@ -19,10 +19,17 @@
   display: flex;
   width: 100%;
   max-width: 1400px;
-  height: 90px;
+  height: max-content;
   justify-content: space-between;
   align-items: flex-start;
   margin-bottom: 30px;
+}
+
+.footer__top {
+  @include respondMax(419px) {
+    flex-direction: column;
+    row-gap: 20px;
+  }
 }
 
 .footer__top-left {
@@ -31,13 +38,13 @@
   justify-content: center;
   align-items: flex-start;
   width: 229px;
-  height: 90px;
+  height: max-content;
   gap: 18px;
 }
 
 .footer__top-left__address a {
   width: 229px;
-  height: 40px;
+  height: max-content;
   color: $color-white;
   @include fontStyle(Inter, 15px, normal, 400, 20px);
   @extend %transition;
@@ -52,7 +59,7 @@
   position: relative;
   display: flex;
   width: 102px;
-  height: 40px;
+  height: max-content;
 }
 
 .footer__top-left__link-list ul {
@@ -69,8 +76,14 @@
   justify-content: center;
   align-items: flex-start;
   width: 149px;
-  height: 90px;
+  height: max-content;
   gap: 10px;
+}
+
+.footer__top-right {
+  @include respondMax(639px) {
+    align-self: flex-end;
+  }
 }
 
 .footer__top-right__weekday {
@@ -121,8 +134,17 @@
   display: flex;
   width: 100%;
   max-width: 1400px;
-  height: 22px;
+  height: 26px;
   justify-content: space-between;
+}
+
+.footer__bottom {
+  @include respondMax(579px) {
+    flex-direction: column;
+    align-items: center;
+    height: max-content;
+    gap: 10px;
+  }
 }
 
 .footer__bottom__year {
@@ -132,14 +154,20 @@
   letter-spacing: 2px;
 }
 
+.footer__bottom__year {
+  @include respondMax(360px) {
+    font-size: 16px;
+  }
+}
+
 .footer__bottom__rss {
   margin-left: 57px;
 }
 
 .footer__bottom__rss {
   @include respondMax(768px) {
-  margin-left: 0;
-}
+    margin-left: 0;
+  }
 }
 
 .footer__bottom__rss a {
@@ -150,12 +178,24 @@
   @extend %transition;
 }
 
+.footer__bottom__rss a {
+  @include respondMax(360px) {
+    font-size: 16px;
+  }
+}
+
 .footer__bottom__name a {
   color: $color-white;
   text-align: center;
   @include fontStyle(Inter, 20px, normal, 400, 20px);
   letter-spacing: 2px;
   @extend %transition;
+}
+
+.footer__bottom__name a {
+  @include respondMax(360px) {
+    font-size: 16px;
+  }
 }
 
 .footer__bottom__rss:hover a,
