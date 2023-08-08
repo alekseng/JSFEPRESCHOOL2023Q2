@@ -6,12 +6,6 @@ function validateInput() {
     el.oninput = function () {
       el.value = el.value.replace(/[,.?!\'/:;()&@""_\\|~<>$=+*^%#\[\]{}\`№]/g, '');
     }
-    el.addEventListener('mouseover', function () {
-      prompt.classList.add('_active')
-    })
-    el.addEventListener('mouseout', function () {
-      prompt.classList.remove('_active')
-    })
   });
 };
 
