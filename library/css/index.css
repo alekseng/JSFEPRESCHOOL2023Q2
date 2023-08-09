@@ -2017,6 +2017,7 @@ html {
   .input__container input {
     height: -moz-max-content;
     height: max-content;
+    font-size: 20px;
   }
 }
 
@@ -2048,6 +2049,12 @@ input[type=text] {
 }
 input[type=text]:last-child {
   margin-bottom: 0px;
+}
+
+@media (max-width: 360px) {
+  input[type=text] {
+    padding-left: 15px;
+  }
 }
 
 .submit__btn {
