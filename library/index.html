@@ -10,10 +10,14 @@
 </head>
 
 <body>
+  <div class="wrapper">
   <header class="header" id="header">
     <div class="header__content">
       <div class="header__logo">
         <h1 class="header__logo__heading">Brooklyn Public Library</h1>
+      </div>
+      <div class="burger">
+        <span class="burger__span"></span>
       </div>
       <nav class="header__menu">
         <ul class="header__menu__ul">
@@ -60,15 +64,37 @@
           <h3 class="about__subheading">The Brooklyn Library is a free workspace, a large number of books and a cozy
             coffee shop inside</h3>
         </div>
-        <div class="slider__container">
-          <img src="./assets/img/img1.png" alt="img1">
-          <img src="./assets/img/img2.png" alt="img2">
-          <img src="./assets/img/img3.png" alt="img3">
+        <div class="left-arrow">
+          <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g id="Carret_Left">
+              <path id="Vector" d="M15 7.5L9 12.5L15 17.5" stroke="black" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </g>
+          </svg>
+        </div>
+        <div class="slider__container" id="slider__container">
+          <div class="slides__container">
+            <div class="slides__item"><img class="slides__img" src="./assets/img/img1.jpg" alt="img1"></div>
+            <div class="slides__item"><img class="slides__img" src="./assets/img/img2.jpg" alt="img2"></div>
+            <div class="slides__item"><img class="slides__img" src="./assets/img/img3.jpg" alt="img3"></div>
+            <div class="slides__item"><img class="slides__img" src="./assets/img/img4.jpg" alt="img4"></div>
+            <div class="slides__item"><img class="slides__img" src="./assets/img/img5.jpg" alt="img5"></div>
+          </div>
+        </div>
+        <div class="right-arrow">
+          <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g id="Carret_Right">
+              <path id="Vector" d="M9 17.5L15 12.5L9 7.5" stroke="black" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </g>
+          </svg>
         </div>
         <div class="slider__dots">
-          <span class="slider__dot _active"></span>
-          <span class="slider__dot"></span>
-          <span class="slider__dot"></span>
+          <span data-index="1" class="slider__dot _active"></span>
+          <span data-index="2" class="slider__dot"></span>
+          <span data-index="3" class="slider__dot"></span>
+          <span data-index="4" class="slider__dot"></span>
+          <span data-index="5" class="slider__dot"></span>
         </div>
       </div>
     </section>
@@ -81,19 +107,19 @@
         <form class="seasons__container">
           <p class="season__heading">Pick favorites of season</p>
           <div class="choose__season">
-            <div class="choose__item">
+            <div class="choose__item _winter">
               <input class="choose__input" type="radio" id="winter" name="season" value="winter" checked>
               <label class="choose__label" for="winter">Winter</label>
             </div>
-            <div class="choose__item">
+            <div class="choose__item _spring">
               <input class="choose__input" type="radio" id="spring" name="season" value="spring">
               <label class="choose__label" for="spring">Spring</label>
             </div>
-            <div class="choose__item">
+            <div class="choose__item _summer">
               <input class="choose__input" type="radio" id="summer" name="season" value="summer">
               <label class="choose__label" for="summer">Summer</label>
             </div>
-            <div class="choose__item">
+            <div class="choose__item _autumn">
               <input class="choose__input" type="radio" id="autumn" name="season" value="autumn">
               <label class="choose__label" for="autumn">Autumn</label>
             </div>
@@ -121,7 +147,7 @@
                 <button class="books__button" type="submit">Buy</button>
               </div>
               <div class="books__cover">
-                <img src="./assets/img/winter/winter1.png" alt="book-cover">
+                <img src="./assets/img/winter/winter1.jpg" alt="book-cover">
               </div>
             </div>
             <div class="books__item">
@@ -142,7 +168,7 @@
                 <button class="books__button" type="submit">Buy</button>
               </div>
               <div class="books__cover">
-                <img src="./assets/img/winter/winter2.png" alt="book-cover">
+                <img src="./assets/img/winter/winter2.jpg" alt="book-cover">
               </div>
             </div>
             <div class="books__item">
@@ -163,7 +189,7 @@
                 <button class="books__button" type="submit">Buy</button>
               </div>
               <div class="books__cover">
-                <img src="./assets/img/winter/winter3.png" alt="book-cover">
+                <img src="./assets/img/winter/winter3.jpg" alt="book-cover">
               </div>
             </div>
             <div class="books__item">
@@ -183,7 +209,7 @@
                 <button class="_disabled" type="submit" disabled>Own</button>
               </div>
               <div class="books__cover">
-                <img src="./assets/img/winter/winter4.png" alt="book-cover">
+                <img src="./assets/img/winter/winter4.jpg" alt="book-cover">
               </div>
             </div>
           </div>
@@ -205,7 +231,7 @@
                 <button class="books__button" type="submit">Buy</button>
               </div>
               <div class="books__cover">
-                <img src="./assets/img/spring/spring1.png" alt="book-cover">
+                <img src="./assets/img/spring/spring1.jpg" alt="book-cover">
               </div>
             </div>
             <div class="books__item">
@@ -225,7 +251,7 @@
                 <button class="books__button" type="submit">Buy</button>
               </div>
               <div class="books__cover">
-                <img src="./assets/img/spring/spring2.png" alt="book-cover">
+                <img src="./assets/img/spring/spring2.jpg" alt="book-cover">
               </div>
             </div>
             <div class="books__item">
@@ -245,7 +271,7 @@
                 <button class="books__button" type="submit">Buy</button>
               </div>
               <div class="books__cover">
-                <img src="./assets/img/spring/spring3.png" alt="book-cover">
+                <img src="./assets/img/spring/spring3.jpg" alt="book-cover">
               </div>
             </div>
             <div class="books__item">
@@ -266,7 +292,7 @@
                 <button class="_disabled" type="submit" disabled>Own</button>
               </div>
               <div class="books__cover">
-                <img src="./assets/img/spring/spring4.png" alt="book-cover">
+                <img src="./assets/img/spring/spring4.jpg" alt="book-cover">
               </div>
             </div>
           </div>
@@ -288,7 +314,7 @@
                 <button class="books__button" type="submit">Buy</button>
               </div>
               <div class="books__cover">
-                <img src="./assets/img/summer/summer1.png" alt="book-cover">
+                <img src="./assets/img/summer/summer1.jpg" alt="book-cover">
               </div>
             </div>
             <div class="books__item">
@@ -309,7 +335,7 @@
                 <button class="books__button" type="submit">Buy</button>
               </div>
               <div class="books__cover">
-                <img src="./assets/img/summer/summer2.png" alt="book-cover">
+                <img src="./assets/img/summer/summer2.jpg" alt="book-cover">
               </div>
             </div>
             <div class="books__item">
@@ -330,7 +356,7 @@
                 <button class="books__button" type="submit">Buy</button>
               </div>
               <div class="books__cover">
-                <img src="./assets/img/summer/summer3.png" alt="book-cover">
+                <img src="./assets/img/summer/summer3.jpg" alt="book-cover">
               </div>
             </div>
             <div class="books__item">
@@ -351,7 +377,7 @@
                 <button class="books__button" type="submit">Buy</button>
               </div>
               <div class="books__cover">
-                <img src="./assets/img/summer/summer4.png" alt="book-cover">
+                <img src="./assets/img/summer/summer4.jpg" alt="book-cover">
               </div>
             </div>
           </div>
@@ -374,7 +400,7 @@
                 <button class="books__button" type="submit">Buy</button>
               </div>
               <div class="books__cover">
-                <img src="./assets/img/autumn/autumn1.png" alt="book-cover">
+                <img src="./assets/img/autumn/autumn1.jpg" alt="book-cover">
               </div>
             </div>
             <div class="books__item">
@@ -395,7 +421,7 @@
                 <button class="books__button" type="submit">Buy</button>
               </div>
               <div class="books__cover">
-                <img src="./assets/img/autumn/autumn2.png" alt="book-cover">
+                <img src="./assets/img/autumn/autumn2.jpg" alt="book-cover">
               </div>
             </div>
             <div class="books__item">
@@ -416,7 +442,7 @@
                 <button class="books__button" type="submit">Buy</button>
               </div>
               <div class="books__cover">
-                <img src="./assets/img/autumn/autumn3.png" alt="book-cover">
+                <img src="./assets/img/autumn/autumn3.jpg" alt="book-cover">
               </div>
             </div>
             <div class="books__item">
@@ -436,7 +462,7 @@
                 <button class="books__button" type="submit">Buy</button>
               </div>
               <div class="books__cover">
-                <img src="./assets/img/autumn/autumn4.png" alt="book-cover">
+                <img src="./assets/img/autumn/autumn4.jpg" alt="book-cover">
               </div>
             </div>
           </div>
@@ -631,6 +657,7 @@
       </div>
     </div>
   </footer>
+</div>
   <script src="./index.js"></script>
 </body>
 

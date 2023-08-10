@@ -1,6 +1,6 @@
 .favorites {
   @extend %container;
-  height: 1439px;
+  height: max-content;
 
   &__container {
     @extend %content-container;
@@ -8,8 +8,21 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    height: 1439px;
+    height: max-content;
     padding: 20px 20px 40px 20px;
+    gap: 40px;
+  }
+}
+
+.favorites {
+  @include respondMax(330px) {
+    min-height: max-content;
+    gap: 40px;
+
+    &__container {
+      min-height: max-content;
+      gap: 40px;
+    }
   }
 }
 
@@ -18,7 +31,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 160px;
+  width: max-content;
   height: 61px;
 }
 
@@ -27,6 +40,12 @@
   @include fontStyle(Forum, 40px, normal, 400, 40px);
   letter-spacing: 2px;
   text-transform: capitalize;
+}
+
+.favorites__heading {
+  @include respondMax(499px) {
+    font-size: 30px;
+  }
 }
 
 .favorites__span {
@@ -42,16 +61,65 @@
   flex-direction: column;
   justify-content: space-between;
   align-self: flex-start;
-  width: 700px;
+  width: 100%;
+  max-width: 700px;
   height: 88px;
+}
+
+.seasons__container {
+  @include respondMax(678px) {
+    height: max-content;
+    gap: 10px;
+  }
 }
 
 .choose__season {
   display: grid;
   grid-template-columns: 104px 99px 116px 111px;
   grid-gap: 90px;
-  width: 700px;
+  max-width: 700px;
   height: 24px;
+}
+
+.choose__season {
+  @include respondMax(740px) {
+    grid-gap: 68px;
+  }
+}
+
+.choose__season {
+  @include respondMax(680px) {
+    grid-gap: 48px;
+  }
+}
+
+.choose__season {
+  @include respondMax(678px) {
+    grid-template-areas:
+      "winter spring"
+      "summer autumn"
+    ;
+    grid-row-gap: 5px;
+    height: max-content;
+  }
+}
+
+@media (max-width: 678px) {
+  ._winter {
+    grid-area: winter;
+  }
+
+  ._spring {
+    grid-area: spring;
+  }
+
+  ._summer {
+    grid-area: summer;
+  }
+
+  ._autumn {
+    grid-area: autumn;
+  }
 }
 
 .season__heading {
@@ -129,19 +197,61 @@
 .books__season__container {
   position: relative;
   display: flex;
-  width: 1400px;
-  height: 1150px;
+  width: 100%;
+  max-width: 1400px;
+  height: max-content;
   flex-wrap: wrap;
 }
 
+.books__season__container {
+  @include respondMax(330px) {
+    min-height: max-content;
+  }
+}
+
 .books__container {
-  position: absolute;
+  box-sizing: border-box;
+  position: relative;
   display: none;
-  width: 1400px;
-  height: 1150px;
+  width: 100%;
+  max-width: 1400px;
+  height: max-content;
   flex-wrap: wrap;
   justify-content: space-between;
   align-content: space-between;
+  row-gap: 40px;
+}
+
+.books__container {
+  @include respondMax(1260px) {
+    flex-direction: column;
+    align-content: normal;
+    padding: 0px 89px 0px 69px;
+  }
+}
+
+.books__container {
+  @include respondMax(740px) {
+    padding: 0px 49px 0px 29px;
+  }
+}
+
+.books__container {
+  @include respondMax(330px) {
+    gap: 30px;
+  }
+}
+
+.books__container {
+  @include respondMax(680px) {
+    padding: 0px 29px 0px 9px;
+  }
+}
+
+.books__item:nth-child(2n) {
+  @include respondMax(1260px) {
+    margin-left: auto;
+  }
 }
 
 ._books-show {
@@ -166,6 +276,43 @@
   }
 }
 
+.books__item {
+  @include respondMax(767px) {
+    width: calc(280px + (590 - 310) * ((100vw - 320px) / (767 - 320)));
+    height: max-content;
+
+    &__content {
+      width: calc(260px + (560 - 290) * ((100vw - 320px) / (767 - 320)));
+      height: max-content;
+    }
+  }
+}
+
+.books__item {
+  @include respondMax(639px) {
+    height: max-content;
+
+    &__content {
+      width: 100%;
+      padding: 10px 12px;
+      height: max-content;
+    }
+  }
+}
+
+.books__item {
+  @include respondMax(330px) {
+    width: 260px;
+    height: max-content;
+
+    &__content {
+      width: 260px;
+      padding: 5px 5px;
+      height: max-content;
+    }
+  }
+}
+
 .books__heading__container {
   position: relative;
   display: flex;
@@ -178,11 +325,25 @@
   margin-bottom: 19px;
 }
 
+.books__heading__container {
+  @include respondMax(330px) {
+    width: 149px;
+    height: 25px;
+    margin-bottom: 4px;
+  }
+}
+
 .books__heading {
   color: $color-black;
   @include fontStyle(Forum, 20px, normal, 400, 40px);
   letter-spacing: 2px;
   text-transform: capitalize;
+}
+
+.books__heading {
+  @include respondMax(330px) {
+    @include fontStyle(Forum, 22px, normal, 400, 20px);
+  }
 }
 
 .books__span {
@@ -196,6 +357,7 @@
   position: relative;
   display: flex;
   flex-direction: column;
+  gap: 7px;
 }
 
 .books__name {
@@ -205,11 +367,23 @@
   text-transform: uppercase;
 }
 
+.books__name {
+  @include respondMax(330px) {
+    @include fontStyle(Inter, 13px, normal, 700, 30px);
+  }
+}
+
 .books__author {
   color: $color-black;
-  @include fontStyle(Inter, 15px, normal, 700, 40px);
+  @include fontStyle(Inter, 15px, normal, 700, 25px);
   letter-spacing: 2px;
   margin-bottom: 20px;
+}
+
+.books__author {
+  @include respondMax(330px) {
+    @include fontStyle(Inter, 13px, normal, 700, 25px);
+  }
 }
 
 .books__description {
@@ -222,6 +396,28 @@
   @include fontStyle(Inter, 15px, normal, 400, 40px);
   letter-spacing: 2px;
   text-transform: capitalize;
+}
+
+.books__description {
+  @include respondMax(767px) {
+    width: 69%;
+  }
+}
+
+.books__description {
+  @include respondMax(639px) {
+    @include fontStyle(Inter, 13px, normal, 400, 35px);
+    width: 100%;
+    margin-bottom: 110px;
+  }
+}
+
+.books__description {
+  @include respondMax(330px) {
+    width: 247px;
+    @include fontStyle(Inter, 12px, normal, 400, 30px);
+    margin-bottom: 110px;
+  }
 }
 
 .books__button {
@@ -266,4 +462,34 @@
   height: 300px;
   bottom: 0;
   right: 0;
+
+  img {
+    width: 200px;
+    height: 300px;
+  }
+}
+
+.books__cover {
+  @include respondMax(767px) {
+    width: calc(100px + (200 - 100) * ((100vw - 320px) / (767 - 320)));
+    height: calc(150px + (300 - 150) * ((100vw - 320px) / (767 - 320)));
+
+    img {
+      width: calc(100px + (200 - 100) * ((100vw - 320px) / (767 - 320)));
+      height: calc(150px + (300 - 150) * ((100vw - 320px) / (767 - 320)));
+    }
+  }
+}
+
+.books__cover {
+  @include respondMax(639px) {
+    width: 100px;
+    height: 150px;
+    right: 0;
+
+    img {
+      width: 100px;
+      height: 150px;
+    }
+  }
 }
