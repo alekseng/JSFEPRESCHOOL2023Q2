@@ -58,6 +58,7 @@ function menu() {
     burger.classList.toggle('_active')
     menu.classList.toggle('_active-menu')
     span.classList.toggle('_active')
+    document.body.classList.toggle('_block')
   })
   const linkContainer = document.querySelector('.header__menu__ul');
   linkContainer.addEventListener('click', (e) => {
@@ -66,6 +67,7 @@ function menu() {
       burger.classList.remove('_active');
       menu.classList.remove('_active-menu');
       span.classList.remove('_active');
+      document.body.classList.remove('_block')
     }
   })
   document.addEventListener("click", (e) => {
@@ -74,6 +76,7 @@ function menu() {
       burger.classList.remove('_active');
       menu.classList.remove('_active-menu');
       span.classList.remove('_active');
+      document.body.classList.remove('_block')
     }
   });
   addEventListener('resize', function () {
@@ -81,6 +84,7 @@ function menu() {
       burger.classList.remove('_active');
       menu.classList.remove('_active-menu');
       span.classList.remove('_active');
+      document.body.classList.remove('_block')
     }
   })
 }
