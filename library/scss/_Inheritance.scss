@@ -8,14 +8,15 @@
 %container {
   position: relative;
   display: flex;
-  width: 1440px;
+  width: 100%;
   margin: auto;
 }
 
 %content-container {
   position: relative;
   display: flex;
-  width: 1440px;
+  width: 100%;
+  max-width: 1440px;
   padding-left: 20px;
   padding-right: 20px;
   margin: auto;

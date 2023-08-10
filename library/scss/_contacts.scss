@@ -1,6 +1,6 @@
 .contacts {
   @extend %container;
-  height: 575px;
+  height: max-content;
 
   &__container {
     @extend %content-container;
@@ -8,8 +8,9 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    height: 575px;
+    height: max-content;
     padding: 20px 20px 40px 20px;
+    row-gap: 40px;
   }
 }
 
@@ -29,6 +30,12 @@
   text-transform: capitalize;
 }
 
+.contacts__heading {
+  @include respondMax(499px) {
+    font-size: 30px;
+  }
+}
+
 .contacts__span {
   align-self: center;
   background-color: $color-almost_black;
@@ -39,16 +46,44 @@
 .contacts__info__container {
   display: flex;
   justify-content: space-between;
-  width: 1400px;
-  height: 414px;
+  width: 100%;
+  max-width: 1400px;
+  height: max-content;
+}
+
+.contacts__info__container {
+  @include respondMax(1248px) {
+    flex-direction: column;
+    row-gap: 100px;
+  }
+}
+
+.contacts__info__container {
+  @include respondMax(579px) {
+    flex-direction: column;
+    row-gap: 50px;
+  }
 }
 
 .contacts__info {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 505px;
-  height: 380px;
+  width: 100%;
+  height: max-content;
+  row-gap: 40px;
+}
+
+.contacts__info {
+  @include respondMax(768px) {
+    margin-left: 1px;
+  }
+}
+
+.contacts__info {
+  @include respondMax(579px) {
+    row-gap: 25px;
+  }
 }
 
 .info__title {
@@ -63,7 +98,7 @@
   flex-direction: column;
   justify-content: space-between;
   gap: 20px;
-  height: 160px;
+  height: max-content;
   flex-shrink: 0;
 }
 
@@ -73,10 +108,25 @@
   letter-spacing: 2px;
   text-transform: capitalize;
   @extend %transition;
+  width: max-content;
 
   &:hover {
     color: $color-accent;
     @extend %transition;
+  }
+}
+
+.info__phone a {
+  @include respondMax(579px) {
+    @include fontStyle(Inter, 16px, normal, 400, 40px);
+    letter-spacing: 2px;
+  }
+}
+
+.info__phone a {
+  @include respondMax(463px) {
+    display: block;
+    letter-spacing: 2px;
   }
 }
 
@@ -87,11 +137,19 @@
   text-transform: capitalize;
 }
 
+.phone {
+  @include respondMax(579px) {
+    @include fontStyle(Inter, 16px, normal, 400, 40px);
+    letter-spacing: 2px;
+  }
+}
+
 .info__staff {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 100px;
+  height: max-content;
+  row-gap: 20px;
 }
 
 .staff {
@@ -108,6 +166,13 @@
   text-transform: capitalize;
 }
 
+.director {
+  @include respondMax(579px) {
+    @include fontStyle(Inter, 16px, normal, 400, 40px);
+    letter-spacing: 2px;
+  }
+}
+
 .strong-text {
   color: $color-black;
   @include fontStyle(Inter, 20px, normal, 700, 40px);
@@ -121,7 +186,47 @@
   }
 }
 
+.strong-text {
+  @include respondMax(579px) {
+    @include fontStyle(Inter, 16px, normal, 700, 40px);
+    letter-spacing: 2px;
+  }
+}
+
+.strong-text {
+  @include respondMax(360px) {
+    display: block;
+  }
+}
+
 .contacts__map {
   width: 696px;
   height: 414px;
+}
+
+.contacts__map {
+  @include respondMax(1248px) {
+    margin-left: auto;
+  }
+}
+
+.contacts__map {
+  @include respondMax(768px) {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.contacts__map {
+  @include respondMax(767px) {
+    width: 100%;
+    height: auto;
+  }
+}
+
+.contacts__map img {
+  @include respondMax(767px) {
+    width: 100%;
+    height: auto;
+  }
 }
