@@ -135,7 +135,7 @@ body._block::before {
     height: 570px;
     padding: 85px 107px;
     background: #0C0C0E;
-    right: -100%;
+    right: -110%;
     top: 0;
     overflow: hidden;
     z-index: 4;
