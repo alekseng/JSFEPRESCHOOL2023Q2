@@ -54,14 +54,14 @@
 .header__menu {
   @include respondMax(1024px) {
     box-sizing: border-box;
-    position: absolute;
+    position: fixed;
     margin-left: 0;
     width: 332px;
     height: 570px;
     padding: 85px 107px;
     background: $color-almost_black;
-    right: -350px;
-    top: -20px;
+    right: -100%;
+    top: 0;
     overflow: hidden;
     z-index: 4;
     transition: right 0.3s ease 0.05s;
