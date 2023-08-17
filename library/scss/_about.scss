@@ -150,7 +150,7 @@
   width: 100%;
   height: 560px;
   gap: 25px;
-  @extend %transition;
+  transition: all 0.5s cubic-bezier(0.28, 0.01, 0.84, 1);
 }
 
 .slides__container {
@@ -250,6 +250,39 @@
   top: 59%;
   z-index: 5;
   left: 77px;
+  cursor: pointer;
+  background-color: inherit;
+  border: none;
+  width: 20px;
+  height: 26px;
+  transition: all 0.3s ease;
+
+  &::before {
+    content: "";
+    position: absolute;
+    width: 7px;
+    height: 7px;
+    border-right: 2px solid;
+    border-bottom: 2px solid;
+    transform: rotate(135deg);
+    top: 31%;
+    left: 50%;
+    color: rgb(0, 0, 0);
+    transition: all 0.3s ease;
+  }
+
+  &:hover::before {
+    color: $color-accent;
+    transition: all 0.3s ease;
+  }
+
+  &:disabled::before {
+    color: rgb(164, 164, 164);
+  }
+
+  &:disabled {
+    cursor: default;
+  }
 }
 
 .right-arrow {
@@ -258,6 +291,39 @@
   top: 59%;
   z-index: 5;
   right: 77px;
+  cursor: pointer;
+  background-color: inherit;
+  border: none;
+  width: 20px;
+  height: 26px;
+  transition: all 0.3s ease;
+
+  &::before {
+    content: "";
+    position: absolute;
+    width: 7px;
+    height: 7px;
+    border-right: 2px solid;
+    border-bottom: 2px solid;
+    transform: rotate(-45deg);
+    top: 31%;
+    left: 7%;
+    color: rgb(0, 0, 0);
+    transition: all 0.3s ease;
+  }
+
+  &:hover::before {
+    color: $color-accent;
+    transition: all 0.3s ease;
+  }
+
+  &:disabled::before {
+    color: rgb(164, 164, 164);
+  }
+
+  &:disabled {
+    cursor: default;
+  }
 }
 
 .left-arrow {
@@ -335,9 +401,20 @@
     right: -5px;
   }
 
-  &._active,
-  &:hover {
+  &._active {
     background-color: $color-accent;
+    @extend %transition;
+  }
+
+  &:hover {
+    background-color: rgba(187, 148, 95, 0.7);
+    @extend %transition;
+  }
+
+  &._non-active {
+    // background-color: grey;
+    background-color: $color-accent;
+    cursor: default;
     @extend %transition;
   }
 }

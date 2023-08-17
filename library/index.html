@@ -63,33 +63,33 @@
           <h3 class="about__subheading">The Brooklyn Library is a free workspace, a large number of books and a cozy
             coffee shop inside</h3>
         </div>
-        <div class="left-arrow">
-          <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <button class="left-arrow" disabled>
+          <!-- <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g id="Carret_Left">
               <path id="Vector" d="M15 7.5L9 12.5L15 17.5" stroke="black" stroke-linecap="round"
                 stroke-linejoin="round" />
             </g>
-          </svg>
-        </div>
+          </svg> -->
+        </button>
         <div class="slider__container" id="slider__container">
           <div class="slides__container">
-            <div class="slides__item"><img class="slides__img" src="./assets/img/img1.jpg" alt="img1"></div>
-            <div class="slides__item"><img class="slides__img" src="./assets/img/img2.jpg" alt="img2"></div>
-            <div class="slides__item"><img class="slides__img" src="./assets/img/img3.jpg" alt="img3"></div>
-            <div class="slides__item"><img class="slides__img" src="./assets/img/img4.jpg" alt="img4"></div>
-            <div class="slides__item"><img class="slides__img" src="./assets/img/img5.jpg" alt="img5"></div>
+            <div data-index="1" class="slides__item"><img class="slides__img" src="./assets/img/img1.jpg" alt="img1"></div>
+            <div data-index="2" class="slides__item"><img class="slides__img" src="./assets/img/img2.jpg" alt="img2"></div>
+            <div data-index="3" class="slides__item"><img class="slides__img" src="./assets/img/img3.jpg" alt="img3"></div>
+            <div data-index="4" class="slides__item"><img class="slides__img" src="./assets/img/img4.jpg" alt="img4"></div>
+            <div data-index="5" class="slides__item"><img class="slides__img" src="./assets/img/img5.jpg" alt="img5"></div>
           </div>
         </div>
-        <div class="right-arrow">
-          <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <button class="right-arrow">
+          <!-- <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g id="Carret_Right">
               <path id="Vector" d="M9 17.5L15 12.5L9 7.5" stroke="black" stroke-linecap="round"
                 stroke-linejoin="round" />
             </g>
-          </svg>
-        </div>
+          </svg> -->
+        </button>
         <div class="slider__dots">
-          <span data-index="1" class="slider__dot _active"></span>
+          <span data-index="1" class="slider__dot _active _non-active"></span>
           <span data-index="2" class="slider__dot"></span>
           <span data-index="3" class="slider__dot"></span>
           <span data-index="4" class="slider__dot"></span>
