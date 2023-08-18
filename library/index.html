@@ -63,14 +63,7 @@
           <h3 class="about__subheading">The Brooklyn Library is a free workspace, a large number of books and a cozy
             coffee shop inside</h3>
         </div>
-        <button class="left-arrow" disabled>
-          <!-- <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <g id="Carret_Left">
-              <path id="Vector" d="M15 7.5L9 12.5L15 17.5" stroke="black" stroke-linecap="round"
-                stroke-linejoin="round" />
-            </g>
-          </svg> -->
-        </button>
+        <button class="left-arrow" disabled></button>
         <div class="slider__container" id="slider__container">
           <div class="slides__container">
             <div data-index="1" class="slides__item"><img class="slides__img" src="./assets/img/img1.jpg" alt="img1"></div>
@@ -80,14 +73,7 @@
             <div data-index="5" class="slides__item"><img class="slides__img" src="./assets/img/img5.jpg" alt="img5"></div>
           </div>
         </div>
-        <button class="right-arrow">
-          <!-- <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <g id="Carret_Right">
-              <path id="Vector" d="M9 17.5L15 12.5L9 7.5" stroke="black" stroke-linecap="round"
-                stroke-linejoin="round" />
-            </g>
-          </svg> -->
-        </button>
+        <button class="right-arrow"></button>
         <div class="slider__dots">
           <span data-index="1" class="slider__dot _active _non-active"></span>
           <span data-index="2" class="slider__dot"></span>
@@ -103,7 +89,7 @@
           <h2 class="favorites__heading">Favorites</h2>
           <span class="favorites__span"></span>
         </div>
-        <form class="seasons__container">
+        <div class="seasons__container">
           <p class="season__heading">Pick favorites of season</p>
           <div class="choose__season">
             <div class="choose__item _winter">
@@ -123,9 +109,9 @@
               <label class="choose__label" for="autumn">Autumn</label>
             </div>
           </div>
-        </form>
+        </div>
         <div class="books__season__container">
-          <div class="books__container _books-show">
+          <div data-filter="winter" class="books__container _books-show">
             <div class="books__item">
               <div class="books__item__content">
                 <div class="books__heading__container">
@@ -205,14 +191,14 @@
                     have evolved and thrived as the modern world has changed around them.
                   </div>
                 </div>
-                <button class="_disabled" type="submit" disabled>Own</button>
+                <button class="books__button" type="submit" >Buy</button>
               </div>
               <div class="books__cover">
                 <img src="./assets/img/winter/winter4.jpg" alt="book-cover">
               </div>
             </div>
           </div>
-          <div class="books__container">
+          <div data-filter="spring" class="books__container">
             <div class="books__item">
               <div class="books__item__content">
                 <div class="books__heading__container">
@@ -288,14 +274,14 @@
                     Isabel Allende and Julia Alvarez.
                   </div>
                 </div>
-                <button class="_disabled" type="submit" disabled>Own</button>
+                <button class="books__button" type="submit">Buy</button>
               </div>
               <div class="books__cover">
                 <img src="./assets/img/spring/spring4.jpg" alt="book-cover">
               </div>
             </div>
           </div>
-          <div class="books__container">
+          <div data-filter="summer" class="books__container">
             <div class="books__item">
               <div class="books__item__content">
                 <div class="books__heading__container">
@@ -380,7 +366,7 @@
               </div>
             </div>
           </div>
-          <div class="books__container">
+          <div data-filter="autumn" class="books__container">
             <div class="books__item">
               <div class="books__item__content">
                 <div class="books__heading__container">

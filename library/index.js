@@ -218,6 +218,25 @@ function slider() {
 
 slider()
 
+function toggleBooks() {
+  const btns = document.getElementsByName('season')
+  const books = document.querySelectorAll('.books__container')
+
+  btns.forEach(el => {
+    el.addEventListener('click', function () {
+      for (let book of books) {
+        if (book.dataset.filter === el.value) {
+          book.classList.add('_books-show');
+        } else {
+          book.classList.remove('_books-show');
+        }
+      };
+    })
+  })
+}
+
+toggleBooks()
+
 // console.log(`Все требования к работе выполнены = 50 баллов
 
 // 1.Вёрстка соответствует макету. Ширина экрана 768px +26

@@ -843,13 +843,21 @@ body._block::before {
   width: 100%;
   max-width: 700px;
   height: 88px;
+  background: inherit;
+}
+
+@media (max-width: 768px) {
+  .seasons__container {
+    position: sticky;
+    top: 0;
+    background-color: rgba(128, 119, 119, 0.7);
+    z-index: 1;
+  }
 }
 
 @media (max-width: 678px) {
   .seasons__container {
-    height: -moz-max-content;
-    height: max-content;
-    gap: 10px;
+    height: 110px;
   }
 }
 
@@ -990,8 +998,8 @@ body._block::before {
 
 .books__container {
   box-sizing: border-box;
-  position: relative;
-  display: none;
+  position: absolute;
+  display: flex;
   width: 100%;
   max-width: 1400px;
   height: -moz-max-content;
@@ -1000,6 +1008,9 @@ body._block::before {
   justify-content: space-between;
   align-content: space-between;
   row-gap: 40px;
+  opacity: 0;
+  visibility: hidden;
+  transition: visibility 0.7s cubic-bezier(0.43, 0.24, 0.84, 1.06), opacity 0.7s cubic-bezier(0.43, 0.24, 0.84, 1.06);
 }
 
 @media (max-width: 1260px) {
@@ -1035,7 +1046,11 @@ body._block::before {
 }
 
 ._books-show {
-  display: flex;
+  position: relative;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity;
+  transition: 0.7s opacity 0.65s cubic-bezier(0.43, 0.24, 0.84, 1.06), 0.7s visibility 0.65s cubic-bezier(0.43, 0.24, 0.84, 1.06);
 }
 
 .books__item {
