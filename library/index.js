@@ -36,7 +36,7 @@ function paintSvg() {
 paintSvg();
 
 function paintProfileIcon() {
-  const profile = document.querySelector('.profile')
+  const profile = document.querySelector('.icon')
   const profileIcon = document.querySelector('.profile__icon')
 
   profile.addEventListener('mouseover', function () {
@@ -54,10 +54,15 @@ function menu() {
   const burger = document.querySelector('.burger');
   const menu = document.querySelector('.header__menu');
   const span = document.querySelector('.burger__span');
+  const login = document.querySelector('.login-pop-up__no-auth')
+  const loginWithAuth = document.querySelector('.login-pop-up__with-auth')
+
   burger.addEventListener('click', () => {
     burger.classList.toggle('_active')
     menu.classList.toggle('_active-menu')
     span.classList.toggle('_active')
+    login.classList.remove('_active');
+    loginWithAuth.classList.remove('_active');
     document.body.classList.toggle('_block')
   })
   const linkContainer = document.querySelector('.header__menu__ul');
@@ -236,6 +241,284 @@ function toggleBooks() {
 }
 
 toggleBooks()
+
+// кнопка профиля
+const btn = document.querySelector('.icon')
+
+// контейнер с модалками
+const modal = document.querySelector('.modal')
+
+// Модалка входа/регистрации
+const loginNoAuth = document.querySelector('.login-pop-up__no-auth')
+const loginLoginNoAuth = document.querySelector('.login-pop-up__no-auth__login')
+const loginRegisterNoAuth = document.querySelector('.login-pop-up__no-auth__register')
+
+// Модалка профиля/выхода из авторизации
+const loginWithAuth = document.querySelector('.login-pop-up__with-auth')
+const loginProfileInfoWithAuth = document.querySelector('.login-pop-up__with-auth__profile-info')
+const loginRegisterWithAuth = document.querySelector('.login-pop-up__with-auth__register')
+
+// Модалка регистрации
+const modalRegister = document.querySelector('.modal__register')
+const modalCloseBtnRegister = document.querySelector('.modal__close-btn__register')
+const btnLogin = document.querySelector('.button__login') // кнопка входа
+
+// Модалка авторизации
+const modalLogin = document.querySelector('.modal__login')
+const modalCloseBtnLogin = document.querySelector('.modal__close-btn__login')
+const btnRegister = document.querySelector('.button__register') // кнопка регистрации
+
+// Кнопки в секции Library Cards
+const getCardBtnSignUp = document.querySelector('.getCard__btn__sign-up')
+const getCardBtnSignIn = document.querySelector('.getCard__btn__log-in')
+
+function profileModal() {
+  btn.addEventListener('click', (e) => {
+    if (localStorage.getItem('isAuth') != 'true' || localStorage.getItem('isRegister') != 'true') {
+      loginNoAuth.classList.toggle('_active');
+    } else if (localStorage.getItem('isAuth') == 'true') {
+      loginWithAuth.classList.toggle('_active');
+    }
+  })
+}
+profileModal()
+
+function openRegisterModal() {
+  document.addEventListener('click', (e) => {
+    if (e.target === loginRegisterNoAuth) {
+      modal.classList.add('_active')
+      modalRegister.classList.add('_active')
+      closeProfileModalNoAuth()
+    } else if (e.target === getCardBtnSignUp) {
+      modal.classList.add('_active')
+      modalRegister.classList.add('_active')
+    }
+  })
+}
+openRegisterModal()
+
+function openLoginModal() {
+  document.addEventListener('click', (e) => {
+    if (e.target === loginLoginNoAuth) {
+      modal.classList.add('_active')
+      modalLogin.classList.add('_active')
+      closeProfileModalNoAuth()
+    } else if (e.target === getCardBtnSignIn) {
+      modal.classList.add('_active')
+      modalLogin.classList.add('_active')
+    }
+  })
+}
+openLoginModal()
+
+function closeRegisterModal() {
+  modalCloseBtnRegister.addEventListener('click', () => {
+    modal.classList.remove('_active')
+    modalRegister.classList.remove('_active')
+  })
+}
+closeRegisterModal()
+
+function closeLoginModal() {
+  modalCloseBtnLogin.addEventListener('click', () => {
+    modal.classList.remove('_active')
+    modalLogin.classList.remove('_active')
+  })
+}
+closeLoginModal()
+
+function toggleRegisterLoginModals() {
+  modal.addEventListener('click', (e) => {
+    if (e.target === btnLogin) {
+      modal.classList.remove('_active')
+      modalRegister.classList.remove('_active')
+      modal.classList.add('_active')
+      modalLogin.classList.add('_active')
+    } else if (e.target === btnRegister) {
+      modal.classList.remove('_active')
+      modalLogin.classList.remove('_active')
+      modal.classList.add('_active')
+      modalRegister.classList.add('_active')
+    }
+  })
+}
+toggleRegisterLoginModals()
+
+function logOut() {
+  loginRegisterWithAuth.addEventListener('click', (e) => {
+    loginWithAuth.classList.remove('_active');
+    localStorage.setItem('isAuth', false)
+    location.reload()
+  })
+}
+
+logOut()
+
+function logIn() {
+  const modalLoginForm = document.querySelector('.modal__login-form');
+  const email = document.querySelector('#email-login')
+  const password = document.querySelector('#password-login')
+  const submitBtnLoginForm = modalLoginForm.querySelector('.form__btn');
+
+  if (localStorage.getItem('isRegister') == 'true' && email != '' && password != '') {
+    email.value = localStorage.getItem('email')
+    password.value = localStorage.getItem('password')
+    submitBtnLoginForm.addEventListener('click', () => {
+      localStorage.setItem('isAuth', true)
+    })
+  }
+}
+
+logIn()
+
+function closeProfileModalNoAuth() {
+  loginRegisterNoAuth.addEventListener('click', () => {
+    loginNoAuth.classList.remove('_active');
+  })
+  loginLoginNoAuth.addEventListener('click', () => {
+    loginNoAuth.classList.remove('_active');
+  })
+}
+
+closeProfileModalNoAuth()
+
+function registerFunction() {
+  const modalRegisterForm = document.querySelector('.modal__register-form');
+  const firstName = modalRegisterForm.querySelector('#first-name')
+  const lastName = modalRegisterForm.querySelector('#last-name')
+  const email = modalRegisterForm.querySelector('#email-register')
+  const password = modalRegisterForm.querySelector('#password-register')
+  const submitBtnRegisterForm = modalRegisterForm.querySelector('.form__btn');
+
+  min = Math.ceil(100000000);
+  max = Math.floor(900000000);
+  let randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
+  let cardNumber = randomNumber.toString(16).toUpperCase();
+  for (let i = cardNumber.length; i < 9; i++) {
+    cardNumber = 'F' + cardNumber;
+  }
+
+  submitBtnRegisterForm.addEventListener('click', (e) => {
+    if (firstName.value != '' && lastName.value != '' && email.value != '' && password.value != '') {
+      localStorage.setItem('firstName', `${firstName.value}`)
+      localStorage.setItem('lastName', `${lastName.value}`)
+      localStorage.setItem('email', `${email.value}`)
+      localStorage.setItem('password', `${password.value}`)
+      localStorage.setItem('isRegister', true)
+      localStorage.setItem('isAuth', true)
+      localStorage.setItem('cardNumber', cardNumber)
+      modal.classList.remove('_active')
+      modalRegister.classList.remove('_active')
+    }
+  })
+}
+registerFunction()
+
+function changeProfileIcon() {
+  const profileIcon = document.querySelector('.icon')
+
+  if (localStorage.getItem('firstName') && localStorage.getItem('lastName') && localStorage.getItem('isAuth') == 'true') {
+    let firstName = localStorage.getItem('firstName');
+    let lastName = localStorage.getItem('lastName');
+    profileIcon.textContent = `${firstName.slice(0, 1)} ${lastName.slice(0, 1)}`
+    profileIcon.setAttribute('title', `${localStorage.getItem('firstName')} ${localStorage.getItem('lastName')}`)
+    profileIcon.classList.add('_active')
+  }
+}
+changeProfileIcon()
+
+function changeProfileCard() {
+  const profileText = document.querySelector('.login-pop-up__with-auth__profile')
+
+  if (localStorage.getItem('isAuth') == 'true' && localStorage.getItem('cardNumber')) {
+    profileText.textContent = localStorage.getItem('cardNumber')
+  }
+}
+changeProfileCard()
+
+function showCardInfo() {
+  const findCard = document.querySelector('.findCard')
+  const template = document.createElement('template');
+  const checkBtn = findCard.querySelector('.submit__btn')
+  const inputName = findCard.querySelector('.findCard__input-name')
+  const inputPassword = findCard.querySelector('.findCard__input-password')
+
+  checkBtn.addEventListener('click', (e) => {
+    e.preventDefault()
+    if (localStorage.getItem('isAuth') != 'true' && localStorage.getItem('isRegister') == 'true' && inputName.value == localStorage.getItem('firstName') && inputPassword.value ==  localStorage.getItem('cardNumber')) {
+
+      template.innerHTML = `
+      <form class="findCard">
+      <h3>Find your Library card</h3>
+      <div class="findCard__container">
+        <div class="input__container">
+          <span>Brooklyn Public Library</span>
+          <input class="findCard__input" type="text" value="${localStorage.getItem('firstName')} ${localStorage.getItem('lastName')}" required>
+          <div class="prompt">
+            В эти поля, Вы можете ввести только буквы, цифры и дефис.
+          </div>
+          <input class="findCard__input" type="text" value="${localStorage.getItem('cardNumber')}" required>
+        </div>
+        <div class="card__info">
+          <div class="card__info__item">
+            <span class="card__info__item-text">Visits</span>
+            <span class="card__info__item-icon">
+              <img src="./assets/svg/union.svg" alt="union">
+            </span>
+            <span class="card__info__item-value">23</span>
+          </div>
+          <div class="card__info__item">
+            <span class="card__info__item-text">Bonuses</span>
+            <span class="card__info__item-icon">
+              <img src="./assets/svg/star.svg" alt="union">
+            </span>
+            <span class="card__info__item-value">1240</span>
+          </div>
+          <div class="card__info__item">
+            <span class="card__info__item-text">Books</span>
+            <span class="card__info__item-icon">
+              <img src="./assets/svg/book.svg" alt="union">
+            </span>
+            <span class="card__info__item-value">2</span>
+          </div>
+        </div>
+      </div>
+    </form>
+    `
+      findCard.replaceWith(template.content)
+    } if (localStorage.getItem('isAuth') != 'true' && localStorage.getItem('isRegister') == 'true' && inputName.value == localStorage.getItem('firstName') && inputPassword.value ==  localStorage.getItem('cardNumber')) {
+      setTimeout(() => {
+        template.innerHTML = `
+        <form class="findCard">
+        <h3>Find your Library card</h3>
+        <div class="findCard__container">
+          <div class="input__container">
+            <span>Brooklyn Public Library</span>
+            <input class="findCard__input" type="text" placeholder="Reader's name" required>
+            <div class="prompt">
+              В эти поля, Вы можете ввести только буквы, цифры и дефис.
+            </div>
+            <input class="findCard__input" type="text" placeholder="Card number" required>
+          </div>
+          <button class="submit__btn">Check the card</button>
+        </div>
+      </form>
+      `
+      findCard.replaceWith(template.content)
+      location.reload()
+      }, 10000);
+    }
+  })
+}
+showCardInfo()
+
+// localStorage.removeItem('firstName')
+// localStorage.removeItem('lastName')
+// localStorage.removeItem('email')
+// localStorage.removeItem('password')
+// localStorage.removeItem('isRegister')
+// localStorage.removeItem('isAuth')
+// localStorage.removeItem('cardNumber')
 
 // console.log(`Все требования к работе выполнены = 50 баллов
 

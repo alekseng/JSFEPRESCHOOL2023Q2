@@ -184,10 +184,11 @@
 }
 
 .profile {
+  position: relative;
   padding-top: 11px;
   padding-bottom: 11px;
   margin-left: 42px;
-  cursor: pointer;
+  // cursor: pointer;
   z-index: 5;
 
   &__icon {
@@ -200,9 +201,204 @@
   }
 }
 
+.icon {
+  cursor: pointer;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &._active {
+    background: #FFF;
+    color: #BB945F;
+    font-family: Inter;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+    letter-spacing: -2px;
+    margin-bottom: 5px;
+  }
+}
+
 .profile {
   @include respondMax(1024px) {
     margin-left: 0;
     margin-right: 85px;
+  }
+}
+
+.login-pop-up__no-auth {
+  box-sizing: border-box;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5px 10px 20px 10px;
+  background: #FFF;
+  right: 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: rotate3d(0, 1, 0, 90deg);
+  // transform: rotate3d(1, 0, 0, 90deg) rotate3d(0, 1, 0, 270deg) rotate3d(0, 0, 1, 90deg);
+  transition: transform 0.5s ease-out, opacity 0.5s ease-out, visibility 0.5s ease-out;
+
+  &__profile {
+    display: flex;
+    position: relative;
+    color: #000;
+    font-family: Inter;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 20px;
+    margin-bottom: 20px;
+
+    &::after {
+      content: '';
+      position: absolute;
+      width: 40px;
+      height: 1px;
+      background: #BB945F;
+      bottom: -5px;
+      left: calc(50% - 40px /2);
+    }
+  }
+
+  &__login {
+    color: #000;
+    text-align: center;
+    font-family: Inter;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+    background: transparent;
+    border: none;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    @extend %transition;
+
+    &:hover {
+      color: $color-accent;
+      cursor: pointer;
+      @extend %transition;
+    }
+  }
+
+  &__register {
+    color: #000;
+    text-align: center;
+    font-family: Inter;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+    background: transparent;
+    border: none;
+    box-sizing: border-box;
+    @extend %transition;
+
+    &:hover {
+      color: $color-accent;
+      cursor: pointer;
+      @extend %transition;
+    }
+  }
+
+  &._active {
+    opacity: 1;
+    visibility: visible;
+    transform: rotate3d(0, 0, 0, 0deg);
+    transition: transform 0.5s ease-out, opacity 0.5s ease-out, visibility 0.5s ease-out;
+  }
+}
+
+.login-pop-up__with-auth {
+  box-sizing: border-box;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: max-content;
+  padding: 5px 5px 20px 4px;
+  background: #FFF;
+  right: 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: rotate3d(0, 1, 0, 90deg);
+  // transform: rotate3d(1, 0, 0, 90deg) rotate3d(0, 1, 0, 270deg) rotate3d(0, 0, 1, 90deg);
+  transition: transform 0.5s ease-out, opacity 0.5s ease-out, visibility 0.5s ease-out;
+
+  &__profile {
+    display: flex;
+    position: relative;
+    color: #000;
+    font-family: Inter;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 20px;
+    margin-bottom: 20px;
+
+    &::after {
+      content: '';
+      position: absolute;
+      width: 40px;
+      height: 1px;
+      background: #BB945F;
+      bottom: -5px;
+      left: calc(50% - 40px /2);
+    }
+  }
+
+  &__profile-info {
+    color: #000;
+    text-align: center;
+    font-family: Inter;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+    background: transparent;
+    border: none;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    @extend %transition;
+
+    &:hover {
+      color: $color-accent;
+      cursor: pointer;
+      @extend %transition;
+    }
+  }
+
+  &__register {
+    color: #000;
+    text-align: center;
+    font-family: Inter;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+    background: transparent;
+    border: none;
+    box-sizing: border-box;
+    @extend %transition;
+
+    &:hover {
+      color: $color-accent;
+      cursor: pointer;
+      @extend %transition;
+    }
+  }
+
+  &._active {
+    opacity: 1;
+    visibility: visible;
+    transform: rotate3d(0, 0, 0, 0deg);
+    transition: transform 0.5s ease-out, opacity 0.5s ease-out, visibility 0.5s ease-out;
   }
 }

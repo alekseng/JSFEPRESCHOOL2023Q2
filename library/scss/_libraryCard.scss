@@ -134,6 +134,22 @@
     height: 66px;
     border-radius: 10px;
     background: $color-white;
+    color: rgba(187, 148, 95, 1);
+
+    ::-webkit-input-placeholder {
+      color: rgba(142, 142, 142, 1);
+    }
+    ::-moz-placeholder {
+      color: rgba(142, 142, 142, 1);
+    }
+    /* Firefox 19+ */
+    :-moz-placeholder {
+      color: rgba(142, 142, 142, 1);
+    }
+    /* Firefox 18- */
+    :-ms-input-placeholder {
+      color: rgba(142, 142, 142, 1);
+    }
   }
 }
 
@@ -346,4 +362,29 @@ input[type='text'] {
     display: flex;
     @extend %transition;
   }
+}
+
+.card__info {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  width: 169px;
+  height: 63px;
+  // border: 1px solid rebeccapurple;
+  // background: rebeccapurple;
+
+  &__item {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    // border: 1px solid rebeccapurple;
+    &-text {}
+
+    &-icon {}
+
+    &-value {}
+  }
+
 }

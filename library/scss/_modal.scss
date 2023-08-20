@@ -1,0 +1,450 @@
+.modal {
+  position: fixed;
+  // top: calc(50% / 2);
+  // left: calc(50% - (250px / 2));
+  top: 50%;
+  left: 50%;
+  display: flex;
+  width: max-content;
+  height: max-content;
+  align-items: center;
+  justify-content: center;
+  visibility: hidden;
+
+  &._active {
+    visibility: visible;
+    z-index: 2;
+  }
+}
+
+.modal__register {
+  position: fixed;
+  height: max-content;
+  width: min-content;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 25px;
+  gap: 20px;
+  background: #ffffff;
+  opacity: 0;
+  visibility: hidden;
+  transform: rotate3d(0, 1, 0, 90deg);
+  transition: transform 0.5s ease-out, opacity 0.5s ease-out, visibility 0.5s ease-out;
+
+  &._active {
+    opacity: 1;
+    visibility: visible;
+    z-index: 2;
+    transform: rotate3d(0, 0, 0, 0deg);
+    transition: transform 0.5s ease-out, opacity 0.5s ease-out, visibility 0.5s ease-out;
+  }
+}
+
+.modal-register__heading {
+  color: #000;
+  text-align: center;
+  font-family: Forum;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+}
+
+.modal__close-btn__register {
+  position: absolute;
+  width: 21px;
+  height: 21px;
+  flex-shrink: 0;
+  right: 12px;
+  top: 11px;
+  background: inherit;
+  border: none;
+  cursor: pointer;
+
+  &::before {
+    content: '';
+    position: absolute;
+    width: 21px;
+    height: 3px;
+    color: #000;
+    background: #000;
+    top: 50%;
+    left: 0;
+    transform: rotate(45deg);
+    @extend %transition;
+  }
+
+  &:hover::before {
+    @extend %transition;
+    background: $color-accent;
+  }
+  &::after {
+    content: '';
+    position: absolute;
+    width: 21px;
+    height: 3px;
+    color: #000;
+    background: #000;
+    right: 0;
+    transform: rotate(-45deg);
+    @extend %transition;
+  }
+  &:hover::after {
+    @extend %transition;
+    background: $color-accent;
+  }
+}
+
+.modal__register-form {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.register-form__text-style {
+  color: #000;
+  text-align: center;
+  font-family: Inter;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 0.3px;
+}
+
+.register__label {
+  display: flex;
+  position: relative;
+  gap: 10px;
+  flex-direction: column;
+  align-items: flex-start;
+
+  & input[type='text'] {
+    box-sizing: border-box;
+    padding-left: 10px;
+    width: 100%;
+    width: 200px;
+    height: 20px;
+    border: 1px solid #BB945F;
+    ;
+
+    &:last-child {
+      margin-bottom: 0px;
+    }
+  }
+
+  & input {
+    &:focus {
+      outline: none;
+    }
+  }
+
+  & input[type='email'] {
+    box-sizing: border-box;
+    padding-left: 10px;
+    width: 200px;
+    height: 20px;
+    border: 1px solid #BB945F;
+    ;
+
+    &:last-child {
+      margin-bottom: 0px;
+    }
+  }
+
+  & input[type='password'] {
+    box-sizing: border-box;
+    padding-left: 10px;
+    width: 200px;
+    height: 20px;
+    border: 1px solid #BB945F;
+    ;
+
+    &:last-child {
+      margin-bottom: 0px;
+    }
+  }
+}
+
+.form__btn {
+  width: fit-content;
+  height: fit-content;
+  box-sizing: border-box;
+  padding: 8px 15px;
+  background: inherit;
+  border-radius: 2px;
+  border: 1px solid #0C0C0E;
+  cursor: pointer;
+  margin-top: 10px;
+  color: #0C0C0E;
+  text-align: center;
+  font-family: Inter;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 1px;
+  @extend %transition;
+
+  &:hover {
+    border: 1px solid $color-accent;
+    background: $color-accent;
+    @extend %transition;
+  }
+}
+
+.account {
+  display: flex;
+  margin-top: -10px;
+
+  & span {
+    color: #000;
+    text-shadow: 0px 2px 3px rgba(255, 255, 255, 0.16);
+    font-family: Inter;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-right: 10px;
+  }
+
+  & button {
+    background: inherit;
+    border: none;
+    color: #0C0C0E;
+    text-align: center;
+    font-family: Inter;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 1px;
+    border-bottom: 1px solid black;
+    cursor: pointer;
+    @extend %transition;
+
+    &:hover {
+      @extend %transition;
+      color: $color-accent;
+    }
+  }
+}
+
+.modal__login {
+  position: fixed;
+  height: max-content;
+  width: min-content;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 25px;
+  gap: 20px;
+  background: #ffffff;
+  opacity: 0;
+  visibility: hidden;
+  transform: rotate3d(0, 1, 0, 90deg);
+  transition: transform 0.5s ease-out, opacity 0.5s ease-out, visibility 0.5s ease-out;
+
+  &._active {
+    opacity: 1;
+    visibility: visible;
+    z-index: 2;
+    transform: rotate3d(0, 0, 0, 0deg);
+    transition: transform 0.5s ease-out, opacity 0.5s ease-out, visibility 0.5s ease-out;
+  }
+}
+
+.modal-login__heading {
+  color: #000;
+  text-align: center;
+  font-family: Forum;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+}
+
+.modal__close-btn__login {
+  position: absolute;
+  width: 21px;
+  height: 21px;
+  flex-shrink: 0;
+  right: 12px;
+  top: 11px;
+  background: inherit;
+  border: none;
+  cursor: pointer;
+
+  &::before {
+    content: '';
+    position: absolute;
+    width: 21px;
+    height: 3px;
+    color: #000;
+    background: #000;
+    top: 50%;
+    left: 0;
+    transform: rotate(45deg);
+    @extend %transition;
+  }
+
+  &:hover::before {
+    @extend %transition;
+    background: $color-accent;
+  }
+  &::after {
+    content: '';
+    position: absolute;
+    width: 21px;
+    height: 3px;
+    color: #000;
+    background: #000;
+    right: 0;
+    transform: rotate(-45deg);
+    @extend %transition;
+  }
+  &:hover::after {
+    @extend %transition;
+    background: $color-accent;
+  }
+}
+
+.modal__login-form {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.login-form__text-style {
+  color: #000;
+  text-align: center;
+  font-family: Inter;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 0.3px;
+}
+
+.login__label {
+  display: flex;
+  position: relative;
+  gap: 10px;
+  flex-direction: column;
+  align-items: flex-start;
+
+  & input[type='text'] {
+    box-sizing: border-box;
+    padding-left: 10px;
+    width: 100%;
+    width: 200px;
+    height: 20px;
+    border: 1px solid #BB945F;
+    ;
+
+    &:last-child {
+      margin-bottom: 0px;
+    }
+  }
+
+  & input {
+    &:focus {
+      outline: none;
+    }
+  }
+
+  & input[type='email'] {
+    box-sizing: border-box;
+    padding-left: 10px;
+    width: 200px;
+    height: 20px;
+    border: 1px solid #BB945F;
+    ;
+
+    &:last-child {
+      margin-bottom: 0px;
+    }
+  }
+
+  & input[type='password'] {
+    box-sizing: border-box;
+    padding-left: 10px;
+    width: 200px;
+    height: 20px;
+    border: 1px solid #BB945F;
+    ;
+
+    &:last-child {
+      margin-bottom: 0px;
+    }
+  }
+}
+
+.form__btn {
+  width: fit-content;
+  height: fit-content;
+  box-sizing: border-box;
+  padding: 8px 15px;
+  background: inherit;
+  border-radius: 2px;
+  border: 1px solid #0C0C0E;
+  cursor: pointer;
+  margin-top: 10px;
+  color: #0C0C0E;
+  text-align: center;
+  font-family: Inter;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 1px;
+  @extend %transition;
+
+  &:hover {
+    border: 1px solid $color-accent;
+    background: $color-accent;
+    @extend %transition;
+  }
+}
+
+.account {
+  display: flex;
+  margin-top: -10px;
+
+  & span {
+    color: #000;
+    text-shadow: 0px 2px 3px rgba(255, 255, 255, 0.16);
+    font-family: Inter;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-right: 10px;
+  }
+
+  & button {
+    background: inherit;
+    border: none;
+    color: #0C0C0E;
+    text-align: center;
+    font-family: Inter;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 1px;
+    border-bottom: 1px solid black;
+    cursor: pointer;
+    @extend %transition;
+
+    &:hover {
+      @extend %transition;
+      color: $color-accent;
+    }
+  }
+}

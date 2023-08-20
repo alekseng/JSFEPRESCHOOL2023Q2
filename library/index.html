@@ -28,7 +28,8 @@
         </ul>
       </nav>
       <div class="profile">
-        <svg class="profile__ic" width="28" height="28" viewBox="0 0 28 28" fill="none"
+        <div class="icon">
+          <svg class="profile__ic" width="28" height="28" viewBox="0 0 28 28" fill="none"
           xmlns="http://www.w3.org/2000/svg">
           <g id="icon_profile">
             <path class="profile__icon" fill-rule="evenodd" clip-rule="evenodd"
@@ -36,13 +37,23 @@
               fill="white" />
           </g>
         </svg>
+        </div>
+        <div class="login-pop-up__no-auth">
+          <span class="login-pop-up__no-auth__profile">Profile</span>
+          <button class="login-pop-up__no-auth__login">Log In</button>
+          <button class="login-pop-up__no-auth__register">Register</button>
+        </div>
+        <div class="login-pop-up__with-auth">
+          <span class="login-pop-up__with-auth__profile">Profile</span>
+          <button class="login-pop-up__with-auth__profile-info">My profile</button>
+          <button class="login-pop-up__with-auth__register">Log Out</button>
+        </div>
       </div>
     </div>
   </header>
   <main class="main">
     <section class="welcome" id="welcome">
       <div class="welcome__container">
-        <div class="welcome__overlay"></div>
         <div class="welcome__heading__container">
           <h2 class="welcome__heading">
             <span class="first-str">Welcome</span>
@@ -577,13 +588,13 @@
             <div class="findCard__container">
               <div class="input__container">
                 <span>Brooklyn Public Library</span>
-                <input class="findCard__input" type="text" placeholder="Reader's name" required>
+                <input class="findCard__input findCard__input-name" type="text" placeholder="Reader's name" required>
                 <div class="prompt">
                   В эти поля, Вы можете ввести только буквы, цифры и дефис.
                 </div>
-                <input class="findCard__input" type="text" placeholder="Card number" required>
+                <input class="findCard__input findCard__input-password" type="text" placeholder="Card number" required>
               </div>
-              <input class="submit__btn" type="submit" value="Check the card">
+              <button class="submit__btn">Check the card</button>
             </div>
           </form>
           <div class="getCard">
@@ -642,6 +653,54 @@
       </div>
     </div>
   </footer>
+  <div class="modal">
+    <div class="modal__register" id="modal__register">
+      <span class="modal-register__heading">Register</span>
+      <button class="modal__close-btn__register"></button>
+      <form class="modal__register-form">
+        <label class="register__label">
+          <span class="register-form__text-style">First name</span>
+          <input type="text" name="first-name" id="first-name" required>
+        </label>
+        <label class="register__label">
+          <span class="register-form__text-style">Last name</span>
+          <input type="text" name="last-name" id="last-name" required>
+        </label>
+        <label class="register__label">
+          <span class="register-form__text-style">E-mail</span>
+          <input type="email" name="email" id="email-register" required>
+        </label>
+        <label class="register__label">
+          <span class="register-form__text-style">Password</span>
+          <input type="password" name="password" id="password-register" required>
+        </label>
+        <button class="form__btn">Sign up</button>
+      </form>
+      <div class="account">
+        <span>Already have an account?</span>
+        <button class="button__login">Login</button>
+      </div>
+    </div>
+    <div class="modal__login">
+      <span class="modal-login__heading">Login</span>
+      <button class="modal__close-btn__login"></button>
+      <form class="modal__login-form">
+        <label class="login__label">
+          <span class="login-form__text-style">E-mail or readers card</span>
+          <input type="email" name="email" id="email-login" required>
+        </label>
+        <label class="login__label">
+          <span class="login-form__text-style">Password</span>
+          <input type="password" name="password" id="password-login" required>
+        </label>
+        <button class="form__btn">Sign in</button>
+      </form>
+      <div class="account">
+        <span>Don’t have an account?</span>
+        <button class="button__register">Register</button>
+      </div>
+    </div>
+  </div>
   <script src="./index.js"></script>
 </body>
 
