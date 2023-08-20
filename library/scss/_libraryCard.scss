@@ -139,13 +139,16 @@
     ::-webkit-input-placeholder {
       color: rgba(142, 142, 142, 1);
     }
+
     ::-moz-placeholder {
       color: rgba(142, 142, 142, 1);
     }
+
     /* Firefox 19+ */
     :-moz-placeholder {
       color: rgba(142, 142, 142, 1);
     }
+
     /* Firefox 18- */
     :-ms-input-placeholder {
       color: rgba(142, 142, 142, 1);
@@ -368,23 +371,19 @@ input[type='text'] {
   box-sizing: border-box;
   display: flex;
   justify-content: space-between;
-  width: 169px;
-  height: 63px;
-  // border: 1px solid rebeccapurple;
-  // background: rebeccapurple;
+  gap: 35px;
 
   &__item {
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 1px;
 
-    // border: 1px solid rebeccapurple;
     &-text {}
 
     &-icon {}
 
     &-value {}
   }
-
 }

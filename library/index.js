@@ -272,6 +272,18 @@ const btnRegister = document.querySelector('.button__register') // кнопка 
 const getCardBtnSignUp = document.querySelector('.getCard__btn__sign-up')
 const getCardBtnSignIn = document.querySelector('.getCard__btn__log-in')
 
+//Модалка профиля
+const modalProfile = document.querySelector('.modal__profile')
+const modalProfileCloseBtn = document.querySelector('.modal__profile__right-column__close-button')
+const modalProfileShortName = document.querySelector('.modal__profile__left-column__icon__name')
+const modalProfileFirstName = document.querySelector('.modal__profile__left-column__name__first-name')
+const modalProfileLastName = document.querySelector('.modal__profile__left-column__name__last-name')
+const modalProfileVisits = document.querySelector('.card__info__item-value _prifile-card-info-value')
+const modalProfileBonuses = document.querySelector('.card__info__item-value _prifile-card-info-value')
+const modalProfileBooks = document.querySelector('.card__info__item-value _prifile-card-info-value')
+const modalProfileBooksContainer = document.querySelector('.modal__profile__right-column__rented-books-container__books-container')
+const modalProfileBooksNumber = document.querySelector('.modal__profile__right-column__card-info__number')
+
 function profileModal() {
   btn.addEventListener('click', (e) => {
     if (localStorage.getItem('isAuth') != 'true' || localStorage.getItem('isRegister') != 'true') {
@@ -381,6 +393,10 @@ function closeProfileModalNoAuth() {
 }
 
 closeProfileModalNoAuth()
+
+function closeProfileModalWithAuth() {
+    loginWithAuth.classList.remove('_active');
+}
 
 function registerFunction() {
   const modalRegisterForm = document.querySelector('.modal__register-form');
@@ -511,6 +527,35 @@ function showCardInfo() {
   })
 }
 showCardInfo()
+
+function openProfileModal() {
+  loginProfileInfoWithAuth.addEventListener('click', () => {
+    modal.classList.add('_active')
+    modalProfile.classList.add('_active')
+    closeProfileModalWithAuth()
+  })
+}
+openProfileModal()
+
+function closeProfileModal() {
+  modalProfileCloseBtn.addEventListener('click', () => {
+    modal.classList.remove('_active')
+    modalProfile.classList.remove('_active')
+  })
+}
+closeProfileModal()
+
+function getUserInfo() {
+  if(modalProfile) {
+    let firstName = localStorage.getItem('firstName');
+    let lastName = localStorage.getItem('lastName');
+    modalProfileShortName.textContent = `${firstName.slice(0, 1)}${lastName.slice(0, 1)}`
+    modalProfileFirstName.textContent = `${localStorage.getItem('firstName')}`;
+    modalProfileLastName.textContent = `${localStorage.getItem('lastName')}`;
+    modalProfileBooksNumber.textContent = `${localStorage.getItem('cardNumber')}`;
+  }
+}
+getUserInfo()
 
 // localStorage.removeItem('firstName')
 // localStorage.removeItem('lastName')
