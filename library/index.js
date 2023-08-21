@@ -395,7 +395,7 @@ function closeProfileModalNoAuth() {
 closeProfileModalNoAuth()
 
 function closeProfileModalWithAuth() {
-    loginWithAuth.classList.remove('_active');
+  loginWithAuth.classList.remove('_active');
 }
 
 function registerFunction() {
@@ -461,7 +461,7 @@ function showCardInfo() {
 
   checkBtn.addEventListener('click', (e) => {
     e.preventDefault()
-    if (localStorage.getItem('isAuth') != 'true' && localStorage.getItem('isRegister') == 'true' && inputName.value == localStorage.getItem('firstName') && inputPassword.value ==  localStorage.getItem('cardNumber')) {
+    if (localStorage.getItem('isAuth') != 'true' && localStorage.getItem('isRegister') == 'true' && inputName.value == localStorage.getItem('firstName') && inputPassword.value == localStorage.getItem('cardNumber')) {
 
       template.innerHTML = `
       <form class="findCard">
@@ -502,7 +502,7 @@ function showCardInfo() {
     </form>
     `
       findCard.replaceWith(template.content)
-    } if (localStorage.getItem('isAuth') != 'true' && localStorage.getItem('isRegister') == 'true' && inputName.value == localStorage.getItem('firstName') && inputPassword.value ==  localStorage.getItem('cardNumber')) {
+    } if (localStorage.getItem('isAuth') != 'true' && localStorage.getItem('isRegister') == 'true' && inputName.value == localStorage.getItem('firstName') && inputPassword.value == localStorage.getItem('cardNumber')) {
       setTimeout(() => {
         template.innerHTML = `
         <form class="findCard">
@@ -520,8 +520,8 @@ function showCardInfo() {
         </div>
       </form>
       `
-      findCard.replaceWith(template.content)
-      location.reload()
+        findCard.replaceWith(template.content)
+        location.reload()
       }, 10000);
     }
   })
@@ -529,10 +529,15 @@ function showCardInfo() {
 showCardInfo()
 
 function openProfileModal() {
-  loginProfileInfoWithAuth.addEventListener('click', () => {
-    modal.classList.add('_active')
-    modalProfile.classList.add('_active')
-    closeProfileModalWithAuth()
+  document.addEventListener('click', (e) => {
+    if (e.target === loginProfileInfoWithAuth) {
+      modal.classList.add('_active')
+      modalProfile.classList.add('_active')
+      closeProfileModalWithAuth()
+    } else if (e.target === visitProfileBtn) {
+      modal.classList.add('_active')
+      modalProfile.classList.add('_active')
+    }
   })
 }
 openProfileModal()
@@ -546,7 +551,7 @@ function closeProfileModal() {
 closeProfileModal()
 
 function getUserInfo() {
-  if(modalProfile) {
+  if (modalProfile) {
     let firstName = localStorage.getItem('firstName');
     let lastName = localStorage.getItem('lastName');
     modalProfileShortName.textContent = `${firstName.slice(0, 1)}${lastName.slice(0, 1)}`
@@ -556,6 +561,66 @@ function getUserInfo() {
   }
 }
 getUserInfo()
+
+function changelibraryCardSection() {
+  const findCard = document.querySelector('.findCard')
+  const visitProfile = document.querySelector('.getCard')
+  const templateFind = document.createElement('template');
+  const templateVisit = document.createElement('template');
+
+  if (localStorage.getItem('isAuth') == 'true' && localStorage.getItem('isRegister') == 'true') {
+
+    templateFind.innerHTML = `
+      <form class="findCard">
+      <h3>Your Library card</h3>
+      <div class="findCard__container">
+        <div class="input__container">
+          <span>Brooklyn Public Library</span>
+          <input class="findCard__input" type="text" value="${localStorage.getItem('firstName')} ${localStorage.getItem('lastName')}" required>
+          <input class="findCard__input" type="text" value="${localStorage.getItem('cardNumber')}" required>
+        </div>
+        <div class="card__info">
+          <div class="card__info__item">
+            <span class="card__info__item-text">Visits</span>
+            <span class="card__info__item-icon">
+              <img src="./assets/svg/union.svg" alt="union">
+            </span>
+            <span class="card__info__item-value">23</span>
+          </div>
+          <div class="card__info__item">
+            <span class="card__info__item-text">Bonuses</span>
+            <span class="card__info__item-icon">
+              <img src="./assets/svg/star.svg" alt="union">
+            </span>
+            <span class="card__info__item-value">1240</span>
+          </div>
+          <div class="card__info__item">
+            <span class="card__info__item-text">Books</span>
+            <span class="card__info__item-icon">
+              <img src="./assets/svg/book.svg" alt="union">
+            </span>
+            <span class="card__info__item-value">2</span>
+          </div>
+        </div>
+      </div>
+    </form>
+    `
+    templateVisit.innerHTML = `
+    <div class="visit-profile">
+      <h3>Visit your profile</h3>
+      <p>With a digital library card you get free access to the Library’s wide array of digital resources including e-books, databases, educational resources, and more.</p>
+      <div class="visit-profile__btns">
+        <button class="visit-profile__btn">Profile</button>
+      </div>
+    </div>
+    `
+    findCard.replaceWith(templateFind.content)
+    visitProfile.replaceWith(templateVisit.content)
+  }
+}
+changelibraryCardSection()
+
+const visitProfileBtn = document.querySelector('.visit-profile__btn')
 
 // localStorage.removeItem('firstName')
 // localStorage.removeItem('lastName')

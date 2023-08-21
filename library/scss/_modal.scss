@@ -488,8 +488,8 @@
       width: 80px;
       height: 80px;
       background: white;
-      margin-top: 4px;
-      margin-left: 1px;
+      margin-top: 3px;
+      // margin-left: 1px;
 
       &__name {
         color: #BB945F;
@@ -691,41 +691,148 @@
         background: transparent;
         border: none;
         cursor: pointer;
+        margin-top: 3px;
       }
     }
   }
+}
 
-  ._prifile-card-info-container {
-    gap: 20px;
-    margin-bottom: 20px;
-  }
+.modal__profile {
+  @include respondMax(639px) {
+    height: max-content;
+    width: 100%;
+    max-width: 430px;
+    flex-direction: column;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 
-  ._prifile-card-info {
-    gap: 7px;
-  }
+    &__left-column {
+      width: 100%;
+      height: 200px;
+    }
 
-  ._prifile-card-info-text {
-    color: #000;
-    text-align: center;
-    font-family: Inter;
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 20px;
-    letter-spacing: 0.4px;
-    text-transform: capitalize;
-    margin-bottom: 2px;
-  }
+    &__right-column {
+      width: 100%;
+      max-width: 430px;
+      height: max-content;
+      align-items: center;
+      padding: 20px 20px 20px 20px;
 
-  ._prifile-card-info-value {
-    color: #000;
-    text-align: center;
-    font-family: Inter;
-    font-size: 10px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 20px;
-    letter-spacing: 0.2px;
-    text-transform: capitalize;
+      &__close-button {
+        background: transparent;
+
+        &::before {
+          color: #ffffff;
+          background: #ffffff;
+        }
+
+        &::after {
+          color: #ffffff;
+          background: #ffffff;
+        }
+      }
+
+      &__heading {
+        margin-bottom: 25px;
+      }
+
+      &__rented-books-container {
+        gap: 30px;
+        margin-bottom: 25px;
+        height: max-content;
+      }
+    }
   }
+}
+
+.modal__profile {
+  @include respondMax(470px) {
+    width: 90%;
+
+    &__left-column {
+      height: 155px;
+    }
+
+    &__right-column {
+
+      &__heading {
+        font-size: 35px;
+      }
+
+      &__rented-books-container {
+        margin-bottom: 25px;
+
+        &__heading {
+          font-size: 22px;
+        }
+
+        &__books-container span {
+          font-size: 16px;
+        }
+      }
+
+      &__card-info {
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+
+        &__text {
+          font-size: 16px;
+        }
+
+        &__number {
+          min-width: 100px;
+          color: #BB945F;
+          text-align: center;
+          font-family: Inter;
+          font-size: 16px;
+        }
+
+        &__button {
+          background: transparent;
+          border: none;
+          cursor: pointer;
+          margin-top: 3px;
+        }
+      }
+    }
+  }
+}
+
+._prifile-card-info-container {
+  gap: 20px;
+  margin-bottom: 20px;
+  margin-top: 0px;
+}
+
+._prifile-card-info {
+  gap: 7px;
+}
+
+._prifile-card-info-text {
+  color: #000;
+  text-align: center;
+  font-family: Inter;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 0.4px;
+  text-transform: capitalize;
+  margin-bottom: 2px;
+}
+
+._prifile-card-info-icon {
+  margin-bottom: 0px;
+}
+
+._prifile-card-info-value {
+  color: #000;
+  text-align: center;
+  font-family: Inter;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 0.2px;
+  text-transform: capitalize;
 }

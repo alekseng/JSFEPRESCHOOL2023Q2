@@ -51,8 +51,10 @@ body._block::before {
 .footer__bottom__name:hover a, .footer__bottom__name a, .footer__bottom__rss a, .fill-svg, #twitter,
 #instagram,
 #facebook, .footer__top-left__address:hover a, .footer__top-left__address a, .prompt._active, .prompt, .getCard__btn__sign-up:hover,
-.getCard__btn__log-in:hover, .getCard__btn__sign-up,
-.getCard__btn__log-in, .submit__btn:hover, .submit__btn, .strong-text:hover, .strong-text, .info__phone a:hover, .info__phone a, .books__button:hover, .books__button, .slider__dot._non-active, .slider__dot:hover, .slider__dot._active, .slider__dot, .slider__container, .login-pop-up__with-auth__register:hover, .login-pop-up__with-auth__register, .login-pop-up__with-auth__profile-info:hover, .login-pop-up__with-auth__profile-info, .login-pop-up__no-auth__register:hover, .login-pop-up__no-auth__register, .login-pop-up__no-auth__login:hover, .login-pop-up__no-auth__login, .profile ._active-profile, .profile__icon, .header__menu, .header__menu a,
+.getCard__btn__log-in:hover,
+.visit-profile__btn:hover, .getCard__btn__sign-up,
+.getCard__btn__log-in,
+.visit-profile__btn, .submit__btn:hover, .submit__btn, .strong-text:hover, .strong-text, .info__phone a:hover, .info__phone a, .books__button:hover, .books__button, .slider__dot._non-active, .slider__dot:hover, .slider__dot._active, .slider__dot, .slider__container, .login-pop-up__with-auth__register:hover, .login-pop-up__with-auth__register, .login-pop-up__with-auth__profile-info:hover, .login-pop-up__with-auth__profile-info, .login-pop-up__no-auth__register:hover, .login-pop-up__no-auth__register, .login-pop-up__no-auth__login:hover, .login-pop-up__no-auth__login, .profile ._active-profile, .profile__icon, .header__menu, .header__menu a,
 .header__menu:hover a {
   transition: 300ms;
   transition-timing-function: ease-in-out;
@@ -1016,7 +1018,8 @@ body._block::before {
   .seasons__container {
     position: sticky;
     top: 0;
-    background-color: rgba(128, 119, 119, 0.7);
+    background-color: rgba(255, 255, 255, 0.8);
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     z-index: 1;
   }
 }
@@ -2362,7 +2365,7 @@ input[type=text]:last-child {
   }
 }
 
-.getCard {
+.getCard, .visit-profile {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -2373,7 +2376,7 @@ input[type=text]:last-child {
   height: max-content;
   row-gap: 35px;
 }
-.getCard h3 {
+.getCard h3, .visit-profile h3 {
   color: #000000;
   text-align: center;
   font-family: Forum;
@@ -2384,7 +2387,7 @@ input[type=text]:last-child {
   letter-spacing: 0.6px;
   align-self: flex-end;
 }
-.getCard p {
+.getCard p, .visit-profile p {
   color: #000000;
   text-align: right;
   font-family: Inter;
@@ -2394,42 +2397,42 @@ input[type=text]:last-child {
   line-height: 40px;
   letter-spacing: 0.4px;
 }
-.getCard__btns {
+.getCard__btns, .visit-profile__btns {
   display: flex;
   justify-content: flex-end;
 }
 
 @media (max-width: 1120px) {
-  .getCard {
+  .getCard, .visit-profile {
     width: 100%;
     max-width: 600px;
     row-gap: 40px;
   }
-  .getCard h3 {
+  .getCard h3, .visit-profile h3 {
     align-self: center;
   }
-  .getCard p {
+  .getCard p, .visit-profile p {
     text-align: center;
   }
-  .getCard__btns {
+  .getCard__btns, .visit-profile__btns {
     justify-content: center;
   }
 }
 
 @media (max-width: 678px) {
-  .getCard {
+  .getCard, .visit-profile {
     row-gap: 25px;
   }
 }
 
 @media (max-width: 499px) {
-  .getCard {
+  .getCard, .visit-profile {
     row-gap: 15px;
   }
-  .getCard h3 {
+  .getCard h3, .visit-profile h3 {
     font-size: 24px;
   }
-  .getCard p {
+  .getCard p, .visit-profile p {
     font-size: 16px;
   }
 }
@@ -2439,7 +2442,8 @@ input[type=text]:last-child {
 }
 
 .getCard__btn__sign-up,
-.getCard__btn__log-in {
+.getCard__btn__log-in,
+.visit-profile__btn {
   box-sizing: border-box;
   display: flex;
   width: 75px;
@@ -2463,7 +2467,8 @@ input[type=text]:last-child {
 }
 
 .getCard__btn__sign-up:hover,
-.getCard__btn__log-in:hover {
+.getCard__btn__log-in:hover,
+.visit-profile__btn:hover {
   border: 1px solid #BB945F;
   background: #BB945F;
 }
@@ -2496,14 +2501,40 @@ input[type=text]:last-child {
   display: flex;
   justify-content: space-between;
   gap: 35px;
+  margin-top: -4px;
 }
 .card__info__item {
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1px;
 }
+.card__info__item-text {
+  color: #000;
+  text-align: center;
+  font-family: Inter;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 0.2px;
+  text-transform: capitalize;
+}
+.card__info__item-icon {
+  margin-bottom: -3px;
+}
+.card__info__item-value {
+  color: #000;
+  text-align: center;
+  font-family: Inter;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 0.2px;
+  text-transform: capitalize;
+}
+
 .footer {
   height: -moz-max-content;
   height: max-content;
@@ -3172,8 +3203,7 @@ input[type=text]:last-child {
   width: 80px;
   height: 80px;
   background: white;
-  margin-top: 4px;
-  margin-left: 1px;
+  margin-top: 3px;
 }
 .modal__profile__left-column__icon__name {
   color: #BB945F;
@@ -3350,15 +3380,105 @@ input[type=text]:last-child {
   background: transparent;
   border: none;
   cursor: pointer;
+  margin-top: 3px;
 }
-.modal__profile ._prifile-card-info-container {
+
+@media (max-width: 639px) {
+  .modal__profile {
+    height: -moz-max-content;
+    height: max-content;
+    width: 100%;
+    max-width: 430px;
+    flex-direction: column;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  }
+  .modal__profile__left-column {
+    width: 100%;
+    height: 200px;
+  }
+  .modal__profile__right-column {
+    width: 100%;
+    max-width: 430px;
+    height: -moz-max-content;
+    height: max-content;
+    align-items: center;
+    padding: 20px 20px 20px 20px;
+  }
+  .modal__profile__right-column__close-button {
+    background: transparent;
+  }
+  .modal__profile__right-column__close-button::before {
+    color: #ffffff;
+    background: #ffffff;
+  }
+  .modal__profile__right-column__close-button::after {
+    color: #ffffff;
+    background: #ffffff;
+  }
+  .modal__profile__right-column__heading {
+    margin-bottom: 25px;
+  }
+  .modal__profile__right-column__rented-books-container {
+    gap: 30px;
+    margin-bottom: 25px;
+    height: -moz-max-content;
+    height: max-content;
+  }
+}
+
+@media (max-width: 470px) {
+  .modal__profile {
+    width: 90%;
+  }
+  .modal__profile__left-column {
+    height: 155px;
+  }
+  .modal__profile__right-column__heading {
+    font-size: 35px;
+  }
+  .modal__profile__right-column__rented-books-container {
+    margin-bottom: 25px;
+  }
+  .modal__profile__right-column__rented-books-container__heading {
+    font-size: 22px;
+  }
+  .modal__profile__right-column__rented-books-container__books-container span {
+    font-size: 16px;
+  }
+  .modal__profile__right-column__card-info {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+  }
+  .modal__profile__right-column__card-info__text {
+    font-size: 16px;
+  }
+  .modal__profile__right-column__card-info__number {
+    min-width: 100px;
+    color: #BB945F;
+    text-align: center;
+    font-family: Inter;
+    font-size: 16px;
+  }
+  .modal__profile__right-column__card-info__button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    margin-top: 3px;
+  }
+}
+
+._prifile-card-info-container {
   gap: 20px;
   margin-bottom: 20px;
+  margin-top: 0px;
 }
-.modal__profile ._prifile-card-info {
+
+._prifile-card-info {
   gap: 7px;
 }
-.modal__profile ._prifile-card-info-text {
+
+._prifile-card-info-text {
   color: #000;
   text-align: center;
   font-family: Inter;
@@ -3370,7 +3490,12 @@ input[type=text]:last-child {
   text-transform: capitalize;
   margin-bottom: 2px;
 }
-.modal__profile ._prifile-card-info-value {
+
+._prifile-card-info-icon {
+  margin-bottom: 0px;
+}
+
+._prifile-card-info-value {
   color: #000;
   text-align: center;
   font-family: Inter;

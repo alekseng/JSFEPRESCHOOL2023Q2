@@ -242,7 +242,7 @@ input[type='text'] {
   }
 }
 
-.getCard {
+.getCard, .visit-profile {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -273,7 +273,7 @@ input[type='text'] {
   }
 }
 
-.getCard {
+.getCard, .visit-profile {
   @include respondMax(1120px) {
     width: 100%;
     max-width: 600px;
@@ -293,13 +293,13 @@ input[type='text'] {
   }
 }
 
-.getCard {
+.getCard, .visit-profile {
   @include respondMax(678px) {
     row-gap: 25px;
   }
 }
 
-.getCard {
+.getCard, .visit-profile {
   @include respondMax(499px) {
     row-gap: 15px;
 
@@ -318,7 +318,8 @@ input[type='text'] {
 }
 
 .getCard__btn__sign-up,
-.getCard__btn__log-in {
+.getCard__btn__log-in,
+.visit-profile__btn {
   box-sizing: border-box;
   display: flex;
   width: 75px;
@@ -339,7 +340,8 @@ input[type='text'] {
 }
 
 .getCard__btn__sign-up:hover,
-.getCard__btn__log-in:hover {
+.getCard__btn__log-in:hover,
+.visit-profile__btn:hover {
   border: 1px solid $color-accent;
   background: $color-accent;
   @extend %transition;
@@ -372,18 +374,40 @@ input[type='text'] {
   display: flex;
   justify-content: space-between;
   gap: 35px;
+  margin-top: -4px;
 
   &__item {
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1px;
 
-    &-text {}
+    &-text {
+      color: #000;
+      text-align: center;
+      font-family: Inter;
+      font-size: 10px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 20px;
+      letter-spacing: 0.2px;
+      text-transform: capitalize;
+    }
 
-    &-icon {}
+    &-icon {
+      margin-bottom: -3px;
+    }
 
-    &-value {}
+    &-value {
+      color: #000;
+      text-align: center;
+      font-family: Inter;
+      font-size: 10px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 20px;
+      letter-spacing: 0.2px;
+      text-transform: capitalize;
+    }
   }
 }
