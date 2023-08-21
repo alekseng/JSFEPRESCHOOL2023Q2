@@ -278,9 +278,9 @@ const modalProfileCloseBtn = document.querySelector('.modal__profile__right-colu
 const modalProfileShortName = document.querySelector('.modal__profile__left-column__icon__name')
 const modalProfileFirstName = document.querySelector('.modal__profile__left-column__name__first-name')
 const modalProfileLastName = document.querySelector('.modal__profile__left-column__name__last-name')
-const modalProfileVisits = document.querySelector('.card__info__item-value _prifile-card-info-value')
-const modalProfileBonuses = document.querySelector('.card__info__item-value _prifile-card-info-value')
-const modalProfileBooks = document.querySelector('.card__info__item-value _prifile-card-info-value')
+const modalProfileVisits = document.querySelector('._card-info-value__visits')
+const modalProfileBonuses = document.querySelector('._card-info-value__visits')
+const modalProfileBooks = document.querySelector('._card-info-value__visits')
 const modalProfileBooksContainer = document.querySelector('.modal__profile__right-column__rented-books-container__books-container')
 const modalProfileBooksNumber = document.querySelector('.modal__profile__right-column__card-info__number')
 
@@ -371,12 +371,19 @@ function logIn() {
   const email = document.querySelector('#email-login')
   const password = document.querySelector('#password-login')
   const submitBtnLoginForm = modalLoginForm.querySelector('.form__btn');
+  let countValue = localStorage.getItem('countVisits')
 
   if (localStorage.getItem('isRegister') == 'true' && email != '' && password != '') {
     email.value = localStorage.getItem('email')
     password.value = localStorage.getItem('password')
-    submitBtnLoginForm.addEventListener('click', () => {
+    submitBtnLoginForm.addEventListener('click', (e) => {
+      e.preventDefault()
       localStorage.setItem('isAuth', true)
+
+      countValue = parseInt(countValue)
+      countValue++
+      localStorage.setItem('countVisits', countValue);
+      location.reload()
     })
   }
 }
@@ -415,6 +422,7 @@ function registerFunction() {
   }
 
   submitBtnRegisterForm.addEventListener('click', (e) => {
+    e.preventDefault()
     if (firstName.value != '' && lastName.value != '' && email.value != '' && password.value != '') {
       localStorage.setItem('firstName', `${firstName.value}`)
       localStorage.setItem('lastName', `${lastName.value}`)
@@ -423,8 +431,10 @@ function registerFunction() {
       localStorage.setItem('isRegister', true)
       localStorage.setItem('isAuth', true)
       localStorage.setItem('cardNumber', cardNumber)
+      localStorage.setItem('countVisits', 1)
       modal.classList.remove('_active')
       modalRegister.classList.remove('_active')
+      location.reload()
     }
   })
 }
@@ -481,7 +491,7 @@ function showCardInfo() {
             <span class="card__info__item-icon">
               <img src="./assets/svg/union.svg" alt="union">
             </span>
-            <span class="card__info__item-value">23</span>
+            <span class="card__info__item-value">${localStorage.getItem('countVisits')}</span>
           </div>
           <div class="card__info__item">
             <span class="card__info__item-text">Bonuses</span>
@@ -551,13 +561,14 @@ function closeProfileModal() {
 closeProfileModal()
 
 function getUserInfo() {
-  if (modalProfile) {
+  if (modalProfile && localStorage.getItem('isRegister')) {
     let firstName = localStorage.getItem('firstName');
     let lastName = localStorage.getItem('lastName');
     modalProfileShortName.textContent = `${firstName.slice(0, 1)}${lastName.slice(0, 1)}`
     modalProfileFirstName.textContent = `${localStorage.getItem('firstName')}`;
     modalProfileLastName.textContent = `${localStorage.getItem('lastName')}`;
     modalProfileBooksNumber.textContent = `${localStorage.getItem('cardNumber')}`;
+    modalProfileVisits.textContent = `${localStorage.getItem('countVisits')}`;
   }
 }
 getUserInfo()
@@ -585,7 +596,7 @@ function changelibraryCardSection() {
             <span class="card__info__item-icon">
               <img src="./assets/svg/union.svg" alt="union">
             </span>
-            <span class="card__info__item-value">23</span>
+            <span class="card__info__item-value">${localStorage.getItem('countVisits')}</span>
           </div>
           <div class="card__info__item">
             <span class="card__info__item-text">Bonuses</span>
@@ -629,6 +640,7 @@ const visitProfileBtn = document.querySelector('.visit-profile__btn')
 // localStorage.removeItem('isRegister')
 // localStorage.removeItem('isAuth')
 // localStorage.removeItem('cardNumber')
+// localStorage.removeItem('countVisits')
 
 // console.log(`Все требования к работе выполнены = 50 баллов
 
