@@ -3090,7 +3090,6 @@ input[type=text]:last-child {
   width: 100%;
   width: 200px;
   height: 20px;
-  border: 1px solid #BB945F;
 }
 .login__label input[type=text]:last-child {
   margin-bottom: 0px;
@@ -3530,7 +3529,9 @@ input[type=text]:last-child {
 .first-name,
 .last-name,
 .email,
-.password-register {
+.password-register,
+.email-login,
+.password-login {
   position: absolute;
   text-align: center;
   font-family: Inter;
@@ -3543,14 +3544,18 @@ input[type=text]:last-child {
 .first-name._success,
 .last-name._success,
 .email._success,
-.password-register._success {
+.password-register._success,
+.email-login._success,
+.password-login._success {
   color: rgb(0, 126, 0);
 }
 
 .first-name._error,
 .last-name._error,
 .email._error,
-.password-register._error {
+.password-register._error,
+.email-login._error,
+.password-login._error {
   text-align: start;
   font-family: Inter;
   font-size: 10px;
@@ -3571,7 +3576,9 @@ input[type=text]:last-child {
 .first-name._error::before,
 .last-name._error::before,
 .email._error::before,
-.password-register._error::before {
+.password-register._error::before,
+.email-login._error::before,
+.password-login._error::before {
   content: "";
   position: absolute;
   width: 6px;

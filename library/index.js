@@ -288,6 +288,7 @@ const modalProfileBooksNumber = document.querySelector('.modal__profile__right-c
 const nameRegExp = /^([-A-Za-z0-9]{3,})$/;
 const emailRegExp = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
 const passwordRegExp = /^((?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*])[A-Za-z0-9!@#$%^&*]{8,16})$/;
+const nameOrCardRegExp = /^([-A-Za-z0-9_\.\@]{3,})$/;
 
 function profileModal() {
   btn.addEventListener('click', (e) => {
@@ -378,19 +379,109 @@ function logIn() {
   const submitBtnLoginForm = modalLoginForm.querySelector('.form__btn');
   let countValue = localStorage.getItem('countVisits')
 
-  if (localStorage.getItem('isRegister') == 'true' && email != '' && password != '') {
-    email.value = localStorage.getItem('email')
-    password.value = localStorage.getItem('password')
-    submitBtnLoginForm.addEventListener('click', (e) => {
-      e.preventDefault()
-      localStorage.setItem('isAuth', true)
+  const emailError = document.querySelector('.email-login');
+  const passwordError = document.querySelector('.password-login');
 
+  email.addEventListener('input', (e) => {
+    console.log(nameOrCardRegExp.test(email.value));
+    if (!nameOrCardRegExp.test(email.value)) {
+      emailError.textContent = `There must be at least 3 characters in this field, you can enter letters, numbers and -_.@`;
+      emailError.classList.remove('_success');
+      emailError.classList.add('_error');
+      email.classList.add('_error-border');
+      email.classList.remove('_success-border');
+    } else if (nameOrCardRegExp.test(email.value)) {
+      emailError.textContent = 'success';
+      emailError.classList.remove('_error');
+      emailError.classList.add('_success');
+      email.classList.remove('_error-border');
+      email.classList.add('_success-border');
+    }
+  })
+
+  password.addEventListener('input', (e) => {
+    // console.log(passwordRegExp.test(password.value));
+    if (password.value.length < 8) {
+      passwordError.textContent = 'The password must be at least 8 characters long';
+      passwordError.classList.remove('_success');
+      passwordError.classList.add('_error');
+      password.classList.add('_error-border');
+      password.classList.remove('_success-border');
+    } else if (password.value.length > 16) {
+      passwordError.textContent = 'The password must not exceed 16 characters in length';
+      passwordError.classList.remove('_success');
+      passwordError.classList.add('_error');
+      password.classList.add('_error-border');
+      password.classList.remove('_success-border');
+    } else if (!passwordRegExp.test(password.value)) {
+      passwordError.textContent = 'The password must contain at least 1 digit, 1 capital letter and a special character !@#$%^&*';
+      passwordError.classList.remove('_success');
+      passwordError.classList.add('_error');
+      password.classList.remove('_success-border');
+      password.classList.add('_error-border');
+    } else if (password.value.length >= 8 && passwordRegExp.test(password.value)) {
+      passwordError.textContent = 'success';
+      passwordError.classList.remove('_error');
+      passwordError.classList.add('_success');
+      password.classList.remove('_error-border');
+      password.classList.add('_success-border');
+    }
+  })
+
+  submitBtnLoginForm.addEventListener('click', (e) => {
+    e.preventDefault()
+    if ((localStorage.getItem('isRegister') == 'true')
+      && (((email.value == localStorage.getItem('email') && nameOrCardRegExp.test(email.value)) || (email.value == localStorage.getItem('cardNumber') && nameOrCardRegExp.test(email.value))) && (password.value == localStorage.getItem('password') && passwordRegExp.test(password.value)))) {
+      localStorage.setItem('isAuth', true)
       countValue = parseInt(countValue)
       countValue++
       localStorage.setItem('countVisits', countValue);
       location.reload()
-    })
-  }
+    } else if (localStorage.getItem('isRegister') != 'true') {
+      emailError.textContent = `Registered users are not found, go through the registration stage`;
+      emailError.classList.add('_error');
+      email.classList.add('_error-border');
+    } else if (email.value != localStorage.getItem('email') || email.value != localStorage.getItem('cardNumber') || password.value != localStorage.getItem('password')) {
+      emailError.textContent = `User not found`;
+      emailError.classList.add('_error');
+      email.classList.add('_error-border');
+      emailError.classList.remove('_success');
+      email.classList.remove('_success-border');
+      passwordError.textContent = 'User not found';
+      passwordError.classList.add('_error');
+      password.classList.add('_error-border');
+      if ((email.value != localStorage.getItem('email') && email.value.length == 0) || (email.value != localStorage.getItem('cardNumber') && email.value.length == 0)) {
+        emailError.textContent = `This field cannot be blank`;
+      } else if ((email.value != localStorage.getItem('email') && email.value.length > 1) || (email.value != localStorage.getItem('cardNumber') && email.value.length > 1)) {
+        emailError.textContent = `User not found`;
+      }
+      if ((password.value != localStorage.getItem('password') && password.value.length == 0)) {
+        passwordError.textContent = `This field cannot be blank`;
+      } else if ((password.value != localStorage.getItem('password') && password.value.length > 1)) {
+        passwordError.textContent = `User not found`;
+        password.classList.remove('_success-border');
+        password.classList.add('_error-border');
+      }
+      if (email.value == localStorage.getItem('email') || email.value == localStorage.getItem('cardNumber')) {
+        emailError.textContent = 'success';
+        emailError.classList.remove('_error');
+        emailError.classList.add('_success');
+        email.classList.remove('_error-border');
+        email.classList.add('_success-border');
+      }
+      if ((email.value == localStorage.getItem('email') || email.value == localStorage.getItem('cardNumber')) && password.value != localStorage.getItem('password')) {
+        emailError.textContent = 'success';
+        emailError.classList.remove('_error');
+        emailError.classList.add('_success');
+        email.classList.remove('_error-border');
+        email.classList.add('_success-border');
+        passwordError.textContent = 'Invalid password';
+        passwordError.classList.add('_error');
+        password.classList.remove('_success-border');
+        password.classList.add('_error-border');
+      }
+    }
+  })
 }
 
 logIn()

@@ -341,7 +341,6 @@
     width: 100%;
     width: 200px;
     height: 20px;
-    border: 1px solid #BB945F;
 
     &:last-child {
       margin-bottom: 0px;
@@ -841,7 +840,9 @@
 .first-name,
 .last-name,
 .email,
-.password-register {
+.password-register,
+.email-login,
+.password-login {
   position: absolute;
   text-align: center;
   font-family: Inter;
@@ -859,7 +860,9 @@
 .first-name._error,
 .last-name._error,
 .email._error,
-.password-register._error {
+.password-register._error,
+.email-login._error,
+.password-login._error {
   text-align: start;
   font-family: Inter;
   font-size: 10px;
