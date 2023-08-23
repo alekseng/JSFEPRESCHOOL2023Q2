@@ -188,6 +188,7 @@
   @include fontStyle(Forum, 30px, normal, 400, 50px);
   letter-spacing: 0.6px;
   border: none;
+  margin-bottom: 25px;
 
   &:focus {
     outline: none;
@@ -203,7 +204,6 @@
 input[type='text'] {
   box-sizing: border-box;
   padding-left: 20px;
-  margin-bottom: 25px;
 
   &:last-child {
     margin-bottom: 0px;
@@ -242,7 +242,8 @@ input[type='text'] {
   }
 }
 
-.getCard, .visit-profile {
+.getCard,
+.visit-profile {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -273,7 +274,8 @@ input[type='text'] {
   }
 }
 
-.getCard, .visit-profile {
+.getCard,
+.visit-profile {
   @include respondMax(1120px) {
     width: 100%;
     max-width: 600px;
@@ -293,13 +295,15 @@ input[type='text'] {
   }
 }
 
-.getCard, .visit-profile {
+.getCard,
+.visit-profile {
   @include respondMax(678px) {
     row-gap: 25px;
   }
 }
 
-.getCard, .visit-profile {
+.getCard,
+.visit-profile {
   @include respondMax(499px) {
     row-gap: 15px;
 

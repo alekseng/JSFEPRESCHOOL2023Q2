@@ -2312,6 +2312,7 @@ body._block::before {
   line-height: 50px;
   letter-spacing: 0.6px;
   border: none;
+  margin-bottom: 25px;
 }
 .findCard__input:focus {
   outline: none;
@@ -2326,7 +2327,6 @@ body._block::before {
 input[type=text] {
   box-sizing: border-box;
   padding-left: 20px;
-  margin-bottom: 25px;
 }
 input[type=text]:last-child {
   margin-bottom: 0px;
@@ -2365,7 +2365,8 @@ input[type=text]:last-child {
   }
 }
 
-.getCard, .visit-profile {
+.getCard,
+.visit-profile {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -2376,7 +2377,8 @@ input[type=text]:last-child {
   height: max-content;
   row-gap: 35px;
 }
-.getCard h3, .visit-profile h3 {
+.getCard h3,
+.visit-profile h3 {
   color: #000000;
   text-align: center;
   font-family: Forum;
@@ -2387,7 +2389,8 @@ input[type=text]:last-child {
   letter-spacing: 0.6px;
   align-self: flex-end;
 }
-.getCard p, .visit-profile p {
+.getCard p,
+.visit-profile p {
   color: #000000;
   text-align: right;
   font-family: Inter;
@@ -2397,42 +2400,51 @@ input[type=text]:last-child {
   line-height: 40px;
   letter-spacing: 0.4px;
 }
-.getCard__btns, .visit-profile__btns {
+.getCard__btns,
+.visit-profile__btns {
   display: flex;
   justify-content: flex-end;
 }
 
 @media (max-width: 1120px) {
-  .getCard, .visit-profile {
+  .getCard,
+  .visit-profile {
     width: 100%;
     max-width: 600px;
     row-gap: 40px;
   }
-  .getCard h3, .visit-profile h3 {
+  .getCard h3,
+  .visit-profile h3 {
     align-self: center;
   }
-  .getCard p, .visit-profile p {
+  .getCard p,
+  .visit-profile p {
     text-align: center;
   }
-  .getCard__btns, .visit-profile__btns {
+  .getCard__btns,
+  .visit-profile__btns {
     justify-content: center;
   }
 }
 
 @media (max-width: 678px) {
-  .getCard, .visit-profile {
+  .getCard,
+  .visit-profile {
     row-gap: 25px;
   }
 }
 
 @media (max-width: 499px) {
-  .getCard, .visit-profile {
+  .getCard,
+  .visit-profile {
     row-gap: 15px;
   }
-  .getCard h3, .visit-profile h3 {
+  .getCard h3,
+  .visit-profile h3 {
     font-size: 24px;
   }
-  .getCard p, .visit-profile p {
+  .getCard p,
+  .visit-profile p {
     font-size: 16px;
   }
 }
@@ -2888,7 +2900,6 @@ input[type=text]:last-child {
   width: 100%;
   width: 200px;
   height: 20px;
-  border: 1px solid #BB945F;
 }
 .register__label input[type=text]:last-child {
   margin-bottom: 0px;
@@ -2901,7 +2912,6 @@ input[type=text]:last-child {
   padding-left: 10px;
   width: 200px;
   height: 20px;
-  border: 1px solid #BB945F;
 }
 .register__label input[type=email]:last-child {
   margin-bottom: 0px;
@@ -2911,7 +2921,6 @@ input[type=text]:last-child {
   padding-left: 10px;
   width: 200px;
   height: 20px;
-  border: 1px solid #BB945F;
 }
 .register__label input[type=password]:last-child {
   margin-bottom: 0px;
@@ -3104,7 +3113,6 @@ input[type=text]:last-child {
   padding-left: 10px;
   width: 200px;
   height: 20px;
-  border: 1px solid #BB945F;
 }
 .login__label input[type=password]:last-child {
   margin-bottom: 0px;
@@ -3505,4 +3513,87 @@ input[type=text]:last-child {
   line-height: 20px;
   letter-spacing: 0.2px;
   text-transform: capitalize;
+}
+
+._default-border {
+  border: 1px solid #BB945F;
+}
+
+._error-border {
+  border: 1px solid #ff0000;
+}
+
+._success-border {
+  border: 1px solid #00ff0d;
+}
+
+.first-name,
+.last-name,
+.email,
+.password-register {
+  position: absolute;
+  text-align: center;
+  font-family: Inter;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 6px;
+  top: 51px;
+}
+.first-name._success,
+.last-name._success,
+.email._success,
+.password-register._success {
+  color: rgb(0, 126, 0);
+}
+
+.first-name._error,
+.last-name._error,
+.email._error,
+.password-register._error {
+  text-align: start;
+  font-family: Inter;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 9px;
+  top: 54px;
+  height: -moz-max-content;
+  height: max-content;
+  color: #ff0000;
+  background: rgb(255, 255, 255);
+  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.25);
+  padding: 2px;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  z-index: 1;
+}
+.first-name._error::before,
+.last-name._error::before,
+.email._error::before,
+.password-register._error::before {
+  content: "";
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: #ffffff;
+  top: -4px;
+  -webkit-clip-path: polygon(0% 0%, 100% 100%, 0% 100%);
+  clip-path: polygon(0% 0%, 100% 100%, 0% 100%);
+  transform: rotate(135deg);
+  box-shadow: 0px 0px 0px 0px rgb(0, 0, 0);
+  left: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.password-register._success {
+  text-align: start;
+  font-family: Inter;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 9px;
+  bottom: -9px;
+  box-shadow: none;
+  padding: 0;
 }/*# sourceMappingURL=index.css.map */

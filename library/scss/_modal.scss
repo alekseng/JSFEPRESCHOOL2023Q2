@@ -129,8 +129,6 @@
     width: 100%;
     width: 200px;
     height: 20px;
-    border: 1px solid #BB945F;
-    ;
 
     &:last-child {
       margin-bottom: 0px;
@@ -148,8 +146,6 @@
     padding-left: 10px;
     width: 200px;
     height: 20px;
-    border: 1px solid #BB945F;
-    ;
 
     &:last-child {
       margin-bottom: 0px;
@@ -161,8 +157,6 @@
     padding-left: 10px;
     width: 200px;
     height: 20px;
-    border: 1px solid #BB945F;
-    ;
 
     &:last-child {
       margin-bottom: 0px;
@@ -348,7 +342,6 @@
     width: 200px;
     height: 20px;
     border: 1px solid #BB945F;
-    ;
 
     &:last-child {
       margin-bottom: 0px;
@@ -367,7 +360,6 @@
     width: 200px;
     height: 20px;
     border: 1px solid #BB945F;
-    ;
 
     &:last-child {
       margin-bottom: 0px;
@@ -379,8 +371,6 @@
     padding-left: 10px;
     width: 200px;
     height: 20px;
-    border: 1px solid #BB945F;
-    ;
 
     &:last-child {
       margin-bottom: 0px;
@@ -489,7 +479,6 @@
       height: 80px;
       background: white;
       margin-top: 3px;
-      // margin-left: 1px;
 
       &__name {
         color: #BB945F;
@@ -835,4 +824,83 @@
   line-height: 20px;
   letter-spacing: 0.2px;
   text-transform: capitalize;
+}
+
+._default-border {
+  border: 1px solid #BB945F;
+}
+
+._error-border {
+  border: 1px solid #ff0000;
+}
+
+._success-border {
+  border: 1px solid #00ff0d;
+}
+
+.first-name,
+.last-name,
+.email,
+.password-register {
+  position: absolute;
+  text-align: center;
+  font-family: Inter;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 6px;
+  top: 51px;
+
+  &._success {
+    color: rgb(0, 126, 0);
+  }
+}
+
+.first-name._error,
+.last-name._error,
+.email._error,
+.password-register._error {
+  text-align: start;
+  font-family: Inter;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 9px;
+  top: 54px;
+  height: -moz-max-content;
+  height: max-content;
+  color: #ff0000;
+  background: rgb(255 255 255);
+  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.25);
+  padding: 2px;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  z-index: 1;
+
+  &::before {
+    content: "";
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: #ffffff;
+    top: -4px;
+    -webkit-clip-path: polygon(0% 0%, 100% 100%, 0% 100%);
+    clip-path: polygon(0% 0%, 100% 100%, 0% 100%);
+    transform: rotate(135deg);
+    box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 1);
+    left: 4px;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+  }
+}
+
+.password-register._success {
+  text-align: start;
+  font-family: Inter;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 9px;
+  bottom: -9px;
+  box-shadow: none;
+  padding: 0;
 }

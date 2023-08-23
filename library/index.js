@@ -284,6 +284,11 @@ const modalProfileBooks = document.querySelector('._card-info-value__visits')
 const modalProfileBooksContainer = document.querySelector('.modal__profile__right-column__rented-books-container__books-container')
 const modalProfileBooksNumber = document.querySelector('.modal__profile__right-column__card-info__number')
 
+//RegExp
+const nameRegExp = /^([-A-Za-z0-9]{3,})$/;
+const emailRegExp = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+const passwordRegExp = /^((?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*])[A-Za-z0-9!@#$%^&*]{8,16})$/;
+
 function profileModal() {
   btn.addEventListener('click', (e) => {
     if (localStorage.getItem('isAuth') != 'true' || localStorage.getItem('isRegister') != 'true') {
@@ -413,6 +418,11 @@ function registerFunction() {
   const password = modalRegisterForm.querySelector('#password-register')
   const submitBtnRegisterForm = modalRegisterForm.querySelector('.form__btn');
 
+  const firstNameError = document.querySelector('.first-name');
+  const lastNameError = document.querySelector('.last-name');
+  const emailError = document.querySelector('.email');
+  const passwordRegister = document.querySelector('.password-register');
+
   min = Math.ceil(100000000);
   max = Math.floor(900000000);
   let randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
@@ -421,9 +431,100 @@ function registerFunction() {
     cardNumber = 'F' + cardNumber;
   }
 
+  firstName.addEventListener('input', (e) => {
+    if (firstName.value.length < 3) {
+      firstNameError.textContent = 'There must be at least 3 characters in this field, you can enter letters, numbers and -';
+      firstNameError.classList.remove('_success');
+      firstNameError.classList.add('_error');
+      firstName.classList.add('_error-border');
+      firstName.classList.remove('_success-border');
+    } else if (!nameRegExp.test(firstName.value)) {
+      firstNameError.textContent = 'In this field you can enter only letters, numbers and -';
+      firstNameError.classList.remove('_success');
+      firstNameError.classList.add('_error');
+      firstName.classList.add('_error-border');
+      firstName.classList.remove('_success-border');
+    } else if (nameRegExp.test(firstName.value)) {
+      firstNameError.textContent = 'success';
+      firstNameError.classList.remove('_error');
+      firstNameError.classList.add('_success');
+      firstName.classList.remove('_error-border');
+      firstName.classList.add('_success-border');
+    }
+  })
+
+  lastName.addEventListener('input', (e) => {
+    if (lastName.value.length < 3) {
+      lastNameError.textContent = 'There must be at least 3 characters in this field, you can enter letters, numbers and -';
+      lastNameError.classList.remove('_success');
+      lastNameError.classList.add('_error');
+      lastName.classList.add('_error-border');
+      lastName.classList.remove('_success-border');
+    } else if (!nameRegExp.test(lastName.value)) {
+      lastNameError.textContent = 'In this field you can enter only letters, numbers and -';
+      lastNameError.classList.remove('_success');
+      lastNameError.classList.add('_error');
+      lastName.classList.add('_error-border');
+      lastName.classList.remove('_success-border');
+    } else if (nameRegExp.test(lastName.value)) {
+      lastNameError.textContent = 'success';
+      lastNameError.classList.remove('_error');
+      lastNameError.classList.add('_success');
+      lastName.classList.remove('_error-border');
+      lastName.classList.add('_success-border');
+    }
+  })
+
+  email.addEventListener('input', (e) => {
+    console.log(emailRegExp.test(email.value));
+    if (!emailRegExp.test(email.value)) {
+      emailError.textContent = `Please enter a valid email address`;
+      emailError.classList.remove('_success');
+      emailError.classList.add('_error');
+      email.classList.add('_error-border');
+      email.classList.remove('_success-border');
+    } else if (emailRegExp.test(email.value)) {
+      emailError.textContent = 'success';
+      emailError.classList.remove('_error');
+      emailError.classList.add('_success');
+      email.classList.remove('_error-border');
+      email.classList.add('_success-border');
+    }
+  })
+
+  password.addEventListener('input', (e) => {
+    console.log(passwordRegExp.test(password.value));
+    if (password.value.length < 8) {
+      passwordRegister.textContent = 'The password must be at least 8 characters long';
+      passwordRegister.classList.remove('_success');
+      passwordRegister.classList.add('_error');
+      password.classList.add('_error-border');
+      password.classList.remove('_success-border');
+    } else if (password.value.length > 16) {
+      passwordRegister.textContent = 'The password must not exceed 16 characters in length';
+      passwordRegister.classList.remove('_success');
+      passwordRegister.classList.add('_error');
+      password.classList.add('_error-border');
+      password.classList.remove('_success-border');
+    } else if (!passwordRegExp.test(password.value)) {
+      passwordRegister.textContent = 'The password must contain at least 1 digit, 1 capital letter and a special character !@#$%^&*';
+      passwordRegister.classList.remove('_success');
+      passwordRegister.classList.add('_error');
+      password.classList.add('_error-border');
+      password.classList.remove('_success-border');
+    } else if (password.value.length >= 8 && passwordRegExp.test(password.value)) {
+      passwordRegister.textContent = 'success';
+      passwordRegister.classList.remove('_error');
+      passwordRegister.classList.add('_success');
+      password.classList.remove('_error-border');
+      password.classList.add('_success-border');
+    }
+  })
+
   submitBtnRegisterForm.addEventListener('click', (e) => {
     e.preventDefault()
-    if (firstName.value != '' && lastName.value != '' && email.value != '' && password.value != '') {
+
+    if ((nameRegExp.test(firstName.value)) && (nameRegExp.test(lastName.value)) && (emailRegExp.test(email.value)) && (passwordRegExp.test(password.value))) {
       localStorage.setItem('firstName', `${firstName.value}`)
       localStorage.setItem('lastName', `${lastName.value}`)
       localStorage.setItem('email', `${email.value}`)
@@ -435,6 +536,46 @@ function registerFunction() {
       modal.classList.remove('_active')
       modalRegister.classList.remove('_active')
       location.reload()
+
+    } else if ((!nameRegExp.test(firstName.value)) || (!nameRegExp.test(lastName.value)) || (!emailRegExp.test(email.value)) || (!passwordRegExp.test(password.value))) {
+      firstNameError.textContent = `This field cannot be blank`;
+      firstNameError.classList.add('_error');
+      firstName.classList.add('_error-border');
+      lastNameError.textContent = 'This field cannot be blank';
+      lastNameError.classList.add('_error');
+      lastName.classList.add('_error-border');
+      emailError.textContent = `This field cannot be blank`;
+      emailError.classList.add('_error');
+      email.classList.add('_error-border');
+      passwordRegister.textContent = 'This field cannot be blank';
+      passwordRegister.classList.add('_error');
+      password.classList.add('_error-border');
+
+      if (nameRegExp.test(firstName.value)) {
+        firstNameError.textContent = 'success';
+        firstNameError.classList.remove('_error');
+        firstNameError.classList.add('_success');
+        firstName.classList.remove('_error-border');
+        firstName.classList.add('_success-border');
+      } if (nameRegExp.test(lastName.value)) {
+        lastNameError.textContent = 'success';
+        lastNameError.classList.remove('_error');
+        lastNameError.classList.add('_success');
+        lastName.classList.remove('_error-border');
+        lastName.classList.add('_success-border');
+      } if (emailRegExp.test(email.value)) {
+        emailError.textContent = 'success';
+        emailError.classList.remove('_error');
+        emailError.classList.add('_success');
+        email.classList.remove('_error-border');
+        email.classList.add('_success-border');
+      } if (passwordRegExp.test(password.value)) {
+        passwordRegister.textContent = 'success';
+        passwordRegister.classList.remove('_error');
+        passwordRegister.classList.add('_success');
+        password.classList.remove('_error-border');
+        password.classList.add('_success-border');
+      }
     }
   })
 }
