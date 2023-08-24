@@ -63,6 +63,12 @@ function menu() {
     span.classList.toggle('_active')
     login.classList.remove('_active');
     loginWithAuth.classList.remove('_active');
+    modal.classList.remove('_active')
+    modalBuyCard.classList.remove('_active')
+    modalRegister.classList.remove('_active')
+    modalLogin.classList.remove('_active')
+    modalProfile.classList.remove('_active')
+    document.body.style.overflow = ''
     document.body.classList.toggle('_block')
   })
   const linkContainer = document.querySelector('.header__menu__ul');
@@ -284,6 +290,10 @@ const modalProfileBooks = document.querySelector('._card-info-value__visits')
 const modalProfileBooksContainer = document.querySelector('.modal__profile__right-column__rented-books-container__books-container')
 const modalProfileBooksNumber = document.querySelector('.modal__profile__right-column__card-info__number')
 
+//Модалка покупки абонемента
+const modalBuyCard = document.querySelector('.modal__buy-card')
+const modalBuyCardCloseBtn = document.querySelector('.modal__close-btn__buy')
+
 //RegExp
 const nameRegExp = /^([-A-Za-z0-9]{3,})$/;
 const emailRegExp = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
@@ -306,10 +316,12 @@ function openRegisterModal() {
     if (e.target === loginRegisterNoAuth) {
       modal.classList.add('_active')
       modalRegister.classList.add('_active')
+      document.body.style.overflow = 'hidden'
       closeProfileModalNoAuth()
     } else if (e.target === getCardBtnSignUp) {
       modal.classList.add('_active')
       modalRegister.classList.add('_active')
+      document.body.style.overflow = 'hidden'
     }
   })
 }
@@ -320,30 +332,16 @@ function openLoginModal() {
     if (e.target === loginLoginNoAuth) {
       modal.classList.add('_active')
       modalLogin.classList.add('_active')
+      document.body.style.overflow = 'hidden'
       closeProfileModalNoAuth()
     } else if (e.target === getCardBtnSignIn) {
       modal.classList.add('_active')
       modalLogin.classList.add('_active')
+      document.body.style.overflow = 'hidden'
     }
   })
 }
 openLoginModal()
-
-function closeRegisterModal() {
-  modalCloseBtnRegister.addEventListener('click', () => {
-    modal.classList.remove('_active')
-    modalRegister.classList.remove('_active')
-  })
-}
-closeRegisterModal()
-
-function closeLoginModal() {
-  modalCloseBtnLogin.addEventListener('click', () => {
-    modal.classList.remove('_active')
-    modalLogin.classList.remove('_active')
-  })
-}
-closeLoginModal()
 
 function toggleRegisterLoginModals() {
   modal.addEventListener('click', (e) => {
@@ -400,7 +398,6 @@ function logIn() {
   })
 
   password.addEventListener('input', (e) => {
-    // console.log(passwordRegExp.test(password.value));
     if (password.value.length < 8) {
       passwordError.textContent = 'The password must be at least 8 characters long';
       passwordError.classList.remove('_success');
@@ -567,7 +564,6 @@ function registerFunction() {
   })
 
   email.addEventListener('input', (e) => {
-    console.log(emailRegExp.test(email.value));
     if (!emailRegExp.test(email.value)) {
       emailError.textContent = `Please enter a valid email address`;
       emailError.classList.remove('_success');
@@ -584,7 +580,6 @@ function registerFunction() {
   })
 
   password.addEventListener('input', (e) => {
-    console.log(passwordRegExp.test(password.value));
     if (password.value.length < 8) {
       passwordRegister.textContent = 'The password must be at least 8 characters long';
       passwordRegister.classList.remove('_success');
@@ -775,22 +770,16 @@ function openProfileModal() {
     if (e.target === loginProfileInfoWithAuth) {
       modal.classList.add('_active')
       modalProfile.classList.add('_active')
+      document.body.style.overflow = 'hidden'
       closeProfileModalWithAuth()
     } else if (e.target === visitProfileBtn) {
       modal.classList.add('_active')
       modalProfile.classList.add('_active')
+      document.body.style.overflow = 'hidden'
     }
   })
 }
 openProfileModal()
-
-function closeProfileModal() {
-  modalProfileCloseBtn.addEventListener('click', () => {
-    modal.classList.remove('_active')
-    modalProfile.classList.remove('_active')
-  })
-}
-closeProfileModal()
 
 function getUserInfo() {
   if (modalProfile && localStorage.getItem('isRegister')) {
@@ -864,6 +853,39 @@ function changelibraryCardSection() {
 changelibraryCardSection()
 
 const visitProfileBtn = document.querySelector('.visit-profile__btn')
+
+function buyBooks() {
+  const booksBtn = document.querySelectorAll('.books__button')
+  booksBtn.forEach((el, ind) => {
+    el.addEventListener('click', (e) => {
+      e.preventDefault()
+      if (localStorage.getItem('isAuth') != 'true') {
+        modal.classList.add('_active')
+        modalLogin.classList.add('_active')
+        document.body.style.overflow = 'hidden'
+      } else if (localStorage.getItem('isAuth') == 'true') {
+        modal.classList.add('_active')
+        modalBuyCard.classList.add('_active')
+        document.body.style.overflow = 'hidden'
+      }
+    })
+  })
+}
+buyBooks()
+
+function closeModals() {
+  document.addEventListener('click', (e) => {
+    if (e.target == modal || e.target == modalBuyCardCloseBtn || e.target == modalCloseBtnLogin || e.target == modalCloseBtnRegister || e.target == modalProfileCloseBtn) {
+      modal.classList.remove('_active')
+      modalBuyCard.classList.remove('_active')
+      modalRegister.classList.remove('_active')
+      modalLogin.classList.remove('_active')
+      modalProfile.classList.remove('_active')
+      document.body.style.overflow = ''
+    }
+  })
+}
+closeModals()
 
 // localStorage.removeItem('firstName')
 // localStorage.removeItem('lastName')

@@ -1,10 +1,10 @@
 .modal {
   position: fixed;
-  top: 50%;
-  left: 50%;
+  top: 0;
+  left: 0;
   display: flex;
-  width: max-content;
-  height: max-content;
+  width: 100vw;
+  height: 100vh;
   align-items: center;
   justify-content: center;
   visibility: hidden;
@@ -13,6 +13,8 @@
   &._active {
     visibility: visible;
     z-index: 5;
+    background-color: rgb(0 0 0 / 60%);
+    transition: background-color 0.5s ease-out;
   }
 }
 
@@ -842,7 +844,13 @@
 .email,
 .password-register,
 .email-login,
-.password-login {
+.password-login,
+.bank-card-number,
+.expiration-code,
+.cvc,
+.cardholder-name,
+.postal-code,
+.city-town {
   position: absolute;
   text-align: center;
   font-family: Inter;
@@ -862,7 +870,13 @@
 .email._error,
 .password-register._error,
 .email-login._error,
-.password-login._error {
+.password-login._error,
+.bank-card-number._error,
+.expiration-code._error,
+.cvc._error,
+.cardholder-name._error,
+.postal-code._error,
+.city-town._error {
   text-align: start;
   font-family: Inter;
   font-size: 10px;
@@ -906,4 +920,185 @@
   bottom: -9px;
   box-shadow: none;
   padding: 0;
+}
+
+.modal__buy-card {
+  position: fixed;
+  height: max-content;
+  width: min-content;
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  visibility: hidden;
+  transform: rotate3d(0, 1, 0, 90deg);
+  transition: transform 0.5s ease-out, opacity 0.5s ease-out, visibility 0.5s ease-out;
+
+  &._active {
+    opacity: 1;
+    visibility: visible;
+    z-index: 2;
+    transform: rotate3d(0, 0, 0, 0deg);
+    transition: transform 0.5s ease-out, opacity 0.5s ease-out, visibility 0.5s ease-out;
+  }
+
+  &__heading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 640px;
+    height: 60px;
+    flex-shrink: 0;
+    background: #0C0C0E;
+
+    & span {
+      color: #FFF;
+      text-align: center;
+      font-family: Forum;
+      font-size: 40px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 20px;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+    }
+  }
+
+  &__body {
+    box-sizing: border-box;
+    display: flex;
+    width: 640px;
+    height: 480px;
+    background: #FFF;
+    padding: 30px 35px 40px 35px;
+    gap: 40px;
+
+
+    &__form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    &__title {
+      width: 330px;
+      height: 160px;
+      color: #8E8E8E;
+      font-family: Inter;
+      font-size: 15px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 20px;
+      letter-spacing: 2px;
+    }
+  }
+}
+
+.modal__close-btn__buy {
+  position: absolute;
+  width: 21px;
+  height: 21px;
+  flex-shrink: 0;
+  right: 17px;
+  top: 20px;
+  background: inherit;
+  border: none;
+  cursor: pointer;
+
+  &::before {
+    content: '';
+    position: absolute;
+    width: 21px;
+    height: 3px;
+    background: #ffffff;
+    top: 50%;
+    left: 0;
+    transform: rotate(45deg);
+    @extend %transition;
+  }
+
+  &:hover::before {
+    @extend %transition;
+    background: $color-accent;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    width: 21px;
+    height: 3px;
+    background: #ffffff;
+    right: 0;
+    transform: rotate(-45deg);
+    @extend %transition;
+  }
+
+  &:hover::after {
+    @extend %transition;
+    background: $color-accent;
+  }
+}
+
+.buy__label {
+  display: flex;
+  position: relative;
+  gap: 10px;
+  flex-direction: column;
+  align-items: flex-start;
+
+  & input[type='text'] {
+    box-sizing: border-box;
+    padding-left: 10px;
+    height: 20px;
+
+    &:last-child {
+      margin-bottom: 0px;
+    }
+  }
+
+  & input {
+    width: 100%;
+    width: 200px;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &:nth-child(3) {
+    margin-bottom: 10px;
+  }
+}
+
+.expiration-code__container {
+  display: flex;
+  gap: 10px;
+
+  & input {
+    width: 45px;
+  }
+}
+
+#cvc {
+  width: 45px;
+}
+
+.buy-btn {
+  padding: 8px 26px;
+}
+
+.buy-btn__container {
+  display: flex;
+  align-items: flex-end;
+}
+
+.cost {
+  color: #0C0C0E;
+  font-family: Inter;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 20px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-left: 25px;
 }

@@ -763,6 +763,54 @@
         </div>
       </div>
     </div>
+    <div class="modal__buy-card">
+      <div class="modal__buy-card__heading">
+        <span>Buy a library card</span>
+        <button class="modal__close-btn__buy"></button>
+      </div>
+      <div class="modal__buy-card__body">
+        <form class="modal__buy-card__body__form">
+          <label class="buy__label">
+            <span class="register-form__text-style">Bank card number</span>
+            <input type="text" name="bankCardNumber" id="bank-card-number" class="_default-border" required>
+            <span class="bank-card-number"></span>
+          </label>
+          <label class="buy__label">
+            <span class="register-form__text-style">Expiration code</span>
+            <div class="expiration-code__container">
+              <input type="text" name="expirationCode" id="expiration-code__month" class="_default-border" required>
+              <input type="text" name="expirationCode" id="expiration-code__year" class="_default-border" required>
+            </div>
+            <span class="expiration-code"></span>
+          </label>
+          <label class="buy__label">
+            <span class="register-form__text-style">CVC</span>
+            <input type="text" name="cvc" id="cvc" class="_default-border" required>
+            <span class="cvc"></span>
+          </label>
+          <label class="buy__label">
+            <span class="register-form__text-style">Cardholder name</span>
+            <input type="text" name="cardholderName" id="cardholder-name" class="_default-border" required>
+            <span class="cardholder-name"></span>
+          </label>
+          <label class="buy__label">
+            <span class="register-form__text-style">Postal code</span>
+            <input type="text" name="postalCode" id="postal-code" class="_default-border" required>
+            <span class="postal-code"></span>
+          </label>
+          <label class="buy__label">
+            <span class="register-form__text-style">City / Town</span>
+            <input type="text" name="cityTown" id="city-town" class="_default-border" required>
+            <span class="city-town"></span>
+          </label>
+          <div class="buy-btn__container">
+            <button class="form__btn buy-btn">Buy</button>
+            <span class="cost">$ 25.00</span>
+          </div>
+        </form>
+        <span class="modal__buy-card__body__title">If you are live, work, attend school, or pay property taxes in New York State, you can get a $25 digital library card right now using this online form. Visitors to New York State can also use this form to apply for a temporary card.</span>
+      </div>
+    </div>
   </div>
   <script src="./index.js"></script>
 </body>

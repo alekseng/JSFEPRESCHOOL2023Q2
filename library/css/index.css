@@ -47,7 +47,7 @@ body._block::before {
   list-style: none;
 }
 
-.modal__profile__right-column__close-button:hover::after, .modal__profile__right-column__close-button::after, .modal__profile__right-column__close-button:hover::before, .modal__profile__right-column__close-button::before, .modal__close-btn__login:hover::after, .modal__close-btn__login::after, .modal__close-btn__login:hover::before, .modal__close-btn__login::before, .account button:hover, .account button, .form__btn:hover, .form__btn, .modal__close-btn__register:hover::after, .modal__close-btn__register::after, .modal__close-btn__register:hover::before, .modal__close-btn__register::before, .footer__bottom__rss:hover a,
+.modal__close-btn__buy:hover::after, .modal__close-btn__buy::after, .modal__close-btn__buy:hover::before, .modal__close-btn__buy::before, .modal__profile__right-column__close-button:hover::after, .modal__profile__right-column__close-button::after, .modal__profile__right-column__close-button:hover::before, .modal__profile__right-column__close-button::before, .modal__close-btn__login:hover::after, .modal__close-btn__login::after, .modal__close-btn__login:hover::before, .modal__close-btn__login::before, .account button:hover, .account button, .form__btn:hover, .form__btn, .modal__close-btn__register:hover::after, .modal__close-btn__register::after, .modal__close-btn__register:hover::before, .modal__close-btn__register::before, .footer__bottom__rss:hover a,
 .footer__bottom__name:hover a, .footer__bottom__name a, .footer__bottom__rss a, .fill-svg, #twitter,
 #instagram,
 #facebook, .footer__top-left__address:hover a, .footer__top-left__address a, .prompt._active, .prompt, .getCard__btn__sign-up:hover,
@@ -2777,13 +2777,11 @@ input[type=text]:last-child {
 
 .modal {
   position: fixed;
-  top: 50%;
-  left: 50%;
+  top: 0;
+  left: 0;
   display: flex;
-  width: -moz-max-content;
-  width: max-content;
-  height: -moz-max-content;
-  height: max-content;
+  width: 100vw;
+  height: 100vh;
   align-items: center;
   justify-content: center;
   visibility: hidden;
@@ -2792,6 +2790,8 @@ input[type=text]:last-child {
 .modal._active {
   visibility: visible;
   z-index: 5;
+  background-color: rgba(0, 0, 0, 0.6);
+  transition: background-color 0.5s ease-out;
 }
 
 .modal__register {
@@ -3531,7 +3531,13 @@ input[type=text]:last-child {
 .email,
 .password-register,
 .email-login,
-.password-login {
+.password-login,
+.bank-card-number,
+.expiration-code,
+.cvc,
+.cardholder-name,
+.postal-code,
+.city-town {
   position: absolute;
   text-align: center;
   font-family: Inter;
@@ -3546,7 +3552,13 @@ input[type=text]:last-child {
 .email._success,
 .password-register._success,
 .email-login._success,
-.password-login._success {
+.password-login._success,
+.bank-card-number._success,
+.expiration-code._success,
+.cvc._success,
+.cardholder-name._success,
+.postal-code._success,
+.city-town._success {
   color: rgb(0, 126, 0);
 }
 
@@ -3555,7 +3567,13 @@ input[type=text]:last-child {
 .email._error,
 .password-register._error,
 .email-login._error,
-.password-login._error {
+.password-login._error,
+.bank-card-number._error,
+.expiration-code._error,
+.cvc._error,
+.cardholder-name._error,
+.postal-code._error,
+.city-town._error {
   text-align: start;
   font-family: Inter;
   font-size: 10px;
@@ -3578,7 +3596,13 @@ input[type=text]:last-child {
 .email._error::before,
 .password-register._error::before,
 .email-login._error::before,
-.password-login._error::before {
+.password-login._error::before,
+.bank-card-number._error::before,
+.expiration-code._error::before,
+.cvc._error::before,
+.cardholder-name._error::before,
+.postal-code._error::before,
+.city-town._error::before {
   content: "";
   position: absolute;
   width: 6px;
@@ -3603,4 +3627,166 @@ input[type=text]:last-child {
   bottom: -9px;
   box-shadow: none;
   padding: 0;
+}
+
+.modal__buy-card {
+  position: fixed;
+  height: -moz-max-content;
+  height: max-content;
+  width: -moz-min-content;
+  width: min-content;
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  visibility: hidden;
+  transform: rotate3d(0, 1, 0, 90deg);
+  transition: transform 0.5s ease-out, opacity 0.5s ease-out, visibility 0.5s ease-out;
+}
+.modal__buy-card._active {
+  opacity: 1;
+  visibility: visible;
+  z-index: 2;
+  transform: rotate3d(0, 0, 0, 0deg);
+  transition: transform 0.5s ease-out, opacity 0.5s ease-out, visibility 0.5s ease-out;
+}
+.modal__buy-card__heading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 640px;
+  height: 60px;
+  flex-shrink: 0;
+  background: #0C0C0E;
+}
+.modal__buy-card__heading span {
+  color: #FFF;
+  text-align: center;
+  font-family: Forum;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+}
+.modal__buy-card__body {
+  box-sizing: border-box;
+  display: flex;
+  width: 640px;
+  height: 480px;
+  background: #FFF;
+  padding: 30px 35px 40px 35px;
+  gap: 40px;
+}
+.modal__buy-card__body__form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.modal__buy-card__body__title {
+  width: 330px;
+  height: 160px;
+  color: #8E8E8E;
+  font-family: Inter;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 2px;
+}
+
+.modal__close-btn__buy {
+  position: absolute;
+  width: 21px;
+  height: 21px;
+  flex-shrink: 0;
+  right: 17px;
+  top: 20px;
+  background: inherit;
+  border: none;
+  cursor: pointer;
+}
+.modal__close-btn__buy::before {
+  content: "";
+  position: absolute;
+  width: 21px;
+  height: 3px;
+  background: #ffffff;
+  top: 50%;
+  left: 0;
+  transform: rotate(45deg);
+}
+.modal__close-btn__buy:hover::before {
+  background: #BB945F;
+}
+.modal__close-btn__buy::after {
+  content: "";
+  position: absolute;
+  width: 21px;
+  height: 3px;
+  background: #ffffff;
+  right: 0;
+  transform: rotate(-45deg);
+}
+.modal__close-btn__buy:hover::after {
+  background: #BB945F;
+}
+
+.buy__label {
+  display: flex;
+  position: relative;
+  gap: 10px;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.buy__label input[type=text] {
+  box-sizing: border-box;
+  padding-left: 10px;
+  height: 20px;
+}
+.buy__label input[type=text]:last-child {
+  margin-bottom: 0px;
+}
+.buy__label input {
+  width: 100%;
+  width: 200px;
+}
+.buy__label input:focus {
+  outline: none;
+}
+.buy__label:nth-child(3) {
+  margin-bottom: 10px;
+}
+
+.expiration-code__container {
+  display: flex;
+  gap: 10px;
+}
+.expiration-code__container input {
+  width: 45px;
+}
+
+#cvc {
+  width: 45px;
+}
+
+.buy-btn {
+  padding: 8px 26px;
+}
+
+.buy-btn__container {
+  display: flex;
+  align-items: flex-end;
+}
+
+.cost {
+  color: #0C0C0E;
+  font-family: Inter;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 20px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-left: 25px;
 }/*# sourceMappingURL=index.css.map */
