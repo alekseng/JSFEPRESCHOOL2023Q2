@@ -744,7 +744,7 @@
             <span class="card__info__item-icon _prifile-card-info-icon">
               <img src="./assets/svg/book.svg" alt="union">
             </span>
-            <span class="card__info__item-value _prifile-card-info-value _card-info-value__books">2</span>
+            <span class="card__info__item-value _prifile-card-info-value _card-info-value__books">0</span>
           </div>
         </div>
         <div class="modal__profile__right-column__rented-books-container">
@@ -772,20 +772,21 @@
         <form class="modal__buy-card__body__form">
           <label class="buy__label">
             <span class="register-form__text-style">Bank card number</span>
-            <input type="text" name="bankCardNumber" id="bank-card-number" class="_default-border" required>
+            <input type="text" name="bankCardNumber" id="bank-card-number" class="_default-border" required maxlength="16">
             <span class="bank-card-number"></span>
           </label>
           <label class="buy__label">
             <span class="register-form__text-style">Expiration code</span>
             <div class="expiration-code__container">
-              <input type="text" name="expirationCode" id="expiration-code__month" class="_default-border" required>
-              <input type="text" name="expirationCode" id="expiration-code__year" class="_default-border" required>
+              <input type="text" name="expirationCode" id="expiration-code__month" class="_default-border" required maxlength="2">
+              <span class="expiration-code__month"></span>
+              <input type="text" name="expirationCode" id="expiration-code__year" class="_default-border" required maxlength="2">
+              <span class="expiration-code__year"></span>
             </div>
-            <span class="expiration-code"></span>
           </label>
           <label class="buy__label">
             <span class="register-form__text-style">CVC</span>
-            <input type="text" name="cvc" id="cvc" class="_default-border" required>
+            <input type="text" name="cvc" id="cvc" class="_default-border" required maxlength="3">
             <span class="cvc"></span>
           </label>
           <label class="buy__label">

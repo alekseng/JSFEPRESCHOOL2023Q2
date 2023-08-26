@@ -298,7 +298,22 @@ const modalBuyCardCloseBtn = document.querySelector('.modal__close-btn__buy')
 const nameRegExp = /^([-A-Za-z0-9]{3,})$/;
 const emailRegExp = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
 const passwordRegExp = /^((?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*])[A-Za-z0-9!@#$%^&*]{8,16})$/;
-const nameOrCardRegExp = /^([-A-Za-z0-9_\.\@]{3,})$/;
+const cardNumberRegExp = /^((?=.*[0-9])[0-9]{16,19})$/;
+const expCodeRegExp = /^((?=.*[0-9])[0-9]{2,2})$/;
+const cvcRegExp = /^((?=.*[0-9])[0-9]{3,3})$/;
+const cardHolderNameRegExp = /^([A-Za-z]{2,})$/;
+const postalCodeRegExp = /^([-A-Z0-9]{2,})$/;
+const cityRegExp = /^([-A-Za-z0-9]{2,})$/;
+
+let ownBooks;
+
+if (localStorage.getItem('ownBooks')) {
+  let countBooksE = localStorage.getItem('ownBooks')
+  ownBooks = parseInt(countBooksE);
+}
+
+let countBooks = document.querySelector('._card-info-value__books')
+countBooks.textContent = localStorage.getItem('ownBooks');
 
 function profileModal() {
   btn.addEventListener('click', (e) => {
@@ -619,6 +634,8 @@ function registerFunction() {
       localStorage.setItem('isAuth', true)
       localStorage.setItem('cardNumber', cardNumber)
       localStorage.setItem('countVisits', 1)
+      localStorage.setItem('ownBooks', 0)
+      localStorage.setItem('books', [])
       modal.classList.remove('_active')
       modalRegister.classList.remove('_active')
       location.reload()
@@ -732,7 +749,7 @@ function showCardInfo() {
             <span class="card__info__item-icon">
               <img src="./assets/svg/book.svg" alt="union">
             </span>
-            <span class="card__info__item-value">2</span>
+            <span class="card__info__item-value">${localStorage.getItem('ownBooks')}</span>
           </div>
         </div>
       </div>
@@ -831,7 +848,7 @@ function changelibraryCardSection() {
             <span class="card__info__item-icon">
               <img src="./assets/svg/book.svg" alt="union">
             </span>
-            <span class="card__info__item-value">2</span>
+            <span class="card__info__item-value">${localStorage.getItem('ownBooks')}</span>
           </div>
         </div>
       </div>
@@ -854,19 +871,35 @@ changelibraryCardSection()
 
 const visitProfileBtn = document.querySelector('.visit-profile__btn')
 
+let ownBooksArr = [];
+
+if (localStorage.getItem('books')) {
+  ownBooksArr = JSON.parse(localStorage.getItem('books'))
+}
+
 function buyBooks() {
   const booksBtn = document.querySelectorAll('.books__button')
-  booksBtn.forEach((el, ind) => {
+
+  booksBtn.forEach((el, ind, arr) => {
     el.addEventListener('click', (e) => {
       e.preventDefault()
       if (localStorage.getItem('isAuth') != 'true') {
         modal.classList.add('_active')
         modalLogin.classList.add('_active')
         document.body.style.overflow = 'hidden'
-      } else if (localStorage.getItem('isAuth') == 'true') {
+      } else if (localStorage.getItem('isAuth') == 'true' && localStorage.getItem('isSubscription') != 'true') {
         modal.classList.add('_active')
         modalBuyCard.classList.add('_active')
         document.body.style.overflow = 'hidden'
+      } else if (localStorage.getItem('isSubscription') == 'true') {
+        el.classList.remove('books__button');
+        el.classList.add('_disabled');
+        el.disabled = true;
+        el.textContent = 'Own';
+        ownBooks++
+        localStorage.setItem('ownBooks', ownBooks);
+        ownBooksArr.push(ind)
+        localStorage.setItem('books', JSON.stringify(ownBooksArr))
       }
     })
   })
@@ -887,6 +920,184 @@ function closeModals() {
 }
 closeModals()
 
+function buyCard() {
+  const form = document.querySelector('.modal__buy-card__body__form');
+  const cardNumber = document.querySelector('#bank-card-number');
+  const expCodeMonth = document.querySelector('#expiration-code__month');
+  const expCodeYear = document.querySelector('#expiration-code__year');
+  const cvc = document.querySelector('#cvc');
+  const cardHolderName = document.querySelector('#cardholder-name');
+  const postalCode = document.querySelector('#postal-code');
+  const city = document.querySelector('#city-town');
+  const btn = document.querySelector('.buy-btn');
+
+  const cardNumberError = document.querySelector('.bank-card-number');
+  const expCodeMonthError = document.querySelector('.expiration-code__month');
+  const expCodeYearError = document.querySelector('.expiration-code__year');
+  const cvcError = document.querySelector('.cvc');
+  const cardHolderNameError = document.querySelector('.cardholder-name');
+  const postalCodeError = document.querySelector('.postal-code');
+  const cityError = document.querySelector('.city-town');
+
+  cardNumber.addEventListener('input', () => {
+    cardNumber.value = cardNumber.value.replace(/[-A-Za-zА-Яа-яЁ-ё,.?!\'/:;()&@""_\\|~<>$=+*^%#\[\]{}\`№]/g, '');
+
+    if (!cardNumberRegExp.test(cardNumber.value)) {
+      cardNumberError.textContent = 'This field cannot be blank';
+      cardNumberError.classList.remove('_success');
+      cardNumberError.classList.add('_error');
+      cardNumber.classList.add('_error-border');
+      cardNumber.classList.remove('_success-border');
+    } else if (cardNumberRegExp.test(cardNumber.value)) {
+      cardNumberError.textContent = 'success';
+      cardNumberError.classList.remove('_error');
+      cardNumberError.classList.add('_success');
+      cardNumber.classList.remove('_error-border');
+      cardNumber.classList.add('_success-border');
+    }
+  })
+
+  expCodeMonth.addEventListener('input', () => {
+    expCodeMonth.value = expCodeMonth.value.replace(/[-A-Za-zА-Яа-яЁ-ё,.?!\'/:;()&@""_\\|~<>$=+*^%#\[\]{}\`№]/g, '');
+
+    if (!expCodeRegExp.test(expCodeMonth.value)) {
+      expCodeMonthError.textContent = 'This field cannot be blank';
+      expCodeMonthError.classList.remove('_success');
+      expCodeMonthError.classList.add('_error');
+      expCodeMonth.classList.add('_error-border');
+      expCodeMonth.classList.remove('_success-border');
+    } else if (expCodeRegExp.test(expCodeMonth.value)) {
+      expCodeMonthError.textContent = 'success';
+      expCodeMonthError.classList.remove('_error');
+      expCodeMonthError.classList.add('_success');
+      expCodeMonth.classList.remove('_error-border');
+      expCodeMonth.classList.add('_success-border');
+    }
+  })
+
+  expCodeYear.addEventListener('input', () => {
+    expCodeYear.value = expCodeYear.value.replace(/[-A-Za-zА-Яа-яЁ-ё,.?!\'/:;()&@""_\\|~<>$=+*^%#\[\]{}\`№]/g, '');
+
+    if (!expCodeRegExp.test(expCodeYear.value)) {
+      expCodeYearError.textContent = 'This field cannot be blank';
+      expCodeYearError.classList.remove('_success');
+      expCodeYearError.classList.add('_error');
+      expCodeYear.classList.add('_error-border');
+      expCodeYear.classList.remove('_success-border');
+    } else if (expCodeRegExp.test(expCodeYear.value)) {
+      expCodeYearError.textContent = 'success';
+      expCodeYearError.classList.remove('_error');
+      expCodeYearError.classList.add('_success');
+      expCodeYear.classList.remove('_error-border');
+      expCodeYear.classList.add('_success-border');
+    }
+  })
+
+  cvc.addEventListener('input', () => {
+    cvc.value = cvc.value.replace(/[-A-Za-zА-Яа-яЁ-ё,.?!\'/:;()&@""_\\|~<>$=+*^%#\[\]{}\`№]/g, '');
+
+    if (!cvcRegExp.test(cvc.value)) {
+      cvcError.textContent = 'This field cannot be blank';
+      cvcError.classList.remove('_success');
+      cvcError.classList.add('_error');
+      cvc.classList.add('_error-border');
+      cvc.classList.remove('_success-border');
+    } else if (cvcRegExp.test(cvc.value)) {
+      cvcError.textContent = 'success';
+      cvcError.classList.remove('_error');
+      cvcError.classList.add('_success');
+      cvc.classList.remove('_error-border');
+      cvc.classList.add('_success-border');
+    }
+  })
+
+  cardHolderName.addEventListener('input', () => {
+    cardHolderName.value = cardHolderName.value.replace(/[-А-Яа-яЁ-ё0-9,.?!\'/:;()&@""_\\|~<>$=+*^%#\[\]{}\`№]/g, '').toUpperCase();
+
+    if (!cardHolderNameRegExp.test(cardHolderName.value)) {
+      cardHolderNameError.textContent = 'This field cannot be blank';
+      cardHolderNameError.classList.remove('_success');
+      cardHolderNameError.classList.add('_error');
+      cardHolderName.classList.add('_error-border');
+      cardHolderName.classList.remove('_success-border');
+    } else if (cardHolderNameRegExp.test(cardHolderName.value)) {
+      cardHolderNameError.textContent = 'success';
+      cardHolderNameError.classList.remove('_error');
+      cardHolderNameError.classList.add('_success');
+      cardHolderName.classList.remove('_error-border');
+      cardHolderName.classList.add('_success-border');
+    }
+  })
+
+  postalCode.addEventListener('input', () => {
+    postalCode.value = postalCode.value.replace(/[А-Яа-яЁ-ё,.?!\'/:;()&@""_\\|~<>$=+*^%#\[\]{}\`№]/g, '').toUpperCase();
+
+    if (!postalCodeRegExp.test(postalCode.value)) {
+      postalCodeError.textContent = 'This field cannot be blank';
+      postalCodeError.classList.remove('_success');
+      postalCodeError.classList.add('_error');
+      postalCode.classList.add('_error-border');
+      postalCode.classList.remove('_success-border');
+    } else if (postalCodeRegExp.test(postalCode.value)) {
+      postalCodeError.textContent = 'success';
+      postalCodeError.classList.remove('_error');
+      postalCodeError.classList.add('_success');
+      postalCode.classList.remove('_error-border');
+      postalCode.classList.add('_success-border');
+    }
+  })
+
+  city.addEventListener('input', () => {
+    city.value = city.value.replace(/[А-Яа-яЁ-ё0-9,.?!\'/:;()&@""_\\|~<>$=+*^%#\[\]{}\`№]/g, '');
+
+    if (!cityRegExp.test(city.value)) {
+      cityError.textContent = 'This field cannot be blank';
+      cityError.classList.remove('_success');
+      cityError.classList.add('_error');
+      city.classList.add('_error-border');
+      city.classList.remove('_success-border');
+    } else if (cityRegExp.test(city.value)) {
+      cityError.textContent = 'success';
+      cityError.classList.remove('_error');
+      cityError.classList.add('_success');
+      city.classList.remove('_error-border');
+      city.classList.add('_success-border');
+    }
+  })
+
+  btn.addEventListener('click', (e) => {
+    e.preventDefault()
+    if (cardNumberRegExp.test(cardNumber.value) && expCodeRegExp.test(expCodeMonth.value) && expCodeRegExp.test(expCodeYear.value) && cvcRegExp.test(cvc.value) && cardHolderNameRegExp.test(cardHolderName.value) && postalCodeRegExp.test(postalCode.value) && cityRegExp.test(city.value)) {
+      localStorage.setItem('isSubscription', true)
+      location.reload()
+    }
+  })
+}
+buyCard()
+
+let haveBooks = [];
+
+if (localStorage.getItem('books')) {
+  haveBooks = JSON.parse(localStorage.getItem('books'))
+}
+
+function showOwnBooks() {
+  const booksBtn = document.querySelectorAll('.books__button')
+  if (localStorage.getItem('isSubscription') == 'true') {
+
+    booksBtn.forEach((el, ind) => {
+      for (let i = 0; i <= haveBooks.length; i++) {
+        if (haveBooks[i] == ind) {
+          el.classList.remove('books__button');
+          el.classList.add('_disabled');
+          el.disabled = true;
+          el.textContent = 'Own';
+        }
+      }
+    })
+  }
+}
+showOwnBooks()
 // localStorage.removeItem('firstName')
 // localStorage.removeItem('lastName')
 // localStorage.removeItem('email')

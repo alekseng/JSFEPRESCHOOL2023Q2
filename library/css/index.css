@@ -1461,6 +1461,7 @@ body._block::before {
   letter-spacing: 1px;
   border-radius: 2px;
   border: 1px solid #BB945F;
+  cursor: default;
 }
 
 .books__cover {
@@ -3534,6 +3535,8 @@ input[type=text]:last-child {
 .password-login,
 .bank-card-number,
 .expiration-code,
+.expiration-code__month,
+.expiration-code__year,
 .cvc,
 .cardholder-name,
 .postal-code,
@@ -3555,11 +3558,17 @@ input[type=text]:last-child {
 .password-login._success,
 .bank-card-number._success,
 .expiration-code._success,
+.expiration-code__month._success,
+.expiration-code__year._success,
 .cvc._success,
 .cardholder-name._success,
 .postal-code._success,
 .city-town._success {
   color: rgb(0, 126, 0);
+}
+
+.expiration-code__year {
+  left: 56px;
 }
 
 .first-name._error,
@@ -3570,6 +3579,8 @@ input[type=text]:last-child {
 .password-login._error,
 .bank-card-number._error,
 .expiration-code._error,
+.expiration-code__month._error,
+.expiration-code__year._error,
 .cvc._error,
 .cardholder-name._error,
 .postal-code._error,
@@ -3599,6 +3610,8 @@ input[type=text]:last-child {
 .password-login._error::before,
 .bank-card-number._error::before,
 .expiration-code._error::before,
+.expiration-code__month._error::before,
+.expiration-code__year._error::before,
 .cvc._error::before,
 .cardholder-name._error::before,
 .postal-code._error::before,
@@ -3615,6 +3628,10 @@ input[type=text]:last-child {
   box-shadow: 0px 0px 0px 0px rgb(0, 0, 0);
   left: 4px;
   border: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.expiration-code__year.error {
+  left: 56px;
 }
 
 .password-register._success {

@@ -847,6 +847,8 @@
 .password-login,
 .bank-card-number,
 .expiration-code,
+.expiration-code__month,
+.expiration-code__year,
 .cvc,
 .cardholder-name,
 .postal-code,
@@ -865,6 +867,10 @@
   }
 }
 
+.expiration-code__year {
+  left: 56px;
+}
+
 .first-name._error,
 .last-name._error,
 .email._error,
@@ -873,6 +879,8 @@
 .password-login._error,
 .bank-card-number._error,
 .expiration-code._error,
+.expiration-code__month._error,
+.expiration-code__year._error,
 .cvc._error,
 .cardholder-name._error,
 .postal-code._error,
@@ -908,6 +916,10 @@
     left: 4px;
     border: 1px solid rgba(0, 0, 0, 0.15);
   }
+}
+
+.expiration-code__year.error {
+  left: 56px;
 }
 
 .password-register._success {
