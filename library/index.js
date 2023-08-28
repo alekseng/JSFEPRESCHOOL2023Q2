@@ -1,3 +1,5 @@
+import data from './js/data.js';
+
 function validateInput() {
   const input = document.querySelectorAll('.findCard__input');
   const prompt = document.querySelector('.prompt');
@@ -298,6 +300,7 @@ const modalBuyCardCloseBtn = document.querySelector('.modal__close-btn__buy')
 const nameRegExp = /^([-A-Za-z0-9]{3,})$/;
 const emailRegExp = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
 const passwordRegExp = /^((?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*])[A-Za-z0-9!@#$%^&*]{8,16})$/;
+const nameOrCardRegExp = /^([-A-Za-z0-9_\.\@]{3,})$/;
 const cardNumberRegExp = /^((?=.*[0-9])[0-9]{16,19})$/;
 const expCodeRegExp = /^((?=.*[0-9])[0-9]{2,2})$/;
 const cvcRegExp = /^((?=.*[0-9])[0-9]{3,3})$/;
@@ -311,9 +314,6 @@ if (localStorage.getItem('ownBooks')) {
   let countBooksE = localStorage.getItem('ownBooks')
   ownBooks = parseInt(countBooksE);
 }
-
-let countBooks = document.querySelector('._card-info-value__books')
-countBooks.textContent = localStorage.getItem('ownBooks');
 
 function profileModal() {
   btn.addEventListener('click', (e) => {
@@ -526,8 +526,8 @@ function registerFunction() {
   const emailError = document.querySelector('.email');
   const passwordRegister = document.querySelector('.password-register');
 
-  min = Math.ceil(100000000);
-  max = Math.floor(900000000);
+  let min = Math.ceil(100000000);
+  let max = Math.floor(900000000);
   let randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
   let cardNumber = randomNumber.toString(16).toUpperCase();
   for (let i = cardNumber.length; i < 9; i++) {
@@ -636,6 +636,7 @@ function registerFunction() {
       localStorage.setItem('countVisits', 1)
       localStorage.setItem('ownBooks', 0)
       localStorage.setItem('books', [])
+      localStorage.setItem('titleBooks', [])
       modal.classList.remove('_active')
       modalRegister.classList.remove('_active')
       location.reload()
@@ -848,7 +849,7 @@ function changelibraryCardSection() {
             <span class="card__info__item-icon">
               <img src="./assets/svg/book.svg" alt="union">
             </span>
-            <span class="card__info__item-value">${localStorage.getItem('ownBooks')}</span>
+            <span class="card__info__item-value count-books">${localStorage.getItem('ownBooks')}</span>
           </div>
         </div>
       </div>
@@ -872,10 +873,18 @@ changelibraryCardSection()
 const visitProfileBtn = document.querySelector('.visit-profile__btn')
 
 let ownBooksArr = [];
+let haveBooks = [];
+let titleBooks = [];
 
 if (localStorage.getItem('books')) {
   ownBooksArr = JSON.parse(localStorage.getItem('books'))
 }
+
+if (localStorage.getItem('titleBooks')) {
+  titleBooks = JSON.parse(localStorage.getItem('titleBooks'))
+}
+
+const booksList = document.querySelector('.modal__profile__right-column__rented-books-container__books-container');
 
 function buyBooks() {
   const booksBtn = document.querySelectorAll('.books__button')
@@ -900,6 +909,13 @@ function buyBooks() {
         localStorage.setItem('ownBooks', ownBooks);
         ownBooksArr.push(ind)
         localStorage.setItem('books', JSON.stringify(ownBooksArr))
+        titleBooks.push([data[ind].name, data[ind].author])
+        localStorage.setItem('titleBooks', JSON.stringify(titleBooks))
+        if (booksList.hasChildNodes) {
+          booksList.replaceChildren()
+        }
+        renderBooks()
+        updateCountBooksInProfileAndCard()
       }
     })
   })
@@ -1075,8 +1091,6 @@ function buyCard() {
 }
 buyCard()
 
-let haveBooks = [];
-
 if (localStorage.getItem('books')) {
   haveBooks = JSON.parse(localStorage.getItem('books'))
 }
@@ -1098,6 +1112,28 @@ function showOwnBooks() {
   }
 }
 showOwnBooks()
+
+function renderBooks() {
+  if (localStorage.getItem('isSubscription') == 'true') {
+    let booksName = JSON.parse(localStorage.getItem('titleBooks'));
+    booksName.forEach((el, ind) => {
+      let span = document.createElement('span');
+      span.textContent = `${el[0]}, ${el[1]}`;
+      booksList.appendChild(span)
+    })
+  }
+}
+renderBooks()
+
+function updateCountBooksInProfileAndCard() {
+  let countBooks = document.querySelector('._card-info-value__books')
+  let countBooksLibraryCard = document.querySelector('.count-books')
+
+  countBooks.textContent = localStorage.getItem('ownBooks');
+  countBooksLibraryCard.textContent = localStorage.getItem('ownBooks');
+}
+updateCountBooksInProfileAndCard()
+
 // localStorage.removeItem('firstName')
 // localStorage.removeItem('lastName')
 // localStorage.removeItem('email')

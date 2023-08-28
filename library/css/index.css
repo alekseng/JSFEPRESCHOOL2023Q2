@@ -1019,7 +1019,6 @@ body._block::before {
     position: sticky;
     top: 0;
     background-color: rgba(255, 255, 255, 0.8);
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     z-index: 1;
   }
 }
@@ -3319,10 +3318,11 @@ input[type=text]:last-child {
 .modal__profile__right-column__rented-books-container {
   display: flex;
   flex-direction: column;
-  height: 100px;
+  height: 106px;
+  width: 100%;
   align-items: flex-start;
   justify-content: space-between;
-  margin-bottom: 40px;
+  margin-bottom: 34px;
 }
 .modal__profile__right-column__rented-books-container__heading {
   color: #0C0C0E;
@@ -3338,6 +3338,10 @@ input[type=text]:last-child {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  width: -moz-max-content;
+  width: max-content;
+  height: -moz-max-content;
+  height: max-content;
 }
 .modal__profile__right-column__rented-books-container__books-container span {
   position: relative;
@@ -3389,6 +3393,26 @@ input[type=text]:last-child {
   border: none;
   cursor: pointer;
   margin-top: 3px;
+}
+
+.overflow {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  max-width: 389px;
+  height: 56px;
+  overflow: auto;
+}
+.overflow::-webkit-scrollbar {
+  width: 2px;
+  height: 2px;
+  background-color: #c9c7c7;
+}
+.overflow::-webkit-scrollbar-thumb {
+  background-color: #656565;
+  width: 2px;
 }
 
 @media (max-width: 639px) {
@@ -3473,6 +3497,12 @@ input[type=text]:last-child {
     border: none;
     cursor: pointer;
     margin-top: 3px;
+  }
+  .modal__profile__right-column__rented-books-container__books-container span {
+    padding-left: 18px;
+  }
+  .modal__profile__right-column__rented-books-container__books-container span::before {
+    left: 5px;
   }
 }
 

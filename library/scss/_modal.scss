@@ -605,10 +605,11 @@
     &__rented-books-container {
       display: flex;
       flex-direction: column;
-      height: 100px;
+      height: 106px;
+      width: 100%;
       align-items: flex-start;
       justify-content: space-between;
-      margin-bottom: 40px;
+      margin-bottom: 34px;
 
       &__heading {
         color: #0C0C0E;
@@ -625,6 +626,8 @@
         display: flex;
         flex-direction: column;
         gap: 10px;
+        width: max-content;
+        height: max-content;
       }
 
       &__books-container span {
@@ -684,6 +687,28 @@
         margin-top: 3px;
       }
     }
+  }
+}
+
+.overflow {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  max-width: 389px;
+  height: 56px;
+  overflow: auto;
+
+  &::-webkit-scrollbar {
+    width: 2px;
+    height: 2px;
+    background-color: #c9c7c7;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #656565;
+    width: 2px;
   }
 }
 
@@ -782,6 +807,18 @@
           border: none;
           cursor: pointer;
           margin-top: 3px;
+        }
+      }
+    }
+
+    &__right-column {
+      &__rented-books-container {
+        &__books-container span {
+          padding-left: 18px;
+
+          &::before {
+            left: 5px;
+          }
         }
       }
     }
