@@ -3742,6 +3742,29 @@ input[type=text]:last-child {
   letter-spacing: 2px;
 }
 
+@media (max-width: 639px) {
+  .modal__buy-card__heading {
+    width: 100%;
+    max-width: 640px;
+  }
+  .modal__buy-card__heading span {
+    font-size: 22px;
+    margin-right: 40px;
+  }
+  .modal__buy-card__body {
+    width: 100%;
+    max-width: 640px;
+    height: 480px;
+    padding: 20px 20px 20px 20px;
+    flex-direction: column-reverse;
+    overflow-x: scroll;
+  }
+  .modal__buy-card__body__title {
+    width: 260px;
+    height: 160px;
+  }
+}
+
 .modal__close-btn__buy {
   position: absolute;
   width: 21px;
@@ -3777,6 +3800,12 @@ input[type=text]:last-child {
 }
 .modal__close-btn__buy:hover::after {
   background: #BB945F;
+}
+
+@media (max-width: 639px) {
+  .modal__close-btn__buy {
+    top: 18px;
+  }
 }
 
 .buy__label {

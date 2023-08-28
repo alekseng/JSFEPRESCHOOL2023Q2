@@ -1042,6 +1042,34 @@
   }
 }
 
+.modal__buy-card {
+  @include respondMax(639px) {
+    &__heading {
+      width: 100%;
+      max-width: 640px;
+
+      & span {
+        font-size: 22px;
+        margin-right: 40px;
+      }
+    }
+
+    &__body {
+      width: 100%;
+      max-width: 640px;
+      height: 480px;
+      padding: 20px 20px 20px 20px;
+      flex-direction: column-reverse;
+      overflow-x: scroll;
+
+      &__title {
+        width: 260px;
+        height: 160px;
+      }
+    }
+  }
+}
+
 .modal__close-btn__buy {
   position: absolute;
   width: 21px;
@@ -1084,6 +1112,12 @@
   &:hover::after {
     @extend %transition;
     background: $color-accent;
+  }
+}
+
+.modal__close-btn__buy {
+  @include respondMax(639px) {
+    top: 18px;
   }
 }
 
