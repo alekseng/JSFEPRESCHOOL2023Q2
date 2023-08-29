@@ -681,11 +681,58 @@
       }
 
       &__button {
+        box-sizing: border-box;
+        position: relative;
         background: transparent;
         border: none;
         cursor: pointer;
-        margin-top: 3px;
+        margin-top: 7px;
+        width: 13px;
+        height: 12px;
+
+        &::before {
+          box-sizing: border-box;
+          content: '';
+          position: absolute;
+          width: 11px;
+          height: 10px;
+          top: 0;
+          right: 0;
+          border: 1px solid black;
+          border-radius: 2px;
+          @extend %transition;
+        }
+
+        &::after {
+          box-sizing: border-box;
+          content: '';
+          position: absolute;
+          width: 11px;
+          height: 10px;
+          bottom: 0;
+          left: 0;
+          border: 1px solid black;
+          border-radius: 2px;
+          background: white;
+          @extend %transition;
+        }
+
+        &:hover::before {
+          border: 1px solid rgba(187, 148, 95, 1);
+          @extend %transition;
+        }
+
+        &:hover::after {
+          border: 1px solid rgba(187, 148, 95, 1);
+          @extend %transition;
+        }
       }
+    }
+
+    & input {
+      border: none;
+      outline: none;
+      width: 113px;
     }
   }
 }
@@ -804,9 +851,8 @@
 
         &__button {
           background: transparent;
-          border: none;
           cursor: pointer;
-          margin-top: 3px;
+          margin-top: 4px;
         }
       }
     }

@@ -724,11 +724,11 @@ function showCardInfo() {
       <div class="findCard__container">
         <div class="input__container">
           <span>Brooklyn Public Library</span>
-          <input class="findCard__input" type="text" value="${localStorage.getItem('firstName')} ${localStorage.getItem('lastName')}" required>
+          <input class="findCard__input" type="text" value="${localStorage.getItem('firstName')} ${localStorage.getItem('lastName')}" readonly>
           <div class="prompt">
             В эти поля, Вы можете ввести только буквы, цифры и дефис.
           </div>
-          <input class="findCard__input" type="text" value="${localStorage.getItem('cardNumber')}" required>
+          <input class="findCard__input" type="text" value="${localStorage.getItem('cardNumber')}" readonly>
         </div>
         <div class="card__info">
           <div class="card__info__item">
@@ -806,7 +806,7 @@ function getUserInfo() {
     modalProfileShortName.textContent = `${firstName.slice(0, 1)}${lastName.slice(0, 1)}`
     modalProfileFirstName.textContent = `${localStorage.getItem('firstName')}`;
     modalProfileLastName.textContent = `${localStorage.getItem('lastName')}`;
-    modalProfileBooksNumber.textContent = `${localStorage.getItem('cardNumber')}`;
+    modalProfileBooksNumber.value = `${localStorage.getItem('cardNumber')}`;
     modalProfileVisits.textContent = `${localStorage.getItem('countVisits')}`;
   }
 }
@@ -826,8 +826,8 @@ function changelibraryCardSection() {
       <div class="findCard__container">
         <div class="input__container">
           <span>Brooklyn Public Library</span>
-          <input class="findCard__input" type="text" value="${localStorage.getItem('firstName')} ${localStorage.getItem('lastName')}" required>
-          <input class="findCard__input" type="text" value="${localStorage.getItem('cardNumber')}" required>
+          <input class="findCard__input" type="text" value="${localStorage.getItem('firstName')} ${localStorage.getItem('lastName')}" readonly>
+          <input class="findCard__input" type="text" value="${localStorage.getItem('cardNumber')}" readonly>
         </div>
         <div class="card__info">
           <div class="card__info__item">
@@ -1133,6 +1133,17 @@ function updateCountBooksInProfileAndCard() {
   countBooksLibraryCard.textContent = localStorage.getItem('ownBooks');
 }
 updateCountBooksInProfileAndCard()
+
+function copyCardNumber() {
+  let copyText = document.querySelector(".modal__profile__right-column__card-info__number");
+  let copyBtn = document.querySelector(".modal__profile__right-column__card-info__button");
+
+  copyBtn.addEventListener('click', () => {
+    copyText.select();
+    document.execCommand("copy");
+  })
+}
+copyCardNumber()
 
 // localStorage.removeItem('firstName')
 // localStorage.removeItem('lastName')

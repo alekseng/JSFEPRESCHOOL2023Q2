@@ -47,7 +47,7 @@ body._block::before {
   list-style: none;
 }
 
-.modal__close-btn__buy:hover::after, .modal__close-btn__buy::after, .modal__close-btn__buy:hover::before, .modal__close-btn__buy::before, .modal__profile__right-column__close-button:hover::after, .modal__profile__right-column__close-button::after, .modal__profile__right-column__close-button:hover::before, .modal__profile__right-column__close-button::before, .modal__close-btn__login:hover::after, .modal__close-btn__login::after, .modal__close-btn__login:hover::before, .modal__close-btn__login::before, .account button:hover, .account button, .form__btn:hover, .form__btn, .modal__close-btn__register:hover::after, .modal__close-btn__register::after, .modal__close-btn__register:hover::before, .modal__close-btn__register::before, .footer__bottom__rss:hover a,
+.modal__close-btn__buy:hover::after, .modal__close-btn__buy::after, .modal__close-btn__buy:hover::before, .modal__close-btn__buy::before, .modal__profile__right-column__card-info__button:hover::after, .modal__profile__right-column__card-info__button:hover::before, .modal__profile__right-column__card-info__button::after, .modal__profile__right-column__card-info__button::before, .modal__profile__right-column__close-button:hover::after, .modal__profile__right-column__close-button::after, .modal__profile__right-column__close-button:hover::before, .modal__profile__right-column__close-button::before, .modal__close-btn__login:hover::after, .modal__close-btn__login::after, .modal__close-btn__login:hover::before, .modal__close-btn__login::before, .account button:hover, .account button, .form__btn:hover, .form__btn, .modal__close-btn__register:hover::after, .modal__close-btn__register::after, .modal__close-btn__register:hover::before, .modal__close-btn__register::before, .footer__bottom__rss:hover a,
 .footer__bottom__name:hover a, .footer__bottom__name a, .footer__bottom__rss a, .fill-svg, #twitter,
 #instagram,
 #facebook, .footer__top-left__address:hover a, .footer__top-left__address a, .prompt._active, .prompt, .getCard__btn__sign-up:hover,
@@ -3389,10 +3389,48 @@ input[type=text]:last-child {
   line-height: 20px;
 }
 .modal__profile__right-column__card-info__button {
+  box-sizing: border-box;
+  position: relative;
   background: transparent;
   border: none;
   cursor: pointer;
-  margin-top: 3px;
+  margin-top: 7px;
+  width: 13px;
+  height: 12px;
+}
+.modal__profile__right-column__card-info__button::before {
+  box-sizing: border-box;
+  content: "";
+  position: absolute;
+  width: 11px;
+  height: 10px;
+  top: 0;
+  right: 0;
+  border: 1px solid black;
+  border-radius: 2px;
+}
+.modal__profile__right-column__card-info__button::after {
+  box-sizing: border-box;
+  content: "";
+  position: absolute;
+  width: 11px;
+  height: 10px;
+  bottom: 0;
+  left: 0;
+  border: 1px solid black;
+  border-radius: 2px;
+  background: white;
+}
+.modal__profile__right-column__card-info__button:hover::before {
+  border: 1px solid rgb(187, 148, 95);
+}
+.modal__profile__right-column__card-info__button:hover::after {
+  border: 1px solid rgb(187, 148, 95);
+}
+.modal__profile__right-column input {
+  border: none;
+  outline: none;
+  width: 113px;
 }
 
 .overflow {
@@ -3494,9 +3532,8 @@ input[type=text]:last-child {
   }
   .modal__profile__right-column__card-info__button {
     background: transparent;
-    border: none;
     cursor: pointer;
-    margin-top: 3px;
+    margin-top: 4px;
   }
   .modal__profile__right-column__rented-books-container__books-container span {
     padding-left: 18px;
