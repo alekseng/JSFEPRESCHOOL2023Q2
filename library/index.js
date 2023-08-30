@@ -706,6 +706,7 @@ function changeProfileCard() {
 
   if (localStorage.getItem('isAuth') == 'true' && localStorage.getItem('cardNumber')) {
     profileText.textContent = localStorage.getItem('cardNumber')
+    profileText.style.fontSize = `13px`
   }
 }
 changeProfileCard()
