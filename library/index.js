@@ -687,13 +687,16 @@ registerFunction()
 
 function changeProfileIcon() {
   const profileIcon = document.querySelector('.icon')
-
+  const profile__ic =document.querySelector('.profile__ic')
   if (localStorage.getItem('firstName') && localStorage.getItem('lastName') && localStorage.getItem('isAuth') == 'true') {
+    let profileName = document.createElement('div')
     let firstName = localStorage.getItem('firstName');
     let lastName = localStorage.getItem('lastName');
-    profileIcon.textContent = `${firstName.slice(0, 1)} ${lastName.slice(0, 1)}`
+    profileName.textContent = `${firstName.slice(0, 1)} ${lastName.slice(0, 1)}`
     profileIcon.setAttribute('title', `${localStorage.getItem('firstName')} ${localStorage.getItem('lastName')}`)
-    profileIcon.classList.add('_active')
+    profile__ic.style.display = 'none'
+    profileName.classList.add('profileName')
+    profileIcon.appendChild(profileName)
   }
 }
 changeProfileIcon()
