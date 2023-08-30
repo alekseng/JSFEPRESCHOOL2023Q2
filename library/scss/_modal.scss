@@ -495,12 +495,16 @@
 
     &__name {
       display: flex;
-      width: 120px;
-      height: 30px;
+      min-width: 120px;
+      max-width: 160px;
+      width: min-content;
       background: white;
       margin-left: 0px;
       align-items: center;
       justify-content: center;
+      flex-wrap: wrap;
+      box-sizing: border-box;
+      padding: 5px;
 
       &__first-name {
         color: #000;
@@ -812,6 +816,11 @@
 
     &__left-column {
       height: 155px;
+      gap: 10px;
+
+      &__icon {
+        margin-top: 0px;
+      }
     }
 
     &__right-column {

@@ -3235,12 +3235,17 @@ input[type=text]:last-child {
 }
 .modal__profile__left-column__name {
   display: flex;
-  width: 120px;
-  height: 30px;
+  min-width: 120px;
+  max-width: 160px;
+  width: -moz-min-content;
+  width: min-content;
   background: white;
   margin-left: 0px;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+  padding: 5px;
 }
 .modal__profile__left-column__name__first-name {
   color: #000;
@@ -3513,6 +3518,10 @@ input[type=text]:last-child {
   }
   .modal__profile__left-column {
     height: 155px;
+    gap: 10px;
+  }
+  .modal__profile__left-column__icon {
+    margin-top: 0px;
   }
   .modal__profile__right-column__heading {
     font-size: 35px;
