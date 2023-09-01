@@ -106,7 +106,6 @@ menu()
 
 function changeLogoText() {
   const logoText = document.querySelector('.header__logo__heading');
-  console.log(logoText.innerHTML);
   let text = logoText;
   addEventListener('resize', () => {
     if (window.outerWidth <= 470) {
@@ -308,19 +307,35 @@ const cardHolderNameRegExp = /^([A-Za-z]{2,})$/;
 const postalCodeRegExp = /^([-A-Z0-9]{2,})$/;
 const cityRegExp = /^([-A-Za-z0-9]{2,})$/;
 
-let ownBooks;
+class User {
+  constructor(firstName, lastName, email, password, cardNumber) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.email = email;
+    this.password = password;
+    this.cardNumber = cardNumber;
+    this.isRegister = true;
+    this.isAuth = true;
+    this.isSubscription = false;
+    this.countVisits = 1;
+    this.ownBooks = 0;
+    this.books = [];
+    this.titleBooks = [];
+  }
+}
 
-if (localStorage.getItem('ownBooks')) {
-  let countBooksE = localStorage.getItem('ownBooks')
-  ownBooks = parseInt(countBooksE);
+let users = []
+
+if (localStorage.getItem('users')) {
+  users = JSON.parse(localStorage.getItem('users'));
 }
 
 function profileModal() {
   btn.addEventListener('click', (e) => {
-    if (localStorage.getItem('isAuth') != 'true' || localStorage.getItem('isRegister') != 'true') {
-      loginNoAuth.classList.toggle('_active');
-    } else if (localStorage.getItem('isAuth') == 'true') {
+    if (users.find((user) => user.isAuth == true)) {
       loginWithAuth.classList.toggle('_active');
+    } else if (users.length == 0 || users.find((user) => user.isAuth == !true)) {
+      loginNoAuth.classList.toggle('_active');
     }
   })
 }
@@ -377,9 +392,12 @@ toggleRegisterLoginModals()
 
 function logOut() {
   loginRegisterWithAuth.addEventListener('click', (e) => {
-    loginWithAuth.classList.remove('_active');
-    localStorage.setItem('isAuth', false)
-    location.reload()
+    for (let i = 0; i < users.length; i++) {
+      loginWithAuth.classList.remove('_active');
+      users[i].isAuth = false;
+      localStorage.setItem('users', JSON.stringify(users));
+      location.reload();
+    }
   })
 }
 
@@ -390,13 +408,10 @@ function logIn() {
   const email = document.querySelector('#email-login')
   const password = document.querySelector('#password-login')
   const submitBtnLoginForm = modalLoginForm.querySelector('.form__btn');
-  let countValue = localStorage.getItem('countVisits')
-
   const emailError = document.querySelector('.email-login');
   const passwordError = document.querySelector('.password-login');
 
   email.addEventListener('input', (e) => {
-    console.log(nameOrCardRegExp.test(email.value));
     if (!nameOrCardRegExp.test(email.value)) {
       emailError.textContent = `There must be at least 3 characters in this field, you can enter letters, numbers and -_.@`;
       emailError.classList.remove('_success');
@@ -442,55 +457,56 @@ function logIn() {
 
   submitBtnLoginForm.addEventListener('click', (e) => {
     e.preventDefault()
-    if ((localStorage.getItem('isRegister') == 'true')
-      && (((email.value == localStorage.getItem('email') && nameOrCardRegExp.test(email.value)) || (email.value == localStorage.getItem('cardNumber') && nameOrCardRegExp.test(email.value))) && (password.value == localStorage.getItem('password') && passwordRegExp.test(password.value)))) {
-      localStorage.setItem('isAuth', true)
-      countValue = parseInt(countValue)
-      countValue++
-      localStorage.setItem('countVisits', countValue);
-      location.reload()
-    } else if (localStorage.getItem('isRegister') != 'true') {
-      emailError.textContent = `Registered users are not found, go through the registration stage`;
-      emailError.classList.add('_error');
-      email.classList.add('_error-border');
-    } else if (email.value != localStorage.getItem('email') || email.value != localStorage.getItem('cardNumber') || password.value != localStorage.getItem('password')) {
-      emailError.textContent = `User not found`;
-      emailError.classList.add('_error');
-      email.classList.add('_error-border');
-      emailError.classList.remove('_success');
-      email.classList.remove('_success-border');
-      passwordError.textContent = 'User not found';
-      passwordError.classList.add('_error');
-      password.classList.add('_error-border');
-      if ((email.value != localStorage.getItem('email') && email.value.length == 0) || (email.value != localStorage.getItem('cardNumber') && email.value.length == 0)) {
-        emailError.textContent = `This field cannot be blank`;
-      } else if ((email.value != localStorage.getItem('email') && email.value.length > 1) || (email.value != localStorage.getItem('cardNumber') && email.value.length > 1)) {
+    for (let i = 0; i <= users.length; i++) {
+      if ((users.length > 0)
+        && (((email.value == users[i]?.email && nameOrCardRegExp.test(email.value)) || (email.value == users[i]?.cardNumber && nameOrCardRegExp.test(email.value))) && (password.value == users[i]?.password && passwordRegExp.test(password.value)))) {
+        users[i].isAuth = true;
+        users[i].countVisits += 1;
+        localStorage.setItem('users', JSON.stringify(users));
+        location.reload();
+      } else if (users.length == 0) {
+        emailError.textContent = `Registered users are not found, go through the registration stage`;
+        emailError.classList.add('_error');
+        email.classList.add('_error-border');
+      } else if (users.find(el => el.email != email.value) || users.find(el => el.cardNumber != email.value) || users.find(el => el.password != password.value)) {
         emailError.textContent = `User not found`;
-      }
-      if ((password.value != localStorage.getItem('password') && password.value.length == 0)) {
-        passwordError.textContent = `This field cannot be blank`;
-      } else if ((password.value != localStorage.getItem('password') && password.value.length > 1)) {
-        passwordError.textContent = `User not found`;
-        password.classList.remove('_success-border');
-        password.classList.add('_error-border');
-      }
-      if (email.value == localStorage.getItem('email') || email.value == localStorage.getItem('cardNumber')) {
-        emailError.textContent = 'success';
-        emailError.classList.remove('_error');
-        emailError.classList.add('_success');
-        email.classList.remove('_error-border');
-        email.classList.add('_success-border');
-      }
-      if ((email.value == localStorage.getItem('email') || email.value == localStorage.getItem('cardNumber')) && password.value != localStorage.getItem('password')) {
-        emailError.textContent = 'success';
-        emailError.classList.remove('_error');
-        emailError.classList.add('_success');
-        email.classList.remove('_error-border');
-        email.classList.add('_success-border');
-        passwordError.textContent = 'Invalid password';
+        emailError.classList.add('_error');
+        email.classList.add('_error-border');
+        emailError.classList.remove('_success');
+        email.classList.remove('_success-border');
+        passwordError.textContent = 'User not found';
         passwordError.classList.add('_error');
-        password.classList.remove('_success-border');
         password.classList.add('_error-border');
+        if ((users.find(el => el.email != email.value) && email.value.length == 0) || (users.find(el => el.cardNumber != email.value) && email.value.length == 0)) {
+          emailError.textContent = `This field cannot be blank`;
+        } else if ((users.find(el => el.email != email.value) && email.value.length > 1) || (users.find(el => el.cardNumber != email.value) && email.value.length > 1)) {
+          emailError.textContent = `User not found`;
+        }
+        if ((users.find(el => el.password != password.value) && password.value.length == 0)) {
+          passwordError.textContent = `This field cannot be blank`;
+        } else if ((users.find(el => el.password != password.value) && password.value.length > 1)) {
+          passwordError.textContent = `User not found`;
+          password.classList.remove('_success-border');
+          password.classList.add('_error-border');
+        }
+        if (users.find(el => el.email == email.value) || users.find(el => el.cardNumber == email.value)) {
+          emailError.textContent = 'success';
+          emailError.classList.remove('_error');
+          emailError.classList.add('_success');
+          email.classList.remove('_error-border');
+          email.classList.add('_success-border');
+        }
+        if ((users.find(el => el.email == email.value) || users.find(el => el.cardNumber == email.value)) && users.find(el => el.password != password.value)) {
+          emailError.textContent = 'success';
+          emailError.classList.remove('_error');
+          emailError.classList.add('_success');
+          email.classList.remove('_error-border');
+          email.classList.add('_success-border');
+          passwordError.textContent = 'Invalid password';
+          passwordError.classList.add('_error');
+          password.classList.remove('_success-border');
+          password.classList.add('_error-border');
+        }
       }
     }
   })
@@ -626,20 +642,20 @@ function registerFunction() {
     e.preventDefault()
 
     if ((nameRegExp.test(firstName.value)) && (nameRegExp.test(lastName.value)) && (emailRegExp.test(email.value)) && (passwordRegExp.test(password.value))) {
-      localStorage.setItem('firstName', `${firstName.value}`)
-      localStorage.setItem('lastName', `${lastName.value}`)
-      localStorage.setItem('email', `${email.value}`)
-      localStorage.setItem('password', `${password.value}`)
-      localStorage.setItem('isRegister', true)
-      localStorage.setItem('isAuth', true)
-      localStorage.setItem('cardNumber', cardNumber)
-      localStorage.setItem('countVisits', 1)
-      localStorage.setItem('ownBooks', 0)
-      localStorage.setItem('books', [])
-      localStorage.setItem('titleBooks', [])
-      modal.classList.remove('_active')
-      modalRegister.classList.remove('_active')
-      location.reload()
+      if (users.find(el => el.email == email.value) && emailRegExp.test(email.value)) {
+        emailError.textContent = `This email address is already in use, enter a different email address`;
+        emailError.classList.remove('_success');
+        emailError.classList.add('_error');
+        email.classList.add('_error-border');
+        email.classList.remove('_success-border');
+        return;
+      }
+      let user = new User(firstName.value, lastName.value, email.value, password.value, cardNumber);
+      users.push(user);
+      localStorage.setItem('users', JSON.stringify(users));
+      modal.classList.remove('_active');
+      modalRegister.classList.remove('_active');
+      location.reload();
 
     } else if ((!nameRegExp.test(firstName.value)) || (!nameRegExp.test(lastName.value)) || (!emailRegExp.test(email.value)) || (!passwordRegExp.test(password.value))) {
       firstNameError.textContent = `This field cannot be blank`;
@@ -687,16 +703,21 @@ registerFunction()
 
 function changeProfileIcon() {
   const profileIcon = document.querySelector('.icon')
-  const profile__ic =document.querySelector('.profile__ic')
-  if (localStorage.getItem('firstName') && localStorage.getItem('lastName') && localStorage.getItem('isAuth') == 'true') {
-    let profileName = document.createElement('div')
-    let firstName = localStorage.getItem('firstName');
-    let lastName = localStorage.getItem('lastName');
-    profileName.textContent = `${firstName.slice(0, 1)} ${lastName.slice(0, 1)}`
-    profileIcon.setAttribute('title', `${localStorage.getItem('firstName')} ${localStorage.getItem('lastName')}`)
-    profile__ic.style.display = 'none'
-    profileName.classList.add('profileName')
-    profileIcon.appendChild(profileName)
+  const profile__ic = document.querySelector('.profile__ic')
+
+  if (users.length > 0) {
+    for (let i = 0; i < users.length; i++) {
+      if (users[i].firstName && users[i].lastName && users[i].isAuth == true) {
+        let profileName = document.createElement('div');
+        let firstName = users[i].firstName;
+        let lastName = users[i].lastName;
+        profileName.textContent = `${firstName.slice(0, 1)} ${lastName.slice(0, 1)}`;
+        profileIcon.setAttribute('title', `${users[i].firstName} ${users[i].lastName}`);
+        profile__ic.style.display = 'none';
+        profileName.classList.add('profileName');
+        profileIcon.appendChild(profileName);
+      }
+    }
   }
 }
 changeProfileIcon()
@@ -704,9 +725,13 @@ changeProfileIcon()
 function changeProfileCard() {
   const profileText = document.querySelector('.login-pop-up__with-auth__profile')
 
-  if (localStorage.getItem('isAuth') == 'true' && localStorage.getItem('cardNumber')) {
-    profileText.textContent = localStorage.getItem('cardNumber')
-    profileText.style.fontSize = `13px`
+  if (users.length > 0) {
+    for (let i = 0; i < users.length; i++) {
+      if (users[i].isAuth == true && users[i].cardNumber) {
+        profileText.textContent = users[i].cardNumber;
+        profileText.style.fontSize = `13px`;
+      }
+    }
   }
 }
 changeProfileCard()
@@ -720,68 +745,70 @@ function showCardInfo() {
 
   checkBtn.addEventListener('click', (e) => {
     e.preventDefault()
-    if (localStorage.getItem('isAuth') != 'true' && localStorage.getItem('isRegister') == 'true' && inputName.value == localStorage.getItem('firstName') && inputPassword.value == localStorage.getItem('cardNumber')) {
+    for (let i = 0; i < users.length; i++) {
+      if (users[i].isAuth != true && users[i].isRegister == true && (inputName.value == users[i].firstName || `${inputName.value} == ${users[i].firstName} ${users[i].lastNameName}` || `${inputName.value} == ${users[i].firstName}${users[i].lastNameName}`) && inputPassword.value == users[i].cardNumber) {
 
-      template.innerHTML = `
-      <form class="findCard">
-      <h3>Find your Library card</h3>
-      <div class="findCard__container">
-        <div class="input__container">
-          <span>Brooklyn Public Library</span>
-          <input class="findCard__input" type="text" value="${localStorage.getItem('firstName')} ${localStorage.getItem('lastName')}" readonly>
-          <div class="prompt">
-            В эти поля, Вы можете ввести только буквы, цифры и дефис.
-          </div>
-          <input class="findCard__input" type="text" value="${localStorage.getItem('cardNumber')}" readonly>
-        </div>
-        <div class="card__info">
-          <div class="card__info__item">
-            <span class="card__info__item-text">Visits</span>
-            <span class="card__info__item-icon">
-              <img src="./assets/svg/union.svg" alt="union">
-            </span>
-            <span class="card__info__item-value">${localStorage.getItem('countVisits')}</span>
-          </div>
-          <div class="card__info__item">
-            <span class="card__info__item-text">Bonuses</span>
-            <span class="card__info__item-icon">
-              <img src="./assets/svg/star.svg" alt="union">
-            </span>
-            <span class="card__info__item-value">1240</span>
-          </div>
-          <div class="card__info__item">
-            <span class="card__info__item-text">Books</span>
-            <span class="card__info__item-icon">
-              <img src="./assets/svg/book.svg" alt="union">
-            </span>
-            <span class="card__info__item-value">${localStorage.getItem('ownBooks')}</span>
-          </div>
-        </div>
-      </div>
-    </form>
-    `
-      findCard.replaceWith(template.content)
-    } if (localStorage.getItem('isAuth') != 'true' && localStorage.getItem('isRegister') == 'true' && inputName.value == localStorage.getItem('firstName') && inputPassword.value == localStorage.getItem('cardNumber')) {
-      setTimeout(() => {
         template.innerHTML = `
         <form class="findCard">
         <h3>Find your Library card</h3>
         <div class="findCard__container">
           <div class="input__container">
             <span>Brooklyn Public Library</span>
-            <input class="findCard__input" type="text" placeholder="Reader's name" required>
+            <input class="findCard__input" type="text" value="${users[i].firstName} ${users[i].lastName}" readonly>
             <div class="prompt">
               В эти поля, Вы можете ввести только буквы, цифры и дефис.
             </div>
-            <input class="findCard__input" type="text" placeholder="Card number" required>
+            <input class="findCard__input" type="text" value="${users[i].cardNumber}" readonly>
           </div>
-          <button class="submit__btn">Check the card</button>
+          <div class="card__info">
+            <div class="card__info__item">
+              <span class="card__info__item-text">Visits</span>
+              <span class="card__info__item-icon">
+                <img src="./assets/svg/union.svg" alt="union">
+              </span>
+              <span class="card__info__item-value">${users[i].countVisits}</span>
+            </div>
+            <div class="card__info__item">
+              <span class="card__info__item-text">Bonuses</span>
+              <span class="card__info__item-icon">
+                <img src="./assets/svg/star.svg" alt="union">
+              </span>
+              <span class="card__info__item-value">1240</span>
+            </div>
+            <div class="card__info__item">
+              <span class="card__info__item-text">Books</span>
+              <span class="card__info__item-icon">
+                <img src="./assets/svg/book.svg" alt="union">
+              </span>
+              <span class="card__info__item-value">${users[i].ownBooks}</span>
+            </div>
+          </div>
         </div>
       </form>
       `
         findCard.replaceWith(template.content)
-        location.reload()
-      }, 10000);
+      } if (users[i].isAuth != true && users[i].isRegister == true && (inputName.value == users[i].firstName || `${inputName.value} == ${users[i].firstName} ${users[i].lastNameName}`) && inputPassword.value == users[i].cardNumber) {
+        setTimeout(() => {
+          template.innerHTML = `
+          <form class="findCard">
+          <h3>Find your Library card</h3>
+          <div class="findCard__container">
+            <div class="input__container">
+              <span>Brooklyn Public Library</span>
+              <input class="findCard__input" type="text" placeholder="Reader's name" required>
+              <div class="prompt">
+                В эти поля, Вы можете ввести только буквы, цифры и дефис.
+              </div>
+              <input class="findCard__input" type="text" placeholder="Card number" required>
+            </div>
+            <button class="submit__btn">Check the card</button>
+          </div>
+        </form>
+        `
+          findCard.replaceWith(template.content)
+          location.reload()
+        }, 10000);
+      }
     }
   })
 }
@@ -804,14 +831,18 @@ function openProfileModal() {
 openProfileModal()
 
 function getUserInfo() {
-  if (modalProfile && localStorage.getItem('isRegister')) {
-    let firstName = localStorage.getItem('firstName');
-    let lastName = localStorage.getItem('lastName');
-    modalProfileShortName.textContent = `${firstName.slice(0, 1)}${lastName.slice(0, 1)}`
-    modalProfileFirstName.textContent = `${localStorage.getItem('firstName')}`;
-    modalProfileLastName.textContent = `${localStorage.getItem('lastName')}`;
-    modalProfileBooksNumber.value = `${localStorage.getItem('cardNumber')}`;
-    modalProfileVisits.textContent = `${localStorage.getItem('countVisits')}`;
+  if (users.length > 0) {
+    for (let i = 0; i < users.length; i++) {
+      if (modalProfile && users[i].isAuth) {
+        let firstName = users[i].firstName;
+        let lastName = users[i].lastName;
+        modalProfileShortName.textContent = `${firstName.slice(0, 1)}${lastName.slice(0, 1)}`
+        modalProfileFirstName.textContent = `${users[i].firstName}`;
+        modalProfileLastName.textContent = `${users[i].lastName}`;
+        modalProfileBooksNumber.value = `${users[i].cardNumber}`;
+        modalProfileVisits.textContent = `${users[i].countVisits}`;
+      }
+    }
   }
 }
 getUserInfo()
@@ -821,55 +852,57 @@ function changelibraryCardSection() {
   const visitProfile = document.querySelector('.getCard')
   const templateFind = document.createElement('template');
   const templateVisit = document.createElement('template');
-
-  if (localStorage.getItem('isAuth') == 'true' && localStorage.getItem('isRegister') == 'true') {
-
-    templateFind.innerHTML = `
-      <form class="findCard">
-      <h3>Your Library card</h3>
-      <div class="findCard__container">
-        <div class="input__container">
-          <span>Brooklyn Public Library</span>
-          <input class="findCard__input" type="text" value="${localStorage.getItem('firstName')} ${localStorage.getItem('lastName')}" readonly>
-          <input class="findCard__input" type="text" value="${localStorage.getItem('cardNumber')}" readonly>
+  if (users.length > 0) {
+    for (let i = 0; i < users.length; i++) {
+      if (users[i].isAuth == true && users[i].isRegister == true) {
+        templateFind.innerHTML = `
+        <form class="findCard">
+        <h3>Your Library card</h3>
+        <div class="findCard__container">
+          <div class="input__container">
+            <span>Brooklyn Public Library</span>
+            <input class="findCard__input" type="text" value="${users[i].firstName} ${users[i].lastName}" readonly>
+            <input class="findCard__input" type="text" value="${users[i].cardNumber}" readonly>
+          </div>
+          <div class="card__info">
+            <div class="card__info__item">
+              <span class="card__info__item-text">Visits</span>
+              <span class="card__info__item-icon">
+                <img src="./assets/svg/union.svg" alt="union">
+              </span>
+              <span class="card__info__item-value">${users[i].countVisits}</span>
+            </div>
+            <div class="card__info__item">
+              <span class="card__info__item-text">Bonuses</span>
+              <span class="card__info__item-icon">
+                <img src="./assets/svg/star.svg" alt="union">
+              </span>
+              <span class="card__info__item-value">1240</span>
+            </div>
+            <div class="card__info__item">
+              <span class="card__info__item-text">Books</span>
+              <span class="card__info__item-icon">
+                <img src="./assets/svg/book.svg" alt="union">
+              </span>
+              <span class="card__info__item-value count-books">${users[i].ownBooks}</span>
+            </div>
+          </div>
         </div>
-        <div class="card__info">
-          <div class="card__info__item">
-            <span class="card__info__item-text">Visits</span>
-            <span class="card__info__item-icon">
-              <img src="./assets/svg/union.svg" alt="union">
-            </span>
-            <span class="card__info__item-value">${localStorage.getItem('countVisits')}</span>
-          </div>
-          <div class="card__info__item">
-            <span class="card__info__item-text">Bonuses</span>
-            <span class="card__info__item-icon">
-              <img src="./assets/svg/star.svg" alt="union">
-            </span>
-            <span class="card__info__item-value">1240</span>
-          </div>
-          <div class="card__info__item">
-            <span class="card__info__item-text">Books</span>
-            <span class="card__info__item-icon">
-              <img src="./assets/svg/book.svg" alt="union">
-            </span>
-            <span class="card__info__item-value count-books">${localStorage.getItem('ownBooks')}</span>
-          </div>
+      </form>
+      `
+        templateVisit.innerHTML = `
+      <div class="visit-profile">
+        <h3>Visit your profile</h3>
+        <p>With a digital library card you get free access to the Library’s wide array of digital resources including e-books, databases, educational resources, and more.</p>
+        <div class="visit-profile__btns">
+          <button class="visit-profile__btn">Profile</button>
         </div>
       </div>
-    </form>
-    `
-    templateVisit.innerHTML = `
-    <div class="visit-profile">
-      <h3>Visit your profile</h3>
-      <p>With a digital library card you get free access to the Library’s wide array of digital resources including e-books, databases, educational resources, and more.</p>
-      <div class="visit-profile__btns">
-        <button class="visit-profile__btn">Profile</button>
-      </div>
-    </div>
-    `
-    findCard.replaceWith(templateFind.content)
-    visitProfile.replaceWith(templateVisit.content)
+      `
+        findCard.replaceWith(templateFind.content)
+        visitProfile.replaceWith(templateVisit.content)
+      }
+    }
   }
 }
 changelibraryCardSection()
@@ -880,12 +913,15 @@ let ownBooksArr = [];
 let haveBooks = [];
 let titleBooks = [];
 
-if (localStorage.getItem('books')) {
-  ownBooksArr = JSON.parse(localStorage.getItem('books'))
-}
-
-if (localStorage.getItem('titleBooks')) {
-  titleBooks = JSON.parse(localStorage.getItem('titleBooks'))
+if (users.length > 0) {
+  for (let i = 0; i < users.length; i++) {
+    if (users[i].books && users[i].isAuth) {
+      ownBooksArr = users[i].books;
+    }
+    if (users[i].titleBooks && users[i].isAuth) {
+      titleBooks = users[i].titleBooks;
+    }
+  }
 }
 
 const booksList = document.querySelector('.modal__profile__right-column__rented-books-container__books-container');
@@ -896,30 +932,30 @@ function buyBooks() {
   booksBtn.forEach((el, ind, arr) => {
     el.addEventListener('click', (e) => {
       e.preventDefault()
-      if (localStorage.getItem('isAuth') != 'true') {
-        modal.classList.add('_active')
-        modalLogin.classList.add('_active')
-        document.body.style.overflow = 'hidden'
-      } else if (localStorage.getItem('isAuth') == 'true' && localStorage.getItem('isSubscription') != 'true') {
-        modal.classList.add('_active')
-        modalBuyCard.classList.add('_active')
-        document.body.style.overflow = 'hidden'
-      } else if (localStorage.getItem('isSubscription') == 'true') {
-        el.classList.remove('books__button');
-        el.classList.add('_disabled');
-        el.disabled = true;
-        el.textContent = 'Own';
-        ownBooks++
-        localStorage.setItem('ownBooks', ownBooks);
-        ownBooksArr.push(ind)
-        localStorage.setItem('books', JSON.stringify(ownBooksArr))
-        titleBooks.push([data[ind].name, data[ind].author])
-        localStorage.setItem('titleBooks', JSON.stringify(titleBooks))
-        if (booksList.hasChildNodes) {
-          booksList.replaceChildren()
+      for (let i = 0; i <= users.length; i++) {
+        if ((users.findIndex(el => el.isAuth) === -1) || users.length == 0) {
+          modal.classList.add('_active');
+          modalLogin.classList.add('_active');
+          document.body.style.overflow = 'hidden';
+        } else if (users[i]?.isAuth == true && users[i]?.isSubscription != true) {
+          modal.classList.add('_active');
+          modalBuyCard.classList.add('_active');
+          document.body.style.overflow = 'hidden';
+        } else if (users[i]?.isSubscription == true && users[i]?.isAuth == true) {
+          el.classList.remove('books__button');
+          el.classList.add('_disabled');
+          el.disabled = true;
+          el.textContent = 'Own';
+          users[i].ownBooks++;
+          users[i].books.push(ind);
+          users[i].titleBooks.push([data[ind].name, data[ind].author]);
+          localStorage.setItem('users', JSON.stringify(users));
+          if (booksList.hasChildNodes) {
+            booksList.replaceChildren();
+          }
+          renderBooks();
+          updateCountBooksInProfileAndCard();
         }
-        renderBooks()
-        updateCountBooksInProfileAndCard()
       }
     })
   })
@@ -1087,44 +1123,59 @@ function buyCard() {
 
   btn.addEventListener('click', (e) => {
     e.preventDefault()
-    if (cardNumberRegExp.test(cardNumber.value) && expCodeRegExp.test(expCodeMonth.value) && expCodeRegExp.test(expCodeYear.value) && cvcRegExp.test(cvc.value) && cardHolderNameRegExp.test(cardHolderName.value) && postalCodeRegExp.test(postalCode.value) && cityRegExp.test(city.value)) {
-      localStorage.setItem('isSubscription', true)
-      location.reload()
+    for (let i = 0; i < users.length; i++) {
+      if (cardNumberRegExp.test(cardNumber.value) && expCodeRegExp.test(expCodeMonth.value) && expCodeRegExp.test(expCodeYear.value) && cvcRegExp.test(cvc.value) && cardHolderNameRegExp.test(cardHolderName.value) && postalCodeRegExp.test(postalCode.value) && cityRegExp.test(city.value)) {
+        users[i].isSubscription = true;
+        localStorage.setItem('users', JSON.stringify(users));
+        location.reload();
+      }
     }
   })
 }
 buyCard()
 
-if (localStorage.getItem('books')) {
-  haveBooks = JSON.parse(localStorage.getItem('books'))
+if (users.length > 0) {
+  for (let i = 0; i < users.length; i++) {
+    if (users[i].books && users[i].isAuth) {
+      haveBooks = users[i].books;
+    }
+  }
 }
 
 function showOwnBooks() {
   const booksBtn = document.querySelectorAll('.books__button')
-  if (localStorage.getItem('isSubscription') == 'true') {
 
-    booksBtn.forEach((el, ind) => {
-      for (let i = 0; i <= haveBooks.length; i++) {
-        if (haveBooks[i] == ind) {
-          el.classList.remove('books__button');
-          el.classList.add('_disabled');
-          el.disabled = true;
-          el.textContent = 'Own';
-        }
+  if (users.length > 0) {
+    for (let i = 0; i < users.length; i++) {
+      if (users[i].isSubscription == true && users[i].isAuth) {
+        booksBtn.forEach((el, ind) => {
+          for (let i = 0; i <= haveBooks.length; i++) {
+            if (haveBooks[i] == ind) {
+              el.classList.remove('books__button');
+              el.classList.add('_disabled');
+              el.disabled = true;
+              el.textContent = 'Own';
+            }
+          }
+        })
       }
-    })
+    }
   }
 }
 showOwnBooks()
 
 function renderBooks() {
-  if (localStorage.getItem('isSubscription') == 'true') {
-    let booksName = JSON.parse(localStorage.getItem('titleBooks'));
-    booksName.forEach((el, ind) => {
-      let span = document.createElement('span');
-      span.textContent = `${el[0]}, ${el[1]}`;
-      booksList.appendChild(span)
-    })
+  if (users.length > 0) {
+    for (let i = 0; i < users.length; i++) {
+      if (users[i].isSubscription == true && users[i].isAuth) {
+        let booksName = users[i].titleBooks;
+        booksName.forEach((el, ind) => {
+          let span = document.createElement('span');
+          span.textContent = `${el[0]}, ${el[1]}`;
+          booksList.appendChild(span);
+        })
+      }
+    }
   }
 }
 renderBooks()
@@ -1132,9 +1183,14 @@ renderBooks()
 function updateCountBooksInProfileAndCard() {
   let countBooks = document.querySelector('._card-info-value__books')
   let countBooksLibraryCard = document.querySelector('.count-books')
-
-  countBooks.textContent = localStorage.getItem('ownBooks');
-  countBooksLibraryCard.textContent = localStorage.getItem('ownBooks');
+  if (users.length > 0) {
+    for (let i = 0; i < users.length; i++) {
+      if (users[i].isAuth) {
+        countBooks.textContent = users[i].ownBooks;
+        countBooksLibraryCard.textContent = users[i].ownBooks;
+      }
+    }
+  }
 }
 updateCountBooksInProfileAndCard()
 
@@ -1148,15 +1204,6 @@ function copyCardNumber() {
   })
 }
 copyCardNumber()
-
-// localStorage.removeItem('firstName')
-// localStorage.removeItem('lastName')
-// localStorage.removeItem('email')
-// localStorage.removeItem('password')
-// localStorage.removeItem('isRegister')
-// localStorage.removeItem('isAuth')
-// localStorage.removeItem('cardNumber')
-// localStorage.removeItem('countVisits')
 
 // console.log(`Все требования к работе выполнены = 50 баллов
 
