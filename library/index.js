@@ -1128,6 +1128,72 @@ function buyCard() {
         users[i].isSubscription = true;
         localStorage.setItem('users', JSON.stringify(users));
         location.reload();
+      } else if ((!cardNumberRegExp.test(cardNumber.value)) || (!expCodeRegExp.test(expCodeMonth.value)) || (!expCodeRegExp.test(expCodeYear.value)) || (!cvcRegExp.test(cvc.value)) || (!cardHolderNameRegExp.test(cardHolderName.value)) || (!postalCodeRegExp.test(postalCode.value)) || (!cityRegExp.test(city.value))) {
+        cardNumberError.textContent = 'This field cannot be blank';
+        cardNumberError.classList.add('_error');
+        cardNumber.classList.add('_error-border');
+        expCodeMonthError.textContent = 'This field cannot be blank';
+        expCodeMonthError.classList.add('_error');
+        expCodeMonth.classList.add('_error-border');
+        expCodeYearError.textContent = 'This field cannot be blank';
+        expCodeYearError.classList.add('_error');
+        expCodeYear.classList.add('_error-border');
+        cvcError.textContent = 'This field cannot be blank';
+        cvcError.classList.add('_error');
+        cvc.classList.add('_error-border');
+        cardHolderNameError.textContent = 'This field cannot be blank';
+        cardHolderNameError.classList.add('_error');
+        cardHolderName.classList.add('_error-border');
+        postalCodeError.textContent = 'This field cannot be blank';
+        postalCodeError.classList.add('_error');
+        postalCode.classList.add('_error-border');
+        cityError.textContent = 'This field cannot be blank';
+        cityError.classList.add('_error');
+        city.classList.add('_error-border');
+
+        if (cardNumberRegExp.test(cardNumber.value)) {
+          cardNumberError.textContent = 'success';
+          cardNumberError.classList.remove('_error');
+          cardNumberError.classList.add('_success');
+          cardNumber.classList.remove('_error-border');
+          cardNumber.classList.add('_success-border');
+        } if (expCodeRegExp.test(expCodeMonth.value)) {
+          expCodeMonthError.textContent = 'success';
+          expCodeMonthError.classList.remove('_error');
+          expCodeMonthError.classList.add('_success');
+          expCodeMonth.classList.remove('_error-border');
+          expCodeMonth.classList.add('_success-border');
+        } if (expCodeRegExp.test(expCodeYear.value)) {
+          expCodeYearError.textContent = 'success';
+          expCodeYearError.classList.remove('_error');
+          expCodeYearError.classList.add('_success');
+          expCodeYear.classList.remove('_error-border');
+          expCodeYear.classList.add('_success-border');
+        } if (cvcRegExp.test(cvc.value)) {
+          cvcError.textContent = 'success';
+          cvcError.classList.remove('_error');
+          cvcError.classList.add('_success');
+          cvc.classList.remove('_error-border');
+          cvc.classList.add('_success-border');
+        } if (cardHolderNameRegExp.test(cardHolderName.value)) {
+          cardHolderNameError.textContent = 'success';
+          cardHolderNameError.classList.remove('_error');
+          cardHolderNameError.classList.add('_success');
+          cardHolderName.classList.remove('_error-border');
+          cardHolderName.classList.add('_success-border');
+        } if (postalCodeRegExp.test(postalCode.value)) {
+          postalCodeError.textContent = 'success';
+          postalCodeError.classList.remove('_error');
+          postalCodeError.classList.add('_success');
+          postalCode.classList.remove('_error-border');
+          postalCode.classList.add('_success-border');
+        } if (cityRegExp.test(city.value)) {
+          cityError.textContent = 'success';
+          cityError.classList.remove('_error');
+          cityError.classList.add('_success');
+          city.classList.remove('_error-border');
+          city.classList.add('_success-border');
+        }
       }
     }
   })
