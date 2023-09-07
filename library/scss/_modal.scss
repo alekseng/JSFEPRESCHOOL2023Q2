@@ -1222,6 +1222,17 @@
 
 .buy-btn {
   padding: 8px 26px;
+
+  &._disabled {
+    cursor: default;
+    opacity: 0.5;
+
+    &:hover {
+      border: 1px solid $color-black;
+      background: transparent;
+      @extend %transition;
+    }
+  }
 }
 
 .buy-btn__container {

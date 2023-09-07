@@ -661,22 +661,22 @@
       <form class="modal__register-form">
         <label class="register__label">
           <span class="register-form__text-style">First name</span>
-          <input type="text" name="firstName" id="first-name" class="_default-border" required>
+          <input type="text" name="firstName" id="first-name" class="_default-border">
           <span class="first-name"></span>
         </label>
         <label class="register__label">
           <span class="register-form__text-style">Last name</span>
-          <input type="text" name="lastName" id="last-name" class="_default-border" required>
+          <input type="text" name="lastName" id="last-name" class="_default-border">
           <span class="last-name"></span>
         </label>
         <label class="register__label">
           <span class="register-form__text-style">E-mail</span>
-          <input type="email" name="email" id="email-register" class="_default-border" required>
+          <input type="email" name="email" id="email-register" class="_default-border">
           <span class="email"></span>
         </label>
         <label class="register__label">
           <span class="register-form__text-style">Password</span>
-          <input type="password" name="password" id="password-register" class="_default-border" required>
+          <input type="password" name="password" id="password-register" class="_default-border">
           <span class="password-register"></span>
         </label>
         <button class="form__btn">Sign up</button>
@@ -692,12 +692,12 @@
       <form class="modal__login-form">
         <label class="login__label">
           <span class="login-form__text-style">E-mail or readers card</span>
-          <input type="text" name="email" id="email-login" class="_default-border"  required>
+          <input type="text" name="email" id="email-login" class="_default-border">
           <span class="email-login"></span>
         </label>
         <label class="login__label">
           <span class="login-form__text-style">Password</span>
-          <input type="password" name="password" id="password-login" class="_default-border" required>
+          <input type="password" name="password" id="password-login" class="_default-border">
           <span class="password-login"></span>
         </label>
         <button class="form__btn">Sign in</button>
@@ -771,40 +771,40 @@
         <form class="modal__buy-card__body__form">
           <label class="buy__label">
             <span class="register-form__text-style">Bank card number</span>
-            <input type="text" name="bankCardNumber" id="bank-card-number" class="_default-border" required maxlength="16">
+            <input type="text" name="bankCardNumber" id="bank-card-number" class="_default-border" maxlength="16">
             <span class="bank-card-number"></span>
           </label>
           <label class="buy__label">
             <span class="register-form__text-style">Expiration code</span>
             <div class="expiration-code__container">
-              <input type="text" name="expirationCode" id="expiration-code__month" class="_default-border" required maxlength="2">
+              <input type="text" name="expirationCode" id="expiration-code__month" class="_default-border" maxlength="2">
               <span class="expiration-code__month"></span>
-              <input type="text" name="expirationCode" id="expiration-code__year" class="_default-border" required maxlength="2">
+              <input type="text" name="expirationCode" id="expiration-code__year" class="_default-border" maxlength="2">
               <span class="expiration-code__year"></span>
             </div>
           </label>
           <label class="buy__label">
             <span class="register-form__text-style">CVC</span>
-            <input type="text" name="cvc" id="cvc" class="_default-border" required maxlength="3">
+            <input type="text" name="cvc" id="cvc" class="_default-border" maxlength="3">
             <span class="cvc"></span>
           </label>
           <label class="buy__label">
             <span class="register-form__text-style">Cardholder name</span>
-            <input type="text" name="cardholderName" id="cardholder-name" class="_default-border" required>
+            <input type="text" name="cardholderName" id="cardholder-name" class="_default-border">
             <span class="cardholder-name"></span>
           </label>
           <label class="buy__label">
             <span class="register-form__text-style">Postal code</span>
-            <input type="text" name="postalCode" id="postal-code" class="_default-border" required>
+            <input type="text" name="postalCode" id="postal-code" class="_default-border">
             <span class="postal-code"></span>
           </label>
           <label class="buy__label">
             <span class="register-form__text-style">City / Town</span>
-            <input type="text" name="cityTown" id="city-town" class="_default-border" required>
+            <input type="text" name="cityTown" id="city-town" class="_default-border">
             <span class="city-town"></span>
           </label>
           <div class="buy-btn__container">
-            <button class="form__btn buy-btn">Buy</button>
+            <button class="form__btn buy-btn _disabled" disabled="true">Buy</button>
             <span class="cost">$ 25.00</span>
           </div>
         </form>

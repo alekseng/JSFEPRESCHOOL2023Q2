@@ -296,16 +296,16 @@ const modalBuyCard = document.querySelector('.modal__buy-card')
 const modalBuyCardCloseBtn = document.querySelector('.modal__close-btn__buy')
 
 //RegExp
-const nameRegExp = /^([-A-Za-z0-9]{3,})$/;
+const nameRegExp = /^([-A-Za-z0-9]{1,})$/;
 const emailRegExp = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
 const passwordRegExp = /^((?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*])[A-Za-z0-9!@#$%^&*]{8,16})$/;
-const nameOrCardRegExp = /^([-A-Za-z0-9_\.\@]{3,})$/;
+const nameOrCardRegExp = /^([-A-Za-z0-9_\.\@]{1,})$/;
 const cardNumberRegExp = /^((?=.*[0-9])[0-9]{16,19})$/;
 const expCodeRegExp = /^((?=.*[0-9])[0-9]{2,2})$/;
 const cvcRegExp = /^((?=.*[0-9])[0-9]{3,3})$/;
-const cardHolderNameRegExp = /^([A-Za-z]{2,})$/;
-const postalCodeRegExp = /^([-A-Z0-9]{2,})$/;
-const cityRegExp = /^([-A-Za-z0-9]{2,})$/;
+const cardHolderNameRegExp = /^([A-Za-z]{1,})$/;
+const postalCodeRegExp = /^([-A-Z0-9]{1,})$/;
+const cityRegExp = /^([-A-Za-z0-9]{1,})$/;
 
 class User {
   constructor(firstName, lastName, email, password, cardNumber) {
@@ -502,10 +502,25 @@ function logIn() {
           emailError.classList.add('_success');
           email.classList.remove('_error-border');
           email.classList.add('_success-border');
-          passwordError.textContent = 'Invalid password';
-          passwordError.classList.add('_error');
-          password.classList.remove('_success-border');
-          password.classList.add('_error-border');
+          if (users.find(el => el.password != password.value) && password.value.length == 0) {
+            passwordError.textContent = 'This field cannot be blank';
+            passwordError.classList.add('_error');
+            password.classList.remove('_success-border');
+            password.classList.add('_error-border');
+          }
+          if (users.find(el => el.password != password.value) && password.value.length > 0) {
+            passwordError.textContent = 'Invalid password';
+            passwordError.classList.add('_error');
+            password.classList.remove('_success-border');
+            password.classList.add('_error-border');
+          }
+        }
+        if ((users.find(el => el.email == email.value) || users.find(el => el.cardNumber == email.value)) && users.find(el => el.password == password.value)) {
+          passwordError.textContent = 'success';
+          passwordError.classList.remove('_error');
+          passwordError.classList.add('_success');
+          password.classList.remove('_error-border');
+          password.classList.add('_success-border');
         }
       }
     }
@@ -551,8 +566,8 @@ function registerFunction() {
   }
 
   firstName.addEventListener('input', (e) => {
-    if (firstName.value.length < 3) {
-      firstNameError.textContent = 'There must be at least 3 characters in this field, you can enter letters, numbers and -';
+    if (firstName.value.length < 1) {
+      firstNameError.textContent = 'There must be at least 1 characters in this field, you can enter letters, numbers and -';
       firstNameError.classList.remove('_success');
       firstNameError.classList.add('_error');
       firstName.classList.add('_error-border');
@@ -573,8 +588,8 @@ function registerFunction() {
   })
 
   lastName.addEventListener('input', (e) => {
-    if (lastName.value.length < 3) {
-      lastNameError.textContent = 'There must be at least 3 characters in this field, you can enter letters, numbers and -';
+    if (lastName.value.length < 1) {
+      lastNameError.textContent = 'There must be at least 1 characters in this field, you can enter letters, numbers and -';
       lastNameError.classList.remove('_success');
       lastNameError.classList.add('_error');
       lastName.classList.add('_error-border');
@@ -664,13 +679,25 @@ function registerFunction() {
       lastNameError.textContent = 'This field cannot be blank';
       lastNameError.classList.add('_error');
       lastName.classList.add('_error-border');
-      emailError.textContent = `This field cannot be blank`;
-      emailError.classList.add('_error');
-      email.classList.add('_error-border');
-      passwordRegister.textContent = 'This field cannot be blank';
-      passwordRegister.classList.add('_error');
-      password.classList.add('_error-border');
-
+      if (!emailRegExp.test(email.value) && email.value.length == 0) {
+        emailError.textContent = `This field cannot be blank`;
+        emailError.classList.add('_error');
+        email.classList.add('_error-border');
+        email.classList.remove('_success-border');
+      }
+      if (!emailRegExp.test(email.value) && email.value.length > 0) {
+        emailError.textContent = `Please enter a valid email address: example@gmail.com
+        `;
+        emailError.classList.add('_error');
+        email.classList.add('_error-border');
+        email.classList.remove('_success-border');
+      }
+      if (!passwordRegExp.test(email.value) && password.value.length == 0) {
+        passwordRegister.textContent = 'This field cannot be blank';
+        passwordRegister.classList.add('_error');
+        password.classList.add('_error-border');
+        email.classList.remove('_success-border');
+      }
       if (nameRegExp.test(firstName.value)) {
         firstNameError.textContent = 'success';
         firstNameError.classList.remove('_error');
@@ -995,6 +1022,16 @@ function buyCard() {
   const postalCodeError = document.querySelector('.postal-code');
   const cityError = document.querySelector('.city-town');
 
+  form.addEventListener('input', () => {
+    if (cardNumber.value.length > 0 && expCodeMonth.value.length > 0 && expCodeYear.value.length > 0 && cvc.value.length > 0 && cardHolderName.value.length > 0 && postalCode.value.length > 0 && city.value.length > 0) {
+      btn.classList.remove('_disabled');
+      btn.disabled = false;
+    } else {
+      btn.classList.add('_disabled');
+      btn.disabled = true;
+    }
+  })
+
   cardNumber.addEventListener('input', () => {
     cardNumber.value = cardNumber.value.replace(/[-A-Za-zА-Яа-яЁ-ё,.?!\'/:;()&@""_\\|~<>$=+*^%#\[\]{}\`№]/g, '');
 
@@ -1004,6 +1041,13 @@ function buyCard() {
       cardNumberError.classList.add('_error');
       cardNumber.classList.add('_error-border');
       cardNumber.classList.remove('_success-border');
+      if (cardNumber.value.length >= 1 && !cardNumberRegExp.test(cardNumber.value)) {
+        cardNumberError.textContent = 'The length of the card number must be at least 16 digits';
+        cardNumberError.classList.remove('_success');
+        cardNumberError.classList.add('_error');
+        cardNumber.classList.add('_error-border');
+        cardNumber.classList.remove('_success-border');
+      }
     } else if (cardNumberRegExp.test(cardNumber.value)) {
       cardNumberError.textContent = 'success';
       cardNumberError.classList.remove('_error');
@@ -1022,6 +1066,13 @@ function buyCard() {
       expCodeMonthError.classList.add('_error');
       expCodeMonth.classList.add('_error-border');
       expCodeMonth.classList.remove('_success-border');
+      if (expCodeMonth.value.length >= 1 && !expCodeRegExp.test(expCodeMonth.value)) {
+        expCodeMonthError.textContent = 'The length of the exp code must be at least 2 digits';
+        expCodeMonthError.classList.remove('_success');
+        expCodeMonthError.classList.add('_error');
+        expCodeMonth.classList.add('_error-border');
+        expCodeMonth.classList.remove('_success-border');
+      }
     } else if (expCodeRegExp.test(expCodeMonth.value)) {
       expCodeMonthError.textContent = 'success';
       expCodeMonthError.classList.remove('_error');
@@ -1040,6 +1091,13 @@ function buyCard() {
       expCodeYearError.classList.add('_error');
       expCodeYear.classList.add('_error-border');
       expCodeYear.classList.remove('_success-border');
+      if (expCodeYear.value.length >= 1 && !expCodeRegExp.test(expCodeYear.value)) {
+        expCodeYearError.textContent = 'The length of the exp code must be at least 2 digits';
+        expCodeYearError.classList.remove('_success');
+        expCodeYearError.classList.add('_error');
+        expCodeYear.classList.add('_error-border');
+        expCodeYear.classList.remove('_success-border');
+      }
     } else if (expCodeRegExp.test(expCodeYear.value)) {
       expCodeYearError.textContent = 'success';
       expCodeYearError.classList.remove('_error');
@@ -1058,6 +1116,13 @@ function buyCard() {
       cvcError.classList.add('_error');
       cvc.classList.add('_error-border');
       cvc.classList.remove('_success-border');
+      if (cvc.value.length >= 1 && !cvcRegExp.test(cvc.value)) {
+        cvcError.textContent = 'The length of the cvc must be at least 3 digits';
+        cvcError.classList.remove('_success');
+        cvcError.classList.add('_error');
+        cvc.classList.add('_error-border');
+        cvc.classList.remove('_success-border');
+      }
     } else if (cvcRegExp.test(cvc.value)) {
       cvcError.textContent = 'success';
       cvcError.classList.remove('_error');
@@ -1129,16 +1194,16 @@ function buyCard() {
         localStorage.setItem('users', JSON.stringify(users));
         location.reload();
       } else if ((!cardNumberRegExp.test(cardNumber.value)) || (!expCodeRegExp.test(expCodeMonth.value)) || (!expCodeRegExp.test(expCodeYear.value)) || (!cvcRegExp.test(cvc.value)) || (!cardHolderNameRegExp.test(cardHolderName.value)) || (!postalCodeRegExp.test(postalCode.value)) || (!cityRegExp.test(city.value))) {
-        cardNumberError.textContent = 'This field cannot be blank';
+        cardNumberError.textContent = 'The length of the card number must be at least 16 digits';
         cardNumberError.classList.add('_error');
         cardNumber.classList.add('_error-border');
-        expCodeMonthError.textContent = 'This field cannot be blank';
+        expCodeMonthError.textContent = 'The length of the exp code must be at least 2 digits';
         expCodeMonthError.classList.add('_error');
         expCodeMonth.classList.add('_error-border');
-        expCodeYearError.textContent = 'This field cannot be blank';
+        expCodeYearError.textContent = 'The length of the exp code must be at least 2 digits';
         expCodeYearError.classList.add('_error');
         expCodeYear.classList.add('_error-border');
-        cvcError.textContent = 'This field cannot be blank';
+        cvcError.textContent = 'The length of the cvc must be at least 3 digits';
         cvcError.classList.add('_error');
         cvc.classList.add('_error-border');
         cardHolderNameError.textContent = 'This field cannot be blank';
