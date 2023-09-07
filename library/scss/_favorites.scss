@@ -68,7 +68,7 @@
 }
 
 .seasons__container {
-  @include respondMax(768px) {
+  @include respondMax(1260px) {
   position: sticky;
   top: 0;
   background-color: rgb(255 255 255 / 80%);

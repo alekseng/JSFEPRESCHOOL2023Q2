@@ -295,6 +295,11 @@ const modalProfileBooksNumber = document.querySelector('.modal__profile__right-c
 const modalBuyCard = document.querySelector('.modal__buy-card')
 const modalBuyCardCloseBtn = document.querySelector('.modal__close-btn__buy')
 
+// Бургер меню
+const burger = document.querySelector('.burger');
+const menuB = document.querySelector('.header__menu');
+const span = document.querySelector('.burger__span');
+
 //RegExp
 const nameRegExp = /^([-A-Za-z0-9]{1,})$/;
 const emailRegExp = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
@@ -334,8 +339,16 @@ function profileModal() {
   btn.addEventListener('click', (e) => {
     if (users.find((user) => user.isAuth == true)) {
       loginWithAuth.classList.toggle('_active');
+      burger.classList.remove('_active');
+      menuB.classList.remove('_active-menu');
+      span.classList.remove('_active');
+      e.stopPropagation();
     } else if (users.length == 0 || users.find((user) => user.isAuth == !true)) {
       loginNoAuth.classList.toggle('_active');
+      burger.classList.remove('_active');
+      menuB.classList.remove('_active-menu');
+      span.classList.remove('_active');
+      e.stopPropagation();
     }
   })
 }
@@ -543,6 +556,26 @@ closeProfileModalNoAuth()
 function closeProfileModalWithAuth() {
   loginWithAuth.classList.remove('_active');
 }
+
+function closeProfileModalNoAuthClickOutSide() {
+  document.addEventListener('click', (e) => {
+    if (e.target !== loginNoAuth && loginNoAuth.classList.contains('_active')) {
+      loginNoAuth.classList.remove('_active');
+      e.stopPropagation();
+    }
+  })
+}
+closeProfileModalNoAuthClickOutSide();
+
+function closeProfileModalWithAuthClickOutSide() {
+  document.addEventListener('click', (e) => {
+    if (e.target !== loginWithAuth && loginWithAuth.classList.contains('_active')) {
+      loginWithAuth.classList.remove('_active');
+      e.stopPropagation();
+    }
+  })
+}
+closeProfileModalWithAuthClickOutSide();
 
 function registerFunction() {
   const modalRegisterForm = document.querySelector('.modal__register-form');
