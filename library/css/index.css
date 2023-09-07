@@ -2098,6 +2098,10 @@ body._block::before {
   width: 696px;
   height: 414px;
 }
+.contacts__map iframe {
+  width: 696px;
+  height: 414px;
+}
 
 @media (max-width: 1248px) {
   .contacts__map {
@@ -2116,6 +2120,9 @@ body._block::before {
   .contacts__map {
     width: 100%;
     height: auto;
+  }
+  .contacts__map iframe {
+    width: 100%;
   }
 }
 
