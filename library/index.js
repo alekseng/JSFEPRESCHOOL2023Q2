@@ -478,7 +478,7 @@ function logIn() {
         localStorage.setItem('usersAleksengTask', JSON.stringify(usersAleksengTask));
         location.reload();
       } else if (usersAleksengTask.length == 0) {
-        emailError.textContent = `Registered usersAleksengTask are not found, go through the registration stage`;
+        emailError.textContent = `Registered users are not found, go through the registration stage`;
         emailError.classList.add('_error');
         email.classList.add('_error-border');
       } else if (usersAleksengTask.find(el => el.email != email.value) || usersAleksengTask.find(el => el.cardNumber != email.value) || usersAleksengTask.find(el => el.password != password.value)) {
