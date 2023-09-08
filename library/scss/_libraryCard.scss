@@ -134,6 +134,25 @@
     height: 66px;
     border-radius: 10px;
     background: $color-white;
+    color: rgba(187, 148, 95, 1);
+
+    ::-webkit-input-placeholder {
+      color: rgba(142, 142, 142, 1);
+    }
+
+    ::-moz-placeholder {
+      color: rgba(142, 142, 142, 1);
+    }
+
+    /* Firefox 19+ */
+    :-moz-placeholder {
+      color: rgba(142, 142, 142, 1);
+    }
+
+    /* Firefox 18- */
+    :-ms-input-placeholder {
+      color: rgba(142, 142, 142, 1);
+    }
   }
 }
 
@@ -169,6 +188,7 @@
   @include fontStyle(Forum, 30px, normal, 400, 50px);
   letter-spacing: 0.6px;
   border: none;
+  margin-bottom: 25px;
 
   &:focus {
     outline: none;
@@ -184,7 +204,6 @@
 input[type='text'] {
   box-sizing: border-box;
   padding-left: 20px;
-  margin-bottom: 25px;
 
   &:last-child {
     margin-bottom: 0px;
@@ -223,7 +242,8 @@ input[type='text'] {
   }
 }
 
-.getCard {
+.getCard,
+.visit-profile {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -254,7 +274,8 @@ input[type='text'] {
   }
 }
 
-.getCard {
+.getCard,
+.visit-profile {
   @include respondMax(1120px) {
     width: 100%;
     max-width: 600px;
@@ -274,13 +295,15 @@ input[type='text'] {
   }
 }
 
-.getCard {
+.getCard,
+.visit-profile {
   @include respondMax(678px) {
     row-gap: 25px;
   }
 }
 
-.getCard {
+.getCard,
+.visit-profile {
   @include respondMax(499px) {
     row-gap: 15px;
 
@@ -299,7 +322,8 @@ input[type='text'] {
 }
 
 .getCard__btn__sign-up,
-.getCard__btn__log-in {
+.getCard__btn__log-in,
+.visit-profile__btn {
   box-sizing: border-box;
   display: flex;
   width: 75px;
@@ -320,7 +344,8 @@ input[type='text'] {
 }
 
 .getCard__btn__sign-up:hover,
-.getCard__btn__log-in:hover {
+.getCard__btn__log-in:hover,
+.visit-profile__btn:hover {
   border: 1px solid $color-accent;
   background: $color-accent;
   @extend %transition;
@@ -345,5 +370,48 @@ input[type='text'] {
     position: absolute;
     display: flex;
     @extend %transition;
+  }
+}
+
+.card__info {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  gap: 35px;
+  margin-top: -4px;
+
+  &__item {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &-text {
+      color: #000;
+      text-align: center;
+      font-family: Inter;
+      font-size: 10px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 20px;
+      letter-spacing: 0.2px;
+      text-transform: capitalize;
+    }
+
+    &-icon {
+      margin-bottom: -3px;
+    }
+
+    &-value {
+      color: #000;
+      text-align: center;
+      font-family: Inter;
+      font-size: 10px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 20px;
+      letter-spacing: 0.2px;
+      text-transform: capitalize;
+    }
   }
 }
