@@ -64,7 +64,7 @@
     top: 0;
     overflow: hidden;
     z-index: 4;
-    transition: right 0.3s ease 0.05s;
+    transition: right 0.5s linear;
 
     &__ul {
       display: flex;
@@ -163,7 +163,7 @@
 }
 
 .header__menu._active-menu {
-  transition: right 0.3s ease 0.05s;
+  transition: right 0.3s linear;
   right: 0;
 }
 
@@ -247,7 +247,7 @@
   right: 0;
   opacity: 0;
   visibility: hidden;
-  transform: rotate3d(0, 1, 0, 90deg);
+  transform: translateY(-5px);
   transition: transform 0.5s ease-out, opacity 0.5s ease-out, visibility 0.5s ease-out;
 
   &__profile {
@@ -316,7 +316,7 @@
   &._active {
     opacity: 1;
     visibility: visible;
-    transform: rotate3d(0, 0, 0, 0deg);
+    transform: translateY(1px);
     transition: transform 0.5s ease-out, opacity 0.5s ease-out, visibility 0.5s ease-out;
   }
 }
@@ -333,7 +333,7 @@
   right: 0;
   opacity: 0;
   visibility: hidden;
-  transform: rotate3d(0, 1, 0, 90deg);
+  transform: translateY(-5px);
   transition: transform 0.5s ease-out, opacity 0.5s ease-out, visibility 0.5s ease-out;
 
   &__profile {
@@ -402,7 +402,7 @@
   &._active {
     opacity: 1;
     visibility: visible;
-    transform: rotate3d(0, 0, 0, 0deg);
+    transform: translateY(1px);
     transition: transform 0.5s ease-out, opacity 0.5s ease-out, visibility 0.5s ease-out;
   }
 }

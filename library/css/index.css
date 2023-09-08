@@ -142,7 +142,7 @@ body._block::before {
     top: 0;
     overflow: hidden;
     z-index: 4;
-    transition: right 0.3s ease 0.05s;
+    transition: right 0.5s linear;
   }
   .header__menu__ul {
     display: flex;
@@ -231,7 +231,7 @@ body._block::before {
 }
 
 .header__menu._active-menu {
-  transition: right 0.3s ease 0.05s;
+  transition: right 0.3s linear;
   right: 0;
 }
 
@@ -309,7 +309,7 @@ body._block::before {
   right: 0;
   opacity: 0;
   visibility: hidden;
-  transform: rotate3d(0, 1, 0, 90deg);
+  transform: translateY(-5px);
   transition: transform 0.5s ease-out, opacity 0.5s ease-out, visibility 0.5s ease-out;
 }
 .login-pop-up__no-auth__profile {
@@ -368,7 +368,7 @@ body._block::before {
 .login-pop-up__no-auth._active {
   opacity: 1;
   visibility: visible;
-  transform: rotate3d(0, 0, 0, 0deg);
+  transform: translateY(1px);
   transition: transform 0.5s ease-out, opacity 0.5s ease-out, visibility 0.5s ease-out;
 }
 
@@ -384,7 +384,7 @@ body._block::before {
   right: 0;
   opacity: 0;
   visibility: hidden;
-  transform: rotate3d(0, 1, 0, 90deg);
+  transform: translateY(-5px);
   transition: transform 0.5s ease-out, opacity 0.5s ease-out, visibility 0.5s ease-out;
 }
 .login-pop-up__with-auth__profile {
@@ -443,7 +443,7 @@ body._block::before {
 .login-pop-up__with-auth._active {
   opacity: 1;
   visibility: visible;
-  transform: rotate3d(0, 0, 0, 0deg);
+  transform: translateY(1px);
   transition: transform 0.5s ease-out, opacity 0.5s ease-out, visibility 0.5s ease-out;
 }
 
@@ -2826,14 +2826,14 @@ input[type=text]:last-child {
   background: #ffffff;
   opacity: 0;
   visibility: hidden;
-  transform: rotate3d(0, 1, 0, 90deg);
+  transform: translateY(-5px);
   transition: transform 0.5s ease-out, opacity 0.5s ease-out, visibility 0.5s ease-out;
 }
 .modal__register._active {
   opacity: 1;
   visibility: visible;
   z-index: 2;
-  transform: rotate3d(0, 0, 0, 0deg);
+  transform: translateY(0px);
   transition: transform 0.5s ease-out, opacity 0.5s ease-out, visibility 0.5s ease-out;
 }
 
@@ -3016,14 +3016,14 @@ input[type=text]:last-child {
   background: #ffffff;
   opacity: 0;
   visibility: hidden;
-  transform: rotate3d(0, 1, 0, 90deg);
+  transform: translateY(-5px);
   transition: transform 0.5s ease-out, opacity 0.5s ease-out, visibility 0.5s ease-out;
 }
 .modal__login._active {
   opacity: 1;
   visibility: visible;
   z-index: 2;
-  transform: rotate3d(0, 0, 0, 0deg);
+  transform: translateY(1px);
   transition: transform 0.5s ease-out, opacity 0.5s ease-out, visibility 0.5s ease-out;
 }
 
@@ -3202,14 +3202,14 @@ input[type=text]:last-child {
   background: #ffffff;
   opacity: 0;
   visibility: hidden;
-  transform: rotate3d(0, 1, 0, 90deg);
+  transform: translateY(-5px);
   transition: transform 0.5s ease-out, opacity 0.5s ease-out, visibility 0.5s ease-out;
 }
 .modal__profile._active {
   opacity: 1;
   visibility: visible;
   z-index: 2;
-  transform: rotate3d(0, 0, 0, 0deg);
+  transform: translateY(1px);
   transition: transform 0.5s ease-out, opacity 0.5s ease-out, visibility 0.5s ease-out;
 }
 .modal__profile__left-column {
@@ -3751,14 +3751,14 @@ input[type=text]:last-child {
   flex-direction: column;
   opacity: 0;
   visibility: hidden;
-  transform: rotate3d(0, 1, 0, 90deg);
+  transform: translateY(-5px);
   transition: transform 0.5s ease-out, opacity 0.5s ease-out, visibility 0.5s ease-out;
 }
 .modal__buy-card._active {
   opacity: 1;
   visibility: visible;
   z-index: 2;
-  transform: rotate3d(0, 0, 0, 0deg);
+  transform: translateY(1px);
   transition: transform 0.5s ease-out, opacity 0.5s ease-out, visibility 0.5s ease-out;
 }
 .modal__buy-card__heading {
