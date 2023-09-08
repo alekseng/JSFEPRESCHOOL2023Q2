@@ -329,21 +329,21 @@ class User {
   }
 }
 
-let users = []
+let usersAleksengTask = []
 
-if (localStorage.getItem('users')) {
-  users = JSON.parse(localStorage.getItem('users'));
+if (localStorage.getItem('usersAleksengTask')) {
+  usersAleksengTask = JSON.parse(localStorage.getItem('usersAleksengTask'));
 }
 
 function profileModal() {
   btn.addEventListener('click', (e) => {
-    if (users.find((user) => user.isAuth == true)) {
+    if (usersAleksengTask.find((user) => user.isAuth == true)) {
       loginWithAuth.classList.toggle('_active');
       burger.classList.remove('_active');
       menuB.classList.remove('_active-menu');
       span.classList.remove('_active');
       e.stopPropagation();
-    } else if (users.length == 0 || users.find((user) => user.isAuth == !true)) {
+    } else if (usersAleksengTask.length == 0 || usersAleksengTask.find((user) => user.isAuth == !true)) {
       loginNoAuth.classList.toggle('_active');
       burger.classList.remove('_active');
       menuB.classList.remove('_active-menu');
@@ -405,10 +405,10 @@ toggleRegisterLoginModals()
 
 function logOut() {
   loginRegisterWithAuth.addEventListener('click', (e) => {
-    for (let i = 0; i < users.length; i++) {
+    for (let i = 0; i < usersAleksengTask.length; i++) {
       loginWithAuth.classList.remove('_active');
-      users[i].isAuth = false;
-      localStorage.setItem('users', JSON.stringify(users));
+      usersAleksengTask[i].isAuth = false;
+      localStorage.setItem('usersAleksengTask', JSON.stringify(usersAleksengTask));
       location.reload();
     }
   })
@@ -470,18 +470,18 @@ function logIn() {
 
   submitBtnLoginForm.addEventListener('click', (e) => {
     e.preventDefault()
-    for (let i = 0; i <= users.length; i++) {
-      if ((users.length > 0)
-        && (((email.value == users[i]?.email && nameOrCardRegExp.test(email.value)) || (email.value == users[i]?.cardNumber && nameOrCardRegExp.test(email.value))) && (password.value == users[i]?.password && passwordRegExp.test(password.value)))) {
-        users[i].isAuth = true;
-        users[i].countVisits += 1;
-        localStorage.setItem('users', JSON.stringify(users));
+    for (let i = 0; i <= usersAleksengTask.length; i++) {
+      if ((usersAleksengTask.length > 0)
+        && (((email.value == usersAleksengTask[i]?.email && nameOrCardRegExp.test(email.value)) || (email.value == usersAleksengTask[i]?.cardNumber && nameOrCardRegExp.test(email.value))) && (password.value == usersAleksengTask[i]?.password && passwordRegExp.test(password.value)))) {
+        usersAleksengTask[i].isAuth = true;
+        usersAleksengTask[i].countVisits += 1;
+        localStorage.setItem('usersAleksengTask', JSON.stringify(usersAleksengTask));
         location.reload();
-      } else if (users.length == 0) {
-        emailError.textContent = `Registered users are not found, go through the registration stage`;
+      } else if (usersAleksengTask.length == 0) {
+        emailError.textContent = `Registered usersAleksengTask are not found, go through the registration stage`;
         emailError.classList.add('_error');
         email.classList.add('_error-border');
-      } else if (users.find(el => el.email != email.value) || users.find(el => el.cardNumber != email.value) || users.find(el => el.password != password.value)) {
+      } else if (usersAleksengTask.find(el => el.email != email.value) || usersAleksengTask.find(el => el.cardNumber != email.value) || usersAleksengTask.find(el => el.password != password.value)) {
         emailError.textContent = `User not found`;
         emailError.classList.add('_error');
         email.classList.add('_error-border');
@@ -490,45 +490,45 @@ function logIn() {
         passwordError.textContent = 'User not found';
         passwordError.classList.add('_error');
         password.classList.add('_error-border');
-        if ((users.find(el => el.email != email.value) && email.value.length == 0) || (users.find(el => el.cardNumber != email.value) && email.value.length == 0)) {
+        if ((usersAleksengTask.find(el => el.email != email.value) && email.value.length == 0) || (usersAleksengTask.find(el => el.cardNumber != email.value) && email.value.length == 0)) {
           emailError.textContent = `This field cannot be blank`;
-        } else if ((users.find(el => el.email != email.value) && email.value.length > 1) || (users.find(el => el.cardNumber != email.value) && email.value.length > 1)) {
+        } else if ((usersAleksengTask.find(el => el.email != email.value) && email.value.length > 1) || (usersAleksengTask.find(el => el.cardNumber != email.value) && email.value.length > 1)) {
           emailError.textContent = `User not found`;
         }
-        if ((users.find(el => el.password != password.value) && password.value.length == 0)) {
+        if ((usersAleksengTask.find(el => el.password != password.value) && password.value.length == 0)) {
           passwordError.textContent = `This field cannot be blank`;
-        } else if ((users.find(el => el.password != password.value) && password.value.length > 1)) {
+        } else if ((usersAleksengTask.find(el => el.password != password.value) && password.value.length > 1)) {
           passwordError.textContent = `User not found`;
           password.classList.remove('_success-border');
           password.classList.add('_error-border');
         }
-        if (users.find(el => el.email == email.value) || users.find(el => el.cardNumber == email.value)) {
+        if (usersAleksengTask.find(el => el.email == email.value) || usersAleksengTask.find(el => el.cardNumber == email.value)) {
           emailError.textContent = 'success';
           emailError.classList.remove('_error');
           emailError.classList.add('_success');
           email.classList.remove('_error-border');
           email.classList.add('_success-border');
         }
-        if ((users.find(el => el.email == email.value) || users.find(el => el.cardNumber == email.value)) && users.find(el => el.password != password.value)) {
+        if ((usersAleksengTask.find(el => el.email == email.value) || usersAleksengTask.find(el => el.cardNumber == email.value)) && usersAleksengTask.find(el => el.password != password.value)) {
           emailError.textContent = 'success';
           emailError.classList.remove('_error');
           emailError.classList.add('_success');
           email.classList.remove('_error-border');
           email.classList.add('_success-border');
-          if (users.find(el => el.password != password.value) && password.value.length == 0) {
+          if (usersAleksengTask.find(el => el.password != password.value) && password.value.length == 0) {
             passwordError.textContent = 'This field cannot be blank';
             passwordError.classList.add('_error');
             password.classList.remove('_success-border');
             password.classList.add('_error-border');
           }
-          if (users.find(el => el.password != password.value) && password.value.length > 0) {
+          if (usersAleksengTask.find(el => el.password != password.value) && password.value.length > 0) {
             passwordError.textContent = 'Invalid password';
             passwordError.classList.add('_error');
             password.classList.remove('_success-border');
             password.classList.add('_error-border');
           }
         }
-        if ((users.find(el => el.email == email.value) || users.find(el => el.cardNumber == email.value)) && users.find(el => el.password == password.value)) {
+        if ((usersAleksengTask.find(el => el.email == email.value) || usersAleksengTask.find(el => el.cardNumber == email.value)) && usersAleksengTask.find(el => el.password == password.value)) {
           passwordError.textContent = 'success';
           passwordError.classList.remove('_error');
           passwordError.classList.add('_success');
@@ -690,7 +690,7 @@ function registerFunction() {
     e.preventDefault()
 
     if ((nameRegExp.test(firstName.value)) && (nameRegExp.test(lastName.value)) && (emailRegExp.test(email.value)) && (passwordRegExp.test(password.value))) {
-      if (users.find(el => el.email == email.value) && emailRegExp.test(email.value)) {
+      if (usersAleksengTask.find(el => el.email == email.value) && emailRegExp.test(email.value)) {
         emailError.textContent = `This email address is already in use, enter a different email address`;
         emailError.classList.remove('_success');
         emailError.classList.add('_error');
@@ -699,8 +699,8 @@ function registerFunction() {
         return;
       }
       let user = new User(firstName.value, lastName.value, email.value, password.value, cardNumber);
-      users.push(user);
-      localStorage.setItem('users', JSON.stringify(users));
+      usersAleksengTask.push(user);
+      localStorage.setItem('usersAleksengTask', JSON.stringify(usersAleksengTask));
       modal.classList.remove('_active');
       modalRegister.classList.remove('_active');
       location.reload();
@@ -765,14 +765,14 @@ function changeProfileIcon() {
   const profileIcon = document.querySelector('.icon')
   const profile__ic = document.querySelector('.profile__ic')
 
-  if (users.length > 0) {
-    for (let i = 0; i < users.length; i++) {
-      if (users[i].firstName && users[i].lastName && users[i].isAuth == true) {
+  if (usersAleksengTask.length > 0) {
+    for (let i = 0; i < usersAleksengTask.length; i++) {
+      if (usersAleksengTask[i].firstName && usersAleksengTask[i].lastName && usersAleksengTask[i].isAuth == true) {
         let profileName = document.createElement('div');
-        let firstName = users[i].firstName;
-        let lastName = users[i].lastName;
+        let firstName = usersAleksengTask[i].firstName;
+        let lastName = usersAleksengTask[i].lastName;
         profileName.textContent = `${firstName.slice(0, 1)} ${lastName.slice(0, 1)}`;
-        profileIcon.setAttribute('title', `${users[i].firstName} ${users[i].lastName}`);
+        profileIcon.setAttribute('title', `${usersAleksengTask[i].firstName} ${usersAleksengTask[i].lastName}`);
         profile__ic.style.display = 'none';
         profileName.classList.add('profileName');
         profileIcon.appendChild(profileName);
@@ -785,10 +785,10 @@ changeProfileIcon()
 function changeProfileCard() {
   const profileText = document.querySelector('.login-pop-up__with-auth__profile')
 
-  if (users.length > 0) {
-    for (let i = 0; i < users.length; i++) {
-      if (users[i].isAuth == true && users[i].cardNumber) {
-        profileText.textContent = users[i].cardNumber;
+  if (usersAleksengTask.length > 0) {
+    for (let i = 0; i < usersAleksengTask.length; i++) {
+      if (usersAleksengTask[i].isAuth == true && usersAleksengTask[i].cardNumber) {
+        profileText.textContent = usersAleksengTask[i].cardNumber;
         profileText.style.fontSize = `13px`;
       }
     }
@@ -805,8 +805,8 @@ function showCardInfo() {
 
   checkBtn.addEventListener('click', (e) => {
     e.preventDefault()
-    for (let i = 0; i < users.length; i++) {
-      if (users[i].isAuth != true && users[i].isRegister == true && (inputName.value == users[i].firstName || `${inputName.value} == ${users[i].firstName} ${users[i].lastNameName}` || `${inputName.value} == ${users[i].firstName}${users[i].lastNameName}`) && inputPassword.value == users[i].cardNumber) {
+    for (let i = 0; i < usersAleksengTask.length; i++) {
+      if (usersAleksengTask[i].isAuth != true && usersAleksengTask[i].isRegister == true && (inputName.value == usersAleksengTask[i].firstName || `${inputName.value} == ${usersAleksengTask[i].firstName} ${usersAleksengTask[i].lastNameName}` || `${inputName.value} == ${usersAleksengTask[i].firstName}${usersAleksengTask[i].lastNameName}`) && inputPassword.value == usersAleksengTask[i].cardNumber) {
 
         template.innerHTML = `
         <form class="findCard">
@@ -814,11 +814,11 @@ function showCardInfo() {
         <div class="findCard__container">
           <div class="input__container">
             <span>Brooklyn Public Library</span>
-            <input class="findCard__input" type="text" value="${users[i].firstName} ${users[i].lastName}" readonly>
+            <input class="findCard__input" type="text" value="${usersAleksengTask[i].firstName} ${usersAleksengTask[i].lastName}" readonly>
             <div class="prompt">
               В эти поля, Вы можете ввести только буквы, цифры и дефис.
             </div>
-            <input class="findCard__input" type="text" value="${users[i].cardNumber}" readonly>
+            <input class="findCard__input" type="text" value="${usersAleksengTask[i].cardNumber}" readonly>
           </div>
           <div class="card__info">
             <div class="card__info__item">
@@ -826,7 +826,7 @@ function showCardInfo() {
               <span class="card__info__item-icon">
                 <img src="./assets/svg/union.svg" alt="union">
               </span>
-              <span class="card__info__item-value">${users[i].countVisits}</span>
+              <span class="card__info__item-value">${usersAleksengTask[i].countVisits}</span>
             </div>
             <div class="card__info__item">
               <span class="card__info__item-text">Bonuses</span>
@@ -840,14 +840,14 @@ function showCardInfo() {
               <span class="card__info__item-icon">
                 <img src="./assets/svg/book.svg" alt="union">
               </span>
-              <span class="card__info__item-value">${users[i].ownBooks}</span>
+              <span class="card__info__item-value">${usersAleksengTask[i].ownBooks}</span>
             </div>
           </div>
         </div>
       </form>
       `
         findCard.replaceWith(template.content)
-      } if (users[i].isAuth != true && users[i].isRegister == true && (inputName.value == users[i].firstName || `${inputName.value} == ${users[i].firstName} ${users[i].lastNameName}`) && inputPassword.value == users[i].cardNumber) {
+      } if (usersAleksengTask[i].isAuth != true && usersAleksengTask[i].isRegister == true && (inputName.value == usersAleksengTask[i].firstName || `${inputName.value} == ${usersAleksengTask[i].firstName} ${usersAleksengTask[i].lastNameName}`) && inputPassword.value == usersAleksengTask[i].cardNumber) {
         setTimeout(() => {
           template.innerHTML = `
           <form class="findCard">
@@ -891,16 +891,16 @@ function openProfileModal() {
 openProfileModal()
 
 function getUserInfo() {
-  if (users.length > 0) {
-    for (let i = 0; i < users.length; i++) {
-      if (modalProfile && users[i].isAuth) {
-        let firstName = users[i].firstName;
-        let lastName = users[i].lastName;
+  if (usersAleksengTask.length > 0) {
+    for (let i = 0; i < usersAleksengTask.length; i++) {
+      if (modalProfile && usersAleksengTask[i].isAuth) {
+        let firstName = usersAleksengTask[i].firstName;
+        let lastName = usersAleksengTask[i].lastName;
         modalProfileShortName.textContent = `${firstName.slice(0, 1)}${lastName.slice(0, 1)}`
-        modalProfileFirstName.textContent = `${users[i].firstName}`;
-        modalProfileLastName.textContent = `${users[i].lastName}`;
-        modalProfileBooksNumber.value = `${users[i].cardNumber}`;
-        modalProfileVisits.textContent = `${users[i].countVisits}`;
+        modalProfileFirstName.textContent = `${usersAleksengTask[i].firstName}`;
+        modalProfileLastName.textContent = `${usersAleksengTask[i].lastName}`;
+        modalProfileBooksNumber.value = `${usersAleksengTask[i].cardNumber}`;
+        modalProfileVisits.textContent = `${usersAleksengTask[i].countVisits}`;
       }
     }
   }
@@ -912,17 +912,17 @@ function changelibraryCardSection() {
   const visitProfile = document.querySelector('.getCard')
   const templateFind = document.createElement('template');
   const templateVisit = document.createElement('template');
-  if (users.length > 0) {
-    for (let i = 0; i < users.length; i++) {
-      if (users[i].isAuth == true && users[i].isRegister == true) {
+  if (usersAleksengTask.length > 0) {
+    for (let i = 0; i < usersAleksengTask.length; i++) {
+      if (usersAleksengTask[i].isAuth == true && usersAleksengTask[i].isRegister == true) {
         templateFind.innerHTML = `
         <form class="findCard">
         <h3>Your Library card</h3>
         <div class="findCard__container">
           <div class="input__container">
             <span>Brooklyn Public Library</span>
-            <input class="findCard__input" type="text" value="${users[i].firstName} ${users[i].lastName}" readonly>
-            <input class="findCard__input" type="text" value="${users[i].cardNumber}" readonly>
+            <input class="findCard__input" type="text" value="${usersAleksengTask[i].firstName} ${usersAleksengTask[i].lastName}" readonly>
+            <input class="findCard__input" type="text" value="${usersAleksengTask[i].cardNumber}" readonly>
           </div>
           <div class="card__info">
             <div class="card__info__item">
@@ -930,7 +930,7 @@ function changelibraryCardSection() {
               <span class="card__info__item-icon">
                 <img src="./assets/svg/union.svg" alt="union">
               </span>
-              <span class="card__info__item-value">${users[i].countVisits}</span>
+              <span class="card__info__item-value">${usersAleksengTask[i].countVisits}</span>
             </div>
             <div class="card__info__item">
               <span class="card__info__item-text">Bonuses</span>
@@ -944,7 +944,7 @@ function changelibraryCardSection() {
               <span class="card__info__item-icon">
                 <img src="./assets/svg/book.svg" alt="union">
               </span>
-              <span class="card__info__item-value count-books">${users[i].ownBooks}</span>
+              <span class="card__info__item-value count-books">${usersAleksengTask[i].ownBooks}</span>
             </div>
           </div>
         </div>
@@ -973,13 +973,13 @@ let ownBooksArr = [];
 let haveBooks = [];
 let titleBooks = [];
 
-if (users.length > 0) {
-  for (let i = 0; i < users.length; i++) {
-    if (users[i].books && users[i].isAuth) {
-      ownBooksArr = users[i].books;
+if (usersAleksengTask.length > 0) {
+  for (let i = 0; i < usersAleksengTask.length; i++) {
+    if (usersAleksengTask[i].books && usersAleksengTask[i].isAuth) {
+      ownBooksArr = usersAleksengTask[i].books;
     }
-    if (users[i].titleBooks && users[i].isAuth) {
-      titleBooks = users[i].titleBooks;
+    if (usersAleksengTask[i].titleBooks && usersAleksengTask[i].isAuth) {
+      titleBooks = usersAleksengTask[i].titleBooks;
     }
   }
 }
@@ -992,24 +992,24 @@ function buyBooks() {
   booksBtn.forEach((el, ind, arr) => {
     el.addEventListener('click', (e) => {
       e.preventDefault()
-      for (let i = 0; i <= users.length; i++) {
-        if ((users.findIndex(el => el.isAuth) === -1) || users.length == 0) {
+      for (let i = 0; i <= usersAleksengTask.length; i++) {
+        if ((usersAleksengTask.findIndex(el => el.isAuth) === -1) || usersAleksengTask.length == 0) {
           modal.classList.add('_active');
           modalLogin.classList.add('_active');
           document.body.style.overflow = 'hidden';
-        } else if (users[i]?.isAuth == true && users[i]?.isSubscription != true) {
+        } else if (usersAleksengTask[i]?.isAuth == true && usersAleksengTask[i]?.isSubscription != true) {
           modal.classList.add('_active');
           modalBuyCard.classList.add('_active');
           document.body.style.overflow = 'hidden';
-        } else if (users[i]?.isSubscription == true && users[i]?.isAuth == true) {
+        } else if (usersAleksengTask[i]?.isSubscription == true && usersAleksengTask[i]?.isAuth == true) {
           el.classList.remove('books__button');
           el.classList.add('_disabled');
           el.disabled = true;
           el.textContent = 'Own';
-          users[i].ownBooks++;
-          users[i].books.push(ind);
-          users[i].titleBooks.push([data[ind].name, data[ind].author]);
-          localStorage.setItem('users', JSON.stringify(users));
+          usersAleksengTask[i].ownBooks++;
+          usersAleksengTask[i].books.push(ind);
+          usersAleksengTask[i].titleBooks.push([data[ind].name, data[ind].author]);
+          localStorage.setItem('usersAleksengTask', JSON.stringify(usersAleksengTask));
           if (booksList.hasChildNodes) {
             booksList.replaceChildren();
           }
@@ -1221,10 +1221,10 @@ function buyCard() {
 
   btn.addEventListener('click', (e) => {
     e.preventDefault()
-    for (let i = 0; i < users.length; i++) {
+    for (let i = 0; i < usersAleksengTask.length; i++) {
       if (cardNumberRegExp.test(cardNumber.value) && expCodeRegExp.test(expCodeMonth.value) && expCodeRegExp.test(expCodeYear.value) && cvcRegExp.test(cvc.value) && cardHolderNameRegExp.test(cardHolderName.value) && postalCodeRegExp.test(postalCode.value) && cityRegExp.test(city.value)) {
-        users[i].isSubscription = true;
-        localStorage.setItem('users', JSON.stringify(users));
+        usersAleksengTask[i].isSubscription = true;
+        localStorage.setItem('usersAleksengTask', JSON.stringify(usersAleksengTask));
         location.reload();
       } else if ((!cardNumberRegExp.test(cardNumber.value)) || (!expCodeRegExp.test(expCodeMonth.value)) || (!expCodeRegExp.test(expCodeYear.value)) || (!cvcRegExp.test(cvc.value)) || (!cardHolderNameRegExp.test(cardHolderName.value)) || (!postalCodeRegExp.test(postalCode.value)) || (!cityRegExp.test(city.value))) {
         cardNumberError.textContent = 'The length of the card number must be at least 16 digits';
@@ -1298,10 +1298,10 @@ function buyCard() {
 }
 buyCard()
 
-if (users.length > 0) {
-  for (let i = 0; i < users.length; i++) {
-    if (users[i].books && users[i].isAuth) {
-      haveBooks = users[i].books;
+if (usersAleksengTask.length > 0) {
+  for (let i = 0; i < usersAleksengTask.length; i++) {
+    if (usersAleksengTask[i].books && usersAleksengTask[i].isAuth) {
+      haveBooks = usersAleksengTask[i].books;
     }
   }
 }
@@ -1309,9 +1309,9 @@ if (users.length > 0) {
 function showOwnBooks() {
   const booksBtn = document.querySelectorAll('.books__button')
 
-  if (users.length > 0) {
-    for (let i = 0; i < users.length; i++) {
-      if (users[i].isSubscription == true && users[i].isAuth) {
+  if (usersAleksengTask.length > 0) {
+    for (let i = 0; i < usersAleksengTask.length; i++) {
+      if (usersAleksengTask[i].isSubscription == true && usersAleksengTask[i].isAuth) {
         booksBtn.forEach((el, ind) => {
           for (let i = 0; i <= haveBooks.length; i++) {
             if (haveBooks[i] == ind) {
@@ -1329,10 +1329,10 @@ function showOwnBooks() {
 showOwnBooks()
 
 function renderBooks() {
-  if (users.length > 0) {
-    for (let i = 0; i < users.length; i++) {
-      if (users[i].isSubscription == true && users[i].isAuth) {
-        let booksName = users[i].titleBooks;
+  if (usersAleksengTask.length > 0) {
+    for (let i = 0; i < usersAleksengTask.length; i++) {
+      if (usersAleksengTask[i].isSubscription == true && usersAleksengTask[i].isAuth) {
+        let booksName = usersAleksengTask[i].titleBooks;
         booksName.forEach((el, ind) => {
           let span = document.createElement('span');
           span.textContent = `${el[0]}, ${el[1]}`;
@@ -1347,11 +1347,11 @@ renderBooks()
 function updateCountBooksInProfileAndCard() {
   let countBooks = document.querySelector('._card-info-value__books')
   let countBooksLibraryCard = document.querySelector('.count-books')
-  if (users.length > 0) {
-    for (let i = 0; i < users.length; i++) {
-      if (users[i].isAuth) {
-        countBooks.textContent = users[i].ownBooks;
-        countBooksLibraryCard.textContent = users[i].ownBooks;
+  if (usersAleksengTask.length > 0) {
+    for (let i = 0; i < usersAleksengTask.length; i++) {
+      if (usersAleksengTask[i].isAuth) {
+        countBooks.textContent = usersAleksengTask[i].ownBooks;
+        countBooksLibraryCard.textContent = usersAleksengTask[i].ownBooks;
       }
     }
   }
