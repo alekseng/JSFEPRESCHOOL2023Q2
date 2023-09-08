@@ -231,7 +231,7 @@
   row-gap: 40px;
   opacity: 0;
   visibility: hidden;
-  transition: visibility 0.7s cubic-bezier(0.43, 0.24, 0.84, 1.06), opacity 0.7s cubic-bezier(0.43, 0.24, 0.84, 1.06);
+  transition: visibility 0.2s cubic-bezier(0.43, 0.24, 0.84, 1.06), opacity 0.2s cubic-bezier(0.43, 0.24, 0.84, 1.06);
 }
 
 .books__container {
@@ -271,7 +271,7 @@
   opacity: 1;
   visibility: visible;
   transition: opacity;
-  transition: 0.7s opacity 0.65s cubic-bezier(0.43, 0.24, 0.84, 1.06), 0.7s visibility 0.65s cubic-bezier(0.43, 0.24, 0.84, 1.06);
+  transition: 0.25s opacity 0.25s cubic-bezier(0.43, 0.24, 0.84, 1.06), 0.25s visibility 0.25s cubic-bezier(0.43, 0.24, 0.84, 1.06);
 }
 
 .books__item {
