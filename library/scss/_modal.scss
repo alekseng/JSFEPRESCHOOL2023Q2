@@ -29,14 +29,14 @@
   background: #ffffff;
   opacity: 0;
   visibility: hidden;
-  transform: rotate3d(0, 1, 0, 90deg);
+  transform: translateY(-5px);
   transition: transform 0.5s ease-out, opacity 0.5s ease-out, visibility 0.5s ease-out;
 
   &._active {
     opacity: 1;
     visibility: visible;
     z-index: 2;
-    transform: rotate3d(0, 0, 0, 0deg);
+    transform: translateY(0px);
     transition: transform 0.5s ease-out, opacity 0.5s ease-out, visibility 0.5s ease-out;
   }
 }
@@ -241,14 +241,14 @@
   background: #ffffff;
   opacity: 0;
   visibility: hidden;
-  transform: rotate3d(0, 1, 0, 90deg);
+  transform: translateY(-5px);
   transition: transform 0.5s ease-out, opacity 0.5s ease-out, visibility 0.5s ease-out;
 
   &._active {
     opacity: 1;
     visibility: visible;
     z-index: 2;
-    transform: rotate3d(0, 0, 0, 0deg);
+    transform: translateY(1px);
     transition: transform 0.5s ease-out, opacity 0.5s ease-out, visibility 0.5s ease-out;
   }
 }
@@ -451,14 +451,14 @@
   background: #ffffff;
   opacity: 0;
   visibility: hidden;
-  transform: rotate3d(0, 1, 0, 90deg);
+  transform: translateY(-5px);
   transition: transform 0.5s ease-out, opacity 0.5s ease-out, visibility 0.5s ease-out;
 
   &._active {
     opacity: 1;
     visibility: visible;
     z-index: 2;
-    transform: rotate3d(0, 0, 0, 0deg);
+    transform: translateY(1px);
     transition: transform 0.5s ease-out, opacity 0.5s ease-out, visibility 0.5s ease-out;
   }
 
@@ -1034,14 +1034,14 @@
   flex-direction: column;
   opacity: 0;
   visibility: hidden;
-  transform: rotate3d(0, 1, 0, 90deg);
+  transform: translateY(-5px);
   transition: transform 0.5s ease-out, opacity 0.5s ease-out, visibility 0.5s ease-out;
 
   &._active {
     opacity: 1;
     visibility: visible;
     z-index: 2;
-    transform: rotate3d(0, 0, 0, 0deg);
+    transform: translateY(1px);
     transition: transform 0.5s ease-out, opacity 0.5s ease-out, visibility 0.5s ease-out;
   }
 
