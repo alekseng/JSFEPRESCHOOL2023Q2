@@ -28,7 +28,8 @@
         </ul>
       </nav>
       <div class="profile">
-        <svg class="profile__ic" width="28" height="28" viewBox="0 0 28 28" fill="none"
+        <div class="icon">
+          <svg class="profile__ic" width="28" height="28" viewBox="0 0 28 28" fill="none"
           xmlns="http://www.w3.org/2000/svg">
           <g id="icon_profile">
             <path class="profile__icon" fill-rule="evenodd" clip-rule="evenodd"
@@ -36,21 +37,32 @@
               fill="white" />
           </g>
         </svg>
+        </div>
+        <div class="login-pop-up__no-auth">
+          <span class="login-pop-up__no-auth__profile">Profile</span>
+          <button class="login-pop-up__no-auth__login">Log In</button>
+          <button class="login-pop-up__no-auth__register">Register</button>
+        </div>
+        <div class="login-pop-up__with-auth">
+          <span class="login-pop-up__with-auth__profile">Profile</span>
+          <button class="login-pop-up__with-auth__profile-info">My profile</button>
+          <button class="login-pop-up__with-auth__register">Log Out</button>
+        </div>
       </div>
     </div>
   </header>
   <main class="main">
     <section class="welcome" id="welcome">
       <div class="welcome__container">
-        <div class="welcome__overlay"></div>
-        <div class="welcome__heading__container">
-          <h2 class="welcome__heading">
-            <span class="first-str">Welcome</span>
-            <span>to the Brooklyn</span>
-            <span class="third-str">Library</span>
-          </h2>
+        <div class="welcome__content">
+          <div class="welcome__heading__container">
+            <h2 class="welcome__heading">
+              <span class="first-str">Welcome</span>
+              <span>to the Brooklyn</span>
+              <span class="third-str">Library</span>
+            </h2>
+          </div>
         </div>
-        <div></div>
       </div>
     </section>
     <section class="about" id="about">
@@ -63,33 +75,19 @@
           <h3 class="about__subheading">The Brooklyn Library is a free workspace, a large number of books and a cozy
             coffee shop inside</h3>
         </div>
-        <div class="left-arrow">
-          <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <g id="Carret_Left">
-              <path id="Vector" d="M15 7.5L9 12.5L15 17.5" stroke="black" stroke-linecap="round"
-                stroke-linejoin="round" />
-            </g>
-          </svg>
-        </div>
+        <button class="left-arrow" disabled></button>
         <div class="slider__container" id="slider__container">
           <div class="slides__container">
-            <div class="slides__item"><img class="slides__img" src="./assets/img/img1.jpg" alt="img1"></div>
-            <div class="slides__item"><img class="slides__img" src="./assets/img/img2.jpg" alt="img2"></div>
-            <div class="slides__item"><img class="slides__img" src="./assets/img/img3.jpg" alt="img3"></div>
-            <div class="slides__item"><img class="slides__img" src="./assets/img/img4.jpg" alt="img4"></div>
-            <div class="slides__item"><img class="slides__img" src="./assets/img/img5.jpg" alt="img5"></div>
+            <div data-index="1" class="slides__item"><img class="slides__img" src="./assets/img/img1.jpg" alt="img1"></div>
+            <div data-index="2" class="slides__item"><img class="slides__img" src="./assets/img/img2.jpg" alt="img2"></div>
+            <div data-index="3" class="slides__item"><img class="slides__img" src="./assets/img/img3.jpg" alt="img3"></div>
+            <div data-index="4" class="slides__item"><img class="slides__img" src="./assets/img/img4.jpg" alt="img4"></div>
+            <div data-index="5" class="slides__item"><img class="slides__img" src="./assets/img/img5.jpg" alt="img5"></div>
           </div>
         </div>
-        <div class="right-arrow">
-          <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <g id="Carret_Right">
-              <path id="Vector" d="M9 17.5L15 12.5L9 7.5" stroke="black" stroke-linecap="round"
-                stroke-linejoin="round" />
-            </g>
-          </svg>
-        </div>
+        <button class="right-arrow"></button>
         <div class="slider__dots">
-          <span data-index="1" class="slider__dot _active"></span>
+          <span data-index="1" class="slider__dot _active _non-active"></span>
           <span data-index="2" class="slider__dot"></span>
           <span data-index="3" class="slider__dot"></span>
           <span data-index="4" class="slider__dot"></span>
@@ -103,7 +101,7 @@
           <h2 class="favorites__heading">Favorites</h2>
           <span class="favorites__span"></span>
         </div>
-        <form class="seasons__container">
+        <div class="seasons__container">
           <p class="season__heading">Pick favorites of season</p>
           <div class="choose__season">
             <div class="choose__item _winter">
@@ -123,9 +121,9 @@
               <label class="choose__label" for="autumn">Autumn</label>
             </div>
           </div>
-        </form>
+        </div>
         <div class="books__season__container">
-          <div class="books__container _books-show">
+          <div data-filter="winter" class="books__container _books-show">
             <div class="books__item">
               <div class="books__item__content">
                 <div class="books__heading__container">
@@ -205,14 +203,14 @@
                     have evolved and thrived as the modern world has changed around them.
                   </div>
                 </div>
-                <button class="_disabled" type="submit" disabled>Own</button>
+                <button class="books__button" type="submit" >Buy</button>
               </div>
               <div class="books__cover">
                 <img src="./assets/img/winter/winter4.jpg" alt="book-cover">
               </div>
             </div>
           </div>
-          <div class="books__container">
+          <div data-filter="spring" class="books__container">
             <div class="books__item">
               <div class="books__item__content">
                 <div class="books__heading__container">
@@ -288,14 +286,14 @@
                     Isabel Allende and Julia Alvarez.
                   </div>
                 </div>
-                <button class="_disabled" type="submit" disabled>Own</button>
+                <button class="books__button" type="submit">Buy</button>
               </div>
               <div class="books__cover">
                 <img src="./assets/img/spring/spring4.jpg" alt="book-cover">
               </div>
             </div>
           </div>
-          <div class="books__container">
+          <div data-filter="summer" class="books__container">
             <div class="books__item">
               <div class="books__item__content">
                 <div class="books__heading__container">
@@ -380,7 +378,7 @@
               </div>
             </div>
           </div>
-          <div class="books__container">
+          <div data-filter="autumn" class="books__container">
             <div class="books__item">
               <div class="books__item__content">
                 <div class="books__heading__container">
@@ -574,7 +572,7 @@
             </div>
           </div>
           <div class="contacts__map">
-            <img src="./assets/img/map.png" alt="map">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1069.5021789554285!2d-73.9921311438605!3d40.69580002915306!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25a49b649b8c3%3A0x6342a2291cea2e!2zMjg2IENhZG1hbiBQbGF6YSBXLCBCcm9va2x5biwgTlkgMTEyMDEsINCh0KjQkA!5e0!3m2!1sru!2str!4v1689102186763!5m2!1sru!2str" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
           </div>
         </div>
       </div>
@@ -591,13 +589,13 @@
             <div class="findCard__container">
               <div class="input__container">
                 <span>Brooklyn Public Library</span>
-                <input class="findCard__input" type="text" placeholder="Reader's name" required>
+                <input class="findCard__input findCard__input-name" type="text" placeholder="Reader's name" required>
                 <div class="prompt">
                   В эти поля, Вы можете ввести только буквы, цифры и дефис.
                 </div>
-                <input class="findCard__input" type="text" placeholder="Card number" required>
+                <input class="findCard__input findCard__input-password" type="text" placeholder="Card number" required>
               </div>
-              <input class="submit__btn" type="submit" value="Check the card">
+              <button class="submit__btn">Check the card</button>
             </div>
           </form>
           <div class="getCard">
@@ -656,7 +654,165 @@
       </div>
     </div>
   </footer>
-  <script src="./index.js"></script>
+  <div class="modal">
+    <div class="modal__register" id="modal__register">
+      <span class="modal-register__heading">Register</span>
+      <button class="modal__close-btn__register"></button>
+      <form class="modal__register-form">
+        <label class="register__label">
+          <span class="register-form__text-style">First name</span>
+          <input type="text" name="firstName" id="first-name" class="_default-border">
+          <span class="first-name"></span>
+        </label>
+        <label class="register__label">
+          <span class="register-form__text-style">Last name</span>
+          <input type="text" name="lastName" id="last-name" class="_default-border">
+          <span class="last-name"></span>
+        </label>
+        <label class="register__label">
+          <span class="register-form__text-style">E-mail</span>
+          <input type="email" name="email" id="email-register" class="_default-border">
+          <span class="email"></span>
+        </label>
+        <label class="register__label">
+          <span class="register-form__text-style">Password</span>
+          <input type="password" name="password" id="password-register" class="_default-border">
+          <span class="password-register"></span>
+        </label>
+        <button class="form__btn">Sign up</button>
+      </form>
+      <div class="account">
+        <span>Already have an account?</span>
+        <button class="button__login">Login</button>
+      </div>
+    </div>
+    <div class="modal__login">
+      <span class="modal-login__heading">Login</span>
+      <button class="modal__close-btn__login"></button>
+      <form class="modal__login-form">
+        <label class="login__label">
+          <span class="login-form__text-style">E-mail or readers card</span>
+          <input type="text" name="email" id="email-login" class="_default-border">
+          <span class="email-login"></span>
+        </label>
+        <label class="login__label">
+          <span class="login-form__text-style">Password</span>
+          <input type="password" name="password" id="password-login" class="_default-border">
+          <span class="password-login"></span>
+        </label>
+        <button class="form__btn">Sign in</button>
+      </form>
+      <div class="account">
+        <span>Don’t have an account?</span>
+        <button class="button__register">Register</button>
+      </div>
+    </div>
+    <div class="modal__profile">
+      <div class="modal__profile__left-column">
+        <div class="modal__profile__left-column__icon">
+          <span class="modal__profile__left-column__icon__name">JD</span>
+        </div>
+        <div class="modal__profile__left-column__name">
+          <span class="modal__profile__left-column__name__first-name">
+            John
+          </span>
+          &nbsp
+          <span class="modal__profile__left-column__name__last-name">
+            Doe
+          </span>
+        </div>
+      </div>
+      <div class="modal__profile__right-column">
+        <button class="modal__profile__right-column__close-button"></button>
+        <span class="modal__profile__right-column__heading">My profile</span>
+        <div class="card__info _prifile-card-info-container">
+          <div class="card__info__item _prifile-card-info">
+            <span class="card__info__item-text _prifile-card-info-text">Visits</span>
+            <span class="card__info__item-icon _prifile-card-info-icon">
+              <img src="./assets/svg/union.svg" alt="union">
+            </span>
+            <span class="card__info__item-value _prifile-card-info-value _card-info-value__visits">23</span>
+          </div>
+          <div class="card__info__item _prifile-card-info">
+            <span class="card__info__item-text _prifile-card-info-text">Bonuses</span>
+            <span class="card__info__item-icon _prifile-card-info-icon">
+              <img src="./assets/svg/star.svg" alt="union">
+            </span>
+            <span class="card__info__item-value _prifile-card-info-value _card-info-value__bonuses">1240</span>
+          </div>
+          <div class="card__info__item _prifile-card-info">
+            <span class="card__info__item-text _prifile-card-info-text">Books</span>
+            <span class="card__info__item-icon _prifile-card-info-icon">
+              <img src="./assets/svg/book.svg" alt="union">
+            </span>
+            <span class="card__info__item-value _prifile-card-info-value _card-info-value__books">0</span>
+          </div>
+        </div>
+        <div class="modal__profile__right-column__rented-books-container">
+          <span class="modal__profile__right-column__rented-books-container__heading">Rented books</span>
+          <div class="overflow">
+            <div class="modal__profile__right-column__rented-books-container__books-container">
+            </div>
+          </div>
+        </div>
+        <div class="modal__profile__right-column__card-info">
+          <span class="modal__profile__right-column__card-info__text">Card number</span>
+          <input class="modal__profile__right-column__card-info__number" readonly></input>
+          <button class="modal__profile__right-column__card-info__button"></button>
+        </div>
+      </div>
+    </div>
+    <div class="modal__buy-card">
+      <div class="modal__buy-card__heading">
+        <span>Buy a library card</span>
+        <button class="modal__close-btn__buy"></button>
+      </div>
+      <div class="modal__buy-card__body">
+        <form class="modal__buy-card__body__form">
+          <label class="buy__label">
+            <span class="register-form__text-style">Bank card number</span>
+            <input type="text" name="bankCardNumber" id="bank-card-number" class="_default-border" maxlength="16">
+            <span class="bank-card-number"></span>
+          </label>
+          <label class="buy__label">
+            <span class="register-form__text-style">Expiration code</span>
+            <div class="expiration-code__container">
+              <input type="text" name="expirationCode" id="expiration-code__month" class="_default-border" maxlength="2">
+              <span class="expiration-code__month"></span>
+              <input type="text" name="expirationCode" id="expiration-code__year" class="_default-border" maxlength="2">
+              <span class="expiration-code__year"></span>
+            </div>
+          </label>
+          <label class="buy__label">
+            <span class="register-form__text-style">CVC</span>
+            <input type="text" name="cvc" id="cvc" class="_default-border" maxlength="3">
+            <span class="cvc"></span>
+          </label>
+          <label class="buy__label">
+            <span class="register-form__text-style">Cardholder name</span>
+            <input type="text" name="cardholderName" id="cardholder-name" class="_default-border">
+            <span class="cardholder-name"></span>
+          </label>
+          <label class="buy__label">
+            <span class="register-form__text-style">Postal code</span>
+            <input type="text" name="postalCode" id="postal-code" class="_default-border">
+            <span class="postal-code"></span>
+          </label>
+          <label class="buy__label">
+            <span class="register-form__text-style">City / Town</span>
+            <input type="text" name="cityTown" id="city-town" class="_default-border">
+            <span class="city-town"></span>
+          </label>
+          <div class="buy-btn__container">
+            <button class="form__btn buy-btn _disabled" disabled="true">Buy</button>
+            <span class="cost">$ 25.00</span>
+          </div>
+        </form>
+        <span class="modal__buy-card__body__title">If you are live, work, attend school, or pay property taxes in New York State, you can get a $25 digital library card right now using this online form. Visitors to New York State can also use this form to apply for a temporary card.</span>
+      </div>
+    </div>
+  </div>
+  <script type="module" src="./index.js"></script>
 </body>
 
 </html>
