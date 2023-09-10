@@ -489,7 +489,7 @@
         font-style: normal;
         font-weight: 400;
         line-height: 20px;
-        text-transform: capitalize;
+        text-transform: uppercase;
       }
     }
 
@@ -1250,4 +1250,8 @@
   letter-spacing: 2px;
   text-transform: uppercase;
   margin-left: 25px;
+}
+
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px #ffffff inset;
 }
