@@ -342,12 +342,14 @@ function profileModal() {
       burger.classList.remove('_active');
       menuB.classList.remove('_active-menu');
       span.classList.remove('_active');
+      document.body.classList.remove('_block')
       e.stopPropagation();
     } else if (usersAleksengTask.length == 0 || usersAleksengTask.find((user) => user.isAuth == !true)) {
       loginNoAuth.classList.toggle('_active');
       burger.classList.remove('_active');
       menuB.classList.remove('_active-menu');
       span.classList.remove('_active');
+      document.body.classList.remove('_block')
       e.stopPropagation();
     }
   })
