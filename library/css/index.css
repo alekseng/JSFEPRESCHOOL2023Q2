@@ -288,7 +288,8 @@ body._block::before {
   font-style: normal;
   font-weight: 400;
   line-height: 20px;
-  letter-spacing: -2px;
+  overflow: hidden;
+  text-transform: uppercase;
 }
 
 @media (max-width: 1024px) {
@@ -3240,7 +3241,7 @@ input[type=text]:last-child {
   font-style: normal;
   font-weight: 400;
   line-height: 20px;
-  text-transform: capitalize;
+  text-transform: uppercase;
 }
 .modal__profile__left-column__name {
   display: flex;
@@ -3939,4 +3940,8 @@ input[type=text]:last-child {
   letter-spacing: 2px;
   text-transform: uppercase;
   margin-left: 25px;
+}
+
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px #ffffff inset;
 }/*# sourceMappingURL=index.css.map */

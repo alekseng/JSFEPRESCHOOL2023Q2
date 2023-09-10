@@ -305,7 +305,7 @@ const nameRegExp = /^([-A-Za-z0-9]{1,})$/;
 const emailRegExp = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
 const passwordRegExp = /^((?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*])[A-Za-z0-9!@#$%^&*]{8,16})$/;
 const nameOrCardRegExp = /^([-A-Za-z0-9_\.\@]{1,})$/;
-const cardNumberRegExp = /^((?=.*[0-9])[0-9]{16,19})$/;
+const cardNumberRegExp = /^((?=.*[0-9])[0-9 ]{19})$/;
 const expCodeRegExp = /^((?=.*[0-9])[0-9]{2,2})$/;
 const cvcRegExp = /^((?=.*[0-9])[0-9]{3,3})$/;
 const cardHolderNameRegExp = /^([A-Za-z]{1,})$/;
@@ -773,7 +773,7 @@ function changeProfileIcon() {
         let profileName = document.createElement('div');
         let firstName = usersAleksengTask[i].firstName;
         let lastName = usersAleksengTask[i].lastName;
-        profileName.textContent = `${firstName.slice(0, 1)} ${lastName.slice(0, 1)}`;
+        profileName.textContent = `${firstName.slice(0, 1)}${lastName.slice(0, 1)}`;
         profileIcon.setAttribute('title', `${usersAleksengTask[i].firstName} ${usersAleksengTask[i].lastName}`);
         profile__ic.style.display = 'none';
         profileName.classList.add('profileName');
@@ -792,6 +792,7 @@ function changeProfileCard() {
       if (usersAleksengTask[i].isAuth == true && usersAleksengTask[i].cardNumber) {
         profileText.textContent = usersAleksengTask[i].cardNumber;
         profileText.style.fontSize = `13px`;
+        profileText.style.pointerEvents = "none";
       }
     }
   }
@@ -812,7 +813,7 @@ function showCardInfo() {
 
         template.innerHTML = `
         <form class="findCard">
-        <h3>Find your Library card</h3>
+        <h3>Your Library card</h3>
         <div class="findCard__container">
           <div class="input__container">
             <span>Brooklyn Public Library</span>
@@ -1068,8 +1069,7 @@ function buyCard() {
   })
 
   cardNumber.addEventListener('input', () => {
-    cardNumber.value = cardNumber.value.replace(/[-A-Za-zА-Яа-яЁ-ё,.?!\'/:;()&@""_\\|~<>$=+*^%#\[\]{}\`№]/g, '');
-
+    cardNumber.value = cardNumber.value.replace(/\D/g, '').replace(/(\d{4}(?=(?:\d)+(?!\d)))/g, "$1" + ' ');
     if (!cardNumberRegExp.test(cardNumber.value)) {
       cardNumberError.textContent = 'This field cannot be blank';
       cardNumberError.classList.remove('_success');
