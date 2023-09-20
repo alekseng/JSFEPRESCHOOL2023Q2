@@ -201,6 +201,7 @@
   border-radius: 2px;
 }
 .cover-c__fg {
+  position: relative;
   width: 274px;
   height: 120px;
   background: rgb(255, 255, 255);
@@ -451,6 +452,15 @@
   bottom: 15px;
   right: 58px;
   border-radius: 2px;
+}
+
+.play-list {
+  position: absolute;
+  width: 274px;
+  height: 120px;
+  top: -120px;
+  background: #3e41a3;
+  z-index: 2;
 }
 
 .buttons {

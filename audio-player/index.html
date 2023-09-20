@@ -19,11 +19,12 @@
           <div class="cover-c__b-r"></div>
           <div class="cover-c__b-c"></div>
           <div class="cover-c__fg">
+            <ul class="play-list"></ul>
             <div class="cover-c__fg__top">
               <div class="cover-c__fg__top__cover"></div>
               <div class="cover-c__fg__top__artist">
-                <span class="cover-c__fg__top__artist__title">title</span>
-                <span class="cover-c__fg__top__artist__author">author</span>
+                <span class="cover-c__fg__top__artist__title title">title</span>
+                <span class="cover-c__fg__top__artist__author author">author</span>
               </div>
             </div>
             <div class="cover-c__fg__bottom">
@@ -68,8 +69,10 @@
       </div>
       <div class="buttons">
         <div class="buttons__container">
-          <button class="button prew-btn"><img src="./assets/svg/rewind.svg" alt=""></button>
-          <button class="button play-pause-btn"><img src="./assets/svg/play.svg" alt=""></button>
+          <button class="button prev-btn"><img src="./assets/svg/rewind.svg" alt=""></button>
+          <button class="button play-pause-btn play">
+            <img src="./assets/svg/play.svg" alt="">
+          </button>
           <button class="button next-btn"><img src="./assets/svg/forward.svg" alt=""></button>
           <img src="./assets/svg/volume_mute.svg" alt="">
           <div class="volume"><input type="range" max="1" min="0" step="0.001" value="0.7" class="volume-range"></div>
@@ -81,6 +84,7 @@
       <div class="right"></div>
     </div>
   </div>
+  <script type="module" src="./js/index.js"></script>
 </body>
 
 </html>
