@@ -60,12 +60,20 @@
         <div class="progress">
           <div class="progress-bar"></div>
         </div>
+        <div class="timer-container">
+          <span class="minutes"></span>:<span class="seconds"></span>
+           /
+          <span class="duration"></span>
+        </div>
       </div>
       <div class="buttons">
-        <div>
-          <button></button>
-          <button></button>
-          <button></button>
+        <div class="buttons__container">
+          <button class="button prew-btn"><img src="./assets/svg/rewind.svg" alt=""></button>
+          <button class="button play-pause-btn"><img src="./assets/svg/play.svg" alt=""></button>
+          <button class="button next-btn"><img src="./assets/svg/forward.svg" alt=""></button>
+          <img src="./assets/svg/volume_mute.svg" alt="">
+          <div class="volume"><input type="range" max="1" min="0" step="0.001" value="0.7" class="volume-range"></div>
+          <img src="./assets/svg/volume_up.svg" alt="">
         </div>
       </div>
       <div class="top"></div>
