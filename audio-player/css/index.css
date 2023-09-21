@@ -261,7 +261,6 @@
   background: black;
   border: 2px solid white;
   border-radius: 50%;
-  animation: circle infinite 5s linear;
 }
 .cover-c__fg__bottom__top__circle-left__1 {
   position: absolute;
@@ -315,6 +314,9 @@
   left: 2px;
   transform: rotate3d(0, 0, 1, 310deg);
 }
+.cover-c__fg__bottom__top__circle-left._play {
+  animation: circle infinite 5s linear;
+}
 .cover-c__fg__bottom__top__circle-right {
   box-sizing: border-box;
   position: relative;
@@ -323,7 +325,6 @@
   background: black;
   border: 2px solid white;
   border-radius: 50%;
-  animation: circle infinite 5s linear;
 }
 .cover-c__fg__bottom__top__circle-right__1 {
   position: absolute;
@@ -376,6 +377,9 @@
   top: 5.5px;
   left: 2px;
   transform: rotate3d(0, 0, 1, 310deg);
+}
+.cover-c__fg__bottom__top__circle-right._play {
+  animation: circle infinite 5s linear;
 }
 .cover-c__fg__bottom__bottom {
   position: relative;
@@ -461,6 +465,7 @@
   top: -120px;
   background: #3e41a3;
   z-index: 2;
+  transition: all 0.5s linear;
 }
 
 .buttons {
