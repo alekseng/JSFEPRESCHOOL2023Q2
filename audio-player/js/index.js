@@ -29,6 +29,8 @@ let duration = document.querySelector('.duration');
 title.textContent = playList[playNum].title;
 
 playBtn.addEventListener('click', playPause);
+playNextBtn.addEventListener('click', playNext);
+playPrevBtn.addEventListener('click', playPrev);
 
 let currentProgress;
 
@@ -69,3 +71,27 @@ function updatePlayBackTime() {
 updatePlayBackTime();
 
 audio.addEventListener('timeupdate', updatePlayBackTime);
+
+function playNext() {
+  if (playNum < indexSong) {
+    playNum++;
+  } else {
+    playNum = 0;
+  }
+  audio.src = playList[playNum].src;
+  isPlay = false;
+  playPause();
+};
+
+function playPrev() {
+  if (playNum > 0) {
+    playNum--;
+  } else {
+    playNum = indexSong;
+  }
+  audio.src = playList[playNum].src;
+  isPlay = false;
+  playPause();
+};
+
+audio.addEventListener('ended', playNext);
