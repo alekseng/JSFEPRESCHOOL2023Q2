@@ -25,6 +25,7 @@ let indexSong = playList.length - 1;
 let playNum = 0;
 let title = document.querySelector('.title');
 let duration = document.querySelector('.duration');
+let volume = document.querySelector('.volume-range');
 
 title.textContent = playList[playNum].title;
 
@@ -95,3 +96,17 @@ function playPrev() {
 };
 
 audio.addEventListener('ended', playNext);
+
+progressContainer.addEventListener('click', function (e) {
+  audio.currentTime = (e.offsetX / this.clientWidth) * audio.duration;
+});
+
+audio.addEventListener('timeupdate', () => {
+  progress.style.width = `${(audio.currentTime / audio.duration) * 100}%`;
+});
+
+function volumeFunc() {
+  audio.volume = volume.value;
+};
+
+setInterval(volumeFunc, 100);
