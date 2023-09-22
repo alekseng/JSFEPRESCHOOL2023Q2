@@ -6,9 +6,11 @@ playList.forEach((elem) => {
   let audio = document.createElement('audio');
   audio.src = elem.src;
   ul.append(audio);
-  let li = document.createElement('li');
-  li.textContent = elem.title;
-  ul.append(li);
+  let template = document.createElement('template');
+  template.innerHTML = `
+  <li><span>${elem.title}</span><span>${elem.duration}</span></li>
+  `;
+  ul.append(template.content);
 });
 
 const audio = document.querySelector('audio');
@@ -19,6 +21,8 @@ const progressContainer = document.querySelector('.progress');
 const progress = document.querySelector('.progress-bar');
 const circleLeft = document.querySelector('.cover-c__fg__bottom__top__circle-left');
 const circleRight = document.querySelector('.cover-c__fg__bottom__top__circle-right');
+const openPlayList = document.querySelector('.play-list-btn');
+const playListList = document.querySelector('.play-list');
 
 let isPlay = false;
 let indexSong = playList.length - 1;
@@ -26,8 +30,12 @@ let playNum = 0;
 let title = document.querySelector('.title');
 let duration = document.querySelector('.duration');
 let volume = document.querySelector('.volume-range');
+let infoCurrent = document.querySelector('.info-current');
+let infoTotal = document.querySelector('.info-total');
 
 title.textContent = playList[playNum].title;
+infoCurrent.textContent = playNum + 1;
+infoTotal.textContent = playList.length;
 
 playBtn.addEventListener('click', playPause);
 playNextBtn.addEventListener('click', playNext);
@@ -46,6 +54,7 @@ function playPause() {
     title.textContent = playList[playNum].title;
     duration.textContent = playList[playNum].duration;
     audio.currentTime = currentProgress;
+    infoCurrent.textContent = playNum + 1;
   } else {
     audio.pause();
     circleLeft.classList.remove('_play');
@@ -110,3 +119,7 @@ function volumeFunc() {
 };
 
 setInterval(volumeFunc, 100);
+
+openPlayList.addEventListener('click', (e) => {
+  playListList.classList.toggle('_open');
+});
