@@ -1,3 +1,4 @@
+@charset "UTF-8";
 * {
   margin: 0;
   padding: 0;
@@ -487,6 +488,22 @@
   display: flex;
   justify-content: space-between;
   padding: 2px 4px;
+  position: relative;
+  padding: 5px;
+  padding-left: 20px;
+  opacity: 0.8;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.play-list li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  top: 2px;
+  font-weight: 900;
+}
+.play-list li._active::before {
+  color: #5dbdb0;
 }
 .play-list li span {
   font-size: 14px;

@@ -535,6 +535,24 @@
     display: flex;
     justify-content: space-between;
     padding: 2px 4px;
+    position: relative;
+    padding: 5px;
+    padding-left: 20px;
+    opacity: .8;
+    cursor: pointer;
+    transition: .3s;
+
+    &::before {
+      content: "\2713";
+      position: absolute;
+      left: 0;
+      top: 2px;
+      font-weight: 900;
+    }
+
+    &._active::before {
+      color: #5dbdb0;
+    }
 
     span {
       font-size: 14px;

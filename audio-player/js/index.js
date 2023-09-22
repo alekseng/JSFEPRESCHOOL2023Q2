@@ -24,17 +24,20 @@ const circleRight = document.querySelector('.cover-c__fg__bottom__top__circle-ri
 const openPlayList = document.querySelector('.play-list-btn');
 const playListList = document.querySelector('.play-list');
 const cover = document.querySelector('.cover-c__fg__top__cover');
+const li = document.querySelectorAll('li');
 
 let isPlay = false;
 let indexSong = playList.length - 1;
 let playNum = 0;
 let title = document.querySelector('.title');
+let author = document.querySelector('.author');
 let duration = document.querySelector('.duration');
 let volume = document.querySelector('.volume-range');
 let infoCurrent = document.querySelector('.info-current');
 let infoTotal = document.querySelector('.info-total');
 
 title.textContent = playList[playNum].title;
+author.textContent = playList[playNum].author;
 infoCurrent.textContent = playNum + 1;
 infoTotal.textContent = playList.length;
 cover.style.backgroundImage =  `url(${playList[playNum].cover})`;
@@ -47,6 +50,9 @@ let currentProgress;
 
 function playPause() {
   currentProgress = audio.currentTime;
+  li.forEach(element => {
+    element.classList.remove('_active');
+  });
   if (!isPlay) {
     audio.src = playList[playNum].src;
     cover.style.backgroundImage =  `url(${playList[playNum].cover})`;
@@ -55,7 +61,9 @@ function playPause() {
     playBtn.classList.add('pause');
     circleLeft.classList.add('_play');
     circleRight.classList.add('_play');
+    li[playNum].classList.add('_active');
     title.textContent = playList[playNum].title;
+    author.textContent = playList[playNum].author;
     duration.textContent = playList[playNum].duration;
     audio.currentTime = currentProgress;
     infoCurrent.textContent = playNum + 1;
@@ -64,6 +72,7 @@ function playPause() {
     playBtn.classList.remove('pause');
     circleLeft.classList.remove('_play');
     circleRight.classList.remove('_play');
+    li[playNum].classList.add('_active');
     isPlay = false;
   }
 };
