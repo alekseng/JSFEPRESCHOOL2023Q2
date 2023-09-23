@@ -41,6 +41,7 @@ author.textContent = playList[playNum].author;
 infoCurrent.textContent = playNum + 1;
 infoTotal.textContent = playList.length;
 cover.style.backgroundImage =  `url(${playList[playNum].cover})`;
+li[playNum].classList.add('_active');
 
 playBtn.addEventListener('click', playPause);
 playNextBtn.addEventListener('click', playNext);
