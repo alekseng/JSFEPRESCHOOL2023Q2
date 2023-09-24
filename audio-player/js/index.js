@@ -17,8 +17,7 @@ const audio = document.querySelector('audio');
 const playBtn = document.querySelector('.play-pause-btn');
 const playNextBtn = document.querySelector('.next-btn');
 const playPrevBtn = document.querySelector('.prev-btn');
-const progressContainer = document.querySelector('.progress');
-const progress = document.querySelector('.progress-bar');
+const progress = document.querySelector('.progress');
 const circleLeft = document.querySelector('.cover-c__fg__bottom__top__circle-left');
 const circleRight = document.querySelector('.cover-c__fg__bottom__top__circle-right');
 const openPlayList = document.querySelector('.play-list-btn');
@@ -79,6 +78,7 @@ function playPause() {
 };
 
 function updatePlayBackTime() {
+  progress.max = parseInt(audio.duration);
   let minutes = document.querySelector('.minutes');
   let seconds = document.querySelector('.seconds');
   let min = parseInt((audio.currentTime) / 60);
@@ -121,13 +121,13 @@ function playPrev() {
 
 audio.addEventListener('ended', playNext);
 
-progressContainer.addEventListener('click', function (e) {
-  audio.currentTime = (e.offsetX / this.clientWidth) * audio.duration;
+audio.addEventListener('timeupdate', () => {
+  progress.value = audio.currentTime;
 });
 
-audio.addEventListener('timeupdate', () => {
-  progress.style.width = `${(audio.currentTime / audio.duration) * 100}%`;
-});
+progress.addEventListener('input', function() {
+  audio.currentTime = progress.value;
+})
 
 function volumeFunc() {
   audio.volume = volume.value;
