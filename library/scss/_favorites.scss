@@ -1,0 +1,512 @@
+.favorites {
+  @extend %container;
+  height: max-content;
+
+  &__container {
+    @extend %content-container;
+    box-sizing: border-box;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: max-content;
+    padding: 20px 20px 40px 20px;
+    gap: 40px;
+  }
+}
+
+.favorites {
+  @include respondMax(330px) {
+    min-height: max-content;
+    gap: 40px;
+
+    &__container {
+      min-height: max-content;
+      gap: 40px;
+    }
+  }
+}
+
+
+.favorites__heading__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: max-content;
+  height: 61px;
+}
+
+.favorites__heading {
+  color: $color-almost_black;
+  @include fontStyle(Forum, 40px, normal, 400, 40px);
+  letter-spacing: 2px;
+  text-transform: capitalize;
+}
+
+.favorites__heading {
+  @include respondMax(499px) {
+    font-size: 30px;
+  }
+}
+
+.favorites__span {
+  align-self: center;
+  background-color: $color-almost_black;
+  height: 1px;
+  width: 50px;
+}
+
+.seasons__container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-self: flex-start;
+  width: 100%;
+  max-width: 700px;
+  height: 88px;
+  background: inherit;
+}
+
+.seasons__container {
+  @include respondMax(1260px) {
+  position: sticky;
+  top: 0;
+  background-color: rgb(255 255 255 / 80%);
+  z-index: 1;
+  }
+}
+
+.seasons__container {
+  @include respondMax(678px) {
+    height: 110px;
+  }
+}
+
+.choose__season {
+  display: grid;
+  grid-template-columns: 104px 99px 116px 111px;
+  grid-gap: 90px;
+  max-width: 700px;
+  height: 24px;
+}
+
+.choose__season {
+  @include respondMax(740px) {
+    grid-gap: 68px;
+  }
+}
+
+.choose__season {
+  @include respondMax(680px) {
+    grid-gap: 48px;
+  }
+}
+
+.choose__season {
+  @include respondMax(678px) {
+    grid-template-areas:
+      "winter spring"
+      "summer autumn"
+    ;
+    grid-row-gap: 5px;
+    height: max-content;
+  }
+}
+
+@media (max-width: 678px) {
+  ._winter {
+    grid-area: winter;
+  }
+
+  ._spring {
+    grid-area: spring;
+  }
+
+  ._summer {
+    grid-area: summer;
+  }
+
+  ._autumn {
+    grid-area: autumn;
+  }
+}
+
+.season__heading {
+  color: $color-black;
+  text-align: center;
+  font-family: Inter;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  align-self: flex-start;
+}
+
+.choose__item {
+  position: relative;
+  display: flex;
+}
+
+.choose__input {
+  position: absolute;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.choose__label {
+  position: relative;
+  top: -5px;
+  left: -5px;
+  padding-left: 37px;
+  color: $color-black;
+  @include fontStyle(Inter, 20px, normal, 400, normal);
+  cursor: pointer;
+  border: 5px solid transparent;
+  background-clip: padding-box;
+
+  &::before {
+    box-sizing: border-box;
+    content: '';
+    position: absolute;
+    display: block;
+    width: 17px;
+    height: 17px;
+    top: calc(50% - 14px / 2);
+    left: 0;
+    border: 2px solid $color-black;
+    border-radius: 50%;
+    z-index: 1;
+    transition: border .1s linear;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    display: block;
+    width: 7px;
+    height: 7px;
+    top: calc(50% - 4px / 2);
+    left: 5px;
+    border-radius: 50%;
+    background-color: $color-black;
+    opacity: 0;
+    z-index: 2;
+    transition: opacity .1s linear;
+  }
+}
+
+.choose__input:checked+.choose__label {
+  font-weight: 700;
+}
+
+.choose__input:checked+.choose__label::after {
+  opacity: 1;
+}
+
+.books__season__container {
+  position: relative;
+  display: flex;
+  width: 100%;
+  max-width: 1400px;
+  height: max-content;
+  flex-wrap: wrap;
+}
+
+.books__season__container {
+  @include respondMax(330px) {
+    min-height: max-content;
+  }
+}
+
+.books__container {
+  box-sizing: border-box;
+  position: absolute;
+  display: flex;
+  width: 100%;
+  max-width: 1400px;
+  height: max-content;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-content: space-between;
+  row-gap: 40px;
+  opacity: 0;
+  visibility: hidden;
+  transition: visibility 0.2s cubic-bezier(0.43, 0.24, 0.84, 1.06), opacity 0.2s cubic-bezier(0.43, 0.24, 0.84, 1.06);
+}
+
+.books__container {
+  @include respondMax(1260px) {
+    flex-direction: column;
+    align-content: normal;
+    padding: 0px 89px 0px 69px;
+  }
+}
+
+.books__container {
+  @include respondMax(740px) {
+    padding: 0px 49px 0px 29px;
+  }
+}
+
+.books__container {
+  @include respondMax(330px) {
+    gap: 30px;
+  }
+}
+
+.books__container {
+  @include respondMax(680px) {
+    padding: 0px 29px 0px 9px;
+  }
+}
+
+.books__item:nth-child(2n) {
+  @include respondMax(1260px) {
+    margin-left: auto;
+  }
+}
+
+._books-show {
+  position: relative;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity;
+  transition: 0.25s opacity 0.25s cubic-bezier(0.43, 0.24, 0.84, 1.06), 0.25s visibility 0.25s cubic-bezier(0.43, 0.24, 0.84, 1.06);
+}
+
+.books__item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 590px;
+  height: 555px;
+
+  &__content {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    width: 550px;
+    height: 555px;
+    padding: 14px 19px;
+    border: 1px solid #000;
+  }
+}
+
+.books__item {
+  @include respondMax(767px) {
+    width: calc(280px + (590 - 310) * ((100vw - 320px) / (767 - 320)));
+    height: max-content;
+
+    &__content {
+      width: calc(260px + (560 - 290) * ((100vw - 320px) / (767 - 320)));
+      height: max-content;
+    }
+  }
+}
+
+.books__item {
+  @include respondMax(639px) {
+    height: max-content;
+
+    &__content {
+      width: 100%;
+      padding: 10px 12px;
+      height: max-content;
+    }
+  }
+}
+
+.books__item {
+  @include respondMax(330px) {
+    width: 260px;
+    height: max-content;
+
+    &__content {
+      width: 260px;
+      padding: 5px 5px;
+      height: max-content;
+    }
+  }
+}
+
+.books__heading__container {
+  position: relative;
+  display: flex;
+  top: 0;
+  left: 0;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 104px;
+  height: 41px;
+  margin-bottom: 19px;
+}
+
+.books__heading__container {
+  @include respondMax(330px) {
+    width: 149px;
+    height: 25px;
+    margin-bottom: 4px;
+  }
+}
+
+.books__heading {
+  color: $color-black;
+  @include fontStyle(Forum, 20px, normal, 400, 40px);
+  letter-spacing: 2px;
+  text-transform: capitalize;
+}
+
+.books__heading {
+  @include respondMax(330px) {
+    @include fontStyle(Forum, 22px, normal, 400, 20px);
+  }
+}
+
+.books__span {
+  align-self: flex-start;
+  background-color: $color-accent;
+  height: 1px;
+  width: 60px;
+}
+
+.books__description__container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.books__name {
+  color: $color-black;
+  @include fontStyle(Inter, 15px, normal, 700, 40px);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.books__name {
+  @include respondMax(330px) {
+    @include fontStyle(Inter, 13px, normal, 700, 30px);
+  }
+}
+
+.books__author {
+  color: $color-black;
+  @include fontStyle(Inter, 15px, normal, 700, 25px);
+  letter-spacing: 2px;
+  margin-bottom: 20px;
+}
+
+.books__author {
+  @include respondMax(330px) {
+    @include fontStyle(Inter, 13px, normal, 700, 25px);
+  }
+}
+
+.books__description {
+  display: flex;
+  width: 357px;
+  flex-direction: column;
+  justify-content: center;
+  flex-shrink: 0;
+  color: $color-black;
+  @include fontStyle(Inter, 15px, normal, 400, 40px);
+  letter-spacing: 2px;
+  text-transform: capitalize;
+}
+
+.books__description {
+  @include respondMax(767px) {
+    width: 69%;
+  }
+}
+
+.books__description {
+  @include respondMax(639px) {
+    @include fontStyle(Inter, 13px, normal, 400, 35px);
+    width: 100%;
+    margin-bottom: 110px;
+  }
+}
+
+.books__description {
+  @include respondMax(330px) {
+    width: 247px;
+    @include fontStyle(Inter, 12px, normal, 400, 30px);
+    margin-bottom: 110px;
+  }
+}
+
+.books__button {
+  box-sizing: border-box;
+  width: 75px;
+  height: 30px;
+  margin-top: auto;
+  color: #0C0C0E;
+  background: $color-white;
+  text-align: center;
+  @include fontStyle(Inter, 10px, normal, 700, normal);
+  letter-spacing: 1px;
+  border-radius: 2px;
+  border: 1px solid #0C0C0E;
+  cursor: pointer;
+  @extend %transition;
+
+  &:hover {
+    border: 1px solid $color-accent;
+    background: $color-accent;
+    @extend %transition;
+  }
+}
+
+._disabled {
+  box-sizing: border-box;
+  width: 75px;
+  height: 30px;
+  margin-top: auto;
+  color: $color-accent;
+  background: $color-white;
+  text-align: center;
+  @include fontStyle(Inter, 10px, normal, 700, normal);
+  letter-spacing: 1px;
+  border-radius: 2px;
+  border: 1px solid $color-accent;
+  cursor: default;
+}
+
+.books__cover {
+  position: absolute;
+  width: 200px;
+  height: 300px;
+  bottom: 0;
+  right: 0;
+
+  img {
+    width: 200px;
+    height: 300px;
+  }
+}
+
+.books__cover {
+  @include respondMax(767px) {
+    width: calc(100px + (200 - 100) * ((100vw - 320px) / (767 - 320)));
+    height: calc(150px + (300 - 150) * ((100vw - 320px) / (767 - 320)));
+
+    img {
+      width: calc(100px + (200 - 100) * ((100vw - 320px) / (767 - 320)));
+      height: calc(150px + (300 - 150) * ((100vw - 320px) / (767 - 320)));
+    }
+  }
+}
+
+.books__cover {
+  @include respondMax(639px) {
+    width: 100px;
+    height: 150px;
+    right: 0;
+
+    img {
+      width: 100px;
+      height: 150px;
+    }
+  }
+}

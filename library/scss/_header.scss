@@ -1,0 +1,410 @@
+.header {
+  @extend %container;
+  background: $color-almost_black;
+  height: 90px;
+  width: 100%;
+
+  &__content {
+    height: 50px;
+    justify-content: space-between;
+    margin: auto;
+    box-sizing: border-box;
+    @extend %content-container;
+  }
+}
+
+.header__logo__heading {
+  color: $color-white;
+  letter-spacing: 0.6px;
+  @include fontStyle(Forum, 30px, normal, 400, 50px);
+}
+
+.header__menu a,
+.header__menu:hover a {
+  @extend %transition;
+}
+
+.header__menu {
+  @include respondMin(1025px) {
+    position: relative;
+    margin-left: auto;
+
+    &__li {
+      margin-right: 26px;
+      display: inline-table;
+
+      &:last-child {
+        margin-right: 0px;
+      }
+
+      & a {
+        color: $color-white;
+        text-decoration: none;
+        cursor: pointer;
+        @include fontStyle(Inter, 20px, normal, 400, 50px);
+      }
+
+      & a:hover {
+        color: $color-accent;
+      }
+    }
+  }
+}
+
+.header__menu {
+  @include respondMax(1024px) {
+    box-sizing: border-box;
+    position: fixed;
+    margin-left: 0;
+    width: 332px;
+    height: 570px;
+    padding: 85px 107px;
+    background: $color-almost_black;
+    right: 0;
+    top: 0;
+    overflow: hidden;
+    z-index: 4;
+    transform: translateX(100%);
+    transition: all 0.3s linear;
+
+    &__ul {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      width: 118px;
+    }
+
+    &__li {
+      margin-right: 0;
+      display: flex;
+      justify-content: center;
+      padding-top: 15px;
+      padding-bottom: 15px;
+    }
+
+    & a {
+      color: $color-white;
+      text-decoration: none;
+      cursor: pointer;
+      @include fontStyle(Inter, 20px, normal, 400, 50px);
+    }
+
+    & a:hover {
+      color: $color-accent;
+    }
+  }
+}
+
+.burger {
+  @include respondMax(1024px) {
+    display: block;
+    position: absolute;
+    top: 4px;
+    right: 20px;
+    z-index: 100;
+    width: 45px;
+    height: 40px;
+    cursor: pointer;
+
+    &::before {
+      position: absolute;
+      top: 9px;
+      content: '';
+      width: 100%;
+      height: 2px;
+      background: $color-white;
+      transition: top 300ms cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    &::after {
+      position: absolute;
+      bottom: 9px;
+      content: '';
+      width: 100%;
+      height: 2px;
+      transform: rotate(0);
+      background: $color-white;
+      transition: bottom 300ms cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    &._active::before {
+      top: 50%;
+      left: 0px;
+      transform: rotate(45deg);
+      transition: top 300ms cubic-bezier(0.23, 1, 0.32, 1), transform 300ms 300ms cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    &._active::after {
+      bottom: 45%;
+      left: 0px;
+      transform: rotate(-45deg);
+      transition: bottom 300ms cubic-bezier(0.23, 1, 0.32, 1), transform 300ms 300ms cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    &__span {
+      position: absolute;
+      top: calc(100% / 2 - 1px);
+      width: 100%;
+      height: 2px;
+      background: $color-white;
+      transition: top 300ms cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    &__span._active {
+      top: 12px;
+      width: 0%;
+      transform: rotate(45deg);
+      transition: top 300ms cubic-bezier(0.23, 1, 0.32, 1), transform 300ms 300ms cubic-bezier(0.23, 1, 0.32, 1);
+    }
+  }
+}
+
+.header__menu {
+  @extend %transition;
+}
+
+.header__menu._active-menu {
+  transform: translateX(0%);
+  transition: all 0.3s linear;
+}
+
+.header__menu._active-menu {
+  @include respondMax(360px) {
+    width: 305px;
+    height: 570px;
+    padding: 85px 93px;
+  }
+}
+
+.header__menu._active-menu {
+  @include respondMax(330px) {
+    width: 293px;
+    height: 570px;
+    padding: 85px 86px;
+  }
+}
+
+.profile {
+  position: relative;
+  padding-top: 7px;
+  padding-bottom: 11px;
+  margin-left: 42px;
+  z-index: 5;
+
+  &__icon {
+    @extend %transition;
+  }
+
+  ._active-profile {
+    fill: $color-accent;
+    @extend %transition;
+  }
+}
+
+.icon {
+  cursor: pointer;
+  width: 28px;
+  height: 35px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profileName {
+  cursor: pointer;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #FFF;
+  color: #BB945F;
+  font-family: Inter;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+  overflow: hidden;
+  text-transform: uppercase;
+}
+
+.profile {
+  @include respondMax(1024px) {
+    margin-left: 0;
+    margin-right: 85px;
+  }
+}
+
+.login-pop-up__no-auth {
+  box-sizing: border-box;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80px;
+  padding: 5px 10px 20px 10px;
+  background: #FFF;
+  right: 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-5px);
+  transition: transform 0.5s ease-out, opacity 0.5s ease-out, visibility 0.5s ease-out;
+
+  &__profile {
+    display: flex;
+    position: relative;
+    color: #000;
+    font-family: Inter;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 20px;
+    margin-bottom: 20px;
+
+    &::after {
+      content: '';
+      position: absolute;
+      width: 40px;
+      height: 1px;
+      background: #BB945F;
+      bottom: -5px;
+      left: calc(50% - 40px /2);
+    }
+  }
+
+  &__login {
+    color: #000;
+    text-align: center;
+    font-family: Inter;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+    background: transparent;
+    border: none;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    @extend %transition;
+
+    &:hover {
+      color: $color-accent;
+      cursor: pointer;
+      @extend %transition;
+    }
+  }
+
+  &__register {
+    color: #000;
+    text-align: center;
+    font-family: Inter;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+    background: transparent;
+    border: none;
+    box-sizing: border-box;
+    @extend %transition;
+
+    &:hover {
+      color: $color-accent;
+      cursor: pointer;
+      @extend %transition;
+    }
+  }
+
+  &._active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(1px);
+    transition: transform 0.5s ease-out, opacity 0.5s ease-out, visibility 0.5s ease-out;
+  }
+}
+
+.login-pop-up__with-auth {
+  box-sizing: border-box;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80px;
+  padding: 5px 5px 20px 4px;
+  background: #FFF;
+  right: 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-5px);
+  transition: transform 0.5s ease-out, opacity 0.5s ease-out, visibility 0.5s ease-out;
+
+  &__profile {
+    display: flex;
+    position: relative;
+    color: #000;
+    font-family: Inter;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 20px;
+    margin-bottom: 20px;
+
+    &::after {
+      content: '';
+      position: absolute;
+      width: 40px;
+      height: 1px;
+      background: #BB945F;
+      bottom: -5px;
+      left: calc(50% - 40px /2);
+    }
+  }
+
+  &__profile-info {
+    color: #000;
+    text-align: center;
+    font-family: Inter;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+    background: transparent;
+    border: none;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    @extend %transition;
+
+    &:hover {
+      color: $color-accent;
+      cursor: pointer;
+      @extend %transition;
+    }
+  }
+
+  &__register {
+    color: #000;
+    text-align: center;
+    font-family: Inter;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+    background: transparent;
+    border: none;
+    box-sizing: border-box;
+    @extend %transition;
+
+    &:hover {
+      color: $color-accent;
+      cursor: pointer;
+      @extend %transition;
+    }
+  }
+
+  &._active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(1px);
+    transition: transform 0.5s ease-out, opacity 0.5s ease-out, visibility 0.5s ease-out;
+  }
+}

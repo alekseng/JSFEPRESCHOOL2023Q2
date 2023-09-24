@@ -1,0 +1,241 @@
+.contacts {
+  @extend %container;
+  height: max-content;
+
+  &__container {
+    @extend %content-container;
+    box-sizing: border-box;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: max-content;
+    padding: 20px 20px 40px 20px;
+    row-gap: 40px;
+  }
+}
+
+.contacts__heading__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 61px;
+  left: 1px;
+  position: relative;
+}
+
+.contacts__heading {
+  color: $color-almost_black;
+  @include fontStyle(Forum, 40px, normal, 400, 40px);
+  letter-spacing: 2px;
+  text-transform: capitalize;
+}
+
+.contacts__heading {
+  @include respondMax(499px) {
+    font-size: 30px;
+  }
+}
+
+.contacts__span {
+  align-self: center;
+  background-color: $color-almost_black;
+  height: 1px;
+  width: 50px;
+}
+
+.contacts__info__container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1400px;
+  height: max-content;
+}
+
+.contacts__info__container {
+  @include respondMax(1248px) {
+    flex-direction: column;
+    row-gap: 100px;
+  }
+}
+
+.contacts__info__container {
+  @include respondMax(579px) {
+    flex-direction: column;
+    row-gap: 50px;
+  }
+}
+
+.contacts__info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  height: max-content;
+  row-gap: 40px;
+}
+
+.contacts__info {
+  @include respondMax(768px) {
+    margin-left: 1px;
+  }
+}
+
+.contacts__info {
+  @include respondMax(579px) {
+    row-gap: 25px;
+  }
+}
+
+.info__title {
+  color: $color-black;
+  @include fontStyle(Inter, 20px, normal, 700, 40px);
+  letter-spacing: 2px;
+  text-transform: capitalize;
+}
+
+.info__phone {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 20px;
+  height: max-content;
+  flex-shrink: 0;
+}
+
+.info__phone a {
+  color: $color-black;
+  @include fontStyle(Inter, 20px, normal, 400, 40px);
+  letter-spacing: 2px;
+  text-transform: capitalize;
+  @extend %transition;
+  width: max-content;
+
+  &:hover {
+    color: $color-accent;
+    @extend %transition;
+  }
+}
+
+.info__phone a {
+  @include respondMax(579px) {
+    @include fontStyle(Inter, 16px, normal, 400, 40px);
+    letter-spacing: 2px;
+  }
+}
+
+.info__phone a {
+  @include respondMax(463px) {
+    display: block;
+    letter-spacing: 2px;
+  }
+}
+
+.phone {
+  color: $color-black;
+  @include fontStyle(Inter, 20px, normal, 400, 40px);
+  letter-spacing: 2px;
+  text-transform: capitalize;
+}
+
+.phone {
+  @include respondMax(579px) {
+    @include fontStyle(Inter, 16px, normal, 400, 40px);
+    letter-spacing: 2px;
+  }
+}
+
+.info__staff {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: max-content;
+  row-gap: 20px;
+}
+
+.staff {
+  color: $color-black;
+  @include fontStyle(Inter, 20px, normal, 700, 40px);
+  letter-spacing: 2px;
+  text-transform: capitalize;
+}
+
+.director {
+  color: $color-black;
+  @include fontStyle(Inter, 20px, normal, 400, 40px);
+  letter-spacing: 2px;
+  text-transform: capitalize;
+}
+
+.director {
+  @include respondMax(579px) {
+    @include fontStyle(Inter, 16px, normal, 400, 40px);
+    letter-spacing: 2px;
+  }
+}
+
+.strong-text {
+  color: $color-black;
+  @include fontStyle(Inter, 20px, normal, 700, 40px);
+  letter-spacing: 2px;
+  text-transform: capitalize;
+  @extend %transition;
+
+  &:hover {
+    color: $color-accent;
+    @extend %transition;
+  }
+}
+
+.strong-text {
+  @include respondMax(579px) {
+    @include fontStyle(Inter, 16px, normal, 700, 40px);
+    letter-spacing: 2px;
+  }
+}
+
+.strong-text {
+  @include respondMax(360px) {
+    display: block;
+  }
+}
+
+.contacts__map {
+  width: 696px;
+  height: 414px;
+
+  & iframe {
+    width: 696px;
+    height: 414px;
+  }
+}
+
+.contacts__map {
+  @include respondMax(1248px) {
+    margin-left: auto;
+  }
+}
+
+.contacts__map {
+  @include respondMax(768px) {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.contacts__map {
+  @include respondMax(767px) {
+    width: 100%;
+    height: auto;
+
+    & iframe {
+      width: 100%;
+    }
+  }
+}
+
+.contacts__map img {
+  @include respondMax(767px) {
+    width: 100%;
+    height: auto;
+  }
+}
