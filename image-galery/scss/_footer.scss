@@ -1,0 +1,33 @@
+.footer {
+  box-sizing: border-box;
+  position: relative;
+  margin: auto;
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  justify-content: space-between;
+  top: 80px;
+  height: 80px;
+  width: 100%;
+  max-width: 1440px;
+  background-color: inherit;
+  padding: 20px 25px 20px 25px;
+
+  & a {
+    height: 100%;
+    cursor: pointer;
+  }
+
+  &__a {
+    width: 40px;
+  }
+
+  &__span {
+    position: relative;
+    top: 8px;
+    left: -23px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+  }
+}

@@ -3,4 +3,111 @@
   padding: 0;
   text-decoration: none;
   list-style: none;
+}
+
+.header {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  top: 0;
+  height: 80px;
+  width: 100%;
+  margin: auto;
+  color: #000000;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  background: white;
+  box-shadow: 0px -6px 21px rgb(87, 87, 87);
+  z-index: 1;
+}
+.header-container {
+  display: flex;
+  align-items: center;
+  align-self: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1440px;
+  margin: auto;
+  color: #000000;
+  padding: 20px 20px;
+}
+.header-container .search-container {
+  width: 250px;
+  height: 30px;
+  border: 1px solid black;
+  border-radius: 20px;
+}
+
+.content {
+  position: relative;
+  display: flex;
+  align-self: center;
+  justify-content: center;
+  top: 80px;
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  color: #000000;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  min-height: calc(100vh - 160px);
+}
+.content-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 250px;
+  -moz-column-gap: 20px;
+       column-gap: 20px;
+  row-gap: 20px;
+  width: 100%;
+  max-width: 1440px;
+  color: #000000;
+  padding: 20px 20px;
+}
+.content-container__item {
+  width: 100%;
+  height: 250px;
+  background: #aeaeae;
+  border-radius: 20px;
+}
+.content-container__item img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 20px;
+}
+
+.footer {
+  box-sizing: border-box;
+  position: relative;
+  margin: auto;
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  justify-content: space-between;
+  top: 80px;
+  height: 80px;
+  width: 100%;
+  max-width: 1440px;
+  background-color: inherit;
+  padding: 20px 25px 20px 25px;
+}
+.footer a {
+  height: 100%;
+  cursor: pointer;
+}
+.footer__a {
+  width: 40px;
+}
+.footer__span {
+  position: relative;
+  top: 8px;
+  left: -23px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
 }/*# sourceMappingURL=index.css.map */
