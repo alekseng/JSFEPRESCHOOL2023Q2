@@ -28,3 +28,21 @@ function renderImages(data) {
   });
 };
 getData();
+
+const clearBtn = document.querySelector('.clear');
+const searchBtn = document.querySelector('.search');
+
+clearBtn.addEventListener('click', clearInput);
+
+search.addEventListener('input', function() {
+  if (search.value.length > '0') {
+    clearBtn.classList.add('_show');
+  } else {
+    clearBtn.classList.remove('_show');
+  }
+});
+
+function clearInput() {
+  search.value = '';
+  clearBtn.classList.remove('_show');
+};

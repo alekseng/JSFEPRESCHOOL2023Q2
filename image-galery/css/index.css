@@ -5,6 +5,22 @@
   list-style: none;
 }
 
+/* inter-regular - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  src: url("../assets/fonts/inter-v12-latin-regular.woff2") format("woff2"), url("../assets/fonts/inter-v12-latin-regular.woff") format("woff"); /* Chrome 5+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+/* inter-700 - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 700;
+  src: url("../assets/fonts/inter-v12-latin-700.woff2") format("woff2"), url("../assets/fonts/inter-v12-latin-700.woff") format("woff"); /* Chrome 5+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
 .header {
   position: fixed;
   display: flex;
@@ -14,10 +30,6 @@
   height: 80px;
   width: 100%;
   margin: auto;
-  color: #000000;
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 400;
   background: white;
   box-shadow: 0px -6px 21px rgb(87, 87, 87);
   z-index: 1;
@@ -30,29 +42,113 @@
   width: 100%;
   max-width: 1440px;
   margin: auto;
+  padding: 15px 20px;
+}
+.header-container .heading {
+  display: flex;
   color: #000000;
-  padding: 20px 20px;
+  font-family: "Inter";
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+}
+.header-container .heading img {
+  width: 50px;
+  margin-right: 20px;
 }
 .header-container .search-container {
+  display: flex;
+  position: relative;
   width: 300px;
   box-sizing: border-box;
 }
 .header-container .search-container input {
   box-sizing: border-box;
   width: 100%;
-  height: 40px;
+  height: 35px;
   border-radius: 20px;
   border: 0;
+  font-family: "Inika";
   font-size: 16px;
+  font-weight: 700;
   padding-left: 20px;
   color: #000000;
-  box-shadow: 0px 0px 5px -2px #575757 inset;
+  box-shadow: 0px 0px 5px -2px #575757 inset, -40px 0px 5px -7px #dfdfdf inset;
   transition: 0.2s;
 }
 .header-container .search-container input:focus {
   outline: none;
-  box-shadow: 0 0 5px 1px #51CBEE inset;
+  box-shadow: 0 0 5px 1px #03546b inset, -40px 0px 5px -7px #dfdfdf inset;
   transition: 0.2s;
+}
+.header-container .search-container .search {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  right: 15px;
+  top: calc(50% - 7.5px);
+  cursor: pointer;
+}
+.header-container .search-container .search::before, .header-container .search-container .search::after {
+  box-sizing: border-box;
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+  transition: 0.3s;
+}
+.header-container .search-container .search::before {
+  background: inherit;
+  border: 2px solid rgb(0, 0, 0);
+  border-radius: 50%;
+}
+.header-container .search-container .search::after {
+  width: 6px;
+  height: 2px;
+  bottom: -1px;
+  right: -3px;
+  background: black;
+  transform: rotate(45deg);
+}
+.header-container .search-container .search:hover::before {
+  border-color: #03546b;
+  transition: 0.3s;
+}
+.header-container .search-container .search:hover::after {
+  background: #03546b;
+  transition: 0.3s;
+}
+.header-container .search-container .clear {
+  display: none;
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  right: 40px;
+  top: calc(50% - 7.5px);
+  cursor: pointer;
+}
+.header-container .search-container .clear::before, .header-container .search-container .clear::after {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 2px;
+  background: rgb(0, 0, 0);
+  transition: 0.3s;
+}
+.header-container .search-container .clear::before {
+  top: 45%;
+  transform: rotate(45deg);
+}
+.header-container .search-container .clear::after {
+  bottom: 45%;
+  transform: rotate(-45deg);
+}
+.header-container .search-container .clear:hover::before, .header-container .search-container .clear:hover::after {
+  background: #03546b;
+  transition: 0.3s;
+}
+.header-container .search-container .clear._show {
+  display: block;
 }
 
 .content {
@@ -123,7 +219,8 @@
   position: relative;
   top: 8px;
   left: -23px;
+  font-family: "Inter";
   font-style: normal;
-  font-weight: 400;
+  font-weight: 700;
   font-size: 20px;
 }/*# sourceMappingURL=index.css.map */
