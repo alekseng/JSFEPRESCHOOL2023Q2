@@ -18,14 +18,14 @@ async function getData() {
 };
 
 function renderImages(data) {
-  console.log(data);
   const item = document.querySelector('.content-container');
-  if(search.value.length > '0') {item.replaceChildren()};
+  if (search.value.length > '0') { item.replaceChildren() };
   data.map(el => {
     const template = document.createElement('template');
-    template.innerHTML = `<div class="content-container__item"><img src="${el.urls.small}" alt="img">`;
+    template.innerHTML = `<div class="content-container__item"><img src="${el.urls.regular}" alt="img">`;
     item.appendChild(template.content);
   });
+  load();
 };
 getData();
 
@@ -34,7 +34,7 @@ const searchBtn = document.querySelector('.search');
 
 clearBtn.addEventListener('click', clearInput);
 
-search.addEventListener('input', function() {
+search.addEventListener('input', function () {
   if (search.value.length > '0') {
     clearBtn.classList.add('_show');
   } else {
@@ -45,4 +45,18 @@ search.addEventListener('input', function() {
 function clearInput() {
   search.value = '';
   clearBtn.classList.remove('_show');
+};
+
+const content = document.querySelector('.content-container');
+const overlay = document.querySelector('.overlay');
+
+function load() {
+  const images = content.querySelectorAll('div');
+  images.forEach((el) => {
+    el.addEventListener('click', (e) => {
+      el.classList.toggle('_show');
+      overlay.classList.toggle('_active');
+      document.body.classList.toggle('_block');
+    });
+  });
 };

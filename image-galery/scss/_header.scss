@@ -47,7 +47,7 @@
         height: 35px;
         border-radius: 20px;
         border: 0;
-        font-family: 'Inika';
+        font-family: 'Inter';
         font-size: 16px;
         font-weight: 700;
         padding-left: 20px;
@@ -56,6 +56,11 @@
         transition: 0.2s;
 
         &:focus {
+          font-family: 'Inter';
+          font-size: 16px;
+          font-weight: 700;
+          padding-left: 20px;
+          color: #000000;
           outline: none;
           box-shadow: 0 0 5px 1px #03546b inset, -40px 0px 5px -7px #dfdfdf inset;
           transition: 0.2s;
@@ -146,5 +151,25 @@
         }
       }
     }
+  }
+}
+
+@media (max-width: 670px) {
+  .header {
+    height: 120px;
+  }
+
+  .header-container {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 380px) {
+  .header-container>.heading {
+    font-size: 16px;
+  }
+
+  .header-container>.heading>img {
+    width: 40px;
   }
 }
