@@ -1,17 +1,27 @@
 .footer {
-  box-sizing: border-box;
   position: relative;
   margin: auto;
-  display: flex;
-  position: relative;
-  flex-direction: row;
-  justify-content: space-between;
   top: 80px;
   height: 80px;
   width: 100%;
-  max-width: 1440px;
-  background-color: inherit;
-  padding: 20px 25px 20px 25px;
+  background-color: var(--main-color);
+  transition: .5s;
+
+  &-container {
+    box-sizing: border-box;
+    position: relative;
+    margin: auto;
+    display: flex;
+    position: relative;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 80px;
+    width: 100%;
+    background-color: var(--main-color);
+    max-width: 1440px;
+    padding: 20px 25px 20px 25px;
+    transition: .5s;
+  }
 
   & a {
     height: 100%;
@@ -26,10 +36,12 @@
     position: relative;
     top: 8px;
     left: -23px;
+    color: var(--text-color);
     font-family: 'Inter';
     font-style: normal;
     font-weight: 700;
     font-size: 20px;
+    transition: .5s;
   }
 }
 

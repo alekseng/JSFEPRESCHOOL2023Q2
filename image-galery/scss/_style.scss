@@ -30,3 +30,32 @@ body {
     filter: blur(2px);
   }
 }
+
+:root {
+  --main-color: white;
+  --text-color: black;
+  --svg-color: black;
+  --shadow-color: rgb(87, 87, 87);
+}
+
+.theme {
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+  margin-left: auto;
+  margin-right: 20px;
+  background: inherit;
+  border: none;
+  background-image: url(../assets/svg/light_mode.svg);
+  transition: .5s;
+
+  &._active {
+    background-image: url(../assets/svg/dark_mode.svg);
+    transition: .5s;
+  }
+}
+
+svg {
+  fill: var(--svg-color);
+  transition: .5s;
+}
