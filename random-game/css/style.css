@@ -1,0 +1,17 @@
+body {
+  background-color: lightgray;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  list-style: none;
+}
+
+canvas {
+  position: absolute;
+  top: calc(50% - 520px / 2);
+  left: calc(50% - 520px / 2);
+  background-color: black;
+}
