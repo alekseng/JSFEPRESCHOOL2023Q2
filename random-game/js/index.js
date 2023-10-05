@@ -453,6 +453,25 @@ function animation() {
     };
   };
 
+  for (let i = 0; i < objects.length; i++) {
+    let prevX = player.x;
+    let prevY = player.y;
+    if (player.x < objects[i].x + objects[i].width &&
+      player.x + player.width > objects[i].x &&
+      player.y < objects[i].y + objects[i].height &&
+      player.y + player.height > objects[i].y) {
+      if (player.direction == 0) {
+        player.y = prevY + 1;
+      } else if (player.direction == 90) {
+        player.x = prevX - 1;
+      } else if (player.direction == 180) {
+        player.y = prevY - 1;
+      } else if (player.direction == 270) {
+        player.x = prevX + 1;
+      };
+    };
+  };
+
   bullets.forEach((bullet) => {
     bullet.draw();
     if (bullet.y <= 0 || bullet.y >= 520 || bullet.x <= 0 || bullet.x >= 520) {
