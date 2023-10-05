@@ -14,21 +14,27 @@ class Tank {
   directions = {
     up: {
       y: -1,
+      angle: 0,
       pressed: false,
     },
     down: {
       y: 1,
+      angle: 180,
       pressed: false,
     },
     left: {
       x: -1,
+      angle: 270,
       pressed: false,
     },
     right: {
       x: 1,
+      angle: 90,
       pressed: false,
     }
   };
+
+  direction = this.directions.up.angle;
 
   constructor(x, y) {
     this.x = x;
@@ -47,7 +53,8 @@ class Bullet {
   vectorY = 11;
   width = 8;
   height = 8;
-  constructor(x, y) {
+  constructor(direction, x, y) {
+    this.direction = direction;
     this.x = this.vectorX + x;
     this.y = this.vectorY + y;
   };
@@ -55,7 +62,15 @@ class Bullet {
   draw() {
     ctx.fillStyle = 'lightgrey';
     ctx.fillRect(this.x, this.y, this.width, this.height);
-    this.y -= this.bulletSpeed;
+    if (this.direction == 0) {
+      this.y -= this.bulletSpeed;
+    } else if (this.direction == 90) {
+      this.x += this.bulletSpeed;
+    } else if (this.direction == 180) {
+      this.y += this.bulletSpeed;
+    } else if (this.direction == 270) {
+      this.x -= this.bulletSpeed;
+    };
   };
 };
 
@@ -77,7 +92,7 @@ window.addEventListener('keydown', (e) => {
     player.directions.up.pressed = true;
   };
   if (e.keyCode == 81 && bullets.length == 0) {
-    bullets.push(new Bullet(x = player.x, y = player.y));
+    bullets.push(new Bullet(direction = player.direction, x = player.x, y = player.y));
   };
 });
 
@@ -106,24 +121,40 @@ function animation() {
     player.directions.down.pressed = false;
     player.directions.right.x = 1;
     player.x += player.directions.left.x;
+    player.direction = player.directions.left.angle;
+    if (player.x <= 0) {
+      player.directions.left.x = 0;
+    };
   };
   if (player.directions.left.pressed) {
     player.directions.up.pressed = false;
     player.directions.down.pressed = false;
     player.directions.left.x = -1;
     player.x += player.directions.right.x;
+    player.direction = player.directions.right.angle;
+    if (player.x >= 490) {
+      player.directions.right.x = 0;
+    };
   };
   if (player.directions.up.pressed) {
     player.directions.right.pressed = false;
     player.directions.left.pressed = false;
     player.directions.up.y = -1;
     player.y += player.directions.down.y;
+    player.direction = player.directions.down.angle;
+    if (player.y >= 490) {
+      player.directions.down.y = 0;
+    };
   };
   if (player.directions.down.pressed) {
     player.directions.right.pressed = false;
     player.directions.left.pressed = false;
     player.directions.down.y = 1;
     player.y += player.directions.up.y;
+    player.direction = player.directions.up.angle;
+    if (player.y <= 0) {
+      player.directions.up.y = 0;
+    };
   };
 
   bullets.forEach((bullet) => {
