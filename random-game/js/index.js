@@ -352,6 +352,7 @@ class Regular {
   run() {
     this.draw();
     this.go();
+    this.shot();
   };
 
   go() {
@@ -389,6 +390,19 @@ class Regular {
         this.direction = 270;
         this.offX = -1;
       };
+    };
+  };
+
+  shot() {
+    if (this.shotTimeOut > 0 && this.canShot == false) {
+      this.shotTimeOut--;
+      if (this.shotTimeOut == 0) {
+        this.canShot = true;
+      };
+    } else if (this.bullets.length == 0 && this.canShot == true) {
+      this.shotTimeOut = 50;
+      this.bullets.push(new Bullet(this.direction, this.x, this.y));
+      this.canShot = false;
     };
   };
 };
@@ -620,6 +634,15 @@ function animation() {
         bullets.splice(bullets.indexOf(indB), 1);
       };
     });
+  });
+
+  enemies.forEach((el) => {
+    if (el.bullets.length > 0) {
+      el.bullets[0].draw();
+      if (el.bullets[0].y <= 0 || el.bullets[0].y >= 520 || el.bullets[0].x <= 0 || el.bullets[0].x >= 520) {
+        el.bullets.splice(el.bullets.indexOf([0]), 1);
+      };
+    };
   });
 };
 animation();
