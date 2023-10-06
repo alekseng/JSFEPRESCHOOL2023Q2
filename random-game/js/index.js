@@ -261,6 +261,7 @@ const dataConcreteWalls = [
 
 const bullets = [];
 const objects = [];
+const enemies = [];
 
 const gameObjects = new Image()
 gameObjects.src = "./assets/images/objects.png"
@@ -303,6 +304,92 @@ class Tank {
   draw() {
     ctx.fillStyle = 'red';
     ctx.fillRect(this.x, this.y, this.width, this.height);
+  };
+};
+
+class Regular {
+  x = 0;
+  y = 0;
+  width = 30;
+  height = 30;
+  time = 100;
+  shotTimeOut = 50;
+  offX = 1;
+  offY = 1;
+  bullets = [];
+  canShot = true;
+  directions = {
+    up: {
+      y: -1,
+      angle: 0,
+    },
+    down: {
+      y: 1,
+      angle: 180,
+    },
+    left: {
+      x: -1,
+      angle: 270,
+    },
+    right: {
+      x: 1,
+      angle: 90,
+    }
+  };
+
+  direction = this.directions.down.angle;
+
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+  };
+
+  draw() {
+    ctx.fillStyle = 'red';
+    ctx.fillRect(this.x, this.y, 30, 30);
+  };
+
+  run() {
+    this.draw();
+    this.go();
+  };
+
+  go() {
+    let num = Math.floor(Math.random() * 4);
+
+    switch (this.direction) {
+      case 0:
+        this.y += this.offY;
+        break;
+      case 90:
+        this.x += this.offX;
+        break;
+      case 180:
+        this.y += this.offY;
+        break;
+      case 270:
+        this.x += this.offX;
+        break;
+    };
+
+    if (this.time > 0) {
+      this.time--;
+    } else {
+      this.time = 100;
+      if (num == 0) {
+        this.direction = 0;
+        this.offY = -1;
+      } else if (num == 1) {
+        this.direction = 90;
+        this.offX = 1;
+      } else if (num == 2) {
+        this.direction = 180;
+        this.offY = 1;
+      } else if (num == 3) {
+        this.direction = 270;
+        this.offX = -1;
+      };
+    };
   };
 };
 
@@ -370,8 +457,10 @@ dataConcreteWalls.forEach((el, ind) => {
 });
 
 const bullet = new Bullet();
-
 const player = new Tank(x = 245, y = 245);
+enemies.push(new Regular(x = 3, y = 0))
+enemies.push(new Regular(x = 243, y = 0))
+enemies.push(new Regular(x = 483, y = 0))
 
 window.addEventListener('keydown', (e) => {
   if (e.keyCode == 37) {
@@ -411,6 +500,9 @@ function animation() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   player.draw();
   objects.forEach(el => el.draw());
+  enemies.forEach((tank) => {
+    tank.run();
+  });
 
   if (player.directions.right.pressed) {
     player.directions.up.pressed = false;
