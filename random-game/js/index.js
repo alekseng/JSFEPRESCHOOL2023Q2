@@ -263,8 +263,14 @@ const bullets = [];
 const objects = [];
 const enemies = [];
 
-const gameObjects = new Image()
-gameObjects.src = "./assets/images/objects.png"
+const gameObjects = new Image();
+gameObjects.src = "./assets/images/objects.png";
+
+const imgPlayer = new Image();
+imgPlayer.src = "./assets/images/player.png";
+
+const regularTank = new Image();
+regularTank.src = "./assets/images/regular.png";
 
 class Tank {
   x = 0;
@@ -302,8 +308,15 @@ class Tank {
   }
 
   draw() {
-    ctx.fillStyle = 'red';
-    ctx.fillRect(this.x, this.y, this.width, this.height);
+    if (this.direction == 0) {
+      ctx.drawImage(imgPlayer, 0, 0, 52, 52, this.x, this.y, this.width, this.height);
+    } else if (this.direction == 90) {
+      ctx.drawImage(imgPlayer, 372, 0, 52, 52, this.x, this.y, this.width, this.height);
+    } else if (this.direction == 180) {
+      ctx.drawImage(imgPlayer, 248, 0, 52, 52, this.x, this.y, this.width, this.height);
+    } else if (this.direction == 270) {
+      ctx.drawImage(imgPlayer, 124, 0, 52, 52, this.x, this.y, this.width, this.height);
+    };
   };
 };
 
@@ -345,8 +358,15 @@ class Regular {
   };
 
   draw() {
-    ctx.fillStyle = 'red';
-    ctx.fillRect(this.x, this.y, 30, 30);
+    if (this.direction == 0) {
+      ctx.drawImage(regularTank, 0, 0, 60, 60, this.x, this.y, this.width, this.height);
+    } else if (this.direction == 90) {
+      ctx.drawImage(regularTank, 380, 0, 60, 60, this.x, this.y, this.width, this.height);
+    } else if (this.direction == 180) {
+      ctx.drawImage(regularTank, 256, 0, 60, 60, this.x, this.y, this.width, this.height);
+    } else if (this.direction == 270) {
+      ctx.drawImage(regularTank, 124, 0, 60, 60, this.x, this.y, this.width, this.height);
+    };
   };
 
   run() {
@@ -471,7 +491,7 @@ dataConcreteWalls.forEach((el, ind) => {
 });
 
 const bullet = new Bullet();
-const player = new Tank(x = 245, y = 245);
+const player = new Tank(x = 163, y = 485);
 enemies.push(new Regular(x = 3, y = 0))
 enemies.push(new Regular(x = 243, y = 0))
 enemies.push(new Regular(x = 483, y = 0))
