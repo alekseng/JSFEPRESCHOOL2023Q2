@@ -478,5 +478,16 @@ function animation() {
       bullets.splice(bullets.indexOf(bullet), 1);
     };
   });
+
+  bullets.forEach((elB, indB) => {
+    objects.forEach((elW) => {
+      if (elB.x < elW.x + elW.width && elB.x + elB.width > elW.x && elB.y < elW.y + elW.height && elB.y + elB.height > elW.y && elW.isDestroy) {
+        bullets.splice(bullets.indexOf(indB), 1);
+        objects.splice(objects.indexOf(elW), 1);
+      } else if (elB.x < elW.x + elW.width && elB.x + elB.width > elW.x && elB.y < elW.y + elW.height && elB.y + elB.height > elW.y && !elW.isDestroy) {
+        bullets.splice(bullets.indexOf(indB), 1);
+      };
+    });
+  });
 };
 animation();
