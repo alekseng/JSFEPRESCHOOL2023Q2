@@ -510,7 +510,7 @@ function animation() {
     player.directions.right.x = 1;
     player.x += player.directions.left.x;
     player.direction = player.directions.left.angle;
-    if (player.x <= 0) {
+    if (player.x <= 3) {
       player.directions.left.x = 0;
     };
   };
@@ -520,7 +520,7 @@ function animation() {
     player.directions.left.x = -1;
     player.x += player.directions.right.x;
     player.direction = player.directions.right.angle;
-    if (player.x >= 490) {
+    if (player.x >= 487) {
       player.directions.right.x = 0;
     };
   };
@@ -530,7 +530,7 @@ function animation() {
     player.directions.up.y = -1;
     player.y += player.directions.down.y;
     player.direction = player.directions.down.angle;
-    if (player.y >= 490) {
+    if (player.y >= 487) {
       player.directions.down.y = 0;
     };
   };
@@ -540,7 +540,7 @@ function animation() {
     player.directions.down.y = 1;
     player.y += player.directions.up.y;
     player.direction = player.directions.up.angle;
-    if (player.y <= 0) {
+    if (player.y <= 3) {
       player.directions.up.y = 0;
     };
   };
@@ -560,6 +560,46 @@ function animation() {
         player.y = prevY - 1;
       } else if (player.direction == 270) {
         player.x = prevX + 1;
+      };
+    };
+  };
+
+  enemies.forEach(el => {
+    if (el.direction == 0 && el.y <= 3) {
+      el.offY = 0;
+    };
+    if (el.direction == 90 && el.x >= 487) {
+      el.offX = 0;
+    };
+    if (el.direction == 180 && el.y >= 487) {
+      el.offY = 0;
+    };
+    if (el.direction == 270 && el.x <= 3) {
+      el.offX = 0;
+    };
+  });
+
+  for (let i = 0; i < objects.length; i++) {
+    for (let j = 0; j < enemies.length; j++) {
+      let prevX = enemies[j].x;
+      let prevY = enemies[j].y;
+      if (enemies[j].x < objects[i].x + objects[i].width &&
+        enemies[j].x + enemies[j].width > objects[i].x &&
+        enemies[j].y < objects[i].y + objects[i].height &&
+        enemies[j].y + enemies[j].height > objects[i].y) {
+        if (enemies[j].direction == 0) {
+          enemies[j].offY = 0;
+          enemies[j].y = prevY + 3;
+        } else if (enemies[j].direction == 90) {
+          enemies[j].offX = 0;
+          enemies[j].x = prevX - 3;
+        } else if (enemies[j].direction == 180) {
+          enemies[j].offY = 0;
+          enemies[j].y = prevY - 3;
+        } else if (enemies[j].direction == 270) {
+          enemies[j].offX = 0;
+          enemies[j].x = prevX + 3;
+        };
       };
     };
   };
