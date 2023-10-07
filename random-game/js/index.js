@@ -677,5 +677,16 @@ function animation() {
       };
     });
   });
+
+  enemies.forEach((elB, indB) => {
+    bullets.forEach((elW) => {
+      if (elB.bullets[0]) {
+        if (elB.bullets[0].x < elW.x + elW.width && elB.bullets[0].x + elB.bullets[0].width > elW.x && elB.bullets[0].y < elW.y + elW.height && elB.bullets[0].y + elB.bullets[0].height > elW.y) {
+          enemies[indB].bullets.splice(bullets.indexOf(0), 1);
+          bullets.splice(bullets.indexOf(elW), 1);
+        };
+      };
+    });
+  });
 };
 animation();
