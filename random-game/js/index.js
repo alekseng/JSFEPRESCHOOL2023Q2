@@ -281,6 +281,8 @@ bulletsImg.src = "./assets/images/bullets.png"
 const boomsImg = new Image()
 boomsImg.src = "./assets/images/booms.png"
 
+let timeOutDefeat = 100;
+
 class Tank {
   x = 0;
   y = 0;
@@ -761,5 +763,12 @@ function animation() {
       };
     };
   });
+
+  if (flag.isDestroy || enemies.length == 0) {
+    timeOutDefeat--;
+    if (timeOutDefeat == 0) {
+      window.location.reload();
+    };
+  };
 };
 animation();
