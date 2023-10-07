@@ -664,5 +664,18 @@ function animation() {
       };
     };
   });
+
+  enemies.forEach((elB, indB) => {
+    objects.forEach((elW) => {
+      if (elB.bullets[0]) {
+        if (elB.bullets[0].x < elW.x + elW.width && elB.bullets[0].x + elB.bullets[0].width > elW.x && elB.bullets[0].y < elW.y + elW.height && elB.bullets[0].y + elB.bullets[0].height > elW.y && elW.isDestroy) {
+          enemies[indB].bullets.splice(bullets.indexOf(0), 1);
+          objects.splice(objects.indexOf(elW), 1);
+        } else if (elB.bullets[0].x < elW.x + elW.width && elB.bullets[0].x + elB.bullets[0].width > elW.x && elB.bullets[0].y < elW.y + elW.height && elB.bullets[0].y + elB.bullets[0].height > elW.y && !elW.isDestroy) {
+          enemies[indB].bullets.splice(bullets.indexOf(0), 1);
+        };
+      };
+    });
+  });
 };
 animation();
