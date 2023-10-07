@@ -288,6 +288,7 @@ class Tank {
   y = 0;
   width = 30;
   height = 30;
+  life = 3;
   directions = {
     up: {
       y: -1,
@@ -328,6 +329,22 @@ class Tank {
     } else if (this.direction == 270) {
       ctx.drawImage(imgPlayer, 124, 0, 52, 52, this.x, this.y, this.width, this.height);
     };
+  };
+
+  run() {
+    if (this.life > 0) {
+      this.draw();
+    } else if (this.life == 0) {
+      window.location.reload();
+    };
+  };
+
+  dead() {
+    this.life--;
+    this.x = 165;
+    this.y = 485;
+    this.direction = this.directions.up.angle;
+    ctx.drawImage(boomsImg, 320, 0, 128, 128, this.x - 20, this.y - 20, 60, 60);
   };
 };
 
@@ -571,7 +588,7 @@ window.addEventListener('keyup', (e) => {
 function animation() {
   window.requestAnimationFrame(animation);
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  player.draw();
+  player.run();
   flag.draw();
   objects.forEach(el => el.draw());
   enemies.forEach((tank) => {
@@ -759,6 +776,16 @@ function animation() {
       if (elB.bullets[0].x < flag.x + flag.width && elB.bullets[0].x + elB.bullets[0].width > flag.x && elB.bullets[0].y < flag.y + flag.height && elB.bullets[0].y + elB.bullets[0].height > flag.y) {
         elB.bullets[0].dead();
         flag.isDestroy = true;
+        enemies[indB].bullets.splice(bullets.indexOf(0), 1);
+      };
+    };
+  });
+
+  enemies.forEach((elB, indB) => {
+    if (elB.bullets[0]) {
+      if (elB.bullets[0].x < player.x + player.width && elB.bullets[0].x + elB.bullets[0].width > player.x && elB.bullets[0].y < player.y + player.height && elB.bullets[0].y + elB.bullets[0].height > player.y) {
+        elB.bullets[0].dead();
+        player.dead();
         enemies[indB].bullets.splice(bullets.indexOf(0), 1);
       };
     };
