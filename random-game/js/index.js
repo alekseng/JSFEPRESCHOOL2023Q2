@@ -272,6 +272,15 @@ imgPlayer.src = "./assets/images/player.png";
 const regularTank = new Image();
 regularTank.src = "./assets/images/regular.png";
 
+const flagImg = new Image()
+flagImg.src = "./assets/images/flag.png"
+
+const bulletsImg = new Image()
+bulletsImg.src = "./assets/images/bullets.png"
+
+const boomsImg = new Image()
+boomsImg.src = "./assets/images/booms.png"
+
 class Tank {
   x = 0;
   y = 0;
@@ -425,6 +434,10 @@ class Regular {
       this.canShot = false;
     };
   };
+
+  dead() {
+    ctx.drawImage(boomsImg, 320, 0, 128, 128, this.x - 20, this.y - 20, 60, 60);
+  };
 };
 
 class Bullet {
@@ -440,17 +453,23 @@ class Bullet {
   };
 
   draw() {
-    ctx.fillStyle = 'lightgrey';
-    ctx.fillRect(this.x, this.y, this.width, this.height);
     if (this.direction == 0) {
       this.y -= this.bulletSpeed;
+      ctx.drawImage(bulletsImg, 0, 0, 16, 16, this.x, this.y, this.width, this.height);
     } else if (this.direction == 90) {
       this.x += this.bulletSpeed;
+      ctx.drawImage(bulletsImg, 48, 0, 16, 16, this.x, this.y, this.width, this.height);
     } else if (this.direction == 180) {
       this.y += this.bulletSpeed;
+      ctx.drawImage(bulletsImg, 32, 0, 16, 16, this.x, this.y, this.width, this.height);
     } else if (this.direction == 270) {
       this.x -= this.bulletSpeed;
+      ctx.drawImage(bulletsImg, 16, 0, 16, 16, this.x, this.y, this.width, this.height);
     };
+  };
+
+  dead() {
+    ctx.drawImage(boomsImg, 126, 0, 64, 64, this.x - 20, this.y - 20, 40, 40);
   };
 };
 
@@ -482,6 +501,23 @@ class ConcreteWall {
   };
 };
 
+class Flag {
+  width = 40;
+  height = 40;
+  isDestroy = false;
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+  }
+  draw() {
+    if (!this.isDestroy) {
+      ctx.drawImage(flagImg, 0, 0, 64, 64, this.x, this.y, this.width, this.height);
+    } else {
+      ctx.drawImage(flagImg, 64, 0, 64, 64, this.x, this.y, this.width, this.height);
+    };
+  };
+};
+
 dataBrickWalls.forEach((el, ind) => {
   objects.push(new BrickWall(el.x, el.y));
 });
@@ -492,6 +528,7 @@ dataConcreteWalls.forEach((el, ind) => {
 
 const bullet = new Bullet();
 const player = new Tank(x = 163, y = 485);
+const flag = new Flag(x = 240, y = 480);
 enemies.push(new Regular(x = 3, y = 0))
 enemies.push(new Regular(x = 243, y = 0))
 enemies.push(new Regular(x = 483, y = 0))
@@ -533,6 +570,7 @@ function animation() {
   window.requestAnimationFrame(animation);
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   player.draw();
+  flag.draw();
   objects.forEach(el => el.draw());
   enemies.forEach((tank) => {
     tank.run();
@@ -641,6 +679,7 @@ function animation() {
   bullets.forEach((bullet) => {
     bullet.draw();
     if (bullet.y <= 0 || bullet.y >= 520 || bullet.x <= 0 || bullet.x >= 520) {
+      bullet.dead();
       bullets.splice(bullets.indexOf(bullet), 1);
     };
   });
@@ -648,9 +687,11 @@ function animation() {
   bullets.forEach((elB, indB) => {
     objects.forEach((elW) => {
       if (elB.x < elW.x + elW.width && elB.x + elB.width > elW.x && elB.y < elW.y + elW.height && elB.y + elB.height > elW.y && elW.isDestroy) {
+        elB.dead();
         bullets.splice(bullets.indexOf(indB), 1);
         objects.splice(objects.indexOf(elW), 1);
       } else if (elB.x < elW.x + elW.width && elB.x + elB.width > elW.x && elB.y < elW.y + elW.height && elB.y + elB.height > elW.y && !elW.isDestroy) {
+        elB.dead();
         bullets.splice(bullets.indexOf(indB), 1);
       };
     });
@@ -659,6 +700,7 @@ function animation() {
   bullets.forEach((elB, indB) => {
     enemies.forEach((enemy) => {
       if (elB.x < enemy.x + enemy.width && elB.x + elB.width > enemy.x && elB.y < enemy.y + enemy.height && elB.y + elB.height > enemy.y) {
+        enemy.dead();
         bullets.splice(bullets.indexOf(indB), 1);
         enemies.splice(enemies.indexOf(enemy), 1);
       };
@@ -669,6 +711,7 @@ function animation() {
     if (el.bullets.length > 0) {
       el.bullets[0].draw();
       if (el.bullets[0].y <= 0 || el.bullets[0].y >= 520 || el.bullets[0].x <= 0 || el.bullets[0].x >= 520) {
+        el.bullets[0].dead();
         el.bullets.splice(el.bullets.indexOf([0]), 1);
       };
     };
@@ -678,9 +721,11 @@ function animation() {
     objects.forEach((elW) => {
       if (elB.bullets[0]) {
         if (elB.bullets[0].x < elW.x + elW.width && elB.bullets[0].x + elB.bullets[0].width > elW.x && elB.bullets[0].y < elW.y + elW.height && elB.bullets[0].y + elB.bullets[0].height > elW.y && elW.isDestroy) {
+          elB.bullets[0].dead();
           enemies[indB].bullets.splice(bullets.indexOf(0), 1);
           objects.splice(objects.indexOf(elW), 1);
         } else if (elB.bullets[0].x < elW.x + elW.width && elB.bullets[0].x + elB.bullets[0].width > elW.x && elB.bullets[0].y < elW.y + elW.height && elB.bullets[0].y + elB.bullets[0].height > elW.y && !elW.isDestroy) {
+          elB.bullets[0].dead();
           enemies[indB].bullets.splice(bullets.indexOf(0), 1);
         };
       };
@@ -691,6 +736,7 @@ function animation() {
     bullets.forEach((elW) => {
       if (elB.bullets[0]) {
         if (elB.bullets[0].x < elW.x + elW.width && elB.bullets[0].x + elB.bullets[0].width > elW.x && elB.bullets[0].y < elW.y + elW.height && elB.bullets[0].y + elB.bullets[0].height > elW.y) {
+          elB.bullets[0].dead();
           enemies[indB].bullets.splice(bullets.indexOf(0), 1);
           bullets.splice(bullets.indexOf(elW), 1);
         };
