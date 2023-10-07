@@ -656,6 +656,15 @@ function animation() {
     });
   });
 
+  bullets.forEach((elB, indB) => {
+    enemies.forEach((enemy) => {
+      if (elB.x < enemy.x + enemy.width && elB.x + elB.width > enemy.x && elB.y < enemy.y + enemy.height && elB.y + elB.height > enemy.y) {
+        bullets.splice(bullets.indexOf(indB), 1);
+        enemies.splice(enemies.indexOf(enemy), 1);
+      };
+    });
+  });
+
   enemies.forEach((el) => {
     if (el.bullets.length > 0) {
       el.bullets[0].draw();
