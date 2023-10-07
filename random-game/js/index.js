@@ -707,6 +707,14 @@ function animation() {
     });
   });
 
+  bullets.forEach((elB, indB) => {
+    if (elB.x < flag.x + flag.width && elB.x + elB.width > flag.x && elB.y < flag.y + flag.height && elB.y + elB.height > flag.y) {
+      elB.dead();
+      flag.isDestroy = true;
+      bullets.splice(bullets.indexOf(indB), 1);
+    };
+  });
+
   enemies.forEach((el) => {
     if (el.bullets.length > 0) {
       el.bullets[0].draw();
@@ -742,6 +750,16 @@ function animation() {
         };
       };
     });
+  });
+
+  enemies.forEach((elB, indB) => {
+    if (elB.bullets[0]) {
+      if (elB.bullets[0].x < flag.x + flag.width && elB.bullets[0].x + elB.bullets[0].width > flag.x && elB.bullets[0].y < flag.y + flag.height && elB.bullets[0].y + elB.bullets[0].height > flag.y) {
+        elB.bullets[0].dead();
+        flag.isDestroy = true;
+        enemies[indB].bullets.splice(bullets.indexOf(0), 1);
+      };
+    };
   });
 };
 animation();
