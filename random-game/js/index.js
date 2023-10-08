@@ -282,6 +282,7 @@ const boomsImg = new Image()
 boomsImg.src = "./assets/images/booms.png"
 
 let timeOutDefeat = 100;
+let lifeContainer = document.querySelector('.life-counter');
 
 class Tank {
   x = 0;
@@ -797,5 +798,7 @@ function animation() {
       window.location.reload();
     };
   };
+
+  lifeContainer.textContent = player.life - 1;
 };
 animation();

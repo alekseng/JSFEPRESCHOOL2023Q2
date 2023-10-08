@@ -1,13 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./css/style.css">
   <title>Tanks</title>
 </head>
+
 <body>
-  <canvas id="canvas"></canvas>
+  <div class="wrapper">
+    <canvas id="canvas"></canvas>
+    <div class="side-bar">
+      <div class="enemy-container">
+      </div>
+      <div class="life-container">
+        <div class="number-of-player"></div>
+        <div class="letter-p"></div>
+        <div class="player-icon"></div>
+        <div class="life-counter"></div>
+      </div>
+      <div class="level-container">
+        <div class="flag"></div>
+        <div class="level-counter">1</div>
+      </div>
+    </div>
+  </div>
   <script src="./js/index.js"></script>
 </body>
+
 </html>
