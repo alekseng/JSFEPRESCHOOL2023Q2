@@ -305,7 +305,36 @@ bulletsImg.src = "./assets/images/bullets.png"
 const boomsImg = new Image()
 boomsImg.src = "./assets/images/booms.png"
 
-let timeOutDefeat = 100;
+const scoresImg = new Image()
+scoresImg.src = "./assets/images/scores.png"
+
+let timeOutDefeat = 1;
+let score = 0;
+
+class Score {
+  constructor(score, time) {
+    this.score = score;
+    this.time = time;
+  };
+};
+
+let scoreListRecordsTanks = [
+  { score: 0, time: 'no data' },
+  { score: 0, time: 'no data' },
+  { score: 0, time: 'no data' },
+  { score: 0, time: 'no data' },
+  { score: 0, time: 'no data' },
+  { score: 0, time: 'no data' },
+  { score: 0, time: 'no data' },
+  { score: 0, time: 'no data' },
+  { score: 0, time: 'no data' },
+  { score: 0, time: 'no data' },
+];
+
+if (localStorage.getItem('scoreListRecordsTanks')) {
+  scoreListRecordsTanks = JSON.parse(localStorage.getItem('scoreListRecordsTanks'));
+};
+
 let lifeContainer = document.querySelector('.life-counter');
 const playBtn = document.querySelector('.play');
 const overlay = document.querySelector('.overlay');
@@ -313,7 +342,14 @@ const recordsBtn = document.querySelector('.records');
 const recordList = document.querySelector('.items');
 const controlsBtn = document.querySelector('.controls');
 const controlsList = document.querySelector('.left');
-const enemyContainer = document.querySelector('.enemy-container')
+const enemyContainer = document.querySelector('.enemy-container');
+const items = document.querySelector('.items');
+
+let date = new Date();
+const options = {
+  hour: 'numeric', minute: 'numeric', year: '2-digit', day: 'numeric',
+  month: 'numeric'
+};
 
 playBtn.addEventListener('click', startGame);
 controlsBtn.addEventListener('click', showControls);
@@ -386,8 +422,6 @@ class Tank {
   run() {
     if (this.life > 0) {
       this.draw();
-    } else if (this.life == 0) {
-      window.location.reload();
     };
   };
 
@@ -509,6 +543,8 @@ class Regular {
 
   dead() {
     ctx.drawImage(boomsImg, 320, 0, 128, 128, this.x - 20, this.y - 20, 60, 60);
+    ctx.drawImage(scoresImg, 0, 0, 52, 28, this.x - 20, this.y, 52, 28);
+    score += 100;
   };
 };
 
@@ -621,6 +657,8 @@ class Light {
 
   dead() {
     ctx.drawImage(boomsImg, 320, 0, 128, 128, this.x - 20, this.y - 20, 60, 60);
+    ctx.drawImage(scoresImg, 60, 0, 56, 28, this.x - 20, this.y, 56, 28);
+    score += 200;
   };
 };
 
@@ -975,12 +1013,27 @@ function start() {
     };
   });
 
-  if (flag.isDestroy || enemies.length == 0) {
+  if (flag.isDestroy || enemies.length == 0 || player.life == 0) {
     timeOutDefeat--;
     if (timeOutDefeat == 0) {
+      let scoreItem = new Score(score, date.toLocaleDateString('ru-RU', options));
+      scoreListRecordsTanks.push(scoreItem);
+      localStorage.setItem('scoreListRecordsTanks', JSON.stringify(scoreListRecordsTanks));
       window.location.reload();
     };
   };
 
   lifeContainer.textContent = player.life - 1;
+  date = new Date();
 };
+
+scoreListRecordsTanks.sort((a, b) => a.score - b.score).reverse();
+let sliceScore = scoreListRecordsTanks.slice(0, 10);
+
+sliceScore.forEach((elem, index) => {
+  let template = document.createElement('template');
+  template.innerHTML = `
+      <li><span>${index + 1}.</span><span>${elem.score}</span><span>${elem.time}</span></li>
+    `;
+  items.append(template.content);
+});

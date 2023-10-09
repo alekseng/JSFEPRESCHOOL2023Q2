@@ -150,24 +150,27 @@ h1 {
 }
 
 .right {
+  box-sizing: border-box;
   grid-area: right;
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   align-self: flex-end;
-  margin-left: 120px;
+  padding-left: 15px;
+  padding-right: 10px;
 }
 
 .items {
   font-family: "Tanks";
   color: white;
   font-weight: 100;
-  font-size: 9px;
+  font-size: 8px;
   align-self: flex-start;
   visibility: hidden;
   opacity: 0;
   transition: all .5s linear;
+  width: 100%;
 }
 
 .items._visible {
@@ -177,7 +180,19 @@ h1 {
 }
 
 .items li {
+  display: flex;
   margin-bottom: 5px;
+  height: 10px;
+}
+
+.items li>span:first-child {
+  width: 24px;
+  display: flex;
+  margin-bottom: 5px;
+}
+
+.items li>span:last-child {
+  margin-left: auto;
 }
 
 canvas {
@@ -189,7 +204,7 @@ canvas {
 .side-bar {
   grid-area: side-bar;
   box-sizing: border-box;
-  padding: 20px 20px 40px 20px;
+  padding: 20px 19px 40px 19px;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -201,8 +216,9 @@ canvas {
   display: grid;
   grid-template-columns: 20px 20px;
   grid-template-rows: repeat(10, 20px);
-  width: 40px;
-  height: 200px;
+  gap: 2px;
+  width: 42px;
+  height: 218px;
 }
 
 .eneny-container div {
