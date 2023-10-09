@@ -15,28 +15,185 @@ body {
   src: url("../assets/fonts/tanks.ttf");
 }
 
+@font-face {
+  font-family: "Battle";
+  src: url("../assets/fonts/Battle.woff");
+}
+
 .wrapper {
   position: absolute;
-  display: flex;
-  top: calc(50% - 520px / 2);
+  display: grid;
+  grid-template-columns: 520px 80px;
+  grid-template-rows: 520px 60px;
+  grid-template-areas: 
+  "canvas side-bar"
+  "footer footer";
+  top: calc(50% - 580px / 2);
   left: calc(50% - 600px / 2);
   box-sizing: border-box;
+  overflow: hidden;
+}
+
+.overlay {
+  position: absolute;
+  display: grid;
+  grid-template-columns: 600px;
+  grid-template-rows: 200px 320px;
+  grid-template-areas:
+    "top"
+    "bottom"
+  ;
+  width: 600px;
+  height: 520px;
+  top: 0;
+  left: 0;
+  background-color: rgb(0, 0, 0);
+  z-index: 1;
+  transition: all 0.7s linear;
+}
+
+.overlay._playing {
+  top: -100%;
+  transition: all 0.7s linear;
+}
+
+.top {
+  grid-area: top;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+h1 {
+  z-index: 1;
+  font-family: "Battle";
+  font-weight: 400;
+  font-size: 50px;
+  color: #9c4a00;
+}
+
+.bottom {
+  grid-area: bottom;
+  display: grid;
+  grid-template-columns: 230px 140px 230px;
+  grid-template-rows: 320px;
+  grid-template-areas:
+    "left middle right"
+  ;
+  position: relative;
+}
+
+.left {
+  grid-area: left;
+  display: flex;
+  position: relative;
+  visibility: hidden;
+  opacity: 0;
+  transition: all .5s linear;
+}
+
+.left._visible {
+  visibility: visible;
+  opacity: 1;
+  transition: all .5s linear;
+}
+
+.keyboard {
+  font-family: "Tanks";
+  color: white;
+  font-weight: 100;
+  font-size: 8px;
+  align-self: flex-end;
+}
+
+.keyboard li {
+  display: flex;
+  align-items: center;
+}
+
+.shooting {
+  margin-left: 8px;
+}
+
+.shooting>span {
+  margin-left: 8px;
+}
+
+.middle {
+  grid-area: middle;
+  margin-top: 30px;
+}
+
+.play,
+.records,
+.controls {
+  box-sizing: border-box;
+  border: none;
+  border-radius: 10px;
+  width: 140px;
+  height: 50px;
+  background-color: transparent;
+  font-family: "Tanks";
+  color: white;
+  font-weight: 100;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s linear;
+}
+
+.play:hover,
+.records:hover,
+.controls:hover {
+  color: #9c4a00;
+  transition: all 0.3s linear;
+}
+
+.right {
+  grid-area: right;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-self: flex-end;
+  margin-left: 120px;
+}
+
+.items {
+  font-family: "Tanks";
+  color: white;
+  font-weight: 100;
+  font-size: 9px;
+  align-self: flex-start;
+  visibility: hidden;
+  opacity: 0;
+  transition: all .5s linear;
+}
+
+.items._visible {
+  visibility: visible;
+  opacity: 1;
+  transition: all .5s linear;
+}
+
+.items li {
+  margin-bottom: 5px;
 }
 
 canvas {
+  grid-area: canvas;
   position: relative;
   background-color: black;
 }
 
 .side-bar {
+  grid-area: side-bar;
   box-sizing: border-box;
   padding: 20px 20px 40px 20px;
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 80px;
-  height: 520px;
   background-color: rgb(128, 128, 128);
 }
 
@@ -111,4 +268,47 @@ canvas {
   line-height: 16px;
   margin-left: auto;
   box-sizing: border-box;
+}
+
+.footer {
+  grid-area: footer;
+  box-sizing: border-box;
+  margin: auto;
+  position: relative;
+  display: grid;
+  grid-template-columns: 100px 100px 100px;
+  grid-template-rows: 40px;
+  grid-template-areas:
+    "rss year github"
+  ;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px 25px 10px 25px;
+  background-color: black;
+}
+
+.rss {
+  grid-area: rss;
+  height: 100%;
+  cursor: pointer;
+}
+
+.footer__span {
+  grid-area: year;
+  position: relative;
+  margin: auto;
+  font-family: "Tanks";
+  color: white;
+  font-weight: 100;
+  font-size: 14px;
+  line-height: 26px;
+}
+
+.github {
+  grid-area: github;
+  position: relative;
+  width: 40px;
+  margin-left: auto;
+  cursor: pointer;
 }

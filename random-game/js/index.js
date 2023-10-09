@@ -283,6 +283,28 @@ boomsImg.src = "./assets/images/booms.png"
 
 let timeOutDefeat = 100;
 let lifeContainer = document.querySelector('.life-counter');
+const playBtn = document.querySelector('.play');
+const overlay = document.querySelector('.overlay');
+const recordsBtn = document.querySelector('.records');
+const recordList = document.querySelector('.items');
+const controlsBtn = document.querySelector('.controls');
+const controlsList = document.querySelector('.left');
+
+playBtn.addEventListener('click', startGame);
+controlsBtn.addEventListener('click', showControls);
+recordsBtn.addEventListener('click', showRecords);
+
+function startGame() {
+  overlay.classList.toggle('_playing');
+};
+
+function showRecords() {
+  recordList.classList.toggle('_visible');
+};
+
+function showControls() {
+  controlsList.classList.toggle('_visible');
+};
 
 class Tank {
   x = 0;
