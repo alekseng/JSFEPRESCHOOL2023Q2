@@ -262,7 +262,28 @@ const dataConcreteWalls = [
 const bullets = [];
 const objects = [];
 const enemies = [];
-
+const dataEnemies = [
+  { type: 'Regular', x: 243, y: 0 },
+  { type: 'Regular', x: 483, y: 0 },
+  { type: 'Regular', x: 3, y: 0 },
+  { type: 'Regular', x: 243, y: 0 },
+  { type: 'Regular', x: 483, y: 0 },
+  { type: 'Regular', x: 3, y: 0 },
+  { type: 'Regular', x: 243, y: 0 },
+  { type: 'Regular', x: 483, y: 0 },
+  { type: 'Regular', x: 3, y: 0 },
+  { type: 'Regular', x: 243, y: 0 },
+  { type: 'Regular', x: 483, y: 0 },
+  { type: 'Regular', x: 243, y: 0 },
+  { type: 'Regular', x: 483, y: 0 },
+  { type: 'Regular', x: 3, y: 0 },
+  { type: 'Regular', x: 243, y: 0 },
+  { type: 'Regular', x: 483, y: 0 },
+  { type: 'Regular', x: 3, y: 0 },
+  { type: 'Regular', x: 243, y: 0 },
+  { type: 'Light', x: 483, y: 0 },
+  { type: 'Light', x: 3, y: 0 },
+]
 const gameObjects = new Image();
 gameObjects.src = "./assets/images/objects.png";
 
@@ -271,6 +292,9 @@ imgPlayer.src = "./assets/images/player.png";
 
 const regularTank = new Image();
 regularTank.src = "./assets/images/regular.png";
+
+const lightTank = new Image();
+lightTank.src = "./assets/images/light.png";
 
 const flagImg = new Image()
 flagImg.src = "./assets/images/flag.png"
@@ -289,6 +313,7 @@ const recordsBtn = document.querySelector('.records');
 const recordList = document.querySelector('.items');
 const controlsBtn = document.querySelector('.controls');
 const controlsList = document.querySelector('.left');
+const enemyContainer = document.querySelector('.enemy-container')
 
 playBtn.addEventListener('click', startGame);
 controlsBtn.addEventListener('click', showControls);
@@ -296,6 +321,10 @@ recordsBtn.addEventListener('click', showRecords);
 
 function startGame() {
   overlay.classList.toggle('_playing');
+
+  setTimeout(() => {
+    start();
+  }, 1000);
 };
 
 function showRecords() {
@@ -382,6 +411,7 @@ class Regular {
   offY = 1;
   bullets = [];
   canShot = true;
+  speed = 1;
   directions = {
     up: {
       y: -1,
@@ -450,16 +480,128 @@ class Regular {
       this.time = 100;
       if (num == 0) {
         this.direction = 0;
-        this.offY = -1;
+        this.offY = -this.speed;
       } else if (num == 1) {
         this.direction = 90;
-        this.offX = 1;
+        this.offX = this.speed;
       } else if (num == 2) {
         this.direction = 180;
-        this.offY = 1;
+        this.offY = this.speed;
       } else if (num == 3) {
         this.direction = 270;
-        this.offX = -1;
+        this.offX = -this.speed;
+      };
+    };
+  };
+
+  shot() {
+    if (this.shotTimeOut > 0 && this.canShot == false) {
+      this.shotTimeOut--;
+      if (this.shotTimeOut == 0) {
+        this.canShot = true;
+      };
+    } else if (this.bullets.length == 0 && this.canShot == true) {
+      this.shotTimeOut = 50;
+      this.bullets.push(new Bullet(this.direction, this.x, this.y));
+      this.canShot = false;
+    };
+  };
+
+  dead() {
+    ctx.drawImage(boomsImg, 320, 0, 128, 128, this.x - 20, this.y - 20, 60, 60);
+  };
+};
+
+class Light {
+  x = 0;
+  y = 0;
+  width = 30;
+  height = 30;
+  time = 100;
+  shotTimeOut = 50;
+  offX = 1.3;
+  offY = 1.3;
+  bullets = [];
+  canShot = true;
+  speed = 1.3;
+  directions = {
+    up: {
+      y: -this.speed,
+      angle: 0,
+    },
+    down: {
+      y: this.speed,
+      angle: 180,
+    },
+    left: {
+      x: -this.speed,
+      angle: 270,
+    },
+    right: {
+      x: this.speed,
+      angle: 90,
+    }
+  };
+
+  direction = this.directions.down.angle;
+
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+  };
+
+  draw() {
+    if (this.direction == 0) {
+      ctx.drawImage(lightTank, 0, 0, 60, 60, this.x, this.y, this.width, this.height);
+    } else if (this.direction == 90) {
+      ctx.drawImage(lightTank, 388, 0, 60, 60, this.x, this.y, this.width, this.height);
+    } else if (this.direction == 180) {
+      ctx.drawImage(lightTank, 256, 0, 60, 60, this.x, this.y, this.width, this.height);
+    } else if (this.direction == 270) {
+      ctx.drawImage(lightTank, 128, 0, 60, 60, this.x, this.y, this.width, this.height);
+    };
+  };
+
+  run() {
+    this.draw();
+    this.go();
+    this.shot();
+  };
+
+  go() {
+    let num = Math.floor(Math.random() * 4);
+
+    switch (this.direction) {
+      case 0:
+        this.y += this.offY;
+        break;
+      case 90:
+        this.x += this.offX;
+        break;
+      case 180:
+        this.y += this.offY;
+        break;
+      case 270:
+        this.x += this.offX;
+        break;
+    };
+
+    if (this.time > 0) {
+      this.time--;
+    } else {
+      this.time = 100;
+      if (num == 0) {
+        this.direction = 0;
+        this.offY = -this.speed;
+      } else if (num == 1) {
+        this.direction = 90;
+        this.offX = this.speed;
+      } else if (num == 2) {
+        this.direction = 180;
+        this.offY = this.speed;
+      } else if (num == 3) {
+        this.direction = 270;
+        this.offX = -this.speed;
       };
     };
   };
@@ -571,9 +713,6 @@ dataConcreteWalls.forEach((el, ind) => {
 const bullet = new Bullet();
 const player = new Tank(x = 163, y = 485);
 const flag = new Flag(x = 240, y = 480);
-enemies.push(new Regular(x = 3, y = 0))
-enemies.push(new Regular(x = 243, y = 0))
-enemies.push(new Regular(x = 483, y = 0))
 
 window.addEventListener('keydown', (e) => {
   if (e.keyCode == 37) {
@@ -608,11 +747,33 @@ window.addEventListener('keyup', (e) => {
   };
 });
 
-function animation() {
-  window.requestAnimationFrame(animation);
+function start() {
+  window.requestAnimationFrame(start);
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   player.run();
   flag.draw();
+
+  dataEnemies.forEach((el) => {
+    if (enemyContainer.hasChildNodes) {
+      enemyContainer.replaceChildren();
+    };
+    if (enemies.length < 3) {
+      if (el.type == 'Regular') {
+        enemies.push(new Regular(el.x, el.y));
+        dataEnemies.shift();
+      } else if (el.type == 'Light') {
+        enemies.push(new Light(el.x, el.y));
+        dataEnemies.shift();
+      };
+    };
+  });
+
+  for (let i = 0; i < dataEnemies.length; i++) {
+    let div = document.createElement('div');
+    div.classList.add('enemy-item');
+    enemyContainer.append(div);
+  };
+
   objects.forEach(el => el.draw());
   enemies.forEach((tank) => {
     tank.run();
@@ -823,4 +984,3 @@ function animation() {
 
   lifeContainer.textContent = player.life - 1;
 };
-animation();

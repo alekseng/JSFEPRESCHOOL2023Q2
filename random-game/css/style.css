@@ -200,13 +200,23 @@ canvas {
 .enemy-container {
   display: grid;
   grid-template-columns: 20px 20px;
-  grid-template-rows: repeat(20);
+  grid-template-rows: repeat(10, 20px);
   width: 40px;
   height: 200px;
 }
 
 .eneny-container div {
+  width: 20px;
+  height: 20px;
   box-sizing: border-box;
+}
+
+.enemy-item {
+  width: 20px;
+  height: 20px;
+  background: url(../assets/images/enemy-icon.png) no-repeat;
+  background-size: contain;
+  background-position: center;
 }
 
 .life-container {
