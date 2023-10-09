@@ -344,6 +344,9 @@ const controlsBtn = document.querySelector('.controls');
 const controlsList = document.querySelector('.left');
 const enemyContainer = document.querySelector('.enemy-container');
 const items = document.querySelector('.items');
+const rulesBtn = document.querySelector('.rules');
+const rulesModal = document.querySelector('.rules-modal');
+const closeModalBtn = document.querySelector('.close-button');
 
 let date = new Date();
 const options = {
@@ -354,6 +357,8 @@ const options = {
 playBtn.addEventListener('click', startGame);
 controlsBtn.addEventListener('click', showControls);
 recordsBtn.addEventListener('click', showRecords);
+rulesBtn.addEventListener('click', showRules);
+closeModalBtn.addEventListener('click', showRules);
 
 function startGame() {
   overlay.classList.toggle('_playing');
@@ -369,6 +374,10 @@ function showRecords() {
 
 function showControls() {
   controlsList.classList.toggle('_visible');
+};
+
+function showRules() {
+  rulesModal.classList.toggle('_visible');
 };
 
 class Tank {

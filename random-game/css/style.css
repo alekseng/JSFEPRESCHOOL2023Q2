@@ -25,9 +25,9 @@ body {
   display: grid;
   grid-template-columns: 520px 80px;
   grid-template-rows: 520px 60px;
-  grid-template-areas: 
-  "canvas side-bar"
-  "footer footer";
+  grid-template-areas:
+    "canvas side-bar"
+    "footer footer";
   top: calc(50% - 580px / 2);
   left: calc(50% - 600px / 2);
   box-sizing: border-box;
@@ -82,6 +82,7 @@ h1 {
     "left middle right"
   ;
   position: relative;
+  overflow: hidden;
 }
 
 .left {
@@ -127,7 +128,8 @@ h1 {
 
 .play,
 .records,
-.controls {
+.controls,
+.rules {
   box-sizing: border-box;
   border: none;
   border-radius: 10px;
@@ -144,7 +146,8 @@ h1 {
 
 .play:hover,
 .records:hover,
-.controls:hover {
+.controls:hover,
+.rules:hover {
   color: #9c4a00;
   transition: all 0.3s linear;
 }
@@ -193,6 +196,67 @@ h1 {
 
 .items li>span:last-child {
   margin-left: auto;
+}
+
+.rules-modal {
+  box-sizing: border-box;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  font-family: "Tanks";
+  color: white;
+  font-weight: 100;
+  font-size: 10px;
+  letter-spacing: 2px;
+  line-height: 15px;
+  padding: 40px 20px;
+  background: black;
+  top: -100%;
+  transition: all .5s linear;
+}
+
+.rules-modal._visible {
+  top: 0;
+  transition: all .5s linear;
+}
+
+.close-button {
+  position: absolute;
+  width: 21px;
+  height: 21px;
+  flex-shrink: 0;
+  right: 15px;
+  top: 5px;
+  background: inherit;
+  border: none;
+  cursor: pointer;
+}
+
+.close-button::before,
+.close-button::after {
+  content: '';
+  position: absolute;
+  width: 21px;
+  height: 3px;
+  background: #ffffff;
+  transition: all .3s linear;
+}
+
+.close-button::before {
+  top: 50%;
+  left: 0;
+  transform: rotate(45deg);
+}
+
+.close-button::after {
+  right: 0;
+  transform: rotate(-45deg);
+}
+
+.close-button:hover::before,
+.close-button:hover::after {
+  background: #9c4a00;
+  transition: all .3s linear;
 }
 
 canvas {
