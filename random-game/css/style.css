@@ -7,6 +7,9 @@ body {
   padding: 0;
   text-decoration: none;
   list-style: none;
+  font-family: "Tanks";
+  color: #c3c3c3;
+  font-weight: 100;
 }
 
 @font-face {
@@ -48,7 +51,7 @@ body {
   top: 0;
   left: 0;
   background-color: rgb(0, 0, 0);
-  z-index: 1;
+  z-index: 2;
   transition: all 0.7s linear;
 }
 
@@ -101,9 +104,6 @@ h1 {
 }
 
 .keyboard {
-  font-family: "Tanks";
-  color: white;
-  font-weight: 100;
   font-size: 8px;
   align-self: flex-end;
 }
@@ -136,9 +136,6 @@ h1 {
   width: 140px;
   height: 50px;
   background-color: transparent;
-  font-family: "Tanks";
-  color: white;
-  font-weight: 100;
   font-size: 16px;
   cursor: pointer;
   transition: all 0.3s linear;
@@ -150,6 +147,13 @@ h1 {
 .rules:hover {
   color: #9c4a00;
   transition: all 0.3s linear;
+}
+
+.play:focus-visible,
+.records:focus-visible,
+.controls:focus-visible,
+.rules:focus-visible {
+  outline: none;
 }
 
 .right {
@@ -165,9 +169,6 @@ h1 {
 }
 
 .items {
-  font-family: "Tanks";
-  color: white;
-  font-weight: 100;
   font-size: 8px;
   align-self: flex-start;
   visibility: hidden;
@@ -203,9 +204,6 @@ h1 {
   position: absolute;
   width: 100%;
   height: 100%;
-  font-family: "Tanks";
-  color: white;
-  font-weight: 100;
   font-size: 10px;
   letter-spacing: 2px;
   line-height: 15px;
@@ -230,33 +228,103 @@ h1 {
   background: inherit;
   border: none;
   cursor: pointer;
+  transition: all .3s linear;
 }
 
-.close-button::before,
-.close-button::after {
-  content: '';
+.close-button:hover {
+  color: #9c4a00;
+  transition: all .3s linear;
+}
+
+.result {
   position: absolute;
-  width: 21px;
-  height: 3px;
-  background: #ffffff;
-  transition: all .3s linear;
-}
-
-.close-button::before {
-  top: 50%;
+  display: grid;
+  grid-template-columns: 600px;
+  grid-template-rows: 130px 90px 300px;
+  grid-template-areas:
+    "current-level"
+    "score"
+    "statistics"
+  ;
+  width: 600px;
+  height: 520px;
+  top: 0;
   left: 0;
-  transform: rotate(45deg);
+  background-color: rgb(0, 0, 0);
+  z-index: 1;
+  visibility: hidden;
+  opacity: 0;
+  transition: all 1.2s linear;
 }
 
-.close-button::after {
-  right: 0;
-  transform: rotate(-45deg);
+.result._visible {
+  visibility: visible;
+  opacity: 1.2;
+  transition: all 1.2s linear;
 }
 
-.close-button:hover::before,
-.close-button:hover::after {
-  background: #9c4a00;
-  transition: all .3s linear;
+.current-level {
+  grid-area: current-level;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+  font-size: 16px;
+  letter-spacing: 2px;
+  line-height: 15px;
+}
+
+.score {
+  grid-area: score;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+  font-size: 16px;
+  letter-spacing: 2px;
+  line-height: 15px;
+}
+
+.score>div>span:last-child {
+  color: #9c4a00;
+}
+
+.statistics {
+  display: grid;
+  grid-template-columns: 600px;
+  grid-template-rows: repeat(5, 60px);
+  grid-area: statistics;
+  width: 100%;
+}
+
+.regular,
+.light,
+.medium,
+.heavy,
+.total {
+  box-sizing: border-box;
+  display: grid;
+  align-items: center;
+  justify-items: end;
+  grid-template-columns: 200px 145px 50px 30px 40px;
+  font-size: 16px;
+  letter-spacing: 2px;
+  line-height: 15px;
+}
+
+.heavy {
+  border-bottom: 2px solid #c3c3c3;
+}
+
+.regular>span:nth-child(5)>img,
+.light>span:nth-child(5)>img,
+.medium>span:nth-child(5)>img,
+.heavy>span:nth-child(5)>img {
+  width: 35px;
+  height: 35px;
 }
 
 canvas {
@@ -328,7 +396,7 @@ canvas {
 
 .life-counter {
   box-sizing: border-box;
-  font-family: "Tanks";
+  color: black;
   font-size: 20px;
   font-style: normal;
   line-height: 16px;
@@ -352,7 +420,7 @@ canvas {
 }
 
 .level-counter {
-  font-family: "Tanks";
+  color: black;
   font-size: 20px;
   font-style: normal;
   line-height: 16px;
@@ -388,9 +456,6 @@ canvas {
   grid-area: year;
   position: relative;
   margin: auto;
-  font-family: "Tanks";
-  color: white;
-  font-weight: 100;
   font-size: 14px;
   line-height: 26px;
 }

@@ -4,6 +4,9 @@ const ctx = canvas.getContext('2d');
 canvas.width = 520;
 canvas.height = 520;
 
+let isPlaying = false;
+let currentLevel = 1;
+
 const dataBrickWalls = [
   { x: 0, y: 260 },
   { x: 20, y: 260 },
@@ -263,7 +266,7 @@ const bullets = [];
 const objects = [];
 const enemies = [];
 const dataEnemies = [
-  { type: 'Regular', x: 243, y: 0 },
+  [{ type: 'Regular', x: 243, y: 0 },
   { type: 'Regular', x: 483, y: 0 },
   { type: 'Regular', x: 3, y: 0 },
   { type: 'Regular', x: 243, y: 0 },
@@ -282,8 +285,9 @@ const dataEnemies = [
   { type: 'Regular', x: 3, y: 0 },
   { type: 'Regular', x: 243, y: 0 },
   { type: 'Light', x: 483, y: 0 },
-  { type: 'Light', x: 3, y: 0 },
-]
+  { type: 'Light', x: 3, y: 0 },],
+];
+
 const gameObjects = new Image();
 gameObjects.src = "./assets/images/objects.png";
 
@@ -310,6 +314,8 @@ scoresImg.src = "./assets/images/scores.png"
 
 let timeOutDefeat = 1;
 let score = 0;
+
+let levelScore = { result: '', stage: currentLevel, total: 0, score: 0, regular: 0, light: 0, medium: 0, heavy: 0, regularCount: 0, lightCount: 0, mediumCount: 0, heavyCount: 0, };
 
 class Score {
   constructor(score, time) {
@@ -347,6 +353,8 @@ const items = document.querySelector('.items');
 const rulesBtn = document.querySelector('.rules');
 const rulesModal = document.querySelector('.rules-modal');
 const closeModalBtn = document.querySelector('.close-button');
+const resultInfo = document.querySelector('.result');
+const templateInfo = document.createElement('template');
 
 let date = new Date();
 const options = {
@@ -362,7 +370,7 @@ closeModalBtn.addEventListener('click', showRules);
 
 function startGame() {
   overlay.classList.toggle('_playing');
-
+  isPlaying = true;
   setTimeout(() => {
     start();
   }, 1000);
@@ -554,6 +562,8 @@ class Regular {
     ctx.drawImage(boomsImg, 320, 0, 128, 128, this.x - 20, this.y - 20, 60, 60);
     ctx.drawImage(scoresImg, 0, 0, 52, 28, this.x - 20, this.y, 52, 28);
     score += 100;
+    levelScore.regular += 100;
+    levelScore.regularCount += 1;
   };
 };
 
@@ -668,6 +678,8 @@ class Light {
     ctx.drawImage(boomsImg, 320, 0, 128, 128, this.x - 20, this.y - 20, 60, 60);
     ctx.drawImage(scoresImg, 60, 0, 56, 28, this.x - 20, this.y, 56, 28);
     score += 200;
+    levelScore.light += 200;
+    levelScore.lightCount += 1;
   };
 };
 
@@ -795,27 +807,29 @@ window.addEventListener('keyup', (e) => {
 });
 
 function start() {
-  window.requestAnimationFrame(start);
+  if (isPlaying) {
+    window.requestAnimationFrame(start);
+  };
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   player.run();
   flag.draw();
 
-  dataEnemies.forEach((el) => {
+  dataEnemies[currentLevel - 1].forEach((el) => {
     if (enemyContainer.hasChildNodes) {
       enemyContainer.replaceChildren();
     };
     if (enemies.length < 3) {
       if (el.type == 'Regular') {
         enemies.push(new Regular(el.x, el.y));
-        dataEnemies.shift();
+        dataEnemies[currentLevel - 1].shift();
       } else if (el.type == 'Light') {
         enemies.push(new Light(el.x, el.y));
-        dataEnemies.shift();
+        dataEnemies[currentLevel - 1].shift();
       };
     };
   });
 
-  for (let i = 0; i < dataEnemies.length; i++) {
+  for (let i = 0; i < dataEnemies[currentLevel - 1].length; i++) {
     let div = document.createElement('div');
     div.classList.add('enemy-item');
     enemyContainer.append(div);
@@ -1025,10 +1039,13 @@ function start() {
   if (flag.isDestroy || enemies.length == 0 || player.life == 0) {
     timeOutDefeat--;
     if (timeOutDefeat == 0) {
-      let scoreItem = new Score(score, date.toLocaleDateString('ru-RU', options));
-      scoreListRecordsTanks.push(scoreItem);
-      localStorage.setItem('scoreListRecordsTanks', JSON.stringify(scoreListRecordsTanks));
-      window.location.reload();
+      isPlaying = false;
+      saveScore();
+      if (flag.isDestroy || player.life == 0) {
+        levelScore.result = 'lose';
+      } else if (enemies.length == 0) {
+        levelScore.result = 'win';
+      } endGame();
     };
   };
 
@@ -1046,3 +1063,55 @@ sliceScore.forEach((elem, index) => {
     `;
   items.append(template.content);
 });
+
+function saveScore() {
+  let scoreItem = new Score(score, date.toLocaleDateString('ru-RU', options));
+  scoreListRecordsTanks.push(scoreItem);
+  localStorage.setItem('scoreListRecordsTanks', JSON.stringify(scoreListRecordsTanks));
+};
+
+function endGame() {
+  templateInfo.innerHTML = `
+  <div class="current-level"><div>you ${levelScore.result}</div><div>stage ${levelScore.stage}</div></div>
+        <div class="score">
+          <div>1-player</div><div><span>total score:</span><span>${score}</span></div>
+        </div>
+        <div class="statistics">
+          <div class="regular"><span>${levelScore.regular}</span><span>points</span><span>${levelScore.regularCount}</span><span><</span><span>
+  <img src="./assets/images/regular-icon.png" alt="">
+          </span></div>
+          <div class="light"><span>${levelScore.light}</span><span>points</span><span>${levelScore.lightCount}</span><span><</span><span>
+  <img src="./assets/images/light-icon.png" alt="">
+          </span></div>
+          <div class="medium"><span>${levelScore.medium}</span><span>points</span><span>${levelScore.mediumCount}</span><span><</span><span>
+            <img src="./assets/images/medium-icon.png" alt="">
+          </span></div>
+          <div class="heavy"><span>${levelScore.heavy}</span><span>points</span><span>${levelScore.heavyCount}</span><span><</span><span>
+            <img src="./assets/images/heavy-icon.png" alt="">
+          </span></div>
+          <div class="total"><span>${levelScore.regular + levelScore.light + levelScore.medium + levelScore.heavy}</span><span>points</span><span>${levelScore.regularCount + levelScore.lightCount + levelScore.mediumCount + levelScore.heavyCount}</span><span></span></div>
+        </div>
+  `
+  resultInfo.append(templateInfo.content);
+  resultInfo.classList.add('_visible');
+
+  if (levelScore.result == 'lose') {
+    lose();
+  } else if (levelScore.result == 'win') {
+    win();
+  };
+};
+
+function lose() {
+  setTimeout(() => {
+    resultInfo.classList.remove('_visible');
+    window.location.reload();
+  }, 6500);
+};
+
+function win() {
+  setTimeout(() => {
+    resultInfo.classList.remove('_visible');
+    window.location.reload();
+  }, 6500);
+};
