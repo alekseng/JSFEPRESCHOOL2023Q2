@@ -8,11 +8,10 @@ let isPlaying = false;
 let currentLevel = 1;
 
 const dataBrickWalls = [
-  { x: 0, y: 260 },
+  [{ x: 0, y: 260 },
   { x: 20, y: 260 },
   { x: 480, y: 260 },
   { x: 500, y: 260 },
-
   { x: 40, y: 40 },
   { x: 40, y: 60 },
   { x: 40, y: 80 },
@@ -31,7 +30,6 @@ const dataBrickWalls = [
   { x: 60, y: 160 },
   { x: 60, y: 180 },
   { x: 60, y: 200 },
-
   { x: 120, y: 40 },
   { x: 120, y: 60 },
   { x: 120, y: 80 },
@@ -50,7 +48,6 @@ const dataBrickWalls = [
   { x: 140, y: 160 },
   { x: 140, y: 180 },
   { x: 140, y: 200 },
-
   { x: 200, y: 40 },
   { x: 200, y: 60 },
   { x: 200, y: 80 },
@@ -65,7 +62,6 @@ const dataBrickWalls = [
   { x: 220, y: 120 },
   { x: 220, y: 140 },
   { x: 220, y: 160 },
-
   { x: 280, y: 40 },
   { x: 280, y: 60 },
   { x: 280, y: 80 },
@@ -80,7 +76,6 @@ const dataBrickWalls = [
   { x: 300, y: 120 },
   { x: 300, y: 140 },
   { x: 300, y: 160 },
-
   { x: 360, y: 40 },
   { x: 360, y: 60 },
   { x: 360, y: 80 },
@@ -99,7 +94,6 @@ const dataBrickWalls = [
   { x: 380, y: 160 },
   { x: 380, y: 180 },
   { x: 380, y: 200 },
-
   { x: 440, y: 40 },
   { x: 440, y: 60 },
   { x: 440, y: 80 },
@@ -118,7 +112,6 @@ const dataBrickWalls = [
   { x: 460, y: 160 },
   { x: 460, y: 180 },
   { x: 460, y: 200 },
-
   { x: 40, y: 340 },
   { x: 40, y: 360 },
   { x: 40, y: 380 },
@@ -133,7 +126,6 @@ const dataBrickWalls = [
   { x: 60, y: 420 },
   { x: 60, y: 440 },
   { x: 60, y: 460 },
-
   { x: 120, y: 340 },
   { x: 120, y: 360 },
   { x: 120, y: 380 },
@@ -148,7 +140,6 @@ const dataBrickWalls = [
   { x: 140, y: 420 },
   { x: 140, y: 440 },
   { x: 140, y: 460 },
-
   { x: 360, y: 340 },
   { x: 360, y: 360 },
   { x: 360, y: 380 },
@@ -163,7 +154,6 @@ const dataBrickWalls = [
   { x: 380, y: 420 },
   { x: 380, y: 440 },
   { x: 380, y: 460 },
-
   { x: 440, y: 340 },
   { x: 440, y: 360 },
   { x: 440, y: 380 },
@@ -178,7 +168,6 @@ const dataBrickWalls = [
   { x: 460, y: 420 },
   { x: 460, y: 440 },
   { x: 460, y: 460 },
-
   { x: 80, y: 260 },
   { x: 80, y: 280 },
   { x: 100, y: 260 },
@@ -187,17 +176,14 @@ const dataBrickWalls = [
   { x: 120, y: 280 },
   { x: 140, y: 260 },
   { x: 140, y: 280 },
-
   { x: 200, y: 220 },
   { x: 200, y: 240 },
   { x: 220, y: 220 },
   { x: 220, y: 240 },
-
   { x: 280, y: 220 },
   { x: 280, y: 240 },
   { x: 300, y: 220 },
   { x: 300, y: 240 },
-
   { x: 360, y: 260 },
   { x: 360, y: 280 },
   { x: 380, y: 260 },
@@ -206,7 +192,6 @@ const dataBrickWalls = [
   { x: 400, y: 280 },
   { x: 420, y: 260 },
   { x: 420, y: 280 },
-
   { x: 200, y: 300 },
   { x: 200, y: 320 },
   { x: 200, y: 340 },
@@ -219,12 +204,10 @@ const dataBrickWalls = [
   { x: 220, y: 360 },
   { x: 220, y: 380 },
   { x: 220, y: 400 },
-
   { x: 240, y: 320 },
   { x: 240, y: 340 },
   { x: 260, y: 320 },
   { x: 260, y: 340 },
-
   { x: 280, y: 300 },
   { x: 280, y: 320 },
   { x: 280, y: 340 },
@@ -237,55 +220,372 @@ const dataBrickWalls = [
   { x: 300, y: 360 },
   { x: 300, y: 380 },
   { x: 300, y: 400 },
-
   { x: 220, y: 460 },
   { x: 220, y: 480 },
   { x: 220, y: 500 },
-
   { x: 240, y: 460 },
   { x: 260, y: 460 },
+  { x: 280, y: 460 },
+  { x: 280, y: 480 },
+  { x: 280, y: 500 },],
 
+  [{ x: 40, y: 40 },
+  { x: 40, y: 60 },
+  { x: 40, y: 80 },
+  { x: 40, y: 100 },
+  { x: 60, y: 40 },
+  { x: 60, y: 60 },
+  { x: 60, y: 80 },
+  { x: 60, y: 100 },
+
+  { x: 240, y: 80 },
+  { x: 260, y: 80 },
+  { x: 240, y: 100 },
+  { x: 260, y: 100 },
+
+  { x: 280, y: 40 },
+  { x: 280, y: 60 },
+  { x: 280, y: 80 },
+  { x: 280, y: 100 },
+  { x: 300, y: 40 },
+  { x: 300, y: 60 },
+  { x: 300, y: 80 },
+  { x: 300, y: 100 },
+  { x: 360, y: 40 },
+  { x: 360, y: 60 },
+  { x: 360, y: 80 },
+  { x: 360, y: 100 },
+  { x: 380, y: 40 },
+  { x: 380, y: 60 },
+  { x: 380, y: 80 },
+  { x: 380, y: 100 },
+  { x: 440, y: 40 },
+  { x: 440, y: 60 },
+  { x: 440, y: 80 },
+  { x: 440, y: 100 },
+  { x: 460, y: 40 },
+  { x: 460, y: 60 },
+  { x: 460, y: 80 },
+  { x: 460, y: 100 },
+  { x: 120, y: 120 },
+  { x: 120, y: 140 },
+  { x: 120, y: 160 },
+  { x: 120, y: 180 },
+  { x: 140, y: 120 },
+  { x: 140, y: 140 },
+  { x: 140, y: 160 },
+  { x: 140, y: 180 },
+  { x: 360, y: 160 },
+  { x: 360, y: 180 },
+  { x: 380, y: 160 },
+  { x: 380, y: 180 },
+  { x: 440, y: 160 },
+  { x: 440, y: 180 },
+  { x: 460, y: 160 },
+  { x: 460, y: 180 },
+  { x: 200, y: 200 },
+  { x: 200, y: 220 },
+  { x: 220, y: 200 },
+  { x: 220, y: 220 },
+  { x: 40, y: 240 },
+  { x: 60, y: 240 },
+  { x: 80, y: 240 },
+  { x: 100, y: 240 },
+  { x: 120, y: 240 },
+  { x: 140, y: 240 },
+  { x: 40, y: 260 },
+  { x: 60, y: 260 },
+  { x: 80, y: 260 },
+  { x: 100, y: 260 },
+  { x: 120, y: 260 },
+  { x: 140, y: 260 },
+  { x: 40, y: 320 },
+  { x: 40, y: 340 },
+  { x: 40, y: 360 },
+  { x: 40, y: 380 },
+  { x: 40, y: 400 },
+  { x: 40, y: 420 },
+  { x: 40, y: 440 },
+  { x: 40, y: 460 },
+  { x: 40, y: 480 },
+  { x: 40, y: 500 },
+  { x: 60, y: 320 },
+  { x: 60, y: 340 },
+  { x: 60, y: 360 },
+  { x: 60, y: 380 },
+  { x: 60, y: 400 },
+  { x: 60, y: 420 },
+  { x: 60, y: 440 },
+  { x: 60, y: 460 },
+  { x: 60, y: 480 },
+  { x: 60, y: 500 },
+  { x: 120, y: 360 },
+  { x: 120, y: 380 },
+  { x: 120, y: 400 },
+  { x: 120, y: 420 },
+  { x: 120, y: 480 },
+  { x: 120, y: 500 },
+  { x: 140, y: 360 },
+  { x: 140, y: 380 },
+  { x: 140, y: 400 },
+  { x: 140, y: 420 },
+  { x: 140, y: 480 },
+  { x: 140, y: 500 },
+  { x: 200, y: 280 },
+  { x: 200, y: 300 },
+  { x: 200, y: 320 },
+  { x: 200, y: 340 },
+  { x: 220, y: 280 },
+  { x: 220, y: 300 },
+  { x: 220, y: 320 },
+  { x: 220, y: 340 },
+  { x: 200, y: 360 },
+  { x: 200, y: 380 },
+  { x: 200, y: 400 },
+  { x: 200, y: 420 },
+  { x: 220, y: 360 },
+  { x: 220, y: 380 },
+  { x: 220, y: 400 },
+  { x: 220, y: 420 },
+  { x: 240, y: 360 },
+  { x: 240, y: 380 },
+  { x: 240, y: 400 },
+  { x: 240, y: 420 },
+  { x: 260, y: 360 },
+  { x: 260, y: 380 },
+  { x: 260, y: 400 },
+  { x: 260, y: 420 },
+  { x: 280, y: 280 },
+  { x: 280, y: 300 },
+  { x: 280, y: 320 },
+  { x: 280, y: 340 },
+  { x: 300, y: 280 },
+  { x: 300, y: 300 },
+  { x: 300, y: 320 },
+  { x: 300, y: 340 },
+  { x: 280, y: 360 },
+  { x: 280, y: 380 },
+  { x: 280, y: 400 },
+  { x: 280, y: 420 },
+  { x: 300, y: 360 },
+  { x: 300, y: 380 },
+  { x: 300, y: 400 },
+  { x: 300, y: 420 },
+  { x: 360, y: 280 },
+  { x: 360, y: 300 },
+  { x: 380, y: 280 },
+  { x: 380, y: 300 },
+  { x: 360, y: 360 },
+  { x: 360, y: 380 },
+  { x: 380, y: 360 },
+  { x: 380, y: 380 },
+  { x: 360, y: 440 },
+  { x: 360, y: 460 },
+  { x: 380, y: 440 },
+  { x: 380, y: 460 },
+  { x: 360, y: 480 },
+  { x: 360, y: 500 },
+  { x: 380, y: 480 },
+  { x: 380, y: 500 },
+  { x: 400, y: 480 },
+  { x: 400, y: 500 },
+  { x: 420, y: 480 },
+  { x: 420, y: 500 },
+  { x: 440, y: 440 },
+  { x: 440, y: 460 },
+  { x: 460, y: 440 },
+  { x: 460, y: 460 },
+  { x: 440, y: 480 },
+  { x: 440, y: 500 },
+  { x: 460, y: 480 },
+  { x: 460, y: 500 },
+  { x: 440, y: 240 },
+  { x: 440, y: 260 },
+  { x: 460, y: 240 },
+  { x: 460, y: 260 },
+  { x: 440, y: 280 },
+  { x: 440, y: 300 },
+  { x: 460, y: 280 },
+  { x: 460, y: 300 },
+  { x: 440, y: 320 },
+  { x: 440, y: 340 },
+  { x: 460, y: 320 },
+  { x: 460, y: 340 },
+  { x: 440, y: 360 },
+  { x: 440, y: 380 },
+  { x: 460, y: 360 },
+  { x: 460, y: 380 },
+  { x: 220, y: 460 },
+  { x: 220, y: 480 },
+  { x: 220, y: 500 },
+  { x: 240, y: 460 },
+  { x: 260, y: 460 },
   { x: 280, y: 460 },
   { x: 280, y: 480 },
   { x: 280, y: 500 },
+  ],
 ];
 
 const dataConcreteWalls = [
-  { x: 0, y: 280 },
+  [{ x: 0, y: 280 },
   { x: 20, y: 280 },
   { x: 480, y: 280 },
   { x: 500, y: 280 },
-
   { x: 240, y: 120 },
   { x: 240, y: 140 },
   { x: 260, y: 120 },
-  { x: 260, y: 140 },
+  { x: 260, y: 140 },],
+
+  [{ x: 120, y: 0 },
+  { x: 120, y: 20 },
+  { x: 120, y: 40 },
+  { x: 120, y: 60 },
+  { x: 140, y: 0 },
+  { x: 140, y: 20 },
+  { x: 140, y: 40 },
+  { x: 140, y: 60 },
+  { x: 280, y: 0 },
+  { x: 280, y: 20 },
+  { x: 300, y: 0 },
+  { x: 300, y: 20 },
+  { x: 360, y: 120 },
+  { x: 360, y: 140 },
+  { x: 380, y: 120 },
+  { x: 380, y: 140 },
+  { x: 400, y: 80 },
+  { x: 400, y: 100 },
+  { x: 420, y: 80 },
+  { x: 420, y: 100 },
+
+  { x: 480, y: 160 },
+  { x: 480, y: 180 },
+  { x: 500, y: 160 },
+  { x: 500, y: 180 },
+
+  { x: 240, y: 160 },
+  { x: 240, y: 180 },
+  { x: 260, y: 160 },
+  { x: 260, y: 180 },
+  { x: 320, y: 200 },
+  { x: 320, y: 220 },
+  { x: 340, y: 200 },
+  { x: 340, y: 220 },
+  { x: 280, y: 240 },
+  { x: 280, y: 260 },
+  { x: 300, y: 240 },
+  { x: 300, y: 260 },
+  { x: 0, y: 320 },
+  { x: 0, y: 340 },
+  { x: 20, y: 320 },
+  { x: 20, y: 340 },
+  { x: 120, y: 280 },
+  { x: 120, y: 300 },
+  { x: 140, y: 280 },
+  { x: 140, y: 300 },
+  { x: 120, y: 320 },
+  { x: 120, y: 340 },
+  { x: 140, y: 320 },
+  { x: 140, y: 340 },
+  { x: 400, y: 360 },
+  { x: 400, y: 380 },
+  { x: 420, y: 360 },
+  { x: 420, y: 380 },
+  ],
 ];
+
+const dataTrees = [
+  [],
+  [{ x: 0, y: 160 },
+  { x: 0, y: 180 },
+  { x: 0, y: 200 },
+  { x: 0, y: 220 },
+  { x: 20, y: 160 },
+  { x: 20, y: 180 },
+  { x: 20, y: 200 },
+  { x: 20, y: 220 },
+  { x: 40, y: 200 },
+  { x: 40, y: 220 },
+  { x: 60, y: 200 },
+  { x: 60, y: 220 },
+
+  { x: 160, y: 240 },
+  { x: 160, y: 260 },
+  { x: 180, y: 240 },
+  { x: 180, y: 260 },
+  { x: 200, y: 240 },
+  { x: 200, y: 260 },
+  { x: 220, y: 240 },
+  { x: 220, y: 260 },
+  { x: 240, y: 240 },
+  { x: 240, y: 260 },
+  { x: 260, y: 240 },
+  { x: 260, y: 260 },
+  { x: 160, y: 280 },
+  { x: 160, y: 300 },
+  { x: 180, y: 280 },
+  { x: 180, y: 300 },
+
+  { x: 400, y: 160 },
+  { x: 400, y: 180 },
+  { x: 420, y: 160 },
+  { x: 420, y: 180 },
+  { x: 400, y: 200 },
+  { x: 400, y: 220 },
+  { x: 420, y: 200 },
+  { x: 420, y: 220 },
+  { x: 400, y: 240 },
+  { x: 400, y: 260 },
+  { x: 420, y: 240 },
+  { x: 420, y: 260 },
+  ],
+]
 
 const bullets = [];
 const objects = [];
 const enemies = [];
 const dataEnemies = [
-  [{ type: 'Regular', x: 243, y: 0 },
-  { type: 'Regular', x: 483, y: 0 },
-  { type: 'Regular', x: 3, y: 0 },
-  { type: 'Regular', x: 243, y: 0 },
-  { type: 'Regular', x: 483, y: 0 },
-  { type: 'Regular', x: 3, y: 0 },
-  { type: 'Regular', x: 243, y: 0 },
-  { type: 'Regular', x: 483, y: 0 },
-  { type: 'Regular', x: 3, y: 0 },
-  { type: 'Regular', x: 243, y: 0 },
-  { type: 'Regular', x: 483, y: 0 },
-  { type: 'Regular', x: 243, y: 0 },
-  { type: 'Regular', x: 483, y: 0 },
-  { type: 'Regular', x: 3, y: 0 },
-  { type: 'Regular', x: 243, y: 0 },
-  { type: 'Regular', x: 483, y: 0 },
-  { type: 'Regular', x: 3, y: 0 },
-  { type: 'Regular', x: 243, y: 0 },
-  { type: 'Light', x: 483, y: 0 },
-  { type: 'Light', x: 3, y: 0 },],
+  [{ type: 'Regular', x: 243, y: 3 },
+  { type: 'Regular', x: 483, y: 3 },
+  { type: 'Regular', x: 3, y: 3 },
+  { type: 'Regular', x: 243, y: 3 },
+  { type: 'Regular', x: 483, y: 3 },
+  { type: 'Regular', x: 3, y: 3 },
+  { type: 'Regular', x: 243, y: 3 },
+  { type: 'Regular', x: 483, y: 3 },
+  { type: 'Regular', x: 3, y: 3 },
+  { type: 'Regular', x: 243, y: 3 },
+  { type: 'Regular', x: 483, y: 3 },
+  { type: 'Regular', x: 3, y: 3 },
+  { type: 'Regular', x: 243, y: 3 },
+  { type: 'Regular', x: 483, y: 3 },
+  { type: 'Regular', x: 3, y: 3 },
+  { type: 'Regular', x: 243, y: 3 },
+  { type: 'Regular', x: 483, y: 3 },
+  { type: 'Regular', x: 3, y: 3 },
+  { type: 'Light', x: 243, y: 3 },
+  { type: 'Light', x: 483, y: 3 },],
+
+  [{ type: 'Heavy', x: 243, y: 3 },
+  { type: 'Heavy', x: 483, y: 3 },
+  { type: 'Light', x: 3, y: 3 },
+  { type: 'Light', x: 243, y: 3 },
+  { type: 'Light', x: 483, y: 3 },
+  { type: 'Light', x: 3, y: 3 },
+  { type: 'Regular', x: 243, y: 3 },
+  { type: 'Regular', x: 483, y: 3 },
+  { type: 'Regular', x: 3, y: 3 },
+  { type: 'Regular', x: 243, y: 3 },
+  { type: 'Regular', x: 483, y: 3 },
+  { type: 'Regular', x: 3, y: 3 },
+  { type: 'Regular', x: 243, y: 3 },
+  { type: 'Regular', x: 483, y: 3 },
+  { type: 'Regular', x: 3, y: 3 },
+  { type: 'Regular', x: 243, y: 3 },
+  { type: 'Regular', x: 483, y: 3 },
+  { type: 'Regular', x: 3, y: 3 },
+  { type: 'Regular', x: 243, y: 3 },
+  { type: 'Regular', x: 483, y: 3 },
+  ],
 ];
 
 const gameObjects = new Image();
@@ -299,6 +599,9 @@ regularTank.src = "./assets/images/regular.png";
 
 const lightTank = new Image();
 lightTank.src = "./assets/images/light.png";
+
+const heavyTank = new Image();
+heavyTank.src = "./assets/images/heavy.png";
 
 const flagImg = new Image()
 flagImg.src = "./assets/images/flag.png"
@@ -355,6 +658,7 @@ const rulesModal = document.querySelector('.rules-modal');
 const closeModalBtn = document.querySelector('.close-button');
 const resultInfo = document.querySelector('.result');
 const templateInfo = document.createElement('template');
+const levelCounter = document.querySelector('.level-counter');
 
 let date = new Date();
 const options = {
@@ -372,6 +676,7 @@ function startGame() {
   overlay.classList.toggle('_playing');
   isPlaying = true;
   setTimeout(() => {
+    renderMap();
     start();
   }, 1000);
 };
@@ -449,6 +754,12 @@ class Tank {
     this.direction = this.directions.up.angle;
     ctx.drawImage(boomsImg, 320, 0, 128, 128, this.x - 20, this.y - 20, 60, 60);
   };
+
+  render() {
+    this.x = 165;
+    this.y = 485;
+    this.direction = this.directions.up.angle;
+  };
 };
 
 class Regular {
@@ -463,6 +774,7 @@ class Regular {
   bullets = [];
   canShot = true;
   speed = 1;
+  durability = 0;
   directions = {
     up: {
       y: -1,
@@ -574,11 +886,12 @@ class Light {
   height = 30;
   time = 100;
   shotTimeOut = 50;
-  offX = 1.3;
-  offY = 1.3;
+  offX = 1.4;
+  offY = 1.4;
   bullets = [];
   canShot = true;
-  speed = 1.3;
+  speed = 1.4;
+  durability = 0;
   directions = {
     up: {
       y: -this.speed,
@@ -683,6 +996,123 @@ class Light {
   };
 };
 
+class Heavy {
+  x = 0;
+  y = 0;
+  width = 30;
+  height = 30;
+  time = 100;
+  shotTimeOut = 50;
+  offX = 0.8;
+  offY = 0.8;
+  bullets = [];
+  canShot = true;
+  speed = 0.8;
+  durability = 3;
+  directions = {
+    up: {
+      y: -1,
+      angle: 0,
+    },
+    down: {
+      y: 1,
+      angle: 180,
+    },
+    left: {
+      x: -1,
+      angle: 270,
+    },
+    right: {
+      x: 1,
+      angle: 90,
+    }
+  };
+
+  direction = this.directions.down.angle;
+
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+  };
+
+  draw() {
+    if (this.direction == 0) {
+      ctx.drawImage(heavyTank, 0, 0, 60, 60, this.x, this.y, this.width, this.height);
+    } else if (this.direction == 90) {
+      ctx.drawImage(heavyTank, 388, 0, 60, 60, this.x, this.y, this.width, this.height);
+    } else if (this.direction == 180) {
+      ctx.drawImage(heavyTank, 256, 0, 60, 60, this.x, this.y, this.width, this.height);
+    } else if (this.direction == 270) {
+      ctx.drawImage(heavyTank, 128, 0, 60, 60, this.x, this.y, this.width, this.height);
+    };
+  };
+
+  run() {
+    this.draw();
+    this.go();
+    this.shot();
+  };
+
+  go() {
+    let num = Math.floor(Math.random() * 4);
+
+    switch (this.direction) {
+      case 0:
+        this.y += this.offY;
+        break;
+      case 90:
+        this.x += this.offX;
+        break;
+      case 180:
+        this.y += this.offY;
+        break;
+      case 270:
+        this.x += this.offX;
+        break;
+    };
+
+    if (this.time > 0) {
+      this.time--;
+    } else {
+      this.time = 100;
+      if (num == 0) {
+        this.direction = 0;
+        this.offY = -this.speed;
+      } else if (num == 1) {
+        this.direction = 90;
+        this.offX = this.speed;
+      } else if (num == 2) {
+        this.direction = 180;
+        this.offY = this.speed;
+      } else if (num == 3) {
+        this.direction = 270;
+        this.offX = -this.speed;
+      };
+    };
+  };
+
+  shot() {
+    if (this.shotTimeOut > 0 && this.canShot == false) {
+      this.shotTimeOut--;
+      if (this.shotTimeOut == 0) {
+        this.canShot = true;
+      };
+    } else if (this.bullets.length == 0 && this.canShot == true) {
+      this.shotTimeOut = 50;
+      this.bullets.push(new Bullet(this.direction, this.x, this.y));
+      this.canShot = false;
+    };
+  };
+
+  dead() {
+    ctx.drawImage(boomsImg, 320, 0, 128, 128, this.x - 20, this.y - 20, 60, 60);
+    ctx.drawImage(scoresImg, 0, 0, 52, 28, this.x - 20, this.y, 52, 28);
+    score += 400;
+    levelScore.heavy += 400;
+    levelScore.heavyCount += 1;
+  };
+};
+
 class Bullet {
   bulletSpeed = 2.8;
   vectorX = 11;
@@ -744,6 +1174,22 @@ class ConcreteWall {
   };
 };
 
+class Trees {
+  width = 20;
+  height = 20;
+  isDestroy = false;
+  isMove = true;
+  isShot = true;
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+  };
+
+  draw() {
+    ctx.drawImage(gameObjects, 68, 0, 32, 32, this.x, this.y, this.width, this.height);
+  };
+};
+
 class Flag {
   width = 40;
   height = 40;
@@ -761,13 +1207,23 @@ class Flag {
   };
 };
 
-dataBrickWalls.forEach((el, ind) => {
-  objects.push(new BrickWall(el.x, el.y));
-});
+function renderMap() {
+  dataBrickWalls[currentLevel - 1].forEach((el) => {
+    objects.push(new BrickWall(el.x, el.y));
+  });
 
-dataConcreteWalls.forEach((el, ind) => {
-  objects.push(new ConcreteWall(el.x, el.y));
-});
+  dataConcreteWalls[currentLevel - 1].forEach((el) => {
+    objects.push(new ConcreteWall(el.x, el.y));
+  });
+
+  dataTrees[currentLevel - 1].forEach((el) => {
+    objects.push(new Trees(el.x, el.y));
+  });
+};
+
+function clearMap() {
+  objects.splice(0, objects.length);
+};
 
 const bullet = new Bullet();
 const player = new Tank(x = 163, y = 485);
@@ -814,20 +1270,26 @@ function start() {
   player.run();
   flag.draw();
 
-  dataEnemies[currentLevel - 1].forEach((el) => {
+  for (let i = 0; i < dataEnemies[currentLevel - 1].length; i++) {
     if (enemyContainer.hasChildNodes) {
       enemyContainer.replaceChildren();
     };
     if (enemies.length < 3) {
-      if (el.type == 'Regular') {
-        enemies.push(new Regular(el.x, el.y));
+      if (dataEnemies[currentLevel - 1][i].type === 'Regular') {
+        enemies.push(new Regular(dataEnemies[currentLevel - 1][i].x, dataEnemies[currentLevel - 1][i].y));
         dataEnemies[currentLevel - 1].shift();
-      } else if (el.type == 'Light') {
-        enemies.push(new Light(el.x, el.y));
+        i--;
+      } else if (dataEnemies[currentLevel - 1][i].type === 'Heavy') {
+        enemies.push(new Heavy(dataEnemies[currentLevel - 1][i].x, dataEnemies[currentLevel - 1][i].y));
         dataEnemies[currentLevel - 1].shift();
+        i--;
+      } else if (dataEnemies[currentLevel - 1][i].type === 'Light') {
+        enemies.push(new Light(dataEnemies[currentLevel - 1][i].x, dataEnemies[currentLevel - 1][i].y));
+        dataEnemies[currentLevel - 1].shift();
+        i--;
       };
     };
-  });
+  };
 
   for (let i = 0; i < dataEnemies[currentLevel - 1].length; i++) {
     let div = document.createElement('div');
@@ -884,7 +1346,12 @@ function start() {
   for (let i = 0; i < objects.length; i++) {
     let prevX = player.x;
     let prevY = player.y;
+
     if (player.x < objects[i].x + objects[i].width &&
+      player.x + player.width > objects[i].x &&
+      player.y < objects[i].y + objects[i].height &&
+      player.y + player.height > objects[i].y && objects[i].isMove) {
+    } else if (player.x < objects[i].x + objects[i].width &&
       player.x + player.width > objects[i].x &&
       player.y < objects[i].y + objects[i].height &&
       player.y + player.height > objects[i].y) {
@@ -922,6 +1389,10 @@ function start() {
       if (enemies[j].x < objects[i].x + objects[i].width &&
         enemies[j].x + enemies[j].width > objects[i].x &&
         enemies[j].y < objects[i].y + objects[i].height &&
+        enemies[j].y + enemies[j].height > objects[i].y && objects[i].isMove) {
+      } else if (enemies[j].x < objects[i].x + objects[i].width &&
+        enemies[j].x + enemies[j].width > objects[i].x &&
+        enemies[j].y < objects[i].y + objects[i].height &&
         enemies[j].y + enemies[j].height > objects[i].y) {
         if (enemies[j].direction == 0) {
           enemies[j].offY = 0;
@@ -954,6 +1425,7 @@ function start() {
         elB.dead();
         bullets.splice(bullets.indexOf(indB), 1);
         objects.splice(objects.indexOf(elW), 1);
+      } else if (elB.x < elW.x + elW.width && elB.x + elB.width > elW.x && elB.y < elW.y + elW.height && elB.y + elB.height > elW.y && !elW.isDestroy && elW.isShot) {
       } else if (elB.x < elW.x + elW.width && elB.x + elB.width > elW.x && elB.y < elW.y + elW.height && elB.y + elB.height > elW.y && !elW.isDestroy) {
         elB.dead();
         bullets.splice(bullets.indexOf(indB), 1);
@@ -963,10 +1435,15 @@ function start() {
 
   bullets.forEach((elB, indB) => {
     enemies.forEach((enemy) => {
-      if (elB.x < enemy.x + enemy.width && elB.x + elB.width > enemy.x && elB.y < enemy.y + enemy.height && elB.y + elB.height > enemy.y) {
+      if (elB.x < enemy.x + enemy.width && elB.x + elB.width > enemy.x && elB.y < enemy.y + enemy.height && elB.y + elB.height > enemy.y && enemy.durability == 0) {
         enemy.dead();
+        elB.dead();
         bullets.splice(bullets.indexOf(indB), 1);
         enemies.splice(enemies.indexOf(enemy), 1);
+      } else if (elB.x < enemy.x + enemy.width && elB.x + elB.width > enemy.x && elB.y < enemy.y + enemy.height && elB.y + elB.height > enemy.y && enemy.durability > 0) {
+        elB.dead();
+        enemy.durability -= 1;
+        bullets.splice(bullets.indexOf(indB), 1);
       };
     });
   });
@@ -996,6 +1473,7 @@ function start() {
           elB.bullets[0].dead();
           enemies[indB].bullets.splice(bullets.indexOf(0), 1);
           objects.splice(objects.indexOf(elW), 1);
+        } else if (elB.bullets[0].x < elW.x + elW.width && elB.bullets[0].x + elB.bullets[0].width > elW.x && elB.bullets[0].y < elW.y + elW.height && elB.bullets[0].y + elB.bullets[0].height > elW.y && elW.isShot) {
         } else if (elB.bullets[0].x < elW.x + elW.width && elB.bullets[0].x + elB.bullets[0].width > elW.x && elB.bullets[0].y < elW.y + elW.height && elB.bullets[0].y + elB.bullets[0].height > elW.y && !elW.isDestroy) {
           elB.bullets[0].dead();
           enemies[indB].bullets.splice(bullets.indexOf(0), 1);
@@ -1036,13 +1514,14 @@ function start() {
     };
   });
 
-  if (flag.isDestroy || enemies.length == 0 || player.life == 0) {
+  if (flag.isDestroy || (enemies.length == 0 && dataEnemies[currentLevel - 1].length == 0) || player.life == 0) {
     timeOutDefeat--;
     if (timeOutDefeat == 0) {
       isPlaying = false;
       saveScore();
       if (flag.isDestroy || player.life == 0) {
         levelScore.result = 'lose';
+        endGame();
       } else if (enemies.length == 0) {
         levelScore.result = 'win';
       } endGame();
@@ -1050,6 +1529,7 @@ function start() {
   };
 
   lifeContainer.textContent = player.life - 1;
+  levelCounter.textContent = currentLevel;
   date = new Date();
 };
 
@@ -1071,6 +1551,9 @@ function saveScore() {
 };
 
 function endGame() {
+  if (resultInfo.hasChildNodes) {
+    resultInfo.replaceChildren();
+  };
   templateInfo.innerHTML = `
   <div class="current-level"><div>you ${levelScore.result}</div><div>stage ${levelScore.stage}</div></div>
         <div class="score">
@@ -1111,7 +1594,28 @@ function lose() {
 
 function win() {
   setTimeout(() => {
+    currentLevel += 1;
     resultInfo.classList.remove('_visible');
-    window.location.reload();
+    overlay.classList.add('_playing');
+    isPlaying = true;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    timeOutDefeat = 1;
+    score = score;
+    levelScore.result = '';
+    levelScore.stage = currentLevel;
+    levelScore.total = 0;
+    levelScore.score = 0;
+    levelScore.regular = 0;
+    levelScore.light = 0;
+    levelScore.medium = 0;
+    levelScore.heavy = 0;
+    levelScore.regularCount = 0;
+    levelScore.lightCount = 0;
+    levelScore.mediumCount = 0;
+    levelScore.heavyCount = 0;
+    clearMap();
+    renderMap();
+    player.render();
+    start();
   }, 6500);
 };
