@@ -2471,13 +2471,26 @@ class Water {
   isDestroy = false;
   isMove = false;
   isShot = true;
+  animation = 120;
   constructor(x, y) {
     this.x = x;
     this.y = y;
   };
 
   draw() {
-    ctx.drawImage(gameObjects, 136, 0, 32, 32, this.x, this.y, this.width, this.height);
+    this.animation--;
+    if (this.animation <= 120) {
+      ctx.drawImage(gameObjects, 136, 0, 32, 32, this.x, this.y, this.width, this.height);
+    };
+    if (this.animation <= 80) {
+      ctx.drawImage(gameObjects, 170, 0, 32, 32, this.x, this.y, this.width, this.height);
+    };
+    if (this.animation <= 40) {
+      ctx.drawImage(gameObjects, 204, 0, 32, 32, this.x, this.y, this.width, this.height);
+    };
+    if (this.animation == 0) {
+      this.animation = 120;
+    };
   };
 };
 
