@@ -274,7 +274,8 @@ h1 {
   width: 100%;
   font-size: 16px;
   letter-spacing: 2px;
-  line-height: 15px;
+  line-height: 20px;
+  text-align: center;
 }
 
 .score {

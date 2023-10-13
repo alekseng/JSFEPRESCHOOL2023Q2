@@ -6,6 +6,7 @@ canvas.height = 520;
 
 let isPlaying = false;
 let currentLevel = 1;
+let maxLevel = 5;
 
 const dataBrickWalls = [
   [{ x: 0, y: 260 },
@@ -1460,9 +1461,9 @@ const dataWater = [
   ],
 ];
 
-const bullets = [];
-const enemies = [];
-const objects = [];
+let bullets = [];
+let enemies = [];
+let objects = [];
 const dataEnemies = [
   [{ type: 'Regular', x: 243, y: 3 },
   { type: 'Regular', x: 483, y: 3 },
@@ -1574,6 +1575,8 @@ const dataEnemies = [
   { type: 'Light', x: 483, y: 3 },
   ],
 ];
+
+let levelsEnemies = structuredClone(dataEnemies);
 
 const gameObjects = new Image();
 gameObjects.src = "./assets/images/objects.png";
@@ -1688,7 +1691,7 @@ closeModalBtn.addEventListener('click', showRules);
 
 function startGame() {
   startAudio.play();
-  overlay.classList.toggle('_playing');
+  overlay.classList.add('_playing');
   isPlaying = true;
   setTimeout(() => {
     renderMap();
@@ -1708,7 +1711,7 @@ function showRules() {
   rulesModal.classList.toggle('_visible');
 };
 
-class Tank {
+class Player {
   x = 0;
   y = 0;
   width = 30;
@@ -2569,12 +2572,12 @@ function renderMap() {
 };
 
 function clearMap() {
-  objects.splice(0, objects.length);
+  objects = [];
 };
 
 const bullet = new Bullet();
-const player = new Tank(x = 163, y = 485);
-const flag = new Flag(x = 240, y = 480);
+let player = new Player(x = 163, y = 485);
+let flag = new Flag(x = 240, y = 480);
 
 window.addEventListener('keydown', (e) => {
   if (e.keyCode == 37) {
@@ -2618,32 +2621,32 @@ function start() {
   player.run();
   flag.draw();
 
-  for (let i = 0; i < dataEnemies[currentLevel - 1].length; i++) {
+  for (let i = 0; i < levelsEnemies[currentLevel - 1].length; i++) {
     if (enemyContainer.hasChildNodes) {
       enemyContainer.replaceChildren();
     };
     if (enemies.length < 3) {
-      if (dataEnemies[currentLevel - 1][i].type === 'Regular') {
-        enemies.push(new Regular(dataEnemies[currentLevel - 1][i].x, dataEnemies[currentLevel - 1][i].y));
-        dataEnemies[currentLevel - 1].shift();
+      if (levelsEnemies[currentLevel - 1][i].type === 'Regular') {
+        enemies.push(new Regular(levelsEnemies[currentLevel - 1][i].x, levelsEnemies[currentLevel - 1][i].y));
+        levelsEnemies[currentLevel - 1].shift();
         i--;
-      } else if (dataEnemies[currentLevel - 1][i].type === 'Heavy') {
-        enemies.push(new Heavy(dataEnemies[currentLevel - 1][i].x, dataEnemies[currentLevel - 1][i].y));
-        dataEnemies[currentLevel - 1].shift();
+      } else if (levelsEnemies[currentLevel - 1][i].type === 'Heavy') {
+        enemies.push(new Heavy(levelsEnemies[currentLevel - 1][i].x, levelsEnemies[currentLevel - 1][i].y));
+        levelsEnemies[currentLevel - 1].shift();
         i--;
-      } else if (dataEnemies[currentLevel - 1][i].type === 'Light') {
-        enemies.push(new Light(dataEnemies[currentLevel - 1][i].x, dataEnemies[currentLevel - 1][i].y));
-        dataEnemies[currentLevel - 1].shift();
+      } else if (levelsEnemies[currentLevel - 1][i].type === 'Light') {
+        enemies.push(new Light(levelsEnemies[currentLevel - 1][i].x, levelsEnemies[currentLevel - 1][i].y));
+        levelsEnemies[currentLevel - 1].shift();
         i--;
-      } else if (dataEnemies[currentLevel - 1][i].type === 'Medium') {
-        enemies.push(new Medium(dataEnemies[currentLevel - 1][i].x, dataEnemies[currentLevel - 1][i].y));
-        dataEnemies[currentLevel - 1].shift();
+      } else if (levelsEnemies[currentLevel - 1][i].type === 'Medium') {
+        enemies.push(new Medium(levelsEnemies[currentLevel - 1][i].x, levelsEnemies[currentLevel - 1][i].y));
+        levelsEnemies[currentLevel - 1].shift();
         i--;
       };
     };
   };
 
-  for (let i = 0; i < dataEnemies[currentLevel - 1].length; i++) {
+  for (let i = 0; i < levelsEnemies[currentLevel - 1].length; i++) {
     let div = document.createElement('div');
     div.classList.add('enemy-item');
     enemyContainer.append(div);
@@ -2871,20 +2874,26 @@ function start() {
     };
   });
 
-  if (flag.isDestroy || (enemies.length == 0 && dataEnemies[currentLevel - 1].length == 0) || player.life == 0) {
+  if (flag.isDestroy || (enemies.length == 0 && levelsEnemies[currentLevel - 1].length == 0) || player.life == 0) {
     timeOutDefeat--;
     if (timeOutDefeat == 0) {
       isPlaying = false;
-      saveScore();
       if (flag.isDestroy || player.life == 0) {
-        levelScore.result = 'lose';
+        levelScore.result = 'You lose';
+        saveScore();
         endGame();
       } else if (enemies.length == 0) {
-        levelScore.result = 'win';
-      } endGame();
+        if (currentLevel < maxLevel) {
+          levelScore.result = 'You win';
+          endGame();
+        } else if (currentLevel == maxLevel) {
+          levelScore.result = 'Congratulations, you have passed the game. To be continued';
+          saveScore();
+          endGame();
+        };
+      };
     };
   };
-
   lifeContainer.textContent = player.life - 1;
   levelCounter.textContent = currentLevel;
   date = new Date();
@@ -2912,7 +2921,7 @@ function endGame() {
     resultInfo.replaceChildren();
   };
   templateInfo.innerHTML = `
-  <div class="current-level"><div>you ${levelScore.result}</div><div>stage ${levelScore.stage}</div></div>
+  <div class="current-level"><div>${levelScore.result}</div><div>stage ${levelScore.stage}</div></div>
         <div class="score">
           <div>1-player</div><div><span>total score:</span><span> ${score}</span></div>
         </div>
@@ -2935,46 +2944,76 @@ function endGame() {
   resultInfo.append(templateInfo.content);
   resultInfo.classList.add('_visible');
 
-  if (levelScore.result == 'lose') {
+  if (levelScore.result == 'You lose') {
     lose();
-  } else if (levelScore.result == 'win') {
+  } else if (levelScore.result == 'You win') {
     win();
+  } else if (levelScore.result == 'Congratulations, you have passed the game. To be continued') {
+    complite();
   };
+};
+
+function reset() {
+  timeOutDefeat = 1;
+  bullets = [];
+  levelScore.result = '';
+  levelScore.stage = currentLevel;
+  levelScore.total = 0;
+  levelScore.score = 0;
+  levelScore.regular = 0;
+  levelScore.light = 0;
+  levelScore.medium = 0;
+  levelScore.heavy = 0;
+  levelScore.regularCount = 0;
+  levelScore.lightCount = 0;
+  levelScore.mediumCount = 0;
+  levelScore.heavyCount = 0;
+  resultInfo.classList.remove('_visible');
+};
+
+function hardReset() {
+  currentLevel = 1;
+  enemies = [];
+  score = 0;
+  levelsEnemies = structuredClone(dataEnemies);
+  player = new Player(x = 163, y = 485);
+  flag = new Flag(x = 240, y = 480);
 };
 
 function lose() {
   defeatSound.play();
   setTimeout(() => {
-    resultInfo.classList.remove('_visible');
-    window.location.reload();
+    overlay.classList.remove('_playing');
+    clearMap();
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    reset();
+    hardReset();
   }, 6500);
 };
 
 function win() {
   setTimeout(() => {
     currentLevel += 1;
-    resultInfo.classList.remove('_visible');
-    overlay.classList.add('_playing');
     isPlaying = true;
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    timeOutDefeat = 1;
     score = score;
-    levelScore.result = '';
-    levelScore.stage = currentLevel;
-    levelScore.total = 0;
-    levelScore.score = 0;
-    levelScore.regular = 0;
-    levelScore.light = 0;
-    levelScore.medium = 0;
-    levelScore.heavy = 0;
-    levelScore.regularCount = 0;
-    levelScore.lightCount = 0;
-    levelScore.mediumCount = 0;
-    levelScore.heavyCount = 0;
+    reset();
     clearMap();
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
     renderMap();
     player.render();
     startAudio.play();
-    start();
+    setTimeout(() => {
+      start();
+    }, 1000);
   }, 6500);
+};
+
+function complite() {
+  setTimeout(() => {
+    clearMap();
+    reset();
+    hardReset();
+    overlay.classList.remove('_playing');
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+  }, 10000);
 };
