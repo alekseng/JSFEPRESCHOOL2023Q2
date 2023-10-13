@@ -2899,16 +2899,23 @@ function start() {
   date = new Date();
 };
 
-scoreListRecordsTanks.sort((a, b) => a.score - b.score).reverse();
-let sliceScore = scoreListRecordsTanks.slice(0, 10);
-
-sliceScore.forEach((elem, index) => {
-  let template = document.createElement('template');
-  template.innerHTML = `
-      <li><span>${index + 1}.</span><span>${elem.score}</span><span>${elem.time}</span></li>
-    `;
-  items.append(template.content);
-});
+function getScore() {
+  if (items.hasChildNodes) {
+    items.replaceChildren();
+  };
+  scoreListRecordsTanks.sort((a, b) => a.score - b.score).reverse();
+  let sliceScore = scoreListRecordsTanks.slice(0, 10);
+  scoreListRecordsTanks = sliceScore;
+  scoreListRecordsTanks.forEach((elem, index) => {
+    let template = document.createElement('template');
+    template.innerHTML = `
+        <li><span>${index + 1}.</span><span>${elem.score}</span><span>${elem.time}</span></li>
+      `;
+    items.append(template.content);
+  });
+  localStorage.setItem('scoreListRecordsTanks', JSON.stringify(scoreListRecordsTanks));
+};
+getScore();
 
 function saveScore() {
   let scoreItem = new Score(score, date.toLocaleDateString('ru-RU', options));
@@ -2988,6 +2995,7 @@ function lose() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     reset();
     hardReset();
+    getScore();
   }, 6500);
 };
 
@@ -3015,5 +3023,6 @@ function complite() {
     hardReset();
     overlay.classList.remove('_playing');
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+    getScore();
   }, 10000);
 };
