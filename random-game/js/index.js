@@ -1593,17 +1593,41 @@ heavyTank.src = "./assets/images/heavy.png";
 const mediumTank = new Image();
 mediumTank.src = "./assets/images/medium.png";
 
-const flagImg = new Image()
-flagImg.src = "./assets/images/flag.png"
+const flagImg = new Image();
+flagImg.src = "./assets/images/flag.png";
 
-const bulletsImg = new Image()
-bulletsImg.src = "./assets/images/bullets.png"
+const bulletsImg = new Image();
+bulletsImg.src = "./assets/images/bullets.png";
 
-const boomsImg = new Image()
-boomsImg.src = "./assets/images/booms.png"
+const boomsImg = new Image();
+boomsImg.src = "./assets/images/booms.png";
 
-const scoresImg = new Image()
-scoresImg.src = "./assets/images/scores.png"
+const scoresImg = new Image();
+scoresImg.src = "./assets/images/scores.png";
+
+const startAudio = new Audio();
+startAudio.src = "./assets/sounds/start.mp3";
+
+const shotAudio = new Audio();
+shotAudio.src = "./assets/sounds/shot.mp3";
+
+const steelAudio = new Audio();
+steelAudio.src = "./assets/sounds/steel.mp3";
+
+const enemyDeadSound = new Audio();
+enemyDeadSound.src = "./assets/sounds/enemy-dead.mp3";
+
+const heavyTankSound = new Audio();
+heavyTankSound.src = "./assets/sounds/heavy.mp3";
+
+const defeatSound = new Audio();
+defeatSound.src = "./assets/sounds/defeat.mp3";
+
+const playerDeadSound = new Audio();
+playerDeadSound.src = "./assets/sounds/dead.mp3";
+
+const engineSound = new Audio();
+engineSound.src = "./assets/sounds/engine-sound.mp3";
 
 let timeOutDefeat = 1;
 let score = 0;
@@ -1663,6 +1687,7 @@ rulesBtn.addEventListener('click', showRules);
 closeModalBtn.addEventListener('click', showRules);
 
 function startGame() {
+  startAudio.play();
   overlay.classList.toggle('_playing');
   isPlaying = true;
   setTimeout(() => {
@@ -1724,6 +1749,7 @@ class Tank {
   draw() {
     if (this.direction == 0) {
       if (this.directions.down.pressed) {
+        engineSound.play();
         this.movment--;
         if (this.movment < 5) {
           ctx.drawImage(imgPlayer, 0, 0, 52, 52, this.x, this.y, this.width, this.height);
@@ -1733,10 +1759,12 @@ class Tank {
           this.movment += 10;
         }
       } else if (!this.directions.down.pressed) {
+        engineSound.pause();
         ctx.drawImage(imgPlayer, 0, 0, 52, 52, this.x, this.y, this.width, this.height);
       }
     } else if (this.direction == 90) {
       if (this.directions.left.pressed) {
+        engineSound.play();
         this.movment--;
         if (this.movment < 5) {
           ctx.drawImage(imgPlayer, 372, 0, 52, 52, this.x, this.y, this.width, this.height);
@@ -1746,10 +1774,12 @@ class Tank {
           this.movment += 10;
         }
       } else if (!this.directions.left.pressed) {
+        engineSound.pause();
         ctx.drawImage(imgPlayer, 372, 0, 52, 52, this.x, this.y, this.width, this.height);
       }
     } else if (this.direction == 180) {
       if (this.directions.up.pressed) {
+        engineSound.play();
         this.movment--;
         if (this.movment < 5) {
           ctx.drawImage(imgPlayer, 248, 0, 52, 52, this.x, this.y, this.width, this.height);
@@ -1759,10 +1789,12 @@ class Tank {
           this.movment += 10;
         }
       } else if (!this.directions.up.pressed) {
+        engineSound.pause();
         ctx.drawImage(imgPlayer, 248, 0, 52, 52, this.x, this.y, this.width, this.height);
       }
     } else if (this.direction == 270) {
       if (this.directions.right.pressed) {
+        engineSound.play();
         this.movment--;
         if (this.movment < 5) {
           ctx.drawImage(imgPlayer, 124, 0, 52, 52, this.x, this.y, this.width, this.height);
@@ -1772,6 +1804,7 @@ class Tank {
           this.movment += 10;
         }
       } else if (!this.directions.right.pressed) {
+        engineSound.pause();
         ctx.drawImage(imgPlayer, 124, 0, 52, 52, this.x, this.y, this.width, this.height);
       }
     };
@@ -1784,6 +1817,8 @@ class Tank {
   };
 
   dead() {
+    engineSound.pause();
+    playerDeadSound.play();
     this.life--;
     this.x = 165;
     this.y = 485;
@@ -1937,6 +1972,7 @@ class Regular {
   };
 
   dead() {
+    enemyDeadSound.play();
     ctx.drawImage(boomsImg, 320, 0, 128, 128, this.x - 20, this.y - 20, 60, 60);
     ctx.drawImage(scoresImg, 0, 0, 52, 28, this.x - 20, this.y, 52, 28);
     score += 100;
@@ -2084,6 +2120,7 @@ class Light {
   };
 
   dead() {
+    enemyDeadSound.play();
     ctx.drawImage(boomsImg, 320, 0, 128, 128, this.x - 20, this.y - 20, 60, 60);
     ctx.drawImage(scoresImg, 60, 0, 56, 28, this.x - 20, this.y, 56, 28);
     score += 200;
@@ -2231,6 +2268,7 @@ class Heavy {
   };
 
   dead() {
+    enemyDeadSound.play();
     ctx.drawImage(boomsImg, 320, 0, 128, 128, this.x - 20, this.y - 20, 60, 60);
     ctx.drawImage(scoresImg, 0, 0, 52, 28, this.x - 20, this.y, 52, 28);
     score += 400;
@@ -2378,6 +2416,7 @@ class Medium {
   };
 
   dead() {
+    enemyDeadSound.play();
     ctx.drawImage(boomsImg, 320, 0, 128, 128, this.x - 20, this.y - 20, 60, 60);
     ctx.drawImage(scoresImg, 0, 0, 52, 28, this.x - 20, this.y, 52, 28);
     score += 300;
@@ -2551,6 +2590,7 @@ window.addEventListener('keydown', (e) => {
     player.directions.up.pressed = true;
   };
   if (e.keyCode == 81 && bullets.length == 0) {
+    shotAudio.play();
     bullets.push(new Bullet(direction = player.direction, x = player.x, y = player.y, player.bulletSpeed));
   };
 });
@@ -2609,10 +2649,10 @@ function start() {
     enemyContainer.append(div);
   };
 
-  objects.forEach(el => el.draw());
   enemies.forEach((tank) => {
     tank.run();
   });
+  objects.forEach(el => el.draw());
 
   if (player.directions.right.pressed) {
     player.directions.up.pressed = false;
@@ -2726,6 +2766,7 @@ function start() {
   bullets.forEach((bullet) => {
     bullet.draw();
     if (bullet.y <= 0 || bullet.y >= 520 || bullet.x <= 0 || bullet.x >= 520) {
+      steelAudio.play();
       bullet.dead();
       bullets.splice(bullets.indexOf(bullet), 1);
     };
@@ -2739,6 +2780,7 @@ function start() {
         objects.splice(objects.indexOf(elW), 1);
       } else if (elB.x < elW.x + elW.width && elB.x + elB.width > elW.x && elB.y < elW.y + elW.height && elB.y + elB.height > elW.y && !elW.isDestroy && elW.isShot) {
       } else if (elB.x < elW.x + elW.width && elB.x + elB.width > elW.x && elB.y < elW.y + elW.height && elB.y + elB.height > elW.y && !elW.isDestroy) {
+        steelAudio.play();
         elB.dead();
         bullets.splice(bullets.indexOf(indB), 1);
       };
@@ -2754,6 +2796,7 @@ function start() {
         enemies.splice(enemies.indexOf(enemy), 1);
       } else if (elB.x < enemy.x + enemy.width && elB.x + elB.width > enemy.x && elB.y < enemy.y + enemy.height && elB.y + elB.height > enemy.y && enemy.durability > 0) {
         elB.dead();
+        heavyTankSound.play();
         enemy.durability -= 1;
         bullets.splice(bullets.indexOf(indB), 1);
       };
@@ -2763,6 +2806,7 @@ function start() {
   bullets.forEach((elB, indB) => {
     if (elB.x < flag.x + flag.width && elB.x + elB.width > flag.x && elB.y < flag.y + flag.height && elB.y + elB.height > flag.y) {
       elB.dead();
+      playerDeadSound.play();
       flag.isDestroy = true;
       bullets.splice(bullets.indexOf(indB), 1);
     };
@@ -2810,6 +2854,7 @@ function start() {
     if (elB.bullets[0]) {
       if (elB.bullets[0].x < flag.x + flag.width && elB.bullets[0].x + elB.bullets[0].width > flag.x && elB.bullets[0].y < flag.y + flag.height && elB.bullets[0].y + elB.bullets[0].height > flag.y) {
         elB.bullets[0].dead();
+        playerDeadSound.play();
         flag.isDestroy = true;
         enemies[indB].bullets.splice(bullets.indexOf(0), 1);
       };
@@ -2898,6 +2943,7 @@ function endGame() {
 };
 
 function lose() {
+  defeatSound.play();
   setTimeout(() => {
     resultInfo.classList.remove('_visible');
     window.location.reload();
@@ -2928,6 +2974,7 @@ function win() {
     clearMap();
     renderMap();
     player.render();
+    startAudio.play();
     start();
   }, 6500);
 };
