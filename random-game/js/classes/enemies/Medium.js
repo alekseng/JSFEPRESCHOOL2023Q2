@@ -3,6 +3,7 @@ import audio from "../../assets/audio.js";
 import images from "../../assets/images.js";
 import { ctx } from "../../canvas.js";
 import levelScore from "../../levelScore.js";
+import Bonus from "../Bonus.js";
 
 class Medium {
   x = 0;
@@ -19,6 +20,7 @@ class Medium {
   durability = 0;
   bulletSpeed = 4.8;
   movment = 10;
+  hasBonus = false;
   directions = {
     up: {
       y: -this.speed,
@@ -40,49 +42,90 @@ class Medium {
 
   direction = this.directions.down.angle;
 
-  constructor(x, y) {
+  constructor(x, y, bonus) {
     this.x = x;
     this.y = y;
+    this.hasBonus = bonus;
   };
 
   draw() {
-    if (this.direction == 0) {
-      this.movment--;
-      if (this.movment < 5) {
-        ctx.drawImage(images.mediumTank, 0, 0, 60, 60, this.x, this.y, this.width, this.height);
-      } if (this.movment > 5) {
-        ctx.drawImage(images.mediumTank, 64, 0, 60, 60, this.x, this.y, this.width, this.height);
-      } if (this.movment == 0) {
-        this.movment += 10;
-      }
-    } else if (this.direction == 90) {
-      this.movment--;
-      if (this.movment < 5) {
-        ctx.drawImage(images.mediumTank, 388, 0, 60, 60, this.x, this.y, this.width, this.height);
-      } if (this.movment > 5) {
-        ctx.drawImage(images.mediumTank, 452, 0, 60, 60, this.x, this.y, this.width, this.height);
-      } if (this.movment == 0) {
-        this.movment += 10;
-      }
-    } else if (this.direction == 180) {
-      this.movment--;
-      if (this.movment < 5) {
-        ctx.drawImage(images.mediumTank, 252, 0, 60, 60, this.x, this.y, this.width, this.height);
-      } if (this.movment > 5) {
-        ctx.drawImage(images.mediumTank, 316, 0, 60, 60, this.x, this.y, this.width, this.height);
-      } if (this.movment == 0) {
-        this.movment += 10;
-      }
-    } else if (this.direction == 270) {
-      this.movment--;
-      if (this.movment < 5) {
-        ctx.drawImage(images.mediumTank, 128, 0, 60, 60, this.x, this.y, this.width, this.height);
-      } if (this.movment > 5) {
-        ctx.drawImage(images.mediumTank, 192, 0, 60, 60, this.x, this.y, this.width, this.height);
-      } if (this.movment == 0) {
-        this.movment += 10;
-      }
-    };
+    if (this.hasBonus) {
+      if (this.direction == 0) {
+        this.movment--;
+        if (this.movment < 5) {
+          ctx.drawImage(images.bonusTanks, 0, 132, 60, 60, this.x, this.y, this.width, this.height);
+        } if (this.movment > 5) {
+          ctx.drawImage(images.bonusTanks, 64, 132, 60, 60, this.x, this.y, this.width, this.height);
+        } if (this.movment == 0) {
+          this.movment += 10;
+        }
+      } else if (this.direction == 90) {
+        this.movment--;
+        if (this.movment < 5) {
+          ctx.drawImage(images.bonusTanks, 388, 132, 60, 60, this.x, this.y, this.width, this.height);
+        } if (this.movment > 5) {
+          ctx.drawImage(images.bonusTanks, 452, 132, 60, 60, this.x, this.y, this.width, this.height);
+        } if (this.movment == 0) {
+          this.movment += 10;
+        }
+      } else if (this.direction == 180) {
+        this.movment--;
+        if (this.movment < 5) {
+          ctx.drawImage(images.bonusTanks, 256, 132, 60, 60, this.x, this.y, this.width, this.height);
+        } if (this.movment > 5) {
+          ctx.drawImage(images.bonusTanks, 320, 132, 60, 60, this.x, this.y, this.width, this.height);
+        } if (this.movment == 0) {
+          this.movment += 10;
+        }
+      } else if (this.direction == 270) {
+        this.movment--;
+        if (this.movment < 5) {
+          ctx.drawImage(images.bonusTanks, 128, 132, 60, 60, this.x, this.y, this.width, this.height);
+        } if (this.movment > 5) {
+          ctx.drawImage(images.bonusTanks, 192, 132, 60, 60, this.x, this.y, this.width, this.height);
+        } if (this.movment == 0) {
+          this.movment += 10;
+        }
+      };
+    } else {
+      if (this.direction == 0) {
+        this.movment--;
+        if (this.movment < 5) {
+          ctx.drawImage(images.mediumTank, 0, 0, 60, 60, this.x, this.y, this.width, this.height);
+        } if (this.movment > 5) {
+          ctx.drawImage(images.mediumTank, 64, 0, 60, 60, this.x, this.y, this.width, this.height);
+        } if (this.movment == 0) {
+          this.movment += 10;
+        }
+      } else if (this.direction == 90) {
+        this.movment--;
+        if (this.movment < 5) {
+          ctx.drawImage(images.mediumTank, 388, 0, 60, 60, this.x, this.y, this.width, this.height);
+        } if (this.movment > 5) {
+          ctx.drawImage(images.mediumTank, 452, 0, 60, 60, this.x, this.y, this.width, this.height);
+        } if (this.movment == 0) {
+          this.movment += 10;
+        }
+      } else if (this.direction == 180) {
+        this.movment--;
+        if (this.movment < 5) {
+          ctx.drawImage(images.mediumTank, 252, 0, 60, 60, this.x, this.y, this.width, this.height);
+        } if (this.movment > 5) {
+          ctx.drawImage(images.mediumTank, 316, 0, 60, 60, this.x, this.y, this.width, this.height);
+        } if (this.movment == 0) {
+          this.movment += 10;
+        }
+      } else if (this.direction == 270) {
+        this.movment--;
+        if (this.movment < 5) {
+          ctx.drawImage(images.mediumTank, 128, 0, 60, 60, this.x, this.y, this.width, this.height);
+        } if (this.movment > 5) {
+          ctx.drawImage(images.mediumTank, 192, 0, 60, 60, this.x, this.y, this.width, this.height);
+        } if (this.movment == 0) {
+          this.movment += 10;
+        }
+      };
+    }
   };
 
   run() {
@@ -144,11 +187,20 @@ class Medium {
 
   dead() {
     audio.enemyDeadSound.play();
+    if (this.hasBonus) {
+      audio.deadBonusTank.play();
+    }
     ctx.drawImage(images.boomsImg, 320, 0, 128, 128, this.x - 20, this.y - 20, 60, 60);
     ctx.drawImage(images.scoresImg, 0, 0, 52, 28, this.x - 20, this.y, 52, 28);
     levelScore.total += 300;
     levelScore.medium += 300;
     levelScore.mediumCount += 1;
+  };
+
+  createBonus(bonuses) {
+    if (this.hasBonus) {
+      bonuses.push(new Bonus());
+    }
   };
 };
 

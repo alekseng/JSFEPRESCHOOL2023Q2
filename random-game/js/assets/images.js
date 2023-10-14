@@ -9,6 +9,8 @@ let images = {
   bulletsImg: null,
   boomsImg: null,
   scoresImg: null,
+  bonuses: null,
+  bonusTanks: null,
 };
 
 for (const key in images) {

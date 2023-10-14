@@ -30,6 +30,7 @@ let maxLevel = 5;
 let bullets = [];
 let enemies = [];
 let objects = [];
+let bonuses = [];
 let levelsEnemies = structuredClone(dataEnemies);
 let timeOutDefeat = 1;
 let lifeContainer = document.querySelector('.life-counter');
@@ -87,19 +88,19 @@ function start() {
     };
     if (enemies.length < 3) {
       if (levelsEnemies[currentLevel.currentLevel - 1][i].type === 'Regular') {
-        enemies.push(new Regular(levelsEnemies[currentLevel.currentLevel - 1][i].x, levelsEnemies[currentLevel.currentLevel - 1][i].y));
+        enemies.push(new Regular(levelsEnemies[currentLevel.currentLevel - 1][i].x, levelsEnemies[currentLevel.currentLevel - 1][i].y, levelsEnemies[currentLevel.currentLevel - 1][i].bonus));
         levelsEnemies[currentLevel.currentLevel - 1].shift();
         i--;
       } else if (levelsEnemies[currentLevel.currentLevel - 1][i].type === 'Heavy') {
-        enemies.push(new Heavy(levelsEnemies[currentLevel.currentLevel - 1][i].x, levelsEnemies[currentLevel.currentLevel - 1][i].y));
+        enemies.push(new Heavy(levelsEnemies[currentLevel.currentLevel - 1][i].x, levelsEnemies[currentLevel.currentLevel - 1][i].y, levelsEnemies[currentLevel.currentLevel - 1][i].bonus));
         levelsEnemies[currentLevel.currentLevel - 1].shift();
         i--;
       } else if (levelsEnemies[currentLevel.currentLevel - 1][i].type === 'Light') {
-        enemies.push(new Light(levelsEnemies[currentLevel.currentLevel - 1][i].x, levelsEnemies[currentLevel.currentLevel - 1][i].y));
+        enemies.push(new Light(levelsEnemies[currentLevel.currentLevel - 1][i].x, levelsEnemies[currentLevel.currentLevel - 1][i].y, levelsEnemies[currentLevel.currentLevel - 1][i].bonus));
         levelsEnemies[currentLevel.currentLevel - 1].shift();
         i--;
       } else if (levelsEnemies[currentLevel.currentLevel - 1][i].type === 'Medium') {
-        enemies.push(new Medium(levelsEnemies[currentLevel.currentLevel - 1][i].x, levelsEnemies[currentLevel.currentLevel - 1][i].y));
+        enemies.push(new Medium(levelsEnemies[currentLevel.currentLevel - 1][i].x, levelsEnemies[currentLevel.currentLevel - 1][i].y, levelsEnemies[currentLevel.currentLevel - 1][i].bonus));
         levelsEnemies[currentLevel.currentLevel - 1].shift();
         i--;
       };
@@ -115,8 +116,19 @@ function start() {
   enemies.forEach((tank) => {
     tank.run();
   });
+
   objects.forEach(el => el.draw());
 
+  bonuses.forEach((bonus) => {
+    bonus.draw();
+  });
+
+  bonuses.forEach((elB) => {
+    if (elB.x < player.x + player.width && elB.x + elB.width > player.x && elB.y < player.y + player.height && elB.y + elB.height > player.y) {
+      elB.dead(player);
+      bonuses.splice(bonuses.indexOf(elB), 1)
+    };
+  });
   if (player.directions.right.pressed) {
     player.directions.up.pressed = false;
     player.directions.down.pressed = false;
@@ -253,6 +265,7 @@ function start() {
   bullets.forEach((elB, indB) => {
     enemies.forEach((enemy) => {
       if (elB.x < enemy.x + enemy.width && elB.x + elB.width > enemy.x && elB.y < enemy.y + enemy.height && elB.y + elB.height > enemy.y && enemy.durability == 0) {
+        enemy.createBonus(bonuses);
         enemy.dead();
         elB.dead();
         bullets.splice(bullets.indexOf(indB), 1);
@@ -423,6 +436,8 @@ function endGame() {
 function reset() {
   timeOutDefeat = 1;
   bullets = [];
+  objects = [];
+  bonuses = [];
   levelScore.result = '';
   levelScore.stage = currentLevel.currentLevel;
   levelScore.score = 0;
@@ -450,7 +465,6 @@ function lose() {
   currentLevel.currentLevel = 1;
   setTimeout(() => {
     overlay.classList.remove('_playing');
-    objects = [];
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     reset();
     hardReset();
@@ -463,7 +477,6 @@ function win() {
     currentLevel.currentLevel += 1;
     isPlaying = true;
     reset();
-    objects = [];
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     renderMap(objects);
     player.render();
@@ -477,7 +490,6 @@ function win() {
 function complite() {
   currentLevel.currentLevel = 1;
   setTimeout(() => {
-    objects = [];
     reset();
     hardReset();
     overlay.classList.remove('_playing');

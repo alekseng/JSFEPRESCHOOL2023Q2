@@ -6,7 +6,9 @@ let audio = {
   heavyTankSound: null,
   defeatSound: null,
   playerDeadSound: null,
-  engineSound: null
+  engineSound: null,
+  getBonus: null,
+  deadBonusTank: null,
 };
 
 for (const key in audio) {
