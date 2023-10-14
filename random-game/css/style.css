@@ -364,7 +364,7 @@ canvas {
 .enemy-item {
   width: 20px;
   height: 20px;
-  background: url(../assets/images/enemy-icon.png) no-repeat;
+  background: url(../assets/images/icons/enemy-icon.png) no-repeat;
   background-size: contain;
   background-position: center;
 }
@@ -379,19 +379,19 @@ canvas {
 }
 
 .number-of-player {
-  background: url(../assets/images/player-num.png) no-repeat;
+  background: url(../assets/images/icons/player-num.png) no-repeat;
   background-size: contain;
   background-position: center;
 }
 
 .letter-p {
-  background: url(../assets/images/letter-p.png) no-repeat;
+  background: url(../assets/images/icons/letter-p.png) no-repeat;
   background-size: contain;
   background-position: center;
 }
 
 .player-icon {
-  background: url(../assets/images/player-icon.png) no-repeat;
+  background: url(../assets/images/icons/player-icon.png) no-repeat;
   background-size: contain;
   background-position: center;
 }
@@ -415,7 +415,7 @@ canvas {
 }
 
 .flag {
-  background: url(../assets/images/flag-icon.png) no-repeat;
+  background: url(../assets/images/icons/flag-icon.png) no-repeat;
   background-size: contain;
   background-position: center;
   box-sizing: border-box;
