@@ -34,7 +34,7 @@ let bonuses = [];
 let levelsEnemies = structuredClone(dataEnemies);
 let timeOutDefeat = 1;
 let lifeContainer = document.querySelector('.life-counter');
-let player = new Player(ctx.x = 163, ctx.y = 485);
+let player = new Player(ctx.x = 163, ctx.y = 485, true);
 let flag = new Flag(ctx.x = 240, ctx.y = 480);
 let date = new Date();
 let scoreListRecordsTanks = [
@@ -265,7 +265,12 @@ function start() {
   bullets.forEach((elB, indB) => {
     enemies.forEach((enemy) => {
       if (elB.x < enemy.x + enemy.width && elB.x + elB.width > enemy.x && elB.y < enemy.y + enemy.height && elB.y + elB.height > enemy.y && enemy.durability == 0) {
-        enemy.createBonus(bonuses);
+        if (bonuses.length > 0 && enemy.hasBonus) {
+          bonuses.splice(bonuses.indexOf(0), 1)
+          enemy.createBonus(bonuses);
+        } else {
+          enemy.createBonus(bonuses);
+        };
         enemy.dead();
         elB.dead();
         bullets.splice(bullets.indexOf(indB), 1);
@@ -339,11 +344,15 @@ function start() {
 
   enemies.forEach((elB, indB) => {
     if (elB.bullets[0]) {
-      if (elB.bullets[0].x < player.x + player.width && elB.bullets[0].x + elB.bullets[0].width > player.x && elB.bullets[0].y < player.y + player.height && elB.bullets[0].y + elB.bullets[0].height > player.y) {
+      if (elB.bullets[0].x < player.x + player.width && elB.bullets[0].x + elB.bullets[0].width > player.x && elB.bullets[0].y < player.y + player.height && elB.bullets[0].y + elB.bullets[0].height > player.y && !player.helmet) {
         elB.bullets[0].dead();
         player.dead();
         enemies[indB].bullets.splice(bullets.indexOf(0), 1);
-      };
+      }
+      else if (elB.bullets[0].x < player.x + player.width && elB.bullets[0].x + elB.bullets[0].width > player.x && elB.bullets[0].y < player.y + player.height && elB.bullets[0].y + elB.bullets[0].height > player.y && player.helmet) {
+        elB.bullets[0].dead();
+        enemies[indB].bullets.splice(bullets.indexOf(0), 1);
+      }
     };
   });
 

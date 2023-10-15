@@ -183,13 +183,15 @@ class Heavy {
 
   createBonus(bonuses) {
     if (this.hasBonus) {
-      let bonus = Math.floor(Math.random() * 3) + 1;
+      let bonus = Math.floor(Math.random() * 4) + 1;
       if (bonus === 1) {
-        bonuses.push(new Bonus(1));
+        bonuses.push(new Bonus(1, pos));
       } else if (bonus === 2) {
-        bonuses.push(new Bonus(2));
+        bonuses.push(new Bonus(2, pos));
       } else if (bonus === 3) {
-        bonuses.push(new Bonus(3));
+        bonuses.push(new Bonus(3, pos));
+      } else if (bonus === 4) {
+        bonuses.push(new Bonus(4, pos));
       }
     }
   };

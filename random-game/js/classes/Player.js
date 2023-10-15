@@ -17,6 +17,9 @@ class Player {
   down = 256;
   left = 128;
   right = 388;
+  helmetDurability = 350;
+  shieldAnimTime = 20;
+  posShield = 0;
   directions = {
     up: {
       y: -this.speed,
@@ -42,9 +45,10 @@ class Player {
 
   direction = this.directions.up.angle;
 
-  constructor(x, y) {
+  constructor(x, y, helmet) {
     this.x = x;
     this.y = y;
+    this.helmet = helmet;
   }
 
   draw() {
@@ -116,6 +120,7 @@ class Player {
     if (this.life > 0) {
       this.draw();
     };
+    this.shield();
   };
 
   dead() {
@@ -129,6 +134,8 @@ class Player {
     this.y = 485;
     this.direction = this.directions.up.angle;
     ctx.drawImage(images.boomsImg, 320, 0, 128, 128, this.x - 20, this.y - 20, 60, 60);
+    this.helmet = true;
+    this.helmetDurability = 350;
   };
 
   render() {
@@ -158,6 +165,21 @@ class Player {
       this.directions.left.pressed = false;
     } else if (e.keyCode == 40) {
       this.directions.up.pressed = false;
+    }
+  };
+
+  shield() {
+    if (this.helmet && this.helmetDurability > 0) {
+      this.helmetDurability--
+      this.shieldAnimTime--
+      ctx.drawImage(images.boomsImg, this.posShield, 64, 64, 64, this.x, this.y, this.width, this.height);
+      if (this.shieldAnimTime < 10) { this.posShield = 0 }
+      if (this.shieldAnimTime > 10) { this.posShield = 64 }
+      if (this.shieldAnimTime == 0) { this.shieldAnimTime += 20 }
+      if (this.helmetDurability == 0) {
+        this.helmetDurability = 0
+        this.helmet = false
+      }
     }
   };
 }
