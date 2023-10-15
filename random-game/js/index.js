@@ -465,7 +465,7 @@ function hardReset() {
   enemies = [];
   levelScore.total = 0;
   levelsEnemies = structuredClone(dataEnemies);
-  player = new Player(ctx.x = 163, ctx.y = 485);
+  player = new Player(ctx.x = 163, ctx.y = 485, true);
   flag = new Flag(ctx.x = 240, ctx.y = 480);
 };
 
