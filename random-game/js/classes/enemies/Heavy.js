@@ -21,6 +21,14 @@ class Heavy {
   bulletSpeed = 2.8;
   movment = 10;
   hasBonus = false;
+  up = 0;
+  down = 256;
+  left = 124;
+  right = 380;
+  upB = 0;
+  downB = 256;
+  leftB = 128;
+  rightB = 388;
   directions = {
     up: {
       y: -this.speed,
@@ -52,79 +60,55 @@ class Heavy {
     if (this.hasBonus) {
       if (this.direction == 0) {
         this.movment--;
-        if (this.movment < 5) {
-          ctx.drawImage(images.bonusTanks, 0, 196, 60, 60, this.x, this.y, this.width, this.height);
-        } if (this.movment > 5) {
-          ctx.drawImage(images.bonusTanks, 64, 196, 60, 60, this.x, this.y, this.width, this.height);
-        } if (this.movment == 0) {
-          this.movment += 10;
-        }
+        ctx.drawImage(images.bonusTanks, this.upB, 196, 60, 60, this.x, this.y, this.width, this.height);
+        if (this.movment < 5) { this.upB = 0 }
+        if (this.movment > 5) { this.upB = 64 }
+        if (this.movment == 0) { this.movment += 10 }
       } else if (this.direction == 90) {
         this.movment--;
-        if (this.movment < 5) {
-          ctx.drawImage(images.bonusTanks, 388, 196, 60, 60, this.x, this.y, this.width, this.height);
-        } if (this.movment > 5) {
-          ctx.drawImage(images.bonusTanks, 452, 196, 60, 60, this.x, this.y, this.width, this.height);
-        } if (this.movment == 0) {
-          this.movment += 10;
-        }
+        ctx.drawImage(images.bonusTanks, this.rightB, 196, 60, 60, this.x, this.y, this.width, this.height);
+        if (this.movment < 5) { this.rightB = 388 }
+        if (this.movment > 5) { this.rightB = 452 }
+        if (this.movment == 0) { this.movment += 10 }
       } else if (this.direction == 180) {
         this.movment--;
-        if (this.movment < 5) {
-          ctx.drawImage(images.bonusTanks, 256, 196, 60, 60, this.x, this.y, this.width, this.height);
-        } if (this.movment > 5) {
-          ctx.drawImage(images.bonusTanks, 320, 196, 60, 60, this.x, this.y, this.width, this.height);
-        } if (this.movment == 0) {
-          this.movment += 10;
-        }
+        ctx.drawImage(images.bonusTanks, this.downB, 196, 60, 60, this.x, this.y, this.width, this.height);
+        if (this.movment < 5) { this.downB = 256 }
+        if (this.movment > 5) { this.downB = 320 }
+        if (this.movment == 0) { this.movment += 10 }
       } else if (this.direction == 270) {
         this.movment--;
-        if (this.movment < 5) {
-          ctx.drawImage(images.bonusTanks, 128, 196, 60, 60, this.x, this.y, this.width, this.height);
-        } if (this.movment > 5) {
-          ctx.drawImage(images.bonusTanks, 192, 196, 60, 60, this.x, this.y, this.width, this.height);
-        } if (this.movment == 0) {
-          this.movment += 10;
-        }
-      };
+        ctx.drawImage(images.bonusTanks, this.leftB, 196, 60, 60, this.x, this.y, this.width, this.height);
+        if (this.movment < 5) { this.leftB = 128 }
+        if (this.movment > 5) { this.leftB = 192 }
+        if (this.movment == 0) { this.movment += 10 }
+      }
     } else {
       if (this.direction == 0) {
-        this.movment--;
-        if (this.movment < 5) {
-          ctx.drawImage(images.heavyTank, 0, 0, 60, 60, this.x, this.y, this.width, this.height);
-        } if (this.movment > 5) {
-          ctx.drawImage(images.heavyTank, 64, 0, 60, 60, this.x, this.y, this.width, this.height);
-        } if (this.movment == 0) {
-          this.movment += 10;
-        }
+      this.movment--;
+        ctx.drawImage(images.heavyTank, this.up, 0, 60, 60, this.x, this.y, this.width, this.height);
+        if (this.movment < 5) { this.up = 0 }
+        if (this.movment > 5) { this.up = 64 }
+        if (this.movment == 0) { this.movment += 10 }
       } else if (this.direction == 90) {
         this.movment--;
-        if (this.movment < 5) {
-          ctx.drawImage(images.heavyTank, 388, 0, 60, 60, this.x, this.y, this.width, this.height);
-        } if (this.movment > 5) {
-          ctx.drawImage(images.heavyTank, 452, 0, 60, 60, this.x, this.y, this.width, this.height);
-        } if (this.movment == 0) {
-          this.movment += 10;
-        }
+        ctx.drawImage(images.heavyTank, this.right, 0, 60, 60, this.x, this.y, this.width, this.height);
+        if (this.movment < 5) { this.right = 388 }
+        if (this.movment > 5) { this.right = 452 }
+        if (this.movment == 0) { this.movment += 10 }
       } else if (this.direction == 180) {
         this.movment--;
-        if (this.movment < 5) {
-          ctx.drawImage(images.heavyTank, 256, 0, 60, 60, this.x, this.y, this.width, this.height);
-        } if (this.movment > 5) {
-          ctx.drawImage(images.heavyTank, 320, 0, 60, 60, this.x, this.y, this.width, this.height);
-        } if (this.movment == 0) {
-          this.movment += 10;
-        }
+        ctx.drawImage(images.heavyTank, this.down, 0, 60, 60, this.x, this.y, this.width, this.height);
+        if (this.movment < 5) { this.down = 256 }
+        if (this.movment > 5) { this.down = 320 }
+        if (this.movment == 0) { this.movment += 10 }
       } else if (this.direction == 270) {
         this.movment--;
-        if (this.movment < 5) {
-          ctx.drawImage(images.heavyTank, 128, 0, 60, 60, this.x, this.y, this.width, this.height);
-        } if (this.movment > 5) {
-          ctx.drawImage(images.heavyTank, 192, 0, 60, 60, this.x, this.y, this.width, this.height);
-        } if (this.movment == 0) {
-          this.movment += 10;
-        }
-      };
+        ctx.drawImage(images.heavyTank, this.left, 0, 60, 60, this.x, this.y, this.width, this.height);
+        if (this.movment < 5) { this.left = 128 }
+        if (this.movment > 5) { this.left = 192 }
+        if (this.movment == 0) { this.movment += 10 }
+      }
     }
   };
 
