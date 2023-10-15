@@ -132,7 +132,7 @@ function start() {
   if (player.directions.right.pressed) {
     player.directions.up.pressed = false;
     player.directions.down.pressed = false;
-    player.directions.right.x = 1;
+    player.directions.right.x = player.speed;
     player.x += player.directions.left.x;
     player.direction = player.directions.left.angle;
     if (player.x <= 3) {
@@ -142,7 +142,7 @@ function start() {
   if (player.directions.left.pressed) {
     player.directions.up.pressed = false;
     player.directions.down.pressed = false;
-    player.directions.left.x = -1;
+    player.directions.left.x = -player.speed;
     player.x += player.directions.right.x;
     player.direction = player.directions.right.angle;
     if (player.x >= 487) {
@@ -152,7 +152,7 @@ function start() {
   if (player.directions.up.pressed) {
     player.directions.right.pressed = false;
     player.directions.left.pressed = false;
-    player.directions.up.y = -1;
+    player.directions.up.y = -player.speed;
     player.y += player.directions.down.y;
     player.direction = player.directions.down.angle;
     if (player.y >= 487) {
@@ -162,7 +162,7 @@ function start() {
   if (player.directions.down.pressed) {
     player.directions.right.pressed = false;
     player.directions.left.pressed = false;
-    player.directions.down.y = 1;
+    player.directions.down.y = player.speed;
     player.y += player.directions.up.y;
     player.direction = player.directions.up.angle;
     if (player.y <= 3) {
@@ -183,13 +183,13 @@ function start() {
       player.y < objects[i].y + objects[i].height &&
       player.y + player.height > objects[i].y) {
       if (player.direction == 0) {
-        player.y = prevY + 1;
+        player.y = prevY + player.speed;
       } else if (player.direction == 90) {
-        player.x = prevX - 1;
+        player.x = prevX - player.speed;
       } else if (player.direction == 180) {
-        player.y = prevY - 1;
+        player.y = prevY - player.speed;
       } else if (player.direction == 270) {
-        player.x = prevX + 1;
+        player.x = prevX + player.speed;
       };
     };
   };

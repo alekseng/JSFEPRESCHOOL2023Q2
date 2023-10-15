@@ -8,13 +8,32 @@ class Bonus {
   width = 35;
   height = 35;
 
+  constructor(bonus) {
+    this.bonus = bonus;
+  }
+
   draw() {
-    ctx.drawImage(images.bonuses, 320, 0, 64, 64, this.x, this.y, this.width, this.height);
+    if (this.bonus == 1) {
+      ctx.drawImage(images.bonuses, 320, 0, 64, 64, this.x, this.y, this.width, this.height);
+    } else if (this.bonus == 2) {
+      ctx.drawImage(images.bonuses, 192, 0, 64, 64, this.x, this.y, this.width, this.height);
+    }
   };
 
   dead(player) {
     audio.getBonus.play();
-    player.life += 1;
+    if (this.bonus == 1) {
+      player.life += 1;
+    } else if (this.bonus == 2) {
+      if (player.level == 0) {
+        player.bulletSpeed += 2;
+        player.speed += 0.2;
+        player.level += 1;
+      } else if (player.level == 1) {
+        player.bulletSpeed += 0;
+        player.speed += 0;
+      }
+    }
   };
 };
 

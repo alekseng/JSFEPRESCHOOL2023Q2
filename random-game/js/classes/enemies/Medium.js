@@ -199,7 +199,13 @@ class Medium {
 
   createBonus(bonuses) {
     if (this.hasBonus) {
-      bonuses.push(new Bonus());
+      let bonus = Math.floor(Math.random() * 2) + 1;
+      console.log(bonus);
+      if (bonus === 1) {
+        bonuses.push(new Bonus(1));
+      } else if (bonus === 2) {
+        bonuses.push(new Bonus(2));
+      }
     }
   };
 };

@@ -10,24 +10,27 @@ class Player {
   life = 3;
   bulletSpeed = 2.8;
   movment = 10;
+  speed = 1;
+  level = 0;
+  offY = 0;
   directions = {
     up: {
-      y: -1,
+      y: -this.speed,
       angle: 0,
       pressed: false,
     },
     down: {
-      y: 1,
+      y: this.speed,
       angle: 180,
       pressed: false,
     },
     left: {
-      x: -1,
+      x: -this.speed,
       angle: 270,
       pressed: false,
     },
     right: {
-      x: 1,
+      x: this.speed,
       angle: 90,
       pressed: false,
     }
@@ -41,65 +44,74 @@ class Player {
   }
 
   draw() {
+    if (this.level === 0) {
+      this.offY = 0;
+    } else if (this.level === 1) {
+      this.offY = 64;
+    } else if (this.level === 2) {
+      this.offY = 128;
+    } else if (this.level === 3) {
+      this.offY = 192;
+    }
     if (this.direction == 0) {
       if (this.directions.down.pressed) {
         audio.engineSound.play();
         this.movment--;
         if (this.movment < 5) {
-          ctx.drawImage(images.imgPlayer, 0, 0, 52, 52, this.x, this.y, this.width, this.height);
+          ctx.drawImage(images.imgPlayer, 0, this.offY, 60, 60, this.x, this.y, this.width, this.height);
         } if (this.movment > 5) {
-          ctx.drawImage(images.imgPlayer, 62, 0, 52, 52, this.x, this.y, this.width, this.height);
+          ctx.drawImage(images.imgPlayer, 64, this.offY, 60, 60, this.x, this.y, this.width, this.height);
         } if (this.movment == 0) {
           this.movment += 10;
         }
       } else if (!this.directions.down.pressed) {
         audio.engineSound.pause();
-        ctx.drawImage(images.imgPlayer, 0, 0, 52, 52, this.x, this.y, this.width, this.height);
+        ctx.drawImage(images.imgPlayer, 0, this.offY, 60, 60, this.x, this.y, this.width, this.height);
       }
     } else if (this.direction == 90) {
       if (this.directions.left.pressed) {
         audio.engineSound.play();
         this.movment--;
         if (this.movment < 5) {
-          ctx.drawImage(images.imgPlayer, 372, 0, 52, 52, this.x, this.y, this.width, this.height);
+          ctx.drawImage(images.imgPlayer, 388, this.offY, 60, 60, this.x, this.y, this.width, this.height);
         } if (this.movment > 5) {
-          ctx.drawImage(images.imgPlayer, 434, 0, 52, 52, this.x, this.y, this.width, this.height);
+          ctx.drawImage(images.imgPlayer, 456, this.offY, 60, 60, this.x, this.y, this.width, this.height);
         } if (this.movment == 0) {
           this.movment += 10;
         }
       } else if (!this.directions.left.pressed) {
         audio.engineSound.pause();
-        ctx.drawImage(images.imgPlayer, 372, 0, 52, 52, this.x, this.y, this.width, this.height);
+        ctx.drawImage(images.imgPlayer, 388, this.offY, 60, 60, this.x, this.y, this.width, this.height);
       }
     } else if (this.direction == 180) {
       if (this.directions.up.pressed) {
         audio.engineSound.play();
         this.movment--;
         if (this.movment < 5) {
-          ctx.drawImage(images.imgPlayer, 248, 0, 52, 52, this.x, this.y, this.width, this.height);
+          ctx.drawImage(images.imgPlayer, 256, this.offY, 60, 60, this.x, this.y, this.width, this.height);
         } if (this.movment > 5) {
-          ctx.drawImage(images.imgPlayer, 310, 0, 52, 52, this.x, this.y, this.width, this.height);
+          ctx.drawImage(images.imgPlayer, 320, this.offY, 60, 60, this.x, this.y, this.width, this.height);
         } if (this.movment == 0) {
           this.movment += 10;
         }
       } else if (!this.directions.up.pressed) {
         audio.engineSound.pause();
-        ctx.drawImage(images.imgPlayer, 248, 0, 52, 52, this.x, this.y, this.width, this.height);
+        ctx.drawImage(images.imgPlayer, 256, this.offY, 60, 60, this.x, this.y, this.width, this.height);
       }
     } else if (this.direction == 270) {
       if (this.directions.right.pressed) {
         audio.engineSound.play();
         this.movment--;
         if (this.movment < 5) {
-          ctx.drawImage(images.imgPlayer, 124, 0, 52, 52, this.x, this.y, this.width, this.height);
+          ctx.drawImage(images.imgPlayer, 128, this.offY, 60, 60, this.x, this.y, this.width, this.height);
         } if (this.movment > 5) {
-          ctx.drawImage(images.imgPlayer, 186, 0, 52, 52, this.x, this.y, this.width, this.height);
+          ctx.drawImage(images.imgPlayer, 196, this.offY, 60, 60, this.x, this.y, this.width, this.height);
         } if (this.movment == 0) {
           this.movment += 10;
         }
       } else if (!this.directions.right.pressed) {
         audio.engineSound.pause();
-        ctx.drawImage(images.imgPlayer, 124, 0, 52, 52, this.x, this.y, this.width, this.height);
+        ctx.drawImage(images.imgPlayer, 128, this.offY, 60, 60, this.x, this.y, this.width, this.height);
       }
     };
   };
@@ -113,6 +125,9 @@ class Player {
   dead() {
     audio.engineSound.pause();
     audio.playerDeadSound.play();
+    this.bulletSpeed = 2.8;
+    this.speed = 1;
+    this.level = 0;
     this.life--;
     this.x = 165;
     this.y = 485;
