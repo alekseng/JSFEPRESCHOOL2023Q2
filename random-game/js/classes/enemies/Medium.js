@@ -199,15 +199,21 @@ class Medium {
 
   createBonus(bonuses) {
     if (this.hasBonus) {
-      let bonus = Math.floor(Math.random() * 2) + 1;
-      console.log(bonus);
+      let bonus = Math.floor(Math.random() * 3) + 1;
       if (bonus === 1) {
         bonuses.push(new Bonus(1));
       } else if (bonus === 2) {
         bonuses.push(new Bonus(2));
+      } else if (bonus === 3) {
+        bonuses.push(new Bonus(3));
       }
     }
   };
+
+  destroy() {
+    audio.enemyDeadSound.play();
+    ctx.drawImage(images.boomsImg, 320, 0, 128, 128, this.x - 20, this.y - 20, 60, 60);
+  }
 };
 
 export default Medium;

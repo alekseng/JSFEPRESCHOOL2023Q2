@@ -125,7 +125,7 @@ function start() {
 
   bonuses.forEach((elB) => {
     if (elB.x < player.x + player.width && elB.x + elB.width > player.x && elB.y < player.y + player.height && elB.y + elB.height > player.y) {
-      elB.dead(player);
+      elB.dead(player, enemies);
       bonuses.splice(bonuses.indexOf(elB), 1)
     };
   });
