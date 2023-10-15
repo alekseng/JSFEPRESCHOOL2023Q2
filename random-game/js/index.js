@@ -26,7 +26,7 @@ const options = {
 };
 
 let isPlaying = false;
-let maxLevel = 5;
+let maxLevel = 8;
 let bullets = [];
 let enemies = [];
 let objects = [];
