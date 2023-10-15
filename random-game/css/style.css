@@ -20,7 +20,7 @@ body {
 
 @font-face {
   font-family: "Battle";
-  src: url("../assets/fonts/Battle.woff");
+  src: url("../assets/fonts/Battle.ttf");
 }
 
 .wrapper {
