@@ -4,43 +4,55 @@ import { ctx } from "../canvas.js";
 import levelScore from "../levelScore.js";
 
 class Bonus {
-  pos = Math.floor(Math.random() * 8);
+  pos = Math.floor(Math.random() * 10);
   x;
   y;
   width = 35;
   height = 35;
   position = {
     one: {
-      x: 60,
-      y: 60,
+      x: 45,
+      y: 65,
     },
     two: {
-      x: 220,
-      y: 260,
+      x: 180,
+      y: 85,
     },
     three: {
-      x: 490,
-      y: 380,
+      x: 325,
+      y: 100,
     },
     four: {
-      x: 200,
-      y: 400,
+      x: 450,
+      y: 25,
     },
     five: {
-      x: 80,
-      y: 200,
+      x: 440,
+      y: 125,
     },
     six: {
-      x: 340,
-      y: 360,
+      x: 90,
+      y: 210,
     },
     seven: {
-      x: 50,
-      y: 410,
+      x: 405,
+      y: 210,
     },
     eight: {
-      x: 320,
-      y: 130,
+      x: 0,
+      y: 370,
+    },
+    nine: {
+      x: 95,
+      y: 365,
+    },
+    ten: {
+      x: 275,
+      y: 410,
+    },
+    eleven: {
+      x: 405,
+      y: 445,
     },
   };
 
@@ -73,6 +85,15 @@ class Bonus {
     } else if (this.pos === 7) {
       this.x = this.position.eight.x
       this.y = this.position.eight.y
+    }else if (this.pos === 8) {
+      this.x = this.position.nine.x
+      this.y = this.position.nine.y
+    }else if (this.pos === 9) {
+      this.x = this.position.ten.x
+      this.y = this.position.ten.y
+    }else if (this.pos === 10) {
+      this.x = this.position.eleven.x
+      this.y = this.position.eleven.y
     };
     if (this.bonus == 1) {
       ctx.drawImage(images.bonuses, 320, 0, 64, 64, this.x, this.y, this.width, this.height);
