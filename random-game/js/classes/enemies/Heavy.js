@@ -85,7 +85,7 @@ class Heavy {
       }
     } else {
       if (this.direction == 0) {
-      this.movment--;
+        this.movment--;
         ctx.drawImage(images.heavyTank, this.up, 0, 60, 60, this.x, this.y, this.width, this.height);
         if (this.movment < 5) { this.up = 0 }
         if (this.movment > 5) { this.up = 64 }
@@ -184,15 +184,7 @@ class Heavy {
   createBonus(bonuses) {
     if (this.hasBonus) {
       let bonus = Math.floor(Math.random() * 4) + 1;
-      if (bonus === 1) {
-        bonuses.push(new Bonus(1));
-      } else if (bonus === 2) {
-        bonuses.push(new Bonus(2));
-      } else if (bonus === 3) {
-        bonuses.push(new Bonus(3));
-      } else if (bonus === 4) {
-        bonuses.push(new Bonus(4));
-      }
+      bonuses.push(new Bonus(bonus));
     }
   };
 
