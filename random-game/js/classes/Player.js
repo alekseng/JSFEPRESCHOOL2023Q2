@@ -142,6 +142,8 @@ class Player {
     this.x = 165;
     this.y = 485;
     this.direction = this.directions.up.angle;
+    this.helmet = true;
+    this.helmetDurability = 350;
   };
 
   onKeyDown(e) {
